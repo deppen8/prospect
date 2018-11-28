@@ -24,7 +24,7 @@ def make_transects(transect_interval, sweep_width, angle_degrees, area_gdf):
         n_transects = int((xmax - bottom_start) / horiz_shift)
         
         offsets = np.arange(1, n_transects+1) * horiz_shift
-        top_vals = top_start + offsets
+        top_vals  = top_start + offsets
         bottom_vals = bottom_start + offsets
         
         return top_vals, bottom_vals, n_transects
@@ -33,7 +33,7 @@ def make_transects(transect_interval, sweep_width, angle_degrees, area_gdf):
         n_transects = int((xmax - bottom_start) / horiz_shift)
     
         offsets = np.arange(1, n_transects+1) * horiz_shift
-        top_vals = top_start + offsets
+        top_vals  = top_start + offsets
         bottom_vals = bottom_start + offsets
         
         return top_vals, bottom_vals, n_transects
@@ -61,16 +61,32 @@ def make_transects(transect_interval, sweep_width, angle_degrees, area_gdf):
     top_coords = list(zip(top_vals, np.full_like(top_vals, fill_value=ymax)))
     bottom_coords = list(zip(bottom_vals, np.full_like(bottom_vals, fill_value=ymin)))
 
-    transects_gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
-
-    transects_buffer = transects_gs.buffer(sweep_width)
+    lines_gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
+    lines_gdf = gpd.GeoDataFrame({'length': np.arange(0, n_transects),
+                                  'geometry': lines_gs
+                                 }, geometry='geometry')
+    
+    # clip lines by bounding box
+    poly = area1.geometry.unary_union
+    spatial_index = lines_gdf.sindex
+    bbox = poly.bounds
+    sidx = list(spatial_index.intersection(bbox))
+    lines_sub = lines_gdf.iloc[sidx]
+    clipped = lines_sub.copy()
+    clipped['geometry'] = lines_sub.intersection(poly)
+    lines_clipped = clipped[clipped.geometry.notnull()]
+    
+    
+    transects_buffer = lines_clipped.buffer(sweep_width)  # buffer transects
     buffer_gdf = gpd.GeoDataFrame({'angle_deg':[angle_degrees] * n_transects,
+                                   'length': lines_clipped.length,
                                    'geometry': transects_buffer}, 
-                                  geometry='geometry')
+                                   geometry='geometry')
 
     transects = gpd.overlay(buffer_gdf, area_gdf, how='intersection')
+    transects['area'] = transects.area
+    
     return transects
-
 
 def compare_transect_angles(transect_interval, sweep_width, area_gdf):
     import pandas as pd
