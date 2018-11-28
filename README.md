@@ -58,7 +58,7 @@ SurveySim is designed around a few simple building blocks that can be customized
  
  All Layers also have an ideal observation rate, which represents the frequency with which an artifact or feature will be
   recorded, assuming the following ideal conditions: 
-  - It lies inside or intersect the Coverage (see below)
+  - It lies inside or intersects the Coverage (see below)
   - Surface visibility is 100%
   - The surveyor is highly skilled
   
@@ -96,11 +96,11 @@ SurveySim is designed around a few simple building blocks that can be customized
   ceramics
   ```
   
-  |      | layer_name | fid | time_penalty | ideal_obs_rate | geometry |
-  | :--: | ---: | --: | --------: | -------------: | -------: |
-  | 0 | ceramics | ceramics_0 | 0.1 | 0.95 | POINT (0.7659078564803156 0.1877212286612516) |
-  | 1 | ceramics | ceramics_1 | 0.1 | 0.95 | POINT (0.5184179878729432 0.08074126876487486) |
-  | 2 | ceramics | ceramics_2 | 0.1 | 0.95 | POINT (0.296800501576222 0.73844029619897) |
+  |   | layer_name |        fid | time_penalty | ideal_obs_rate |                                       geometry |
+  |:-:|-----------:|-----------:|-------------:|---------------:|-----------------------------------------------:|
+  | 0 |   ceramics | ceramics_0 |          0.1 |           0.95 |  POINT (0.7659078564803156 0.1877212286612516) |
+  | 1 |   ceramics | ceramics_1 |          0.1 |           0.95 | POINT (0.5184179878729432 0.08074126876487486) |
+  | 2 |   ceramics | ceramics_2 |          0.1 |           0.95 |     POINT (0.296800501576222 0.73844029619897) |
 
 
   ```python
@@ -120,22 +120,22 @@ SurveySim is designed around a few simple building blocks that can be customized
                             )
   lithics
   ```
-  |      | layer_name | fid | time_penalty | ideal_obs_rate | geometry |
-  | :--: | ---: | --: | --------: | -------------: | -------: |
-  | 0 | lithics | lithics_0 | 0.15 | 0.8 | POINT (0.02430656162948697 0.6998436141265575) |
-  | 1 | lithics | lithics_1 | 0.15 | 0.8 | POINT (0.2045555463799507 0.7795145855555298) |
+  |   | layer_name |       fid | time_penalty | ideal_obs_rate |                                       geometry |
+  |:-:|-----------:|----------:|-------------:|---------------:|-----------------------------------------------:|
+  | 0 |    lithics | lithics_0 |         0.15 |            0.8 | POINT (0.02430656162948697 0.6998436141265575) |
+  | 1 |    lithics | lithics_1 |         0.15 |            0.8 |  POINT (0.2045555463799507 0.7795145855555298) |
 
   ```python
   assemblage = pd.concat([ceramics, lithics], ignore_index=True)
   assemblage
   ```
-  |      | layer_name | fid | time_penalty | ideal_obs_rate | geometry |
-  | :--: | ---: | --: | --------: | -------------: | -------: |
-  | 0 | ceramics | ceramics_0 | 0.1 | 0.95 | POINT (0.7659078564803156 0.1877212286612516) |
-  | 1 | ceramics | ceramics_1 | 0.1 | 0.95 | POINT (0.5184179878729432 0.08074126876487486) |
-  | 2 | ceramics | ceramics_2 | 0.1 | 0.95 | POINT (0.296800501576222 0.73844029619897) |
-  | 3 | lithics | lithics_0 | 0.15 | 0.8 | POINT (0.02430656162948697 0.6998436141265575) |
-  | 4 | lithics | lithics_1 | 0.15 | 0.8 | POINT (0.2045555463799507 0.7795145855555298) |
+  |   | layer_name |        fid | time_penalty | ideal_obs_rate |                                       geometry |
+  |:-:|-----------:|-----------:|-------------:|---------------:|-----------------------------------------------:|
+  | 0 |   ceramics | ceramics_0 |          0.1 |           0.95 |  POINT (0.7659078564803156 0.1877212286612516) |
+  | 1 |   ceramics | ceramics_1 |          0.1 |           0.95 | POINT (0.5184179878729432 0.08074126876487486) |
+  | 2 |   ceramics | ceramics_2 |          0.1 |           0.95 |     POINT (0.296800501576222 0.73844029619897) |
+  | 3 |    lithics |  lithics_0 |         0.15 |            0.8 | POINT (0.02430656162948697 0.6998436141265575) |
+  | 4 |    lithics |  lithics_1 |         0.15 |            0.8 |  POINT (0.2045555463799507 0.7795145855555298) |
 
  ### `Coverage`
  The Coverage is where the user defines how the survey will be set up. The user can define the shape of the survey 
@@ -146,7 +146,11 @@ SurveySim is designed around a few simple building blocks that can be customized
  The Coverage also defines how an artifact or feature's distance from the survey unit impacts whether or not it is 
  discovered.
 
- The user can also specify an estimated minimum search time for a single survey unit. This should be an estimate of the amount of time it would take the most skilled surveyor to search a survey unit where they encountered no artifacts or features. This forms the baseline to which additional time is added. Time can be added for each artifact observed and/or based on the surveyor speed attribute (see below).
+ The user can also specify an estimated minimum search time for a single survey unit. This should be an estimate of the amount of time it would take the most skilled surveyor to search a survey unit where they encountered no artifacts or features. 
+ 
+ For transects, the time should be specified in seconds per unit of transect length. For example, if it is estimated to take an expert surveyor 20 minutes to survey 400 meters given they didn't encounter any artifacts or features, the minimum search time would be specified as 3 seconds/meter (i.e., 1200 seconds / 400 meters). This factor is then applied to the actual transects to calculate an estimated minimum search time for each.
+ 
+ This forms the baseline to which additional time is added. Time can be added for each artifact observed and/or based on the surveyor speed attribute (see below).
   
  #### `Transects`
  Transects are probably the most common type of coverage. They are represented in SurveySim by lines. The user will 
@@ -154,7 +158,71 @@ SurveySim is designed around a few simple building blocks that can be customized
  sweep width are "eligible" to be observed in the survey. Whether they are *actually* observed depends on the 
  the suite of all factors like ideal observation rate, surface visibility, and surveyor skill.
 
- 
+ ```python
+ import numpy as np
+ import geopandas as gpd
+ from shapely.geometry import LineString
+
+ # constants
+ transect_interval = .10
+ sweep_width = .02
+ angle_degrees = 50
+
+ # NOTE: uses `area1` from the Area example
+ xmin = area1.bounds.minx.min()
+ xmax = area1.bounds.maxx.max()
+ ymin = area1.bounds.miny.min()
+ ymax = area1.bounds.maxy.max()
+ h = ymax-ymin
+
+ theta = np.radians(angle_degrees)
+
+ # calculate top starting point
+ horiz_shift = (1/np.cos(theta)) * transect_interval  # horiz dist between transects
+
+ # calculate bottom starting point (outside Area bounds)
+ a = (1/np.tan(theta)) * transect_interval
+ b = h - a
+ bottom_start_shift = np.tan(theta) * b
+ bottom_start = xmin - bottom_start_shift
+
+ n_transects = int((xmax - bottom_start) / horiz_shift)
+
+ offsets = np.arange(1, n_transects+1) * horiz_shift  
+ top_vals  = xmin + offsets
+ bottom_vals = bottom_start + offsets
+
+ top_coords = list(zip(top_vals, np.full_like(top_vals, fill_value=ymax)))
+ bottom_coords = list(zip(bottom_vals, np.full_like(bottom_vals, fill_value=ymin)))
+
+ transects_gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
+
+ transects_buffer = transects_gs.buffer(sweep_width)
+ buffer_gdf = gpd.GeoDataFrame({'angle_deg':[angle_degrees] * n_transects,
+                                'geometry': transects_buffer}, 
+                               geometry='geometry')
+
+ transects = gpd.overlay(buffer_gdf, area1, how='intersection')
+
+ transects
+ ```
+
+ |    | angle_deg | area_name | visibility | geometry                                          |
+ |:--:|------:|----------:|-----------:|--------------------------------------------------:|
+ | 0  | 50    | area1     | 0.9        | POLYGON ((0 0.8846240807876167, 0.125962074298... |
+ | 1  | 50    | area1     | 0.9        | POLYGON ((0 0.7421263745823435, 0.281534456985... |
+ | 2  | 50    | area1     | 0.9        | POLYGON ((0 0.5996286683770703, 0.437106839671... |
+ | 3  | 50    | area1     | 0.9        | POLYGON ((0 0.4571309621717971, 0.592679222357... |
+ | 4  | 50    | area1     | 0.9        | POLYGON ((0 0.3146332559665239, 0.748251605043... |
+ | 5  | 50    | area1     | 0.9        | POLYGON ((0 0.1721355497612507, 0.903823987729... |
+ | 6  | 50    | area1     | 0.9        | POLYGON ((0 0.02963784355597765, 1 0.945595443... |
+ | 7  | 50    | area1     | 0.9        | POLYGON ((0.1328492843637979 0, 0.132844682060... |
+ | 8  | 50    | area1     | 0.9        | POLYGON ((0.2884216670498392 0, 0.288417064746... |
+ | 9  | 50    | area1     | 0.9        | POLYGON ((0.4439940497358804 0, 0.443989447432... |
+ | 10 | 50    | area1     | 0.9        | POLYGON ((0.5995664324219214 0, 0.599561830118... |
+ | 11 | 50    | area1     | 0.9        | POLYGON ((0.7551388151079628 0, 0.755134212804... |
+ | 12 | 50    | area1     | 0.9        | POLYGON ((0.9107111977940041 0, 0.910706595490... |
+
  #### `Radial`
  Radial survey units are regularly-spaced circles of a given radius. The radius is equivalent to the "sweep width" of a transect.
 
