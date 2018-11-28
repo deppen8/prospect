@@ -67,7 +67,7 @@ def make_transects(transect_interval, sweep_width, angle_degrees, area_gdf):
                                  }, geometry='geometry')
     
     # clip lines by bounding box
-    poly = area1.geometry.unary_union
+    poly = area_gdf.geometry.unary_union
     spatial_index = lines_gdf.sindex
     bbox = poly.bounds
     sidx = list(spatial_index.intersection(bbox))
