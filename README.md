@@ -4,6 +4,8 @@ SurveySim is a set of tools for simulating archaeological field surveys.
 ## TODO:
 - [ ] define data types used for each building block
 - [ ] specify default values
+    - [ ] track down estimates of survey speed
+    - [ ] calculate time added by artifact recording in LEIA Project or elsewhere
 - [ ] determine measures to calculate for any given simulation
 - [ ] plan returns of the simulation 
 - [ ] plan visualization methods
@@ -149,6 +151,8 @@ SurveySim is designed around a few simple building blocks that can be customized
  The user can also specify an estimated minimum search time for a single survey unit. This should be an estimate of the amount of time it would take the most skilled surveyor to search a survey unit where they encountered no artifacts or features. 
  
  For transects, the time should be specified in seconds per unit of transect length. For example, if it is estimated to take an expert surveyor 20 minutes to survey 400 meters given they didn't encounter any artifacts or features, the minimum search time would be specified as 3 seconds/meter (i.e., 1200 seconds / 400 meters). This factor is then applied to the actual transects to calculate an estimated minimum search time for each.
+
+ *N.B. Humans' preferred walking speed is 1.4 m/sec () (source: Wikipedia)*
  
  This forms the baseline to which additional time is added. Time can be added for each artifact observed and/or based on the surveyor speed attribute (see below).
   
