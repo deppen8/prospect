@@ -7,47 +7,27 @@ SurveySim is a set of tools for simulating archaeological field surveys.
     - [ ] track down estimates of survey speed
     - [ ] calculate time added by artifact recording in LEIA Project or elsewhere
 - [ ] determine measures to calculate for any given simulation
-- [ ] plan returns of the simulation 
+- [ ] plan returns of the simulation
 - [ ] plan visualization methods
+- [ ] create hypothetical experiments to derive parameters
 
 ## Building blocks
-SurveySim is designed around a few simple building blocks that can be customized (or not) to whatever degree the user
- requires.
+SurveySim is designed around a few simple building blocks that can be customized (or not) to whatever degree the user requires.
  
  ### `Simulation` 
- A Simulation is receives all of the inputs and runs the digital survey. It also 
+ A Simulation is receives all of the inputs and runs the digital survey.
  
  ### `Area`
- The Area defines the spatial extent of the survey. Spatial aspects of the Assemblage and the SurveyStrategy are 
- placed within the Area.
+ The Area defines the spatial extent of the survey. Spatial aspects of the Assemblage and the SurveyStrategy are placed within the Area.
  
  An Area can be defined with a simple rectangle or with more complex shapes from a shapefile.
  
- The surface visibility parameter is set on the Area either as a scalar value, a distribution, or with a 
- pre-calculated surface. 
+ The surface visibility parameter is set on the Area either as a distribution or with a pre-calculated surface.
  
  The Area has attributes like min/max bounds and area (as in m<sup>2</sup>).
 
- ```python
- from shapely.geometry import box
- import geopandas as gpd
-
- xmin=0; ymin=0; xmax=1; ymax=1
- rect = box(xmin, ymin, xmax, ymax)
- area1 = gpd.GeoDataFrame({'area_name':['area1'],
-                           'visibility': [0.90],
-                           'geometry': rect}, 
-                          geometry='geometry')
- area1 
- ```
- |  | name | visibility | geometry |
- | :--: | --: | --------: | --------: |
- | **0** | 'area1'  | 0.90 | POLYGON ((1 0, 1 1, 0 1, 0 0, 1 0) |
-
  ### `Assemblage` 
- The Assemblage represents the artifacts or other features-of-interest in an Area. The Assemblage needs to be able to
-  handle multiple inputs because archaeologists are often interested in identifying more than one type of artifact or
-  feature in their survey. SurveySim does this with Layers.
+ The Assemblage represents the artifacts or other features-of-interest in an Area. The Assemblage needs to be able to handle multiple inputs because archaeologists are often interested in identifying more than one type of artifact or feature in their survey. SurveySim does this with Layers.
  
  #### `Layers`
  Each Layer of an Assemblage should be a homogeneous type of shape (e.g., points, lines, or polygons). The user can 
