@@ -1,85 +1,59 @@
 """
 Create and modify Area objects
 """
+# TODO: clean up with @classmethod, @staticmethod
+# TODO: coordinate systems and projections...UGGGGGHHH
 
-from shapely.geometry import box
+from typing import Tuple
+from shapely.geometry import box, Polygon
 import geopandas as gpd
 
-class Area(object):
+class Area:
     '''Define the space where the survey will occur    
     '''
 
-    def __init__(self,
-                 name='area',
-                 xmin=0.0, ymin=0.0, xmax=1.0, ymax=1.0,
-                 vis=1.0
-                 ):
-        '''Create simple rectangular `Area`
-        
-        Parameters
-        ----------
-        name : str, optional
-            Unique name for this area
-        xmin : float, optional
-            Minimum horizontal bound
-        ymin : float, optional
-            Minimum vertical bound
-        xmax : float, optional
-            Maximum horizontal bound
-        ymax : float, optional
-            Maximum vertical bound
-        vis : float, optional
-            Scalar value for surface visibility
-        '''
-        rect = box(xmin, ymin, xmax, ymax)
-        self.data = gpd.GeoDataFrame({'area_name':[name],
-                                      'visibility': [vis],
-                                      'geometry': rect}, 
+    def __init__(self, name: str, shape: Polygon, vis: float = 1.0):
+
+        self.name = name
+        self.vis = vis
+        self.vis_type = "scalar"
+        self.shape = shape
+        self.data = gpd.GeoDataFrame({'area_name':[self.name],
+                                      'visibility': [self.vis],
+                                      'geometry': self.shape}, 
                                       geometry='geometry'
                                     )
 
-    def from_shapefile(self, path):
-        """Read shapefile as Area
-        
-        Parameters
-        ----------
-        path : str
-            File path to shapefile
-        """
+    
+    def __repr__(self):
+        return f"Area({repr(self.name)}, {repr(self.shape)}, {repr(self.vis)})"
 
+
+    def __str__(self):
+        return f"Area object named '{self.name}'"
+    
+
+    @classmethod
+    def from_shapefile(cls, name: str, path: str):
+        # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
-        self.data.geometry = tmp_gdf.geometry
-        
+        return cls(name, tmp_gdf['geometry'].iloc[0])
+    
+    
+    @classmethod
+    def from_shapely_polygon(cls, name: str, polygon: Polygon):
+        return cls(name, polygon)
+    
 
-# class Area:
-#     def __init__(self):
-#         self.polygon = None
-#         self.bounds = None
-#         self.area = None
-#         self.total_bounds = None
-
-
-# class Rectangle(Area):
-#     def __init__(self, xmin=0, ymin=0, xmax=1, ymax=1):
-#         super().__init__()
-
-#         from shapely.geometry import box
-#         import geopandas as gpd
-#         rect = box(xmin, ymin, xmax, ymax)
-#         gds = gpd.GeoSeries(rect)
-#         self.polygon = gds
-#         self.bounds = gds.bounds
-#         self.area = gds.area
-#         self.total_bounds = gds.total_bounds
+    @classmethod
+    def from_area_value(cls, name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0)):
+        from math import sqrt
+        side = sqrt(value)
+        square_area = box(origin[0], origin[1], origin[0]+side, origin[1]+side)
+        return cls(name, square_area)
 
 
-# class Shapefile(Area):
-#     def __init__(self, fpath):
-#         super().__init__()
-
-#         import geopandas as gpd
-#         gdf = gpd.read_file(fpath)
-#         self.polygon = gdf
-#         self.bounds = gdf.bounds
-#         self.area = gdf.area
-#         self.total_bounds = gdf.total_bounds
+    def set_visibility(self):
+        # TODO: pass in distribution parameters
+        # TODO: accept a scalar OR distribution parameters
+        pass
