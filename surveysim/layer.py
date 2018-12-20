@@ -4,6 +4,8 @@ Create and modify Layer objects
 
 from shapely.geometry import Point
 import geopandas as gpd
+import numpy as np
+from scipy.stats import uniform, poisson, norm
 from .area import Area
 
 class Layer:
@@ -33,21 +35,92 @@ class Layer:
 
 
     @classmethod
-    def from_poisson_points(cls, rate: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
-        from scipy.stats import poisson, uniform
-        bounds = area.total_bounds        
-        dx = bounds[2] - bounds[0]
-        dy = bounds[3] - bounds[1]
-        
-        n = poisson(rate * dx * dy ).rvs()
-        xs = uniform.rvs(0, dx, ((n,1)))
-        ys = uniform.rvs(0, dy, ((n,1)))
-        
-        points = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
-        
-        return cls(area, name, points, time_penalty, ideal_obs_rate)
+    def from_pseudorandom_points(cls, n: int, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+
+        bounds = area.data.total_bounds
+        xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
+        ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
+        points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
+
+        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
 
 
     @classmethod
+    def from_poisson_points(cls, rate: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+        points = cls.poisson_points(area, rate)
+        points_gds = gpd.GeoSeries([Point(xy) for xy in points])
+        
+        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+
+
+    @classmethod
+    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+        '''
+        A Poisson( kappa ) number of parents are created,
+        each forming a Poisson( mu ) numbered cluster of points,
+        having an isotropic Gaussian distribution with variance `sigma`
+        '''
+        parents = cls.poisson_points(area, parent_rate)
+        M = parents.shape[0]
+
+        points = list()    
+        for i in range(M):
+            N = poisson(child_rate).rvs()
+            for __ in range(N):            
+                pdf = norm(loc=parents[i,:2], scale=(gauss_var,gauss_var))
+                points.append(list(pdf.rvs(2)))
+        points = np.array(points)
+        points_gds = gpd.GeoSeries([Point(xy) for xy in points])
+
+        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+
+
+    @classmethod
+    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+        parents = cls.poisson_points(area, parent_rate)
+        M = parents.shape[0]
+        
+        points = list()
+        for i in range(M):
+            N = poisson(child_rate).rvs()
+            for __ in range(N):
+                x, y = cls.uniform_disk(parents[i,0], parents[i,1], radius)
+                points.append([x, y])
+        points = np.array(points)
+        points_gds = gpd.GeoSeries([Point(xy) for xy in points])
+
+        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+
+
+    @staticmethod
+    def poisson_points(area: Area, rate: float):
+
+        bounds = area.data.total_bounds        
+        dx = bounds[2] - bounds[0]
+        dy = bounds[3] - bounds[1]
+
+        N = poisson(rate * dx * dy ).rvs()
+        xs = uniform.rvs(0, dx, ((N,1)))
+        ys = uniform.rvs(0, dy, ((N,1)))
+        return np.hstack((xs, ys))
+
+
+    @staticmethod
+    def uniform_disk(x, y, r):
+        '''
+        Returns a uniformly distributed point in a
+        disk of radius `r` centered at the point (x,y).
+        '''
+        r = uniform(0, r**2.0).rvs()
+        theta = uniform(0, 2*np.pi).rvs()
+        xt = np.sqrt(r) * np.cos(theta)
+        yt = np.sqrt(r) * np.sin(theta)
+        return x+xt, y+yt
+
+    # TODO: this.
+    @classmethod
     def make_polygons(cls):
+        # random centroid?
+        # random rotation?
+        # n_polygons?
         pass
