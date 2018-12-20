@@ -102,3 +102,49 @@
 
 
 ##########################################################################
+
+# |￣￣￣￣￣￣￣￣￣￣￣￣ | 
+# |    HERE LIES         | 
+# |  A TOO-COMPLICATED   | 
+# |    LAYER CLASS       | 
+# |    STRUCTURE         | 
+# | ＿＿＿＿＿＿＿＿＿＿＿＿ | 
+# (\__/) || 
+# (•ㅅ•) || 
+# / 　 づ
+
+class PointLayer(Layer):
+    layer_type = 'point'
+
+    def __init__(self, area: Area, name: str, features=None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+        super().__init__(area, name, features, time_penalty, ideal_obs_rate)        
+    
+    @classmethod
+    def from_shapefile(cls, path: str, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+        shp = gpd.read_file(path)
+        return cls(area, name, shp['geometry'], time_penalty, ideal_obs_rate)
+
+
+class PoissonPointLayer(PointLayer):
+
+    layer_type = 'poisson_point'
+
+    def __init__(self, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0, rate: float = 0.2):
+        from scipy.stats import poisson, uniform
+
+        super().__init__(area, name, time_penalty, ideal_obs_rate)
+        
+        dx = self.bounds[2] - self.bounds[0]
+        dy = self.bounds[3] - self.bounds[1]
+        n = poisson(rate * dx * dy ).rvs()
+        xs = uniform.rvs(0, dx, ((n,1)))
+        ys = uniform.rvs(0, dy, ((n,1)))
+        self.features = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
+        n_points = self.features.shape[0]
+        self.data = gpd.GeoDataFrame({'layer_name': [self.name] * n_points,
+                                    'fid': [f'{self.name}_{i}' for i in range(n_points)],
+                                    'time_penalty': [self.time_penalty] * n_points,
+                                    'ideal_obs_rate': [self.ideal_obs_rate] * n_points,
+                                    'geometry': self.features},
+                                    geometry = 'geometry'
+                                    )
