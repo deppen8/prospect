@@ -26,14 +26,14 @@ class Area:
         Handy container for the other attributes
     '''
 
-    def __init__(self, name: str, shape: Polygon, visibility = 1.0):
+    def __init__(self, name: str = 'area', shape: Polygon = None, visibility: float = 1.0):
         '''Initialize an `Area` object
         
         Parameters
         ----------
-        name : str
+        name : str, optional
             Unique name for the `Area`
-        shape : shapely `Polygon`
+        shape : shapely `Polygon`, optional
             A shapely `Polygon` object
         visibility : float, optional
             Visibility scalar value. This is set to 1.0 when an `Area` is first created.
