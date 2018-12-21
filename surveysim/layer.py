@@ -28,10 +28,12 @@ class Layer:
         Limits of the bounding box of the `Area`
     name : str
         Unique name for `Layer`
-    features : numpy `ndarray` or geopandas `GeoDataSeries`
+    features : numpy `ndarray` or geopandas `GeoSeries`
         An object containing all of the shapely objects that make up the Layer
     n_features : int
         Number of artifacts/features in the `Layer`
+    feature_type : {'points', 'polygons', None}
+            Nature of the features created
     time_penalty : float
         Extra time associated with collecting/recording one artifact/feature from this `Layer`
     ideal_obs_rate : float
@@ -41,7 +43,7 @@ class Layer:
             - The surveyor is highly skilled
     """
 
-    def __init__(self, area: Area, name: str, features = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+    def __init__(self, area: Area, name: str, features = None, feature_type: str = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
         """Create a `Layer` object
         
         Parameters
@@ -50,8 +52,10 @@ class Layer:
             `Area` where the `Layer` is to be located
         name : str
             Unique name for the `Layer`
-        features : numpy ndarray or geopandas GeoDataSeries, optional
+        features : numpy ndarray or geopandas GeoSeries, optional
             An object containing all of the shapely objects that will make up the Layer. Technically optional, but `Layer` creation will fail without it.
+        feature_type : {'points', 'polygons', None}
+            Nature of the features created
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
@@ -67,6 +71,7 @@ class Layer:
         self.name = name
         self.features = features
         self.n_features = features.shape[0]
+        self.feature_type = feature_type
         self.time_penalty = time_penalty
         self.ideal_obs_rate = ideal_obs_rate
 
@@ -80,7 +85,7 @@ class Layer:
 
 
     @classmethod
-    def from_shapefile(cls, path: str, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
+    def from_shapefile(cls, path: str, area: Area, name: str, feature_type: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
         """Create a `Layer` of artifacts/features from a shapefile
         
         Parameters
@@ -91,6 +96,8 @@ class Layer:
             `Area` where the `Layer` is to be located
         name : str
             Unique name for the `Layer`
+        feature_type : {'points', 'polygons', None}
+            Nature of the features created
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
@@ -102,7 +109,7 @@ class Layer:
         """
 
         tmp_gdf = gpd.read_file(path)
-        return cls(area, name, tmp_gdf['geometry'], time_penalty, ideal_obs_rate)
+        return cls(area, name, tmp_gdf['geometry'], feature_type, time_penalty, ideal_obs_rate)
 
 
     @classmethod
@@ -132,7 +139,7 @@ class Layer:
         ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
         points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
 
-        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+        return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
 
     @classmethod
@@ -167,7 +174,7 @@ class Layer:
         points = cls.poisson_points(area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         
-        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+        return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
 
     @classmethod
@@ -219,7 +226,7 @@ class Layer:
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
 
-        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+        return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
 
     @classmethod
@@ -272,7 +279,7 @@ class Layer:
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
 
-        return cls(area, name, points_gds, time_penalty, ideal_obs_rate)
+        return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
 
     @staticmethod
