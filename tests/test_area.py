@@ -10,11 +10,11 @@ class TestArea(object):
         assert isinstance(self.default.data, GeoDataFrame)
 
     def test_default_area_measures(self):
-        assert self.default.data.bounds.minx == 0
-        assert self.default.data.bounds.miny == 0
-        assert self.default.data.bounds.maxx == 1
-        assert self.default.data.bounds.maxy == 1
-        assert self.default.data.area == 1
+        assert self.default.data.bounds.minx[0] == 0
+        assert self.default.data.bounds.miny[0] == 0
+        assert self.default.data.bounds.maxx[0] == 1
+        assert self.default.data.bounds.maxy[0] == 1
+        assert self.default.data.area[0] == 1
 
     def test_default_columns_exist(self):
         for col in ['area_name', 'visibility', 'geometry']:
