@@ -1,10 +1,16 @@
 """
 Create and modify Layer objects
 """
-# TODO: add docs
+# TODO: clip generated Layers by Area
+# QUESTION: points are only constrained to bounding box of Area. What to do if no points fall within actual Area? 
+# - set minimum number of points that must be present?
+# - allow this? it sort of simulates real life if we assume that boundaries of Areas are arbitrary relative to the artifact depositions
+# - allow and warn?
+# TODO: create an Assemblage object/module to catch all of the Layers
 
 from .area import Area
 
+from typing import Tuple
 import geopandas as gpd
 from shapely.geometry import Point, Polygon
 
@@ -12,7 +18,7 @@ import numpy as np
 from scipy.stats import uniform, poisson, norm
 
 class Layer:
-    '''Define artifacts/features that will seed the survey `Area`
+    """Define artifacts/features that will seed the survey `Area`
     
     Attributes
     -------
@@ -33,10 +39,10 @@ class Layer:
             - It lies inside or intersects the `Coverage`
             - Surface visibility is 100%
             - The surveyor is highly skilled
-    '''
+    """
 
     def __init__(self, area: Area, name: str, features = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
-        '''Create a `Layer` object
+        """Create a `Layer` object
         
         Parameters
         ----------
@@ -54,7 +60,7 @@ class Layer:
                 - Surface visibility is 100%
                 - The surveyor is highly skilled 
             (the default is 1.0, which would indicate it is always recorded when encountered)
-        '''
+        """
 
         self.area_name = area.name
         self.bounds = area.data.total_bounds
@@ -75,7 +81,7 @@ class Layer:
 
     @classmethod
     def from_shapefile(cls, path: str, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
-        '''Create a `Layer` of artifacts/features from a shapefile
+        """Create a `Layer` of artifacts/features from a shapefile
         
         Parameters
         ----------
@@ -93,7 +99,7 @@ class Layer:
                 - Surface visibility is 100%
                 - The surveyor is highly skilled 
             (the default is 1.0, which would indicate it is always recorded when encountered)
-        '''
+        """
 
         tmp_gdf = gpd.read_file(path)
         return cls(area, name, tmp_gdf['geometry'], time_penalty, ideal_obs_rate)
@@ -101,7 +107,7 @@ class Layer:
 
     @classmethod
     def from_pseudorandom_points(cls, n: int, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
-        '''Create a `Layer` of pseudorandom points
+        """Create a `Layer` of pseudorandom points
         
         Parameters
         ----------
@@ -119,7 +125,7 @@ class Layer:
                 - Surface visibility is 100%
                 - The surveyor is highly skilled 
             (the default is 1.0, which would indicate it is always recorded when encountered)
-        '''
+        """
 
         bounds = area.data.total_bounds
         xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
@@ -131,7 +137,7 @@ class Layer:
 
     @classmethod
     def from_poisson_points(cls, rate: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
-        '''Create a `Layer` of points with a Poisson point process
+        """Create a `Layer` of points with a Poisson point process
 
         Parameters
         ----------
@@ -156,7 +162,7 @@ class Layer:
         from_pseudorandom_points : faster, naive point creation
         from_thomas_points : good for clusters with centers from Poisson points
         from_matern_points : good for clusters with centers from Poisson points
-        '''
+        """
 
         points = cls.poisson_points(area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
@@ -166,7 +172,7 @@ class Layer:
 
     @classmethod
     def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
-        '''Create a `Layer` with a Thomas point process. It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
+        """Create a `Layer` with a Thomas point process. It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
 
         Parameters
         ----------
@@ -199,7 +205,7 @@ class Layer:
         Notes
         -----
         Parents (cluster centers) are NOT created as points in the output
-        '''
+        """
 
         parents = cls.poisson_points(area, parent_rate)
         M = parents.shape[0]
@@ -218,7 +224,7 @@ class Layer:
 
     @classmethod
     def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
-        '''Create a `Layer` with a Matérn point process. It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
+        """Create a `Layer` with a Matérn point process. It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
 
         Parameters
         ----------
@@ -252,7 +258,7 @@ class Layer:
         Notes
         -----
         Parents (cluster centers) are NOT created as points in the output
-        '''
+        """
 
         parents = cls.poisson_points(area, parent_rate)
         M = parents.shape[0]
@@ -270,8 +276,8 @@ class Layer:
 
 
     @staticmethod
-    def poisson_points(area: Area, rate: float):
-        '''Create points from a Poisson process
+    def poisson_points(area: Area, rate: float) -> np.ndarray:
+        """Create points from a Poisson process
         
         Parameters
         ----------
@@ -297,7 +303,7 @@ class Layer:
         A Poisson point process is usually said to be more "purely" random than most random number generators (like the one used in `from_pseudorandom_points()`)
 
         The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
-        '''
+        """
         
         bounds = area.data.total_bounds        
         dx = bounds[2] - bounds[0]
@@ -310,8 +316,8 @@ class Layer:
 
 
     @staticmethod
-    def uniform_disk(x, y, r):
-        '''Randomly locate a point within a disk of specified radius
+    def uniform_disk(x: float, y: float, r: float) -> Tuple[float, float]:
+        """Randomly locate a point within a disk of specified radius
 
         Parameters
         ----------
@@ -324,7 +330,7 @@ class Layer:
         -------
         tuple of floats
             Random point within the disk
-        '''
+        """
 
         r = uniform(0, r**2.0).rvs()
         theta = uniform(0, 2*np.pi).rvs()
@@ -335,8 +341,16 @@ class Layer:
 
     # TODO: this.
     @classmethod
-    def make_polygons(cls):
+    def from_rectangles(cls, area: Area, n):
         # random centroid?
         # random rotation?
         # n_polygons?
+        # TODO: centroid options: from Poisson, from pseudorandom
+        # TODO: rotation: pseudorandom
+        #
+        # 
+        # create centroid coords from Poisson
+        # create rectangle of given dimensions around centroids
+        # rotate 
+
         pass

@@ -10,7 +10,7 @@ from shapely.geometry import box, Polygon
 import geopandas as gpd
 
 class Area:
-    '''Define the space where the survey will occur
+    """Define the space where the survey will occur
 
     Attributes
     ----------
@@ -24,10 +24,10 @@ class Area:
         Shapely `Polygon` object that defines the spatial boundaries of the Area
     data : geopandas `GeoDataFrame`
         Handy container for the other attributes
-    '''
+    """
 
     def __init__(self, name: str = 'area', shape: Polygon = None, visibility: float = 1.0):
-        '''Initialize an `Area` object
+        """Initialize an `Area` object
         
         Parameters
         ----------
@@ -38,7 +38,7 @@ class Area:
         visibility : float, optional
             Visibility scalar value. This is set to 1.0 when an `Area` is first created.
             More complicated visibility can be specified with the `set_vis()` method.
-        '''
+        """
 
         self.name = name
         self.vis = visibility
@@ -61,7 +61,7 @@ class Area:
 
     @classmethod
     def from_shapefile(cls, name: str, path: str) -> 'Area':
-        '''Create an `Area` object from a shapefile
+        """Create an `Area` object from a shapefile
         
         Parameters
         ----------
@@ -69,7 +69,7 @@ class Area:
             Unique name for the `Area`
         path : str
             File path to the shapefile
-        '''
+        """
         
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
@@ -78,7 +78,7 @@ class Area:
     
     @classmethod
     def from_shapely_polygon(cls, name: str, polygon: Polygon) -> 'Area':
-        '''Create an `Area` object from a shapely `Polygon`
+        """Create an `Area` object from a shapely `Polygon`
         
         Parameters
         ----------
@@ -86,14 +86,14 @@ class Area:
             Unique name for the `Area`
         polygon : shapely `Polygon`
             A shapely `Polygon` object
-        '''
+        """
         
         return cls(name, polygon)
     
 
     @classmethod
     def from_area_value(cls, name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0)) -> 'Area':
-        '''Create a square `Area` object by specifying its area
+        """Create a square `Area` object by specifying its area
 
         Parameters
         ----------
@@ -103,7 +103,7 @@ class Area:
             Desired area in square units
         origin : tuple of floats
             Specify the lower left corner of the `Area`
-        '''
+        """
         
         from math import sqrt
         side = sqrt(value)
