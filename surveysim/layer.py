@@ -41,6 +41,8 @@ class Layer:
             - It lies inside or intersects the `Coverage`
             - Surface visibility is 100%
             - The surveyor is highly skilled
+    data: geopandas GeoDataFrame
+        Handy container to work with the `Layer`
     """
 
     def __init__(self, area: Area, name: str, features = None, feature_type: str = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
