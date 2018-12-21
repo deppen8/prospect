@@ -1,7 +1,7 @@
 """
 Create and modify Layer objects
 """
-
+# TODO merge area with dev, then branch to Layer branch
 from shapely.geometry import Point
 import geopandas as gpd
 import numpy as np
