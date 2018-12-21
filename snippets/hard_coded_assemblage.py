@@ -1,4 +1,4 @@
-from numpy.random import random
+from np.random import random
 from shapely.geometry import Point
 import geopandas as gpd
 import pandas as pd
