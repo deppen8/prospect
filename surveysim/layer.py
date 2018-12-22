@@ -1,6 +1,7 @@
 """
 Create and modify Layer objects
 """
+# TODO: move time_penalty and ideal_obs_rate specifications to other `set_X()` methods (like `set_vis()` for `Area`)
 # TODO: clip generated Layers by Area
 # QUESTION: points are only constrained to bounding box of Area. What to do if no points fall within actual Area? 
 # - set minimum number of points that must be present?
