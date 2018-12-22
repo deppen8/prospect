@@ -1,6 +1,7 @@
 # SurveySim Cookbook
 
 ## TODO
+
 - [ ] idioms for generating some dummy assemblage layers
 - [ ] abbreviations and acronyms for parameters
 
@@ -19,7 +20,8 @@
 #### Specify visibility
 
 ##### From distribution
-Distributions can be specified with a 
+
+Distributions can be specified with a
 
 ##### From raster
 
