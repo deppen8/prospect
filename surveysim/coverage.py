@@ -1,23 +1,55 @@
 """
 Create a survey methodology
 """
-# TODO:
+# TODO: function to optimize orientation of transects
+# TODO: implement a make_radial class method
 
 from .area import Area
-# from typing import List, Dict, Any
+from .utils import clip_lines_polys
+from typing import List
 import pandas as pd
 import geopandas as gpd
 import numpy as np
 
 class Coverage:
-    """Create a method
+    """Define a survey method
     """
 
-    def __init__(self, area: Area, spacing: float):
-        pass
+    def __init__(self, area: Area, name: str, su_gdf: gpd.GeoDataFrame, su_type: str, spacing: float = 10, orientation: float = 0, min_time_per_unit: float = 1):
+        
+        self.area_name = area.name
+        self.name = name
+        self.survey_units = su_gdf.geometry
+        self.n_survey_units = su_gdf.geometry.shape[0]
+        self.survey_unit_type = su_type
+        self.orientation = orientation
+        self.min_time_per_unit = min_time_per_unit
+        self.spacing = spacing
+        self.sweep_width = None
+        self.radius = None
+        
+        extra_cols: List
+        if self.survey_unit_type == 'transect':
+            self.sweep_width = su_gdf.iloc[0, ['sweep_width']]
+            su_gdf['min_search_time'] = self.min_time_per_unit * su_gdf['length']
+            extra_cols = ['length', 'sweep_width']
+        elif self.survey_unit_type in ['quadrat', 'radial']:
+            su_gdf['min_search_time'] = self.min_time_per_unit
+            if self.survey_unit_type == 'radial':
+                self.radius = su_gdf.iloc[0, ['radius']]
+                extra_cols = ['radius']  # TODO: implement a make_radial class method
+
+        su_gdf['area'] = su_gdf.area  # calculate area of the survey unit
+        su_gdf['su_id'] = [i for i in range(su_gdf.shape[0])]  # add unique su_id
+
+        cols = ['su_id', 'area', 'min_search_time'] + extra_cols + ['geometry']
+        su_gdf = su_gdf.loc[:, cols]  # set column order
+
+        self.data = su_gdf
+
 
     @classmethod
-    def make_transects(cls, area: Area, spacing: float, sweep_width: float, angle: float = 0, min_time: float = 1):
+    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 10, orientation: float = 0, min_time_per_unit: float = 1):
         from math import sqrt
         from shapely.geometry import LineString, Point
         # find longest dimension (longest diagonal of bounding box)
@@ -53,32 +85,25 @@ class Coverage:
         bottom_coords = list(zip(xs, np.full_like(xs, fill_value=y_min)))
 
         lines_gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
-        lines_gs = lines_gs.rotate(angle, origin = Point(centroid.x, centroid.y))  # rotate
+        lines_gs = lines_gs.rotate(orientation, origin = Point(centroid.x, centroid.y))  # rotate
         lines_gdf = gpd.GeoDataFrame({'geometry': lines_gs}, 
                                     geometry='geometry')
 
         # clip lines by area
-        poly = area.data.geometry.unary_union
-        spatial_index = lines_gdf.sindex  
-        bbox = poly.bounds
-        sidx = list(spatial_index.intersection(bbox))
-        lines_sub = lines_gdf.iloc[sidx]
-        clipped = lines_sub.copy()
-        clipped['geometry'] = lines_sub.intersection(poly)
-        lines_clipped = clipped[clipped.geometry.notnull()]
-
+        lines_clipped = clip_lines_polys(lines_gdf, area.data)
 
         transects_buffer = lines_clipped.buffer(sweep_width)  # buffer transects
-        buffer_gdf = gpd.GeoDataFrame({'angle_deg':[angle] * transects_buffer.shape[0],
+        buffer_gdf = gpd.GeoDataFrame({'orientation':[orientation] * transects_buffer.shape[0],
                                     'length': lines_clipped.length,
+                                    'sweep_width': [sweep_width] * transects_buffer.shape[0],
                                     'geometry': transects_buffer}, 
                                     geometry='geometry')
 
         transects = gpd.overlay(buffer_gdf, area.data, how='intersection')
-        transects['area'] = transects.area
-        transects['min_search_time'] = min_time * transects['length']
-        # add su_id column
-        transects['su_id'] = [i for i in range(transects.shape[0])]
-        transects = transects.loc[:, ['su_id', 'angle_deg', 'length', 'area_name', 'visibility', 'geometry', 'area', 'min_search_time']]  
+        transects = transects.loc[:, ['orientation', 'length', 'sweep_width', 'geometry']]
 
-        return cls(transects)
+        return cls(area=area, name=name, su_gdf=transects, su_type = 'transect', spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
+
+
+    def optimize_orientation(self, ):
+        pass
