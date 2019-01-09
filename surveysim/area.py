@@ -1,7 +1,7 @@
 """
 Create and modify Area objects
 """
-# TODO: clean up with @classmethod, @staticmethod
+# TODO: clean up with classmethod, staticmethod
 # TODO: document functions
 # TODO: coordinate systems and projections...UGGGGGHHH
 
