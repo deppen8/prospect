@@ -2,9 +2,10 @@
 Create a survey methodology
 """
 # DONE: function to optimize orientation of transects
-# TODO: refactor make_* functions with helper functions 
-# TODO: implement a make_radial classmethod
+# DONE: refactor make_* functions with helper functions 
+# DONE: implement a make_radial classmethod
 # TODO: implement a from_shapefile classmethod
+# TODO: use minimum_rotated_angle from shapely (see Jupyter Notebook)
 
 from .area import Area
 from .utils import clip_lines_polys
@@ -12,7 +13,7 @@ from typing import List, Dict
 import pandas as pd
 import geopandas as gpd
 import numpy as np
-from shapely.geometry import Point
+from shapely.geometry import Point, LineString
 
 class Coverage:
     """Define a survey method
@@ -53,13 +54,11 @@ class Coverage:
 
     @classmethod
     def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
-        from shapely.geometry import LineString
 
         centroid = area.data.boundary.centroid.iloc[0]
 
-        top_coords, bottom_coords = get_endpts(area, spacing)
-        lines_gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
-        
+        lines_gs = get_unit_bases(survey_unit_type='transect', area=area, spacing=spacing)
+
         if optimize_orient:  # set orientation to maximize area
             orientation = optimize_orientation(lines_gs, Point(centroid.x, centroid.y), area=area, buffer=sweep_width, increment=orient_increment)
         
@@ -67,8 +66,7 @@ class Coverage:
         lines_gdf = gpd.GeoDataFrame({'geometry': lines_gs}, 
                                     geometry='geometry')
 
-        # clip lines by area
-        lines_clipped = clip_lines_polys(lines_gdf, area.data)
+        lines_clipped = clip_lines_polys(lines_gdf, area.data)  # clip lines by area
 
         transects_buffer = lines_clipped.buffer(sweep_width)  # buffer transects
         buffer_gdf = gpd.GeoDataFrame({'orientation':[orientation] * transects_buffer.shape[0],
@@ -82,21 +80,39 @@ class Coverage:
 
         return cls(area=area, name=name, su_gdf=transects, su_type='transect', spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
 
+
     @classmethod
-    def make_radial(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
+    def make_radials(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
         """[summary]
         
         """
-
+        
         centroid = area.data.boundary.centroid.iloc[0]
 
-        top_coords, bottom_coords = get_endpts(area, spacing)
+        points_gs = get_unit_bases(survey_unit_type='radial', area=area, spacing=spacing)
+        points_gs.plot()
+        if optimize_orient:  # set orientation to maximize area
+            orientation = optimize_orientation(points_gs, Point(centroid.x, centroid.y), area=area, buffer=radius, increment=orient_increment)
 
-        top_coords = top_coords + radius
+        points_gs = points_gs.rotate(orientation, origin = Point(centroid.x, centroid.y))  # rotate
+        points_gdf = gpd.GeoDataFrame({'geometry': points_gs}, 
+                                      geometry='geometry')
+        
+        points_clipped = clip_lines_polys(points_gdf, area.data)  # clip points by area
 
-        pass
+        points_buffer = points_clipped.buffer(radius)  # buffer points
+        buffer_gdf = gpd.GeoDataFrame({'orientation':[orientation] * points_buffer.shape[0],
+                                    'radius': [radius] * points_buffer.shape[0],
+                                    'geometry': points_buffer}, 
+                                    geometry='geometry')
 
-def get_endpts(survey_unit_type: str, area: Area, spacing: float = 10) -> gpd.GeoSeries:
+        radials = gpd.overlay(buffer_gdf, area.data, how='intersection')
+        radials = radials.loc[:, ['orientation', 'radius', 'geometry']]
+
+        return cls(area=area, name=name, su_gdf=radials, su_type='radial', spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
+
+
+def get_unit_bases(survey_unit_type: str, area: Area, spacing: float = 10) -> gpd.GeoSeries:
     '''Return Points or LineStrings as GeoSeries'''
     from math import sqrt
     # find longest dimension (longest diagonal of bounding box)
@@ -120,23 +136,23 @@ def get_endpts(survey_unit_type: str, area: Area, spacing: float = 10) -> gpd.Ge
         # make ends of lines
         top_coords = list(zip(xs, np.full_like(xs, fill_value=y_max)))
         bottom_coords = list(zip(xs, np.full_like(xs, fill_value=y_min)))
-        # TODO: make LineStrings
+        # return LineStrings
+        gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
     
     elif survey_unit_type == 'radial':
         ys = coord_vals_from_centroid_val(centroid.y, n_transects, spacing)
-        point_coords = list(zip(xs, ys))
-        # TODO: make Points
-        
+        coord_pairs = np.array(np.meshgrid(xs, ys)).T.reshape(-1, 2)
+        # return Points
+        gs = gpd.GeoSeries([Point(xy) for xy in coord_pairs])
     
-    return top_coords, bottom_coords
-
+    return gs
 
 def coord_vals_from_centroid_val(centroid_val, n_transects, spacing):
     if n_transects % 2 == 0:  # even num units
         lower_start = centroid_val - spacing/2
         upper_start = centroid_val + spacing/2
         lower_vals = lower_start - (np.arange(0, n_transects/2) * spacing)
-        upper_vals = top_start + (np.arange(0, n_transects/2) * spacing)
+        upper_vals = upper_start + (np.arange(0, n_transects/2) * spacing)
         vals = np.sort(np.concatenate([lower_vals, upper_vals]))
     else:  # odd num units
         start_val = centroid_val
@@ -146,6 +162,7 @@ def coord_vals_from_centroid_val(centroid_val, n_transects, spacing):
     return vals
 
 
+# TODO: optimize by dominant orientation
 def optimize_orientation(survey_units: gpd.GeoSeries, rotation_pt: Point, area: Area, buffer: float = 0, increment: float = 5) -> float:
     """Find the orientation value that allows maximum area
     
