@@ -2,7 +2,9 @@
 Create a survey methodology
 """
 # DONE: function to optimize orientation of transects
-# TODO: implement a make_radial class method
+# TODO: refactor make_* functions with helper functions 
+# TODO: implement a make_radial classmethod
+# TODO: implement a from_shapefile classmethod
 
 from .area import Area
 from .utils import clip_lines_polys
@@ -50,41 +52,12 @@ class Coverage:
 
 
     @classmethod
-    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 10, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
-        from math import sqrt
+    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
         from shapely.geometry import LineString
-        # find longest dimension (longest diagonal of bounding box)
-        bounds = area.data.bounds
-        width = bounds.maxx.max() - bounds.minx.min()
-        height = bounds.maxy.max() - bounds.miny.max()
-        diag_dist = sqrt(width**2 + height**2)        
 
-        # calculate num of lines
-        n_transects = int(diag_dist // spacing)
-
-        # start at centroid of bounding box
         centroid = area.data.boundary.centroid.iloc[0]
 
-        # create vertical lines
-        # calculate x values
-        if n_transects % 2 == 0:  # even num transects
-            left_start = centroid.x - spacing/2
-            right_start = centroid.x + spacing/2
-            left_xs = left_start - (np.arange(0, n_transects/2) * spacing)
-            right_xs = right_start + (np.arange(0, n_transects/2) * spacing)
-            xs = np.sort(np.concatenate([left_xs, right_xs]))
-        else:  # odd num transects
-            start_x = centroid.x
-            left_xs = start_x - (np.arange(1, n_transects/2) * spacing)
-            right_xs = start_x + (np.arange(1, n_transects/2) * spacing)
-            xs = np.sort(np.insert(np.concatenate([left_xs, right_xs]), 1, start_x))
-        # calculate y values
-        y_max = centroid.y + diag_dist / 2
-        y_min = centroid.y - diag_dist / 2
-        # make ends of lines
-        top_coords = list(zip(xs, np.full_like(xs, fill_value=y_max)))
-        bottom_coords = list(zip(xs, np.full_like(xs, fill_value=y_min)))
-
+        top_coords, bottom_coords = get_endpts(area, spacing)
         lines_gs = gpd.GeoSeries([LineString(coord_pair) for coord_pair in zip(top_coords, bottom_coords)])
         
         if optimize_orient:  # set orientation to maximize area
@@ -108,6 +81,69 @@ class Coverage:
         transects = transects.loc[:, ['orientation', 'length', 'sweep_width', 'geometry']]
 
         return cls(area=area, name=name, su_gdf=transects, su_type='transect', spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
+
+    @classmethod
+    def make_radial(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
+        """[summary]
+        
+        """
+
+        centroid = area.data.boundary.centroid.iloc[0]
+
+        top_coords, bottom_coords = get_endpts(area, spacing)
+
+        top_coords = top_coords + radius
+
+        pass
+
+def get_endpts(survey_unit_type: str, area: Area, spacing: float = 10) -> gpd.GeoSeries:
+    '''Return Points or LineStrings as GeoSeries'''
+    from math import sqrt
+    # find longest dimension (longest diagonal of bounding box)
+    bounds = area.data.bounds
+    width = bounds.maxx.max() - bounds.minx.min()
+    height = bounds.maxy.max() - bounds.miny.max()
+    diag_dist = sqrt(width**2 + height**2)
+
+    n_transects = int(diag_dist // spacing)
+
+    centroid = area.data.boundary.centroid.iloc[0]
+
+    # calculate x values
+    xs = coord_vals_from_centroid_val(centroid.x, n_transects, spacing)
+    
+    # calculate y values
+    if survey_unit_type == 'transect':
+        # calculate single y value per x
+        y_max = centroid.y + diag_dist / 2
+        y_min = centroid.y - diag_dist / 2
+        # make ends of lines
+        top_coords = list(zip(xs, np.full_like(xs, fill_value=y_max)))
+        bottom_coords = list(zip(xs, np.full_like(xs, fill_value=y_min)))
+        # TODO: make LineStrings
+    
+    elif survey_unit_type == 'radial':
+        ys = coord_vals_from_centroid_val(centroid.y, n_transects, spacing)
+        point_coords = list(zip(xs, ys))
+        # TODO: make Points
+        
+    
+    return top_coords, bottom_coords
+
+
+def coord_vals_from_centroid_val(centroid_val, n_transects, spacing):
+    if n_transects % 2 == 0:  # even num units
+        lower_start = centroid_val - spacing/2
+        upper_start = centroid_val + spacing/2
+        lower_vals = lower_start - (np.arange(0, n_transects/2) * spacing)
+        upper_vals = top_start + (np.arange(0, n_transects/2) * spacing)
+        vals = np.sort(np.concatenate([lower_vals, upper_vals]))
+    else:  # odd num units
+        start_val = centroid_val
+        lower_vals = start_val - (np.arange(1, n_transects/2) * spacing)
+        upper_vals = start_val + (np.arange(1, n_transects/2) * spacing)
+        vals = np.sort(np.insert(np.concatenate([lower_vals, upper_vals]), 1, start_val))
+    return vals
 
 
 def optimize_orientation(survey_units: gpd.GeoSeries, rotation_pt: Point, area: Area, buffer: float = 0, increment: float = 5) -> float:
