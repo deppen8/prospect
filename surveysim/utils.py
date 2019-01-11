@@ -54,7 +54,7 @@ def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd
     # Create a box for the initial intersection
     bbox = poly.bounds
 
-    # Get a list of id's for each road line that overlaps the bounding box and subset the data to just those lines
+    # Get a list of id's for each object that overlaps the bounding box and subset the data to just those objects
     sidx = list(spatial_index.intersection(bbox))
     thing_sub = lines_polys.iloc[sidx]
 
