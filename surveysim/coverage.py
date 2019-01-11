@@ -4,8 +4,9 @@ Create a survey methodology
 # DONE: function to optimize orientation of transects
 # DONE: refactor make_* functions with helper functions 
 # DONE: implement a make_radial classmethod
-# TODO: implement a from_shapefile classmethod
 # DONE: use minimum_rotated_angle from shapely (see Jupyter Notebook)
+# TODO: implement a from_shapefile classmethod
+# TODO: implement a make_quadrats classmethod
 
 from .area import Area
 from .utils import clip_lines_polys
