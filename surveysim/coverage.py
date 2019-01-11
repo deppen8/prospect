@@ -5,7 +5,7 @@ Create a survey methodology
 # DONE: refactor make_* functions with helper functions 
 # DONE: implement a make_radial classmethod
 # TODO: implement a from_shapefile classmethod
-# TODO: use minimum_rotated_angle from shapely (see Jupyter Notebook)
+# DONE: use minimum_rotated_angle from shapely (see Jupyter Notebook)
 
 from .area import Area
 from .utils import clip_lines_polys
@@ -13,7 +13,7 @@ from typing import List, Dict
 import pandas as pd
 import geopandas as gpd
 import numpy as np
-from shapely.geometry import Point, LineString
+from shapely.geometry import Point, LineString, Polygon
 
 class Coverage:
     """Define a survey method
@@ -41,7 +41,7 @@ class Coverage:
             su_gdf['min_search_time'] = self.min_time_per_unit
             if self.survey_unit_type == 'radial':
                 self.radius = su_gdf['radius'].iloc[0]
-                extra_cols = ['radius']  # TODO: implement a make_radial class method
+                extra_cols = ['radius']
 
         su_gdf['area'] = su_gdf.area  # calculate area of the survey unit
         su_gdf['su_id'] = [i for i in range(su_gdf.shape[0])]  # add unique su_id
@@ -53,15 +53,19 @@ class Coverage:
 
 
     @classmethod
-    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
+    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, 
+        orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', 
+        min_time_per_unit: float = 1):
 
         min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
         
-        lines_gs = get_unit_bases(survey_unit_type='transect', area=area, spacing=spacing)
+        lines_gs = get_unit_bases(survey_unit_type='transect', area=area, centroid=centroid, spacing=spacing)
 
-        if optimize_orient:  # set orientation to maximize area
-            orientation = optimize_orientation(lines_gs, centroid, area=area, buffer=sweep_width, increment=orient_increment)
+        if optimize_orient_by == 'area_coverage':  # set orientation to maximize area
+            orientation = optimize_orientation_by_area_coverage(lines_gs, centroid, area=area, buffer=sweep_width, increment=orient_increment)
+        elif optimize_orient_by == 'area_orient':
+            orientation = optimize_orientation_by_area_orient(lines_gs, min_rect=min_rot_rect, axis=orient_axis)
         
         lines_gs = lines_gs.rotate(orientation, origin = centroid)  # rotate
         lines_gdf = gpd.GeoDataFrame({'geometry': lines_gs},
@@ -83,7 +87,9 @@ class Coverage:
 
 
     @classmethod
-    def make_radials(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, orientation: float = 0, optimize_orient: bool = False, orient_increment: float = 5, min_time_per_unit: float = 1):
+    def make_radials(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, 
+        orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', 
+        min_time_per_unit: float = 1):
         """[summary]
         
         """
@@ -93,8 +99,10 @@ class Coverage:
 
         points_gs = get_unit_bases(survey_unit_type='radial', area=area, centroid=centroid, spacing=spacing)
 
-        if optimize_orient:  # set orientation to maximize area
-            orientation = optimize_orientation(points_gs, centroid, area=area, buffer=radius, increment=orient_increment)
+        if optimize_orient_by == 'area_coverage':  # set orientation to maximize area
+            orientation = optimize_orientation_by_area_coverage(points_gs, centroid, area=area, buffer=radius, increment=orient_increment)
+        elif optimize_orient_by == 'area_orient':
+            orientation = optimize_orientation_by_area_orient(points_gs, min_rect=min_rot_rect, axis=orient_axis)
 
         points_gs = points_gs.rotate(orientation, origin = centroid)  # rotate
         points_gdf = gpd.GeoDataFrame({'geometry': points_gs}, 
@@ -165,8 +173,7 @@ def coord_vals_from_centroid_val(centroid_val, n_transects, spacing):
     return vals
 
 
-# TODO: optimize by dominant orientation
-def optimize_orientation(survey_units: gpd.GeoSeries, rotation_pt: Point, area: Area, buffer: float = 0, increment: float = 5) -> float:
+def optimize_orientation_by_area_coverage(survey_units: gpd.GeoSeries, rotation_pt: Point, area: Area, buffer: float = 0, increment: float = 5) -> float:
     """Find the orientation value that allows maximum area
     
     Parameters
@@ -200,3 +207,28 @@ def optimize_orientation(survey_units: gpd.GeoSeries, rotation_pt: Point, area: 
         deg_val[deg] = survey_units_buffer.area.sum()
 
     return max(deg_val, key=lambda k: deg_val[k])
+
+
+def optimize_orientation_by_area_orient(survey_units: gpd.GeoSeries, min_rect: Polygon, axis: str) -> float:
+    
+    import math
+    coords = pd.DataFrame(np.array(min_rect.exterior.coords), columns=['x', 'y'])  # all corners
+    
+    pt_ymin = list(coords.loc[coords['y']==coords['y'].min()].itertuples(index=False, name=None))[0]
+    pt_xmax = list(coords.loc[coords['x']==coords['x'].max()].itertuples(index=False, name=None))[0]
+    pt_xmin = list(coords.loc[coords['x']==coords['x'].min()].itertuples(index=False, name=None))[0]
+
+    opp = pt_xmax[1]-pt_ymin[1]  # sides of the "triangle"
+    adj = pt_xmax[0]-pt_ymin[0]
+
+    right_side = math.sqrt((adj)**2 + (opp)**2)
+    left_side = math.sqrt((pt_ymin[0]-pt_xmin[0])**2 + (pt_ymin[1]-pt_xmin[1])**2)
+    
+    temp_angle = math.degrees(math.atan(opp/adj))  # angle of rotation
+
+    if (axis=='long' and right_side<=left_side) or (axis=='short' and right_side>left_side):
+        angle = temp_angle
+    elif (axis=='long' and right_side>left_side) or (axis=='short' and right_side<=left_side):
+        angle = -1*(90 - temp_angle)
+
+    return angle
