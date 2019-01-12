@@ -5,8 +5,11 @@ Create a survey methodology
 # DONE: refactor make_* functions with helper functions 
 # DONE: implement a make_radial classmethod
 # DONE: use minimum_rotated_angle from shapely (see Jupyter Notebook)
-# TODO: implement a from_shapefile classmethod
+# DONE: handle problem where n_transects < 2
+# DONE: implement a from_shapefile classmethod
+# DONE: implement a from_GeoDataFrame classmethod
 # TODO: implement a make_quadrats classmethod
+# TODO: documentation
 
 from .area import Area
 from .utils import clip_lines_polys
@@ -20,7 +23,7 @@ class Coverage:
     """Define a survey method
     """
 
-    def __init__(self, area: Area, name: str, su_gdf: gpd.GeoDataFrame, su_type: str, spacing: float = 10, orientation: float = 0, min_time_per_unit: float = 1):
+    def __init__(self, area: Area, name: str, su_gdf: gpd.GeoDataFrame, su_type: str, spacing: float = None, orientation: float = None, min_time_per_unit: float = 1):
         
         self.area_name = area.name
         self.name = name
@@ -52,6 +55,27 @@ class Coverage:
 
         self.data = su_gdf
 
+    @classmethod
+    def from_shapefile(cls, area: Area, name: str, path: str, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1):
+        
+        temp_gdf = gpd.read_file(path)
+
+        min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
+        orientation = optimize_orientation_by_area_orient(min_rect=min_rot_rect, axis=orient_axis)
+
+        return cls(area = area, name=name, su_gdf=temp_gdf, su_type=su_type, spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
+
+    
+    @classmethod
+    def from_GeoDataFrame(cls, area: Area, name: str, gdf: gpd.GeoDataFrame, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1):
+        
+        min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
+        orientation = optimize_orientation_by_area_orient(min_rect=min_rot_rect, axis=orient_axis)
+
+        return cls(area = area, name=name, su_gdf=gdf, su_type=su_type, spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
+
+
+
 
     @classmethod
     def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, 
@@ -66,7 +90,7 @@ class Coverage:
         if optimize_orient_by == 'area_coverage':  # set orientation to maximize area
             orientation = optimize_orientation_by_area_coverage(lines_gs, centroid, area=area, buffer=sweep_width, increment=orient_increment)
         elif optimize_orient_by == 'area_orient':
-            orientation = optimize_orientation_by_area_orient(lines_gs, min_rect=min_rot_rect, axis=orient_axis)
+            orientation = optimize_orientation_by_area_orient(min_rect=min_rot_rect, axis=orient_axis)
         
         lines_gs = lines_gs.rotate(orientation, origin = centroid)  # rotate
         lines_gdf = gpd.GeoDataFrame({'geometry': lines_gs},
@@ -103,7 +127,7 @@ class Coverage:
         if optimize_orient_by == 'area_coverage':  # set orientation to maximize area
             orientation = optimize_orientation_by_area_coverage(points_gs, centroid, area=area, buffer=radius, increment=orient_increment)
         elif optimize_orient_by == 'area_orient':
-            orientation = optimize_orientation_by_area_orient(points_gs, min_rect=min_rot_rect, axis=orient_axis)
+            orientation = optimize_orientation_by_area_orient(min_rect=min_rot_rect, axis=orient_axis)
 
         points_gs = points_gs.rotate(orientation, origin = centroid)  # rotate
         points_gdf = gpd.GeoDataFrame({'geometry': points_gs}, 
@@ -136,6 +160,8 @@ def get_unit_bases(survey_unit_type: str, area: Area, centroid: Point, spacing: 
     diag_dist = sqrt(width**2 + height**2)
 
     n_transects = int(diag_dist // spacing)
+    if n_transects < 2:
+        n_transects = 3
 
     # calculate x values
     xs = coord_vals_from_centroid_val(centroid.x, n_transects, spacing)
@@ -210,7 +236,7 @@ def optimize_orientation_by_area_coverage(survey_units: gpd.GeoSeries, rotation_
     return max(deg_val, key=lambda k: deg_val[k])
 
 
-def optimize_orientation_by_area_orient(survey_units: gpd.GeoSeries, min_rect: Polygon, axis: str) -> float:
+def optimize_orientation_by_area_orient(min_rect: Polygon, axis: str) -> float:
     
     import math
     coords = pd.DataFrame(np.array(min_rect.exterior.coords), columns=['x', 'y'])  # all corners
