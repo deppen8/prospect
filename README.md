@@ -2,6 +2,7 @@
 SurveySim is a set of tools for simulating archaeological field surveys.
 
 ## TODO:
+
 - [ ] define data types used for each building block
 - [ ] specify default values
     - [ ] track down estimates of survey speed
