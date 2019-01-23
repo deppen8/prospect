@@ -1,11 +1,12 @@
 from surveysim import Area
 from geopandas import GeoDataFrame
 
+
 class TestArea(object):
 
     def setup_method(self):
         self.default = Area()
-    
+
     def test_default_is_gdf(self):
         assert isinstance(self.default.data, GeoDataFrame)
 

@@ -3,16 +3,17 @@
 
 import geopandas as gpd
 
+
 def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame
-    
+
     Parameters
     ----------
     points : geopandas `GeoDataFrame`
         Point features to be clipped
     by : geopandas `GeoDataFrame`
         Boundaries to use for clipping
-    
+
     Returns
     -------
     geopandas `GeoDataFrame`
@@ -29,14 +30,14 @@ def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFr
 
 def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """Subset a GeoDataFrame of lines or polygons based on the boundaries of another GeoDataFrame
-    
+
     Parameters
     ----------
     lines_polys : geopandas `GeoDataFrame`
         Features to be clipped
     by : geopandas `GeoDataFrame`
         Boundaries to use for clipping
-    
+
     Returns
     -------
     geopandas `GeoDataFrame`
@@ -46,10 +47,10 @@ def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd
     ----------
     Earth Analytics Python course, https://doi.org/10.5281/zenodo.2209415
     """
-    
+
     # Create a single polygon object for clipping
     poly = by.geometry.unary_union
-    spatial_index = lines_polys.sindex  
+    spatial_index = lines_polys.sindex
 
     # Create a box for the initial intersection
     bbox = poly.bounds

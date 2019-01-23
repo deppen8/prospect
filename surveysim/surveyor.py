@@ -5,6 +5,7 @@ Create survey team members
 
 import pandas as pd
 
+
 class Surveyor:
     """
     Create a person
@@ -12,7 +13,7 @@ class Surveyor:
     This class might not be necessary as a separate object now, but I figure it might be useful in the future, so I gave its own class and module
     """
 
-    def __init__(self, name: str, surveyor_type: str, skill: float, speed_penalty: float) -> 'Surveyor':
+    def __init__(self, name: str, surveyor_type: str, skill: float, speed_penalty: float):
         self.name = name
         self.surveyor_type = surveyor_type
         self.skill = skill

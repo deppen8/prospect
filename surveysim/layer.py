@@ -3,7 +3,7 @@ Create and modify Layer objects
 """
 # TODO: move time_penalty and ideal_obs_rate specifications to other `set_X()` methods (like `set_vis()` for `Area`)
 # TODO: clip generated Layers by Area
-# QUESTION: points are only constrained to bounding box of Area. What to do if no points fall within actual Area? 
+# QUESTION: points are only constrained to bounding box of Area. What to do if no points fall within actual Area?
 # - set minimum number of points that must be present?
 # - allow this? it sort of simulates real life if we assume that boundaries of Areas are arbitrary relative to the artifact depositions
 # - allow and warn?
@@ -13,14 +13,15 @@ from .area import Area
 
 from typing import Tuple
 import geopandas as gpd
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point
 
 import numpy as np
 from scipy.stats import uniform, poisson, norm
 
+
 class Layer:
     """Define artifacts/features that will seed the survey `Area`
-    
+
     Attributes
     -------
     area_name : str
@@ -38,7 +39,7 @@ class Layer:
     time_penalty : float
         Extra time associated with collecting/recording one artifact/feature from this `Layer`
     ideal_obs_rate : float
-        The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+        The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
             - It lies inside or intersects the `Coverage`
             - Surface visibility is 100%
             - The surveyor is highly skilled
@@ -46,9 +47,9 @@ class Layer:
         Handy container to work with the `Layer`
     """
 
-    def __init__(self, area: Area, name: str, features = None, feature_type: str = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+    def __init__(self, area: Area, name: str, features=None, feature_type: str = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
         """Create a `Layer` object
-        
+
         Parameters
         ----------
         area : Area
@@ -62,10 +63,10 @@ class Layer:
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
-            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
                 - It lies inside or intersects the `Coverage`
                 - Surface visibility is 100%
-                - The surveyor is highly skilled 
+                - The surveyor is highly skilled
             (the default is 1.0, which would indicate it is always recorded when encountered)
         """
 
@@ -78,19 +79,13 @@ class Layer:
         self.time_penalty = time_penalty
         self.ideal_obs_rate = ideal_obs_rate
 
-        self.data = gpd.GeoDataFrame({'layer_name': [self.name] * self.n_features,
-                                    'fid': [f'{self.name}_{i}' for i in range(self.n_features)],
-                                    'time_penalty': [self.time_penalty] * self.n_features,
-                                    'ideal_obs_rate': [self.ideal_obs_rate] * self.n_features,
-                                    'geometry': self.features},
-                                    geometry = 'geometry'
-                                    )
-
+        self.data = gpd.GeoDataFrame({'layer_name': [self.name] * self.n_features, 'fid': [f'{self.name}_{i}' for i in range(self.n_features)], 'time_penalty': [
+                                     self.time_penalty] * self.n_features, 'ideal_obs_rate': [self.ideal_obs_rate] * self.n_features, 'geometry': self.features}, geometry='geometry')
 
     @classmethod
     def from_shapefile(cls, path: str, area: Area, name: str, feature_type: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
         """Create a `Layer` of artifacts/features from a shapefile
-        
+
         Parameters
         ----------
         path : str
@@ -104,21 +99,20 @@ class Layer:
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
-            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
                 - It lies inside or intersects the `Coverage`
                 - Surface visibility is 100%
-                - The surveyor is highly skilled 
+                - The surveyor is highly skilled
             (the default is 1.0, which would indicate it is always recorded when encountered)
         """
 
         tmp_gdf = gpd.read_file(path)
         return cls(area, name, tmp_gdf['geometry'], feature_type, time_penalty, ideal_obs_rate)
 
-
     @classmethod
     def from_pseudorandom_points(cls, n: int, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
         """Create a `Layer` of pseudorandom points
-        
+
         Parameters
         ----------
         n : int
@@ -130,10 +124,10 @@ class Layer:
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
-            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
                 - It lies inside or intersects the `Coverage`
                 - Surface visibility is 100%
-                - The surveyor is highly skilled 
+                - The surveyor is highly skilled
             (the default is 1.0, which would indicate it is always recorded when encountered)
         """
 
@@ -143,7 +137,6 @@ class Layer:
         points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
 
         return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
-
 
     @classmethod
     def from_poisson_points(cls, rate: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
@@ -160,12 +153,12 @@ class Layer:
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
-            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
                 - It lies inside or intersects the `Coverage`
                 - Surface visibility is 100%
-                - The surveyor is highly skilled 
+                - The surveyor is highly skilled
             (the default is 1.0, which would indicate it is always recorded when encountered)
-        
+
         See Also
         --------
         poisson_points : includes details on Poisson point process
@@ -176,9 +169,8 @@ class Layer:
 
         points = cls.poisson_points(area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
-        
-        return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
+        return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
     @classmethod
     def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
@@ -199,19 +191,19 @@ class Layer:
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
-            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
                 - It lies inside or intersects the `Coverage`
                 - Surface visibility is 100%
-                - The surveyor is highly skilled 
+                - The surveyor is highly skilled
             (the default is 1.0, which would indicate it is always recorded when encountered)
-        
+
         See Also
         --------
         poisson_points : includes details on Poisson point process
         from_pseudorandom_points : faster, naive point creation
         from_poisson_points : simple Poisson points `Layer`
         from_matern_points : similar process, good for clusters with centers from Poisson points
-        
+
         Notes
         -----
         Parents (cluster centers) are NOT created as points in the output
@@ -220,17 +212,16 @@ class Layer:
         parents = cls.poisson_points(area, parent_rate)
         M = parents.shape[0]
 
-        points = list()    
+        points = list()
         for i in range(M):
             N = poisson(child_rate).rvs()
-            for __ in range(N):            
-                pdf = norm(loc=parents[i,:2], scale=(gauss_var,gauss_var))
+            for __ in range(N):
+                pdf = norm(loc=parents[i, :2], scale=(gauss_var, gauss_var))
                 points.append(list(pdf.rvs(2)))
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
 
         return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
-
 
     @classmethod
     def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, area: Area, name: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
@@ -251,12 +242,12 @@ class Layer:
         time_penalty : float, optional
             Extra time associated with collecting/recording one artifact/feature from this `Layer` (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)
         ideal_obs_rate : float, optional
-            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions: 
+            The frequency with which an artifact or feature from this `Layer` will be recorded, assuming the following ideal conditions:
                 - It lies inside or intersects the `Coverage`
                 - Surface visibility is 100%
-                - The surveyor is highly skilled 
+                - The surveyor is highly skilled
             (the default is 1.0, which would indicate it is always recorded when encountered)
-        
+
         See Also
         --------
         poisson_points : includes details on Poisson point process
@@ -264,7 +255,7 @@ class Layer:
         from_poisson_points : simple Poisson points `Layer`
         from_thomas_points : similar process, good for clusters with centers from Poisson points
         uniform_disk : function used to specify point locations around parents
-        
+
         Notes
         -----
         Parents (cluster centers) are NOT created as points in the output
@@ -272,35 +263,34 @@ class Layer:
 
         parents = cls.poisson_points(area, parent_rate)
         M = parents.shape[0]
-        
+
         points = list()
         for i in range(M):
             N = poisson(child_rate).rvs()
             for __ in range(N):
-                x, y = cls.uniform_disk(parents[i,0], parents[i,1], radius)
+                x, y = cls.uniform_disk(parents[i, 0], parents[i, 1], radius)
                 points.append([x, y])
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
 
         return cls(area, name, points_gds, 'points', time_penalty, ideal_obs_rate)
 
-
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:
         """Create points from a Poisson process
-        
+
         Parameters
         ----------
         area : Area
             `Area` where the points will be located
         rate : float
             Theoretical events per unit area across the whole space. See Notes for more details
-        
+
         Returns
         -------
         numpy ndarray of tuples
             An array of xy coordinate pairs
-        
+
         See Also
         --------
         from_poisson_points : creates `Layer` with Poisson process
@@ -314,16 +304,15 @@ class Layer:
 
         The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
         """
-        
-        bounds = area.data.total_bounds        
+
+        bounds = area.data.total_bounds
         dx = bounds[2] - bounds[0]
         dy = bounds[3] - bounds[1]
 
         N = poisson(rate * dx * dy).rvs()
-        xs = uniform.rvs(0, dx, ((N,1)))
-        ys = uniform.rvs(0, dy, ((N,1)))
+        xs = uniform.rvs(0, dx, ((N, 1)))
+        ys = uniform.rvs(0, dy, ((N, 1)))
         return np.hstack((xs, ys))
-
 
     @staticmethod
     def uniform_disk(x: float, y: float, r: float) -> Tuple[float, float]:
@@ -343,11 +332,10 @@ class Layer:
         """
 
         r = uniform(0, r**2.0).rvs()
-        theta = uniform(0, 2*np.pi).rvs()
+        theta = uniform(0, 2 * np.pi).rvs()
         xt = np.sqrt(r) * np.cos(theta)
         yt = np.sqrt(r) * np.sin(theta)
-        return x+xt, y+yt
-
+        return x + xt, y + yt
 
     # TODO: this.
     @classmethod
@@ -358,9 +346,9 @@ class Layer:
         # TODO: centroid options: from Poisson, from pseudorandom
         # TODO: rotation: pseudorandom
         #
-        # 
+        #
         # create centroid coords from Poisson
         # create rectangle of given dimensions around centroids
-        # rotate 
+        # rotate
 
         pass

@@ -7,6 +7,7 @@ class SurveyStrategy(object):
     """A set of shapes to use for the survey
 
     """
+
     def __init__(self):
         self.layers = {}
 
@@ -15,5 +16,3 @@ class SurveyStrategy(object):
 
     def add_checkerboard(self):
         pass
-
-

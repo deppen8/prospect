@@ -1,7 +1,7 @@
 """
 Create an assemblage of artifacts
 """
-# TODO: 
+# TODO:
 # - accept list (numpy array?) of Layers
 # - create dict(?) or df(?) of Layer attributes
 # - concat Layer.data objects
@@ -9,11 +9,12 @@ Create an assemblage of artifacts
 from .layer import Layer
 from typing import List, Dict, Any
 import pandas as pd
-import geopandas as gpd
+
 
 class Assemblage:
     """Collect `Layer` objects
     """
+
     def __init__(self, name: str, layers: List[Layer]):
         self.name = name
 
@@ -26,6 +27,6 @@ class Assemblage:
                 'time_penalty': layer.time_penalty,
                 'ideal_obs_rate': layer.ideal_obs_rate,
             }
-        
-        self.data: pd.DataFrame = pd.concat([l.data for l in layers]).reset_index(drop=True)
-        
+
+        self.data: pd.DataFrame = pd.concat(
+            [l.data for l in layers]).reset_index(drop=True)
