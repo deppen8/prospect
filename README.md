@@ -17,8 +17,14 @@ SurveySim is a set of tools for simulating archaeological field surveys.
 
 1. Proximity
 2. Surface visibility
+    - beta distribution
+    - If 10 artifacts were randomly placed in that area/unit, how many would be visible? Assume ideal observation rate and perfect skill
 3. Ideal observation rate
+    - beta distribution
+    - If 10 artifacts of that type were in a survey unit, how many would be detected? Assume perfect visibility and a surveyor with top skill level
 4. Surveyor skill
+    - beta distribution
+    - If this surveyor encountered 10 artifacts, how many would they recognize and record? Assume perfect visibility and ideal observation rate
 
 ## Time parameters
 
