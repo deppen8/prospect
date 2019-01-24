@@ -13,6 +13,8 @@ SurveySim is a set of tools for simulating archaeological field surveys.
 - [ ] plan visualization methods
 - [ ] create hypothetical experiments to derive parameters
 
+TODO: would be good to allow *any* scipy `rv_continuous` distribution to be used for parameters
+
 ## Discovery parameters
 
 1. Proximity
