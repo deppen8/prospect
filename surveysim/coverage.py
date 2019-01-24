@@ -24,7 +24,7 @@ class Coverage:
     """Define a survey method
     """
 
-    def __init__(self, area: Area, name: str, su_gdf: gpd.GeoDataFrame, su_type: str, spacing: float = None, orientation: float = None, min_time_per_unit: float = 1):
+    def __init__(self, area: Area, name: str, su_gdf: gpd.GeoDataFrame, su_type: str, spacing: float = None, orientation: float = None, min_time_per_unit: float = 1.0):
 
         self.area_name = area.name
         self.name = name
@@ -40,8 +40,7 @@ class Coverage:
         extra_cols: List
         if self.survey_unit_type == 'transect':
             self.sweep_width = su_gdf['sweep_width'].iloc[0]
-            su_gdf['min_search_time'] = self.min_time_per_unit * \
-                su_gdf['length']
+            su_gdf['min_search_time'] = self.min_time_per_unit * su_gdf['length']  # TODO: move this calculation to run during the simulation
             extra_cols = ['length', 'sweep_width']
         elif self.survey_unit_type in ['quadrat', 'radial']:
             su_gdf['min_search_time'] = self.min_time_per_unit
@@ -59,7 +58,7 @@ class Coverage:
         self.data = su_gdf
 
     @classmethod
-    def from_shapefile(cls, area: Area, name: str, path: str, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1):
+    def from_shapefile(cls, area: Area, name: str, path: str, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1.0):
 
         temp_gdf = gpd.read_file(path)
 
@@ -70,7 +69,7 @@ class Coverage:
         return cls(area=area, name=name, su_gdf=temp_gdf, su_type=su_type, spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
 
     @classmethod
-    def from_GeoDataFrame(cls, area: Area, name: str, gdf: gpd.GeoDataFrame, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1):
+    def from_GeoDataFrame(cls, area: Area, name: str, gdf: gpd.GeoDataFrame, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1.0):
         min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
         orientation = cls.optimize_orientation_by_area_orient(
             min_rect=min_rot_rect, axis=orient_axis)
@@ -78,7 +77,7 @@ class Coverage:
         return cls(area=area, name=name, su_gdf=gdf, su_type=su_type, spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
 
     @classmethod
-    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', min_time_per_unit: float = 1):
+    def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', min_time_per_unit: float = 1.0):
 
         min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
@@ -112,7 +111,7 @@ class Coverage:
         return cls(area=area, name=name, su_gdf=transects, su_type='transect', spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
 
     @classmethod
-    def make_radials(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', min_time_per_unit: float = 1):
+    def make_radials(cls, area: Area, name: str, spacing: float = 10, radius: float = 2, orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', min_time_per_unit: float = 1.0):
         """[summary]
 
         """
@@ -230,7 +229,7 @@ class Coverage:
         """
 
         deg_val: Dict[int, float] = {}
-        for deg in range(0, 180, increment):
+        for deg in np.arange(0, 180, increment):
             survey_units_gs = survey_units.rotate(
                 deg, origin=rotation_pt)  # rotate
             survey_units_gdf = gpd.GeoDataFrame(
@@ -274,3 +273,9 @@ class Coverage:
             angle = -1 * (90 - temp_angle)
 
         return angle
+
+    def set_min_time_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
+        from .utils import make_truncnorm_distribution
+
+        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower, upper)
+        self.data['min_search_time'] = self.min_time_per_unit

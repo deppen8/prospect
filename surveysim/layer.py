@@ -370,3 +370,9 @@ class Layer:
         else:
             # TODO: warn or error message
             print('alpha and beta do not sum to 10')
+
+    def set_time_penalty_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
+        from .utils import make_truncnorm_distribution
+
+        self.time_penalty = make_truncnorm_distribution(mean, sd, lower, upper)
+        self.data['time_penalty'] = self.time_penalty
