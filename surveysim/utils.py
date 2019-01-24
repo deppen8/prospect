@@ -2,6 +2,7 @@
 """
 
 import geopandas as gpd
+from scipy.stats import beta, rv_continuous
 
 
 def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
@@ -65,3 +66,7 @@ def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd
 
     # Return the clipped layer with no null geometry values
     return clipped[clipped.geometry.notnull()]
+
+
+def make_beta_distribution(a: float, b: float) -> rv_continuous:
+    return beta(a=a, b=b)
