@@ -4,7 +4,6 @@ Create and modify Area objects
 # TODO: get better/more example datasets
 # TODO: coordinate systems and projections...UGGGGGHHH
 
-from .utils import make_beta_distribution
 from typing import Tuple
 from shapely.geometry import box, Polygon
 import geopandas as gpd
@@ -112,10 +111,11 @@ class Area:
         alpha, beta : int
             Values to define the shape of the beta distribution
         """
+        from .utils import make_beta_distribution
 
         if alpha + beta == 10:
             self.vis = make_beta_distribution(alpha, beta)
-            self.vis_type = 'beta distribution'
+            self.vis_type = 'distribution'
         else:
             # TODO: warn or error message
             print('alpha and beta do not sum to 10')

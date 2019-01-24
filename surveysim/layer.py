@@ -43,6 +43,8 @@ class Layer:
             - It lies inside or intersects the `Coverage`
             - Surface visibility is 100%
             - The surveyor is highly skilled
+    ideal_obs_rate_type : {'scalar', 'distribution', 'surface'}
+        The nature of the `ideal_obs_rate` specification
     data: geopandas GeoDataFrame
         Handy container to work with the `Layer`
     """
@@ -78,9 +80,10 @@ class Layer:
         self.feature_type = feature_type
         self.time_penalty = time_penalty
         self.ideal_obs_rate = ideal_obs_rate
+        self.ideal_obs_rate_type = 'scalar'
 
         self.data = gpd.GeoDataFrame({'layer_name': [self.name] * self.n_features, 'fid': [f'{self.name}_{i}' for i in range(self.n_features)], 'time_penalty': [
-                                     self.time_penalty] * self.n_features, 'ideal_obs_rate': [self.ideal_obs_rate] * self.n_features, 'geometry': self.features}, geometry='geometry')
+                                     self.time_penalty] * self.n_features, 'geometry': self.features}, geometry='geometry')
 
     @classmethod
     def from_shapefile(cls, path: str, area: Area, name: str, feature_type: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
@@ -352,3 +355,21 @@ class Layer:
         # rotate
 
         pass
+
+    def set_ideal_obs_rate_beta_dist(self, alpha: int, beta: int):
+        """Define a beta distribution from which to sample ideal observation rate values
+
+        Parameters
+        ----------
+        alpha, beta : int
+            Values to define the shape of the beta distribution
+        """
+
+        from .utils import make_beta_distribution
+
+        if alpha + beta == 10:
+            self.ideal_obs_rate = make_beta_distribution(alpha, beta)
+            self.ideal_obs_rate_type = 'distribution'
+        else:
+            # TODO: warn or error message
+            print('alpha and beta do not sum to 10')

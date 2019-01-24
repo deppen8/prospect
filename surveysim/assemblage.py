@@ -18,9 +18,9 @@ class Assemblage:
     def __init__(self, name: str, layers: List[Layer]):
         self.name = name
 
-        self.layer_info: Dict[str, Dict[str, Any]] = {}
+        self.layer_dict: Dict[str, Dict[str, Any]] = {}
         for layer in layers:
-            self.layer_info[layer.name] = {
+            self.layer_dict[layer.name] = {
                 'features': layer.features,
                 'n_features': layer.n_features,
                 'feature_type': layer.feature_type,
