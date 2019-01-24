@@ -15,7 +15,6 @@ class Surveyor:
         self.name = name
         self.surveyor_type = surveyor_type
         self.skill = skill
-        self.skill_type = 'scalar'
         self.speed_penalty = speed_penalty
         self.data = pd.DataFrame({'surveyor_name': [self.name], 'surveyor_type': [
                                  self.surveyor_type], 'skill': [self.skill], 'speed_penalty': [self.speed_penalty]})
@@ -33,7 +32,6 @@ class Surveyor:
 
         if alpha + beta == 10:
             self.skill = make_beta_distribution(alpha, beta)
-            self.skill_type = 'distribution'
             self.data['skill'] = self.skill
         else:
             # TODO: warn or error message

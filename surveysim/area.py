@@ -18,8 +18,6 @@ class Area:
         Unique name for the `Area`
     vis : float or other #TODO: update this when `set_vis()` is done
         Surface visibility specification
-    vis_type : {'scalar', 'distribution', 'surface'}
-        The nature of the visibility specification
     shape : shapely `Polygon`
         Shapely `Polygon` object that defines the spatial boundaries of the Area
     data : geopandas `GeoDataFrame`
@@ -45,7 +43,7 @@ class Area:
         self.vis_type = "scalar"
         self.shape = shape
         self.data = gpd.GeoDataFrame(
-            {'area_name': [self.name], 'geometry': self.shape}, geometry='geometry')
+            {'area_name': [self.name], 'vis': [self.vis], 'geometry': self.shape}, geometry='geometry')
 
     def __repr__(self):
         return f"Area(name={repr(self.name)}, shape={repr(self.shape)}, vis={repr(self.vis)})"
