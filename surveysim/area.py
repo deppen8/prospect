@@ -4,6 +4,7 @@ Create and modify Area objects
 # TODO: get better/more example datasets
 # TODO: coordinate systems and projections...UGGGGGHHH
 
+from .utils import make_beta_distribution
 from typing import Tuple
 from shapely.geometry import box, Polygon
 import geopandas as gpd
@@ -44,8 +45,8 @@ class Area:
         self.vis = visibility
         self.vis_type = "scalar"
         self.shape = shape
-        self.data = gpd.GeoDataFrame({'area_name': [self.name], 'visibility': [
-                                     self.vis], 'geometry': self.shape}, geometry='geometry')
+        self.data = gpd.GeoDataFrame(
+            {'area_name': [self.name], 'geometry': self.shape}, geometry='geometry')
 
     def __repr__(self):
         return f"Area(name={repr(self.name)}, shape={repr(self.shape)}, vis={repr(self.vis)})"
@@ -99,16 +100,25 @@ class Area:
 
         from math import sqrt
         side = sqrt(value)
-        square_area = box(origin[0], origin[1], origin[0] + side, origin[1] + side)
+        square_area = box(origin[0], origin[1],
+                          origin[0] + side, origin[1] + side)
         return cls(name, square_area)
 
-    def set_vis(self, visibility):
-        # TODO: pass in distribution parameters
-        from numpy import ndarray
-        if isinstance(visibility, (int, float)):
-            self.vis = visibility
-            self.vis_type = "scalar"
-            self.data['visibility'] = self.vis
-        elif isinstance(visibility, ndarray):
-            # TODO: accept raster or raster-like (e.g., ndarray)
-            pass
+    def set_vis_beta_dist(self, alpha: int, beta: int):
+        """Define a beta distribution from which to sample visibility values
+
+        Parameters
+        ----------
+        alpha, beta : int
+            Values to define the shape of the beta distribution
+        """
+
+        if alpha + beta == 10:
+            self.vis = make_beta_distribution(alpha, beta)
+            self.vis_type = 'beta distribution'
+        else:
+            # TODO: warn or error message
+            print('alpha and beta do not sum to 10')
+
+    def set_vis_raster(self, raster):
+        pass
