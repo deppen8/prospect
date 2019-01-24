@@ -2,7 +2,7 @@
 """
 
 import geopandas as gpd
-from scipy.stats import beta, rv_continuous
+from scipy.stats import beta, truncnorm, rv_continuous
 
 
 def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
@@ -70,3 +70,7 @@ def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd
 
 def make_beta_distribution(a: float, b: float) -> rv_continuous:
     return beta(a=a, b=b)
+
+
+def make_truncnorm_distribution(mean: float, sd: float, lower: float, upper: float) -> rv_continuous:
+    return truncnorm((lower - mean) / sd, (upper - mean) / sd, loc=mean, scale=sd)
