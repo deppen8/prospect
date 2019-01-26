@@ -11,14 +11,15 @@ from typing import List
 class Team:
     def __init__(self, name: str, surveyors: List[Surveyor]):
         self.name = name
-        self.data = pd.DataFrame({'surveyor_name': [],
-                                  'surveyor_type': [],
-                                  'skill': [],
-                                  'speed_penalty': []
-                                  })
+        self.df = pd.DataFrame({'surveyor_name': [],
+                                'surveyor_type': [],
+                                'skill': [],
+                                'speed_penalty': []
+                                })
 
         for person in surveyors:
-            self.data = pd.concat([self.data, person.data]).reset_index(drop=True)
+            self.df = pd.concat([self.df, person.df]
+                                ).reset_index(drop=True)
 
     def remove_surveyor(self, surveyor_name: str):
         """Convenience function to remove a surveyor by name
@@ -29,5 +30,5 @@ class Team:
             Name of the surveyor to drop
 
         """
-        self.data = self.data.drop(
-            self.data[self.data['name'] == surveyor_name])
+        self.df = self.df.drop(
+            self.df[self.df['name'] == surveyor_name])

@@ -4,7 +4,7 @@ Create an assemblage of artifacts
 # TODO:
 # - accept list (numpy array?) of Layers
 # - create dict(?) or df(?) of Layer attributes
-# - concat Layer.data objects
+# - concat Layer.df objects
 
 from .layer import Layer
 from typing import List, Dict, Any
@@ -28,5 +28,5 @@ class Assemblage:
                 'ideal_obs_rate': layer.ideal_obs_rate,
             }
 
-        self.data: pd.DataFrame = pd.concat(
-            [l.data for l in layers]).reset_index(drop=True)
+        self.df: pd.DataFrame = pd.concat(
+            [l.df for l in layers]).reset_index(drop=True)

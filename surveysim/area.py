@@ -42,7 +42,7 @@ class Area:
         self.vis = visibility
         self.vis_type = "scalar"
         self.shape = shape
-        self.data = gpd.GeoDataFrame(
+        self.df = gpd.GeoDataFrame(
             {'area_name': [self.name], 'vis': [self.vis], 'geometry': self.shape}, geometry='geometry')
 
     def __repr__(self):

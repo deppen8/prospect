@@ -43,7 +43,7 @@ class Layer:
             - It lies inside or intersects the `Coverage`
             - Surface visibility is 100%
             - The surveyor is highly skilled
-    data: geopandas GeoDataFrame
+    df: geopandas GeoDataFrame
         Handy container to work with the `Layer`
     """
 
@@ -71,7 +71,7 @@ class Layer:
         """
 
         self.area_name = area.name
-        self.bounds = area.data.total_bounds
+        self.bounds = area.df.total_bounds
         self.name = name
         self.features = features
         self.n_features = features.shape[0]
@@ -79,8 +79,8 @@ class Layer:
         self.time_penalty = time_penalty
         self.ideal_obs_rate = ideal_obs_rate
 
-        self.data = gpd.GeoDataFrame({'layer_name': [self.name] * self.n_features, 'fid': [f'{self.name}_{i}' for i in range(self.n_features)], 'time_penalty': [
-                                     self.time_penalty] * self.n_features, 'ideal_obs_rate': [self.ideal_obs_rate] * self.n_features, 'geometry': self.features}, geometry='geometry')
+        self.df = gpd.GeoDataFrame({'layer_name': [self.name] * self.n_features, 'fid': [f'{self.name}_{i}' for i in range(self.n_features)], 'time_penalty': [
+            self.time_penalty] * self.n_features, 'ideal_obs_rate': [self.ideal_obs_rate] * self.n_features, 'geometry': self.features}, geometry='geometry')
 
     @classmethod
     def from_shapefile(cls, path: str, area: Area, name: str, feature_type: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
@@ -131,7 +131,7 @@ class Layer:
             (the default is 1.0, which would indicate it is always recorded when encountered)
         """
 
-        bounds = area.data.total_bounds
+        bounds = area.df.total_bounds
         xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
         ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
         points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
@@ -305,7 +305,7 @@ class Layer:
         The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
         """
 
-        bounds = area.data.total_bounds
+        bounds = area.df.total_bounds
         dx = bounds[2] - bounds[0]
         dy = bounds[3] - bounds[1]
 
@@ -366,7 +366,7 @@ class Layer:
 
         if alpha + beta == 10:
             self.ideal_obs_rate = make_beta_distribution(alpha, beta)
-            self.data['ideal_obs_rate'] = self.ideal_obs_rate
+            self.df['ideal_obs_rate'] = self.ideal_obs_rate
         else:
             # TODO: warn or error message
             print('alpha and beta do not sum to 10')
@@ -375,4 +375,4 @@ class Layer:
         from .utils import make_truncnorm_distribution
 
         self.time_penalty = make_truncnorm_distribution(mean, sd, lower, upper)
-        self.data['time_penalty'] = self.time_penalty
+        self.df['time_penalty'] = self.time_penalty

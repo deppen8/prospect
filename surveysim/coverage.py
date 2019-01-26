@@ -40,7 +40,9 @@ class Coverage:
         extra_cols: List
         if self.survey_unit_type == 'transect':
             self.sweep_width = su_gdf['sweep_width'].iloc[0]
-            su_gdf['min_search_time'] = self.min_time_per_unit * su_gdf['length']  # TODO: move this calculation to run during the simulation
+            # TODO: move this calculation to run during the simulation
+            su_gdf['min_search_time'] = self.min_time_per_unit * \
+                su_gdf['length']
             extra_cols = ['length', 'sweep_width']
         elif self.survey_unit_type in ['quadrat', 'radial']:
             su_gdf['min_search_time'] = self.min_time_per_unit
@@ -55,14 +57,14 @@ class Coverage:
         cols = ['su_id', 'area', 'min_search_time'] + extra_cols + ['geometry']
         su_gdf = su_gdf.loc[:, cols]  # set column order
 
-        self.data = su_gdf
+        self.df = su_gdf
 
     @classmethod
     def from_shapefile(cls, area: Area, name: str, path: str, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1.0):
 
         temp_gdf = gpd.read_file(path)
 
-        min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
+        min_rot_rect = area.df.geometry[0].minimum_rotated_rectangle
         orientation = cls.optimize_orientation_by_area_orient(
             min_rect=min_rot_rect, axis=orient_axis)
 
@@ -70,7 +72,7 @@ class Coverage:
 
     @classmethod
     def from_GeoDataFrame(cls, area: Area, name: str, gdf: gpd.GeoDataFrame, su_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: float = 1.0):
-        min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
+        min_rot_rect = area.df.geometry[0].minimum_rotated_rectangle
         orientation = cls.optimize_orientation_by_area_orient(
             min_rect=min_rot_rect, axis=orient_axis)
 
@@ -79,7 +81,7 @@ class Coverage:
     @classmethod
     def make_transects(cls, area: Area, name: str, spacing: float = 10, sweep_width: float = 2, orientation: float = 0, optimize_orient_by: str = '', orient_increment: float = 5, orient_axis: str = '', min_time_per_unit: float = 1.0):
 
-        min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
+        min_rot_rect = area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
 
         lines_gs = cls.get_unit_bases(
@@ -97,14 +99,14 @@ class Coverage:
             {'geometry': lines_gs}, geometry='geometry')
 
         lines_clipped = clip_lines_polys(
-            lines_gdf, area.data)  # clip lines by area
+            lines_gdf, area.df)  # clip lines by area
 
         transects_buffer = lines_clipped.buffer(
             sweep_width)  # buffer transects
         buffer_gdf = gpd.GeoDataFrame({'orientation': [orientation] * transects_buffer.shape[0], 'length': lines_clipped.length, 'sweep_width': [
                                       sweep_width] * transects_buffer.shape[0], 'geometry': transects_buffer}, geometry='geometry')
 
-        transects = gpd.overlay(buffer_gdf, area.data, how='intersection')
+        transects = gpd.overlay(buffer_gdf, area.df, how='intersection')
         transects = transects.loc[:, ['orientation',
                                       'length', 'sweep_width', 'geometry']]
 
@@ -116,7 +118,7 @@ class Coverage:
 
         """
 
-        min_rot_rect = area.data.geometry[0].minimum_rotated_rectangle
+        min_rot_rect = area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
 
         points_gs = cls.get_unit_bases(
@@ -134,13 +136,13 @@ class Coverage:
             {'geometry': points_gs}, geometry='geometry')
 
         points_clipped = clip_lines_polys(
-            points_gdf, area.data)  # clip points by area
+            points_gdf, area.df)  # clip points by area
 
         points_buffer = points_clipped.buffer(radius)  # buffer points
         buffer_gdf = gpd.GeoDataFrame({'orientation': [orientation] * points_buffer.shape[0], 'radius': [
                                       radius] * points_buffer.shape[0], 'geometry': points_buffer}, geometry='geometry')
 
-        radials = gpd.overlay(buffer_gdf, area.data, how='intersection')
+        radials = gpd.overlay(buffer_gdf, area.df, how='intersection')
         radials = radials.loc[:, ['orientation', 'radius', 'geometry']]
 
         return cls(area=area, name=name, su_gdf=radials, su_type='radial', spacing=spacing, orientation=orientation, min_time_per_unit=min_time_per_unit)
@@ -153,7 +155,7 @@ class Coverage:
         # use diagonal distance for transect length
         # use centroid of minimum_rotated_rectangle
 
-        bounds = area.data.bounds
+        bounds = area.df.bounds
         width = bounds.maxx.max() - bounds.minx.min()
         height = bounds.maxy.max() - bounds.miny.max()
         diag_dist = sqrt(width**2 + height**2)
@@ -237,7 +239,7 @@ class Coverage:
 
             # clip survey_units by area
             survey_units_clipped = clip_lines_polys(
-                survey_units_gdf, area.data)
+                survey_units_gdf, area.df)
             survey_units_buffer = survey_units_clipped.buffer(
                 buffer)  # buffer survey_units
             deg_val[deg] = survey_units_buffer.area.sum()
@@ -277,5 +279,6 @@ class Coverage:
     def set_min_time_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
         from .utils import make_truncnorm_distribution
 
-        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower, upper)
-        self.data['min_search_time'] = self.min_time_per_unit
+        self.min_time_per_unit = make_truncnorm_distribution(
+            mean, sd, lower, upper)
+        self.df['min_search_time'] = self.min_time_per_unit

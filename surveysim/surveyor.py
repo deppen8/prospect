@@ -16,8 +16,8 @@ class Surveyor:
         self.surveyor_type = surveyor_type
         self.skill = skill
         self.speed_penalty = speed_penalty
-        self.data = pd.DataFrame({'surveyor_name': [self.name], 'surveyor_type': [
-                                 self.surveyor_type], 'skill': [self.skill], 'speed_penalty': [self.speed_penalty]})
+        self.df = pd.DataFrame({'surveyor_name': [self.name], 'surveyor_type': [
+            self.surveyor_type], 'skill': [self.skill], 'speed_penalty': [self.speed_penalty]})
 
     def set_skill_beta_dist(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample skill values
@@ -32,7 +32,7 @@ class Surveyor:
 
         if alpha + beta == 10:
             self.skill = make_beta_distribution(alpha, beta)
-            self.data['skill'] = self.skill
+            self.df['skill'] = self.skill
         else:
             # TODO: warn or error message
             print('alpha and beta do not sum to 10')
@@ -40,5 +40,6 @@ class Surveyor:
     def set_speed_penalty_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
         from .utils import make_truncnorm_distribution
 
-        self.speed_penalty = make_truncnorm_distribution(mean, sd, lower, upper)
-        self.data['speed_penalty'] = self.speed_penalty
+        self.speed_penalty = make_truncnorm_distribution(
+            mean, sd, lower, upper)
+        self.df['speed_penalty'] = self.speed_penalty
