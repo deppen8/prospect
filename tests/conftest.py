@@ -51,7 +51,8 @@ def a_shapely_polygon(request):
 
 @pytest.fixture(params=shapely_polys, scope='session')
 def an_area_from_shapely_polygon(request):
-    area = surveysim.Area.from_shapely_polygon(name='test_area_from_shapely', polygon=request.param)
+    area = surveysim.Area.from_shapely_polygon(
+        name='test_area_from_shapely', polygon=request.param)
     return area
 
 
@@ -82,5 +83,6 @@ def an_area_origin_pair(request):
 
 @pytest.fixture(params=area_origin_pairs, scope='session')
 def an_area_from_area_origin_pair(request):
-    area = surveysim.Area.from_area_value(name='test_area_from_area_value', value=request.param[0], origin=request.param[1])
+    area = surveysim.Area.from_area_value(
+        name='test_area_from_area_value', value=request.param[0], origin=request.param[1])
     return area
