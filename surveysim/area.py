@@ -65,7 +65,7 @@ class Area:
 
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
-        return cls(name, tmp_gdf['geometry'].iloc[0])
+        return cls(name, shape=tmp_gdf['geometry'].iloc[0])
 
     @classmethod
     def from_shapely_polygon(cls, name: str, polygon: Polygon) -> 'Area':
