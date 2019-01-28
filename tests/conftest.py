@@ -2,12 +2,13 @@ import pytest
 import surveysim
 from pathlib import Path
 from shapely.geometry import Polygon
+import itertools
 
 # define `Area` fixtures
 
 
 @pytest.fixture()
-def default_Area():
+def a_default_Area():
     """Create Area with defaults"""
     return surveysim.Area()
 
@@ -54,4 +55,32 @@ def an_area_from_shapely_polygon(request):
     return area
 
 
-# define `Layer` fixtures
+# FIXTURES FOR THE `Area.from_area_value()` METHOD
+
+
+area_values = [1, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000]
+origins = [
+    (0.0, 0.0),
+    (10.0, 0.0),
+    (0.0, 10.0),
+    (10.0, 10.0),
+    (10, 10),
+    (-10.0, 0.0),
+    (0.0, -10.0),
+    (-10.0, -10.0),
+    (0.5, 0.5),
+    (5, 5.0),
+]
+
+area_origin_pairs = list(itertools.product(area_values, origins))
+
+
+@pytest.fixture(params=area_origin_pairs, scope='session')
+def an_area_origin_pair(request):
+    return request.param
+
+
+@pytest.fixture(params=area_origin_pairs, scope='session')
+def an_area_from_area_origin_pair(request):
+    area = surveysim.Area.from_area_value(name='test_area_from_area_value', value=request.param[0], origin=request.param[1])
+    return area
