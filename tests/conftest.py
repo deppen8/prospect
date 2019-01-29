@@ -14,6 +14,13 @@ def an_area_shapefile_path(request):
     return Path(f'test_datasets/shapefiles/areas/{request.param}')
 
 
+@pytest.fixture(params=leiap_area_paths, ids=leiap_area_paths, scope='session')
+def an_area_from_shapefile(request):
+    area = surveysim.Area.from_shapefile(name='test_area_from_shapefile', path=Path(
+        f'test_datasets/shapefiles/areas/{request.param}'))
+    return area
+
+
 # FIXTURES FOR `Layer`
 
 

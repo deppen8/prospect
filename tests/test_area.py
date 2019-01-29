@@ -1,7 +1,6 @@
 import pytest
 import surveysim
 import itertools
-from pathlib import Path
 from geopandas import GeoDataFrame
 from shapely.geometry import Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
@@ -14,20 +13,6 @@ from scipy.stats._distn_infrastructure import rv_frozen
 def a_default_Area():
     """Create `Area` with defaults"""
     return surveysim.Area()
-
-
-# FIXTURES FOR THE `Area.from_shapefile()` METHOD
-
-
-leiap_area_paths = ['leiap_field1.shp', 'leiap_field2.shp', 'leiap_field3.shp', 'leiap_field4.shp',
-                    'leiap_field5.shp', 'leiap_field6.shp', 'leiap_field7.shp', 'leiap_field8.shp']
-
-
-@pytest.fixture(params=leiap_area_paths, ids=leiap_area_paths, scope='module')
-def an_area_from_shapefile(request):
-    area = surveysim.Area.from_shapefile(name='test_area_from_shapefile', path=Path(
-        f'test_datasets/shapefiles/areas/{request.param}'))
-    return area
 
 
 # FIXTURES FOR THE `Area.from_shapely_polygon()` METHOD
@@ -193,7 +178,7 @@ def test_from_area_value_default_columns_exist(an_area_from_area_origin_pair):
 # TESTS FOR `set_vis_beta_dist()` METHOD
 
 
-def test_set_vis_beta_dist_creates_rv_continuous(an_area_from_shapefile):
+def test_set_vis_beta_dist_creates_rv_frozen(an_area_from_shapefile):
     area = an_area_from_shapefile
     area.set_vis_beta_dist(alpha=9, beta=1)
     assert isinstance(area.vis, rv_frozen)
