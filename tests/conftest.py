@@ -7,9 +7,9 @@ import itertools
 # define `Area` fixtures
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def a_default_Area():
-    """Create Area with defaults"""
+    """Create `Area` with defaults"""
     return surveysim.Area()
 
 
@@ -22,13 +22,13 @@ leiap_area_paths = ['leiap_field1.shp', 'leiap_field2.shp', 'leiap_field3.shp', 
 
 @pytest.fixture(params=leiap_area_paths, ids=leiap_area_paths, scope='session')
 def an_area_shapefile_path(request):
-    return Path(f'tests/test_datasets/shapefiles/{request.param}')
+    return Path(f'test_datasets/shapefiles/areas/{request.param}')
 
 
 @pytest.fixture(params=leiap_area_paths, ids=leiap_area_paths, scope='session')
 def an_area_from_shapefile(request):
     area = surveysim.Area.from_shapefile(name='test_area_from_shapefile', path=Path(
-        f'tests/test_datasets/shapefiles/{request.param}'))
+        f'test_datasets/shapefiles/areas/{request.param}'))
     return area
 
 
@@ -86,3 +86,38 @@ def an_area_from_area_origin_pair(request):
     area = surveysim.Area.from_area_value(
         name='test_area_from_area_value', value=request.param[0], origin=request.param[1])
     return area
+
+
+# FIXTURES FOR `Layer`
+
+
+@pytest.fixture(scope='session')
+def a_default_Layer():
+    """Create `Layer` with defaults"""
+    default_Area = surveysim.Area.from_area_value(name='test_area4layer', value=1.0)
+    return surveysim.Layer(area=default_Area)
+
+
+leiap_layer_paths = [
+    'leiap_field1_points.shp',
+    'leiap_field2_points.shp',
+    'leiap_field3_points.shp',
+    'leiap_field4_points.shp',
+    'leiap_field5_polygons.shp',
+    'leiap_field6_polygons_overlap_edges.shp',
+    'leiap_field7_points.shp',
+    'leiap_field8_polygon_single.shp'
+]
+
+
+@pytest.fixture(params=leiap_layer_paths, ids=leiap_layer_paths, scope='session')
+def a_layer_shapefile_path(request):
+    return Path(f'test_datasets/shapefiles/layers/{request.param}')
+
+
+@pytest.fixture(params=leiap_layer_paths, ids=leiap_layer_paths, scope='session')
+def a_layer_from_shapefile(request):
+    default_Area = surveysim.Area.from_area_value(name='test_area4layer', value=1.0)
+    layer = surveysim.Layer.from_shapefile(path=Path(
+        f'test_datasets/shapefiles/layers/{request.param}'), area=default_Area, name='test_layer', feature_type=None)
+    return layer
