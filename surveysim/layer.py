@@ -47,7 +47,7 @@ class Layer:
         Handy container to work with the `Layer`
     """
 
-    def __init__(self, area: Area, name: str, features=None, feature_type: str = None, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
+    def __init__(self, area: Area, name: str = 'layer', features=gpd.GeoSeries([Point(0.5, 0.5)]), feature_type: str = 'points', time_penalty: float = 0.0, ideal_obs_rate: float = 1.0):
         """Create a `Layer` object
 
         Parameters
