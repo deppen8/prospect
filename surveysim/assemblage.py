@@ -9,6 +9,7 @@ Create an assemblage of artifacts
 from .layer import Layer
 from typing import List, Dict, Any
 import pandas as pd
+from geopandas import GeoDataFrame
 
 
 class Assemblage:
@@ -28,5 +29,5 @@ class Assemblage:
                 'ideal_obs_rate': layer.ideal_obs_rate,
             }
 
-        self.df: pd.DataFrame = pd.concat(
+        self.df: GeoDataFrame = pd.concat(
             [l.df for l in layers]).reset_index(drop=True)
