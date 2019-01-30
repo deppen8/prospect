@@ -1,13 +1,15 @@
 """
 Create and modify Layer objects
 """
-# TODO: move time_penalty and ideal_obs_rate specifications to other `set_X()` methods (like `set_vis()` for `Area`)
-# TODO: clip generated Layers by Area
+# DONE: move time_penalty and ideal_obs_rate specifications to other `set_X()` methods (like `set_vis()` for `Area`)
+# DONE: clip generated Layers by Area
+# TODO: clip non-Point Layers
 # QUESTION: points are only constrained to bounding box of Area. What to do if no points fall within actual Area?
 # - set minimum number of points that must be present?
 # - allow this? it sort of simulates real life if we assume that boundaries of Areas are arbitrary relative to the artifact depositions
 # - allow and warn?
-# TODO: create an Assemblage object/module to catch all of the Layers
+# DONE: create an Assemblage object/module to catch all of the Layers
+# TODO: write `set_X_scalar()` methods
 
 from .area import Area
 from .utils import clip_points
@@ -358,6 +360,9 @@ class Layer:
 
         pass
 
+    def set_ideal_obs_rate_scalar(self, value):
+        pass
+
     def set_ideal_obs_rate_beta_dist(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample ideal observation rate values
 
@@ -375,6 +380,9 @@ class Layer:
         else:
             # TODO: warn or error message
             print('alpha and beta do not sum to 10')
+
+    def set_time_penalty_scalar(self, value):
+        pass
 
     def set_time_penalty_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
         from .utils import make_truncnorm_distribution
