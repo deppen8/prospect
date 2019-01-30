@@ -114,6 +114,7 @@ class Area:
         if alpha + beta == 10:
             self.vis = make_beta_distribution(alpha, beta)
             self.vis_type = 'distribution'
+            self.df['vis'] = self.vis
         else:
             # TODO: warn or error message
             print('alpha and beta do not sum to 10')
