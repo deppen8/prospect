@@ -10,6 +10,7 @@ Create and modify Layer objects
 # TODO: create an Assemblage object/module to catch all of the Layers
 
 from .area import Area
+from .utils import clip_points
 
 from typing import Tuple
 import geopandas as gpd
@@ -81,6 +82,10 @@ class Layer:
 
         self.df = gpd.GeoDataFrame({'layer_name': [self.name] * self.n_features, 'fid': [f'{self.name}_{i}' for i in range(self.n_features)], 'time_penalty': [
             self.time_penalty] * self.n_features, 'ideal_obs_rate': [self.ideal_obs_rate] * self.n_features, 'geometry': self.features}, geometry='geometry')
+
+        # clip by area
+        if all(self.df.geom_type == 'Point'):
+            self.df = clip_points(self.df, area.df)
 
     @classmethod
     def from_shapefile(cls, path: str, area: Area, name: str, feature_type: str, time_penalty: float = 0.0, ideal_obs_rate: float = 1.0) -> 'Layer':
