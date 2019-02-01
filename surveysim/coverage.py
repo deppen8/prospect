@@ -41,11 +41,11 @@ class Coverage:
         if self.survey_unit_type == 'transect':
             self.sweep_width = su_gdf['sweep_width'].iloc[0]
             # TODO: move this calculation to run during the simulation
-            su_gdf['min_search_time'] = self.min_time_per_unit * \
+            su_gdf['base_search_time'] = self.min_time_per_unit * \
                 su_gdf['length']
             extra_cols = ['length', 'sweep_width']
         elif self.survey_unit_type in ['quadrat', 'radial']:
-            su_gdf['min_search_time'] = self.min_time_per_unit
+            su_gdf['base_search_time'] = self.min_time_per_unit
             if self.survey_unit_type == 'radial':
                 self.radius = su_gdf['radius'].iloc[0]
                 extra_cols = ['radius']
@@ -54,7 +54,7 @@ class Coverage:
         su_gdf['su_id'] = [i for i in range(
             su_gdf.shape[0])]  # add unique su_id
 
-        cols = ['su_id', 'area', 'min_search_time'] + extra_cols + ['geometry']
+        cols = ['su_id', 'area', 'base_search_time'] + extra_cols + ['geometry']
         su_gdf = su_gdf.loc[:, cols]  # set column order
 
         self.df = su_gdf
@@ -281,4 +281,4 @@ class Coverage:
 
         self.min_time_per_unit = make_truncnorm_distribution(
             mean, sd, lower, upper)
-        self.df['min_search_time'] = self.min_time_per_unit
+        self.df['base_search_time'] = self.min_time_per_unit
