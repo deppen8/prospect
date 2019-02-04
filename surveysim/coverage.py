@@ -9,6 +9,7 @@ Create a survey methodology
 # DONE: implement a from_shapefile classmethod
 # DONE: implement a from_GeoDataFrame classmethod
 # TODO: implement a make_quadrats classmethod
+# TODO: sub-class Transects, Radials, Quadrats? Or change method names to "from_*"
 # TODO: documentation
 
 from .area import Area
