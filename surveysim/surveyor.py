@@ -11,7 +11,7 @@ class Surveyor:
     Create a person
     """
 
-    def __init__(self, name: str, surveyor_type: str, skill: float, speed_penalty: float):
+    def __init__(self, name: str, surveyor_type: str, skill: float = 1.0, speed_penalty: float = 0.0):
         self.name = name
         self.surveyor_type = surveyor_type
         self.skill = skill
