@@ -44,7 +44,7 @@ def a_layer_shapefile_path(request):
     return Path(f'test_datasets/shapefiles/layers/{request.param}')
 
 
-@pytest.fixture(params=area_layer_tuples, ids=area_layer_tuples, scope='session')
+@pytest.fixture(params=area_layer_tuples, scope='session')
 def a_layer_from_shapefile(request):
     area = surveysim.Area.from_shapefile(name='test_area4layer', path=Path(
         f'test_datasets/shapefiles/areas/{request.param[0]}'))
