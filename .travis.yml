@@ -17,3 +17,8 @@ install:
 # run test
 script:
   - python -m pytest
+
+branches:
+  only:
+    - master
+    - dev
