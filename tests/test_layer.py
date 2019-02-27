@@ -17,7 +17,7 @@ def a_default_Layer():
     return surveysim.Layer(area=simple_Area)
 
 
-n_vals = [1, 10, 100, 1000, 10000]
+n_vals = [10, 100, 1000, 10000]
 
 
 @pytest.fixture(params=n_vals, scope='module')
