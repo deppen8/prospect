@@ -12,7 +12,7 @@ python:
 
 # install packages
 install:
-  - pip install -r requirements_dev.txt
+  - pip install -r requirements_test.txt
   - pip install -e .
 
 # run test
