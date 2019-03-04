@@ -1,0 +1,974 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>surveysim package &#8212; surveysim 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to surveysim’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="surveysim-package">
+<h1>surveysim package<a class="headerlink" href="#surveysim-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-surveysim.area">
+<span id="surveysim-area-module"></span><h2>surveysim.area module<a class="headerlink" href="#module-surveysim.area" title="Permalink to this headline">¶</a></h2>
+<p>Create and modify Area objects</p>
+<dl class="class">
+<dt id="surveysim.area.Area">
+<em class="property">class </em><code class="descclassname">surveysim.area.</code><code class="descname">Area</code><span class="sig-paren">(</span><em>name: str = 'area'</em>, <em>shape: shapely.geometry.polygon.Polygon = None</em>, <em>visibility: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.area.Area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define the space where the survey will occur</p>
+<dl class="attribute">
+<dt id="surveysim.area.Area.name">
+<code class="descname">name</code><a class="headerlink" href="#surveysim.area.Area.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique name for the <cite>Area</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.area.Area.vis">
+<code class="descname">vis</code><a class="headerlink" href="#surveysim.area.Area.vis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Surface visibility specification</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float or other #TODO: update this when <cite>set_vis()</cite> is done</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.area.Area.shape">
+<code class="descname">shape</code><a class="headerlink" href="#surveysim.area.Area.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shapely <cite>Polygon</cite> object that defines the spatial boundaries of the Area</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">shapely <cite>Polygon</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.area.Area.data">
+<code class="descname">data</code><a class="headerlink" href="#surveysim.area.Area.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handy container for the other attributes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">geopandas <cite>GeoDataFrame</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.area.Area.from_area_value">
+<em class="property">classmethod </em><code class="descname">from_area_value</code><span class="sig-paren">(</span><em>name: str</em>, <em>value: float</em>, <em>origin: Tuple[float</em>, <em>float] = (0.0</em>, <em>0.0)</em><span class="sig-paren">)</span> &#x2192; surveysim.area.Area<a class="headerlink" href="#surveysim.area.Area.from_area_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a square <cite>Area</cite> object by specifying its area</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Area</cite></li>
+<li><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Desired area in square units</li>
+<li><strong>origin</strong> (<em>tuple of floats</em>) – Specify the lower left corner of the <cite>Area</cite></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.area.Area.from_shapefile">
+<em class="property">classmethod </em><code class="descname">from_shapefile</code><span class="sig-paren">(</span><em>name: str</em>, <em>path: str</em><span class="sig-paren">)</span> &#x2192; surveysim.area.Area<a class="headerlink" href="#surveysim.area.Area.from_shapefile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an <cite>Area</cite> object from a shapefile</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Area</cite></li>
+<li><strong>path</strong> (<em>str</em>) – File path to the shapefile</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.area.Area.from_shapely_polygon">
+<em class="property">classmethod </em><code class="descname">from_shapely_polygon</code><span class="sig-paren">(</span><em>name: str</em>, <em>polygon: shapely.geometry.polygon.Polygon</em><span class="sig-paren">)</span> &#x2192; surveysim.area.Area<a class="headerlink" href="#surveysim.area.Area.from_shapely_polygon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an <cite>Area</cite> object from a shapely <cite>Polygon</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Area</cite></li>
+<li><strong>polygon</strong> (shapely <cite>Polygon</cite>) – A shapely <cite>Polygon</cite> object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="surveysim.area.Area.set_vis_beta_dist">
+<code class="descname">set_vis_beta_dist</code><span class="sig-paren">(</span><em>alpha: int</em>, <em>beta: int</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.area.Area.set_vis_beta_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a beta distribution from which to sample visibility values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>beta</strong> (<em>alpha</em><em>,</em>) – Values to define the shape of the beta distribution</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="surveysim.area.Area.set_vis_raster">
+<code class="descname">set_vis_raster</code><span class="sig-paren">(</span><em>raster</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.area.Area.set_vis_raster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.assemblage">
+<span id="surveysim-assemblage-module"></span><h2>surveysim.assemblage module<a class="headerlink" href="#module-surveysim.assemblage" title="Permalink to this headline">¶</a></h2>
+<p>Create an assemblage of artifacts</p>
+<dl class="class">
+<dt id="surveysim.assemblage.Assemblage">
+<em class="property">class </em><code class="descclassname">surveysim.assemblage.</code><code class="descname">Assemblage</code><span class="sig-paren">(</span><em>name: str, layers: List[surveysim.layer.Layer]</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.assemblage.Assemblage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Collect <cite>Layer</cite> objects</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.block">
+<span id="surveysim-block-module"></span><h2>surveysim.block module<a class="headerlink" href="#module-surveysim.block" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="surveysim.block.BuildingBlock">
+<em class="property">class </em><code class="descclassname">surveysim.block.</code><code class="descname">BuildingBlock</code><a class="headerlink" href="#surveysim.block.BuildingBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="surveysim.block.BuildingBlock.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#surveysim.block.BuildingBlock.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.coverage">
+<span id="surveysim-coverage-module"></span><h2>surveysim.coverage module<a class="headerlink" href="#module-surveysim.coverage" title="Permalink to this headline">¶</a></h2>
+<p>Create a survey methodology</p>
+<dl class="class">
+<dt id="surveysim.coverage.Coverage">
+<em class="property">class </em><code class="descclassname">surveysim.coverage.</code><code class="descname">Coverage</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>su_gdf: geopandas.geodataframe.GeoDataFrame</em>, <em>su_type: str</em>, <em>spacing: float = None</em>, <em>orientation: float = None</em>, <em>min_time_per_unit: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define a survey method</p>
+<dl class="staticmethod">
+<dt id="surveysim.coverage.Coverage.coord_vals_from_centroid_val">
+<em class="property">static </em><code class="descname">coord_vals_from_centroid_val</code><span class="sig-paren">(</span><em>centroid_val</em>, <em>n_transects</em>, <em>spacing</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage.coord_vals_from_centroid_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.coverage.Coverage.from_GeoDataFrame">
+<em class="property">classmethod </em><code class="descname">from_GeoDataFrame</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>gdf: geopandas.geodataframe.GeoDataFrame</em>, <em>su_type: str</em>, <em>spacing: float</em>, <em>orient_axis: str = 'long'</em>, <em>min_time_per_unit: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage.from_GeoDataFrame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.coverage.Coverage.from_shapefile">
+<em class="property">classmethod </em><code class="descname">from_shapefile</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>path: str</em>, <em>su_type: str</em>, <em>spacing: float</em>, <em>orient_axis: str = 'long'</em>, <em>min_time_per_unit: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage.from_shapefile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="surveysim.coverage.Coverage.get_unit_bases">
+<em class="property">static </em><code class="descname">get_unit_bases</code><span class="sig-paren">(</span><em>survey_unit_type: str</em>, <em>area: surveysim.area.Area</em>, <em>centroid: shapely.geometry.point.Point</em>, <em>spacing: float = 10</em><span class="sig-paren">)</span> &#x2192; geopandas.geoseries.GeoSeries<a class="headerlink" href="#surveysim.coverage.Coverage.get_unit_bases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Points or LineStrings as GeoSeries</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.coverage.Coverage.make_radials">
+<em class="property">classmethod </em><code class="descname">make_radials</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>spacing: float = 10</em>, <em>radius: float = 2</em>, <em>orientation: float = 0</em>, <em>optimize_orient_by: str = ''</em>, <em>orient_increment: float = 5</em>, <em>orient_axis: str = ''</em>, <em>min_time_per_unit: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage.make_radials" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.coverage.Coverage.make_transects">
+<em class="property">classmethod </em><code class="descname">make_transects</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>spacing: float = 10</em>, <em>sweep_width: float = 2</em>, <em>orientation: float = 0</em>, <em>optimize_orient_by: str = ''</em>, <em>orient_increment: float = 5</em>, <em>orient_axis: str = ''</em>, <em>min_time_per_unit: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage.make_transects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="surveysim.coverage.Coverage.optimize_orientation_by_area_coverage">
+<em class="property">static </em><code class="descname">optimize_orientation_by_area_coverage</code><span class="sig-paren">(</span><em>survey_units: geopandas.geoseries.GeoSeries</em>, <em>rotation_pt: shapely.geometry.point.Point</em>, <em>area: surveysim.area.Area</em>, <em>buffer: float = 0</em>, <em>increment: float = 5</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#surveysim.coverage.Coverage.optimize_orientation_by_area_coverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the orientation value that allows maximum area</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>survey_units</strong> (<em>gpd.GeoSeries</em>) – GeoSeries of the survey units</li>
+<li><strong>rotation_pt</strong> (<em>shapely.Point</em>) – Origin of the rotation</li>
+<li><strong>area</strong> (<cite>Area</cite>) – <cite>Area</cite> object in which to place survey units</li>
+<li><strong>buffer</strong> (<em>float</em>) – Buffer around the transect or point</li>
+<li><strong>increment</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of degrees added per iteration. Default is 5, which means looping through orientation values [0, 5, 10, 15, …, 170, 175].</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value for orientation that maximizes area of the <cite>Coverage</cite></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="surveysim.coverage.Coverage.optimize_orientation_by_area_orient">
+<em class="property">static </em><code class="descname">optimize_orientation_by_area_orient</code><span class="sig-paren">(</span><em>min_rect: shapely.geometry.polygon.Polygon</em>, <em>axis: str</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#surveysim.coverage.Coverage.optimize_orientation_by_area_orient" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="surveysim.coverage.Coverage.set_min_time_truncnorm_dist">
+<code class="descname">set_min_time_truncnorm_dist</code><span class="sig-paren">(</span><em>mean: float</em>, <em>sd: float</em>, <em>lower: float</em>, <em>upper: float</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.coverage.Coverage.set_min_time_truncnorm_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.layer">
+<span id="surveysim-layer-module"></span><h2>surveysim.layer module<a class="headerlink" href="#module-surveysim.layer" title="Permalink to this headline">¶</a></h2>
+<p>Create and modify Layer objects</p>
+<dl class="class">
+<dt id="surveysim.layer.Layer">
+<em class="property">class </em><code class="descclassname">surveysim.layer.</code><code class="descname">Layer</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>name: str = 'layer'</em>, <em>features=0    POINT (0.5 0.5) dtype: object</em>, <em>feature_type: str = 'points'</em>, <em>time_penalty: float = 0.0</em>, <em>ideal_obs_rate: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define artifacts/features that will seed the survey <cite>Area</cite></p>
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.area_name">
+<code class="descname">area_name</code><a class="headerlink" href="#surveysim.layer.Layer.area_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the <cite>Area</cite> where the <cite>Layer</cite> resides</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.bounds">
+<code class="descname">bounds</code><a class="headerlink" href="#surveysim.layer.Layer.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Limits of the bounding box of the <cite>Area</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.name">
+<code class="descname">name</code><a class="headerlink" href="#surveysim.layer.Layer.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique name for <cite>Layer</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.features">
+<code class="descname">features</code><a class="headerlink" href="#surveysim.layer.Layer.features" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object containing all of the shapely objects that make up the Layer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy <cite>ndarray</cite> or geopandas <cite>GeoSeries</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.n_features">
+<code class="descname">n_features</code><a class="headerlink" href="#surveysim.layer.Layer.n_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of artifacts/features in the <cite>Layer</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.feature_type">
+<code class="descname">feature_type</code><a class="headerlink" href="#surveysim.layer.Layer.feature_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nature of the features created</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">{‘points’, ‘polygons’, None}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.time_penalty">
+<code class="descname">time_penalty</code><a class="headerlink" href="#surveysim.layer.Layer.time_penalty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra time associated with collecting/recording one artifact/feature from this <cite>Layer</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.ideal_obs_rate">
+<code class="descname">ideal_obs_rate</code><a class="headerlink" href="#surveysim.layer.Layer.ideal_obs_rate" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>The frequency with which an artifact or feature from this <cite>Layer</cite> will be recorded, assuming the following ideal conditions:</dt>
+<dd><ul class="first last simple">
+<li>It lies inside or intersects the <cite>Coverage</cite></li>
+<li>Surface visibility is 100%</li>
+<li>The surveyor is highly skilled</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="surveysim.layer.Layer.df">
+<code class="descname">df</code><a class="headerlink" href="#surveysim.layer.Layer.df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handy container to work with the <cite>Layer</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">geopandas GeoDataFrame</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.layer.Layer.from_matern_points">
+<em class="property">classmethod </em><code class="descname">from_matern_points</code><span class="sig-paren">(</span><em>parent_rate: float</em>, <em>child_rate: float</em>, <em>radius: float</em>, <em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>time_penalty: float = 0.0</em>, <em>ideal_obs_rate: float = 1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer.from_matern_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> with a Matérn point process. It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent_rate</strong> (<em>float</em>) – Theoretical clusters per unit area across the whole space. See Notes in <cite>poisson_points()</cite> for more details</li>
+<li><strong>child_rate</strong> (<em>float</em>) – Theoretical child points per unit area per cluster across the whole space.</li>
+<li><strong>radius</strong> (<em>float</em>) – Radius of the disk around the cluster centers</li>
+<li><strong>area</strong> (<a class="reference internal" href="#surveysim.area.Area" title="surveysim.area.Area"><em>Area</em></a>) – <cite>Area</cite> where the <cite>Layer</cite> is to be located</li>
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Layer</cite></li>
+<li><strong>time_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Extra time associated with collecting/recording one artifact/feature from this <cite>Layer</cite> (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)</li>
+<li><strong>ideal_obs_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – <dl class="docutils">
+<dt>The frequency with which an artifact or feature from this <cite>Layer</cite> will be recorded, assuming the following ideal conditions:</dt>
+<dd><ul class="first last">
+<li>It lies inside or intersects the <cite>Coverage</cite></li>
+<li>Surface visibility is 100%</li>
+<li>The surveyor is highly skilled</li>
+</ul>
+</dd>
+</dl>
+<p>(the default is 1.0, which would indicate it is always recorded when encountered)</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#surveysim.layer.Layer.poisson_points" title="surveysim.layer.Layer.poisson_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poisson_points()</span></code></a></dt>
+<dd>includes details on Poisson point process</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_pseudorandom_points" title="surveysim.layer.Layer.from_pseudorandom_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pseudorandom_points()</span></code></a></dt>
+<dd>faster, naive point creation</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_poisson_points" title="surveysim.layer.Layer.from_poisson_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_poisson_points()</span></code></a></dt>
+<dd>simple Poisson points <cite>Layer</cite></dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_thomas_points" title="surveysim.layer.Layer.from_thomas_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_thomas_points()</span></code></a></dt>
+<dd>similar process, good for clusters with centers from Poisson points</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.uniform_disk" title="surveysim.layer.Layer.uniform_disk"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uniform_disk()</span></code></a></dt>
+<dd>function used to specify point locations around parents</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Parents (cluster centers) are NOT created as points in the output</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.layer.Layer.from_poisson_points">
+<em class="property">classmethod </em><code class="descname">from_poisson_points</code><span class="sig-paren">(</span><em>rate: float</em>, <em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>time_penalty: float = 0.0</em>, <em>ideal_obs_rate: float = 1.0</em><span class="sig-paren">)</span> &#x2192; surveysim.layer.Layer<a class="headerlink" href="#surveysim.layer.Layer.from_poisson_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> of points with a Poisson point process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>rate</strong> (<em>float</em>) – Theoretical events per unit area across the whole space. See Notes in <cite>poisson_points()</cite> for more details</li>
+<li><strong>area</strong> (<a class="reference internal" href="#surveysim.area.Area" title="surveysim.area.Area"><em>Area</em></a>) – <cite>Area</cite> where the <cite>Layer</cite> is to be located</li>
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Layer</cite></li>
+<li><strong>time_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Extra time associated with collecting/recording one artifact/feature from this <cite>Layer</cite> (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)</li>
+<li><strong>ideal_obs_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – <dl class="docutils">
+<dt>The frequency with which an artifact or feature from this <cite>Layer</cite> will be recorded, assuming the following ideal conditions:</dt>
+<dd><ul class="first last">
+<li>It lies inside or intersects the <cite>Coverage</cite></li>
+<li>Surface visibility is 100%</li>
+<li>The surveyor is highly skilled</li>
+</ul>
+</dd>
+</dl>
+<p>(the default is 1.0, which would indicate it is always recorded when encountered)</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#surveysim.layer.Layer.poisson_points" title="surveysim.layer.Layer.poisson_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poisson_points()</span></code></a></dt>
+<dd>includes details on Poisson point process</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_pseudorandom_points" title="surveysim.layer.Layer.from_pseudorandom_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pseudorandom_points()</span></code></a></dt>
+<dd>faster, naive point creation</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_thomas_points" title="surveysim.layer.Layer.from_thomas_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_thomas_points()</span></code></a></dt>
+<dd>good for clusters with centers from Poisson points</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_matern_points" title="surveysim.layer.Layer.from_matern_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_matern_points()</span></code></a></dt>
+<dd>good for clusters with centers from Poisson points</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.layer.Layer.from_pseudorandom_points">
+<em class="property">classmethod </em><code class="descname">from_pseudorandom_points</code><span class="sig-paren">(</span><em>n: int</em>, <em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>time_penalty: float = 0.0</em>, <em>ideal_obs_rate: float = 1.0</em><span class="sig-paren">)</span> &#x2192; surveysim.layer.Layer<a class="headerlink" href="#surveysim.layer.Layer.from_pseudorandom_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> of pseudorandom points</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n</strong> (<em>int</em>) – Number of points to create</li>
+<li><strong>area</strong> (<a class="reference internal" href="#surveysim.area.Area" title="surveysim.area.Area"><em>Area</em></a>) – <cite>Area</cite> where the <cite>Layer</cite> is to be located</li>
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Layer</cite></li>
+<li><strong>time_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Extra time associated with collecting/recording one artifact/feature from this <cite>Layer</cite> (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)</li>
+<li><strong>ideal_obs_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – <dl class="docutils">
+<dt>The frequency with which an artifact or feature from this <cite>Layer</cite> will be recorded, assuming the following ideal conditions:</dt>
+<dd><ul class="first last">
+<li>It lies inside or intersects the <cite>Coverage</cite></li>
+<li>Surface visibility is 100%</li>
+<li>The surveyor is highly skilled</li>
+</ul>
+</dd>
+</dl>
+<p>(the default is 1.0, which would indicate it is always recorded when encountered)</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.layer.Layer.from_rectangles">
+<em class="property">classmethod </em><code class="descname">from_rectangles</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer.from_rectangles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.layer.Layer.from_shapefile">
+<em class="property">classmethod </em><code class="descname">from_shapefile</code><span class="sig-paren">(</span><em>path: str</em>, <em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>feature_type: str</em>, <em>time_penalty: float = 0.0</em>, <em>ideal_obs_rate: float = 1.0</em><span class="sig-paren">)</span> &#x2192; surveysim.layer.Layer<a class="headerlink" href="#surveysim.layer.Layer.from_shapefile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> of artifacts/features from a shapefile</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> (<em>str</em>) – Filepath to the shapefile</li>
+<li><strong>area</strong> (<a class="reference internal" href="#surveysim.area.Area" title="surveysim.area.Area"><em>Area</em></a>) – <cite>Area</cite> where the <cite>Layer</cite> is to be located</li>
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Layer</cite></li>
+<li><strong>feature_type</strong> (<em>{'points'</em><em>, </em><em>'polygons'</em><em>, </em><em>None}</em>) – Nature of the features created</li>
+<li><strong>time_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Extra time associated with collecting/recording one artifact/feature from this <cite>Layer</cite> (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)</li>
+<li><strong>ideal_obs_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – <dl class="docutils">
+<dt>The frequency with which an artifact or feature from this <cite>Layer</cite> will be recorded, assuming the following ideal conditions:</dt>
+<dd><ul class="first last">
+<li>It lies inside or intersects the <cite>Coverage</cite></li>
+<li>Surface visibility is 100%</li>
+<li>The surveyor is highly skilled</li>
+</ul>
+</dd>
+</dl>
+<p>(the default is 1.0, which would indicate it is always recorded when encountered)</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="surveysim.layer.Layer.from_thomas_points">
+<em class="property">classmethod </em><code class="descname">from_thomas_points</code><span class="sig-paren">(</span><em>parent_rate: float</em>, <em>child_rate: float</em>, <em>gauss_var: float</em>, <em>area: surveysim.area.Area</em>, <em>name: str</em>, <em>time_penalty: float = 0.0</em>, <em>ideal_obs_rate: float = 1.0</em><span class="sig-paren">)</span> &#x2192; surveysim.layer.Layer<a class="headerlink" href="#surveysim.layer.Layer.from_thomas_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> with a Thomas point process. It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent_rate</strong> (<em>float</em>) – Theoretical clusters per unit area across the whole space. See Notes in <cite>poisson_points()</cite> for more details</li>
+<li><strong>child_rate</strong> (<em>float</em>) – Theoretical child points per unit area per cluster across the whole space.</li>
+<li><strong>gauss_var</strong> (<em>float</em>) – Variance of the isotropic Gaussian distributions around the cluster centers</li>
+<li><strong>area</strong> (<a class="reference internal" href="#surveysim.area.Area" title="surveysim.area.Area"><em>Area</em></a>) – <cite>Area</cite> where the <cite>Layer</cite> is to be located</li>
+<li><strong>name</strong> (<em>str</em>) – Unique name for the <cite>Layer</cite></li>
+<li><strong>time_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Extra time associated with collecting/recording one artifact/feature from this <cite>Layer</cite> (the default is 0.0, which indicates an unrealistic scenario where recording an artifact/feature takes no time at all)</li>
+<li><strong>ideal_obs_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – <dl class="docutils">
+<dt>The frequency with which an artifact or feature from this <cite>Layer</cite> will be recorded, assuming the following ideal conditions:</dt>
+<dd><ul class="first last">
+<li>It lies inside or intersects the <cite>Coverage</cite></li>
+<li>Surface visibility is 100%</li>
+<li>The surveyor is highly skilled</li>
+</ul>
+</dd>
+</dl>
+<p>(the default is 1.0, which would indicate it is always recorded when encountered)</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#surveysim.layer.Layer.poisson_points" title="surveysim.layer.Layer.poisson_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poisson_points()</span></code></a></dt>
+<dd>includes details on Poisson point process</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_pseudorandom_points" title="surveysim.layer.Layer.from_pseudorandom_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pseudorandom_points()</span></code></a></dt>
+<dd>faster, naive point creation</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_poisson_points" title="surveysim.layer.Layer.from_poisson_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_poisson_points()</span></code></a></dt>
+<dd>simple Poisson points <cite>Layer</cite></dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_matern_points" title="surveysim.layer.Layer.from_matern_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_matern_points()</span></code></a></dt>
+<dd>similar process, good for clusters with centers from Poisson points</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Parents (cluster centers) are NOT created as points in the output</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="surveysim.layer.Layer.poisson_points">
+<em class="property">static </em><code class="descname">poisson_points</code><span class="sig-paren">(</span><em>area: surveysim.area.Area</em>, <em>rate: float</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#surveysim.layer.Layer.poisson_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create points from a Poisson process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>area</strong> (<a class="reference internal" href="#surveysim.area.Area" title="surveysim.area.Area"><em>Area</em></a>) – <cite>Area</cite> where the points will be located</li>
+<li><strong>rate</strong> (<em>float</em>) – Theoretical events per unit area across the whole space. See Notes for more details</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An array of xy coordinate pairs</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy ndarray of tuples</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_poisson_points" title="surveysim.layer.Layer.from_poisson_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_poisson_points()</span></code></a></dt>
+<dd>creates <cite>Layer</cite> with Poisson process</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_pseudorandom_points" title="surveysim.layer.Layer.from_pseudorandom_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pseudorandom_points()</span></code></a></dt>
+<dd>faster, naive point creation</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_thomas_points" title="surveysim.layer.Layer.from_thomas_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_thomas_points()</span></code></a></dt>
+<dd>good for clusters with centers from Poisson points</dd>
+<dt><a class="reference internal" href="#surveysim.layer.Layer.from_matern_points" title="surveysim.layer.Layer.from_matern_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_matern_points()</span></code></a></dt>
+<dd>good for clusters with centers from Poisson points</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>A Poisson point process is usually said to be more “purely” random than most random number generators (like the one used in <cite>from_pseudorandom_points()</cite>)</p>
+<p>The rate (usually called “lambda”) of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our <cite>Area</cite> is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="surveysim.layer.Layer.set_ideal_obs_rate_beta_dist">
+<code class="descname">set_ideal_obs_rate_beta_dist</code><span class="sig-paren">(</span><em>alpha: int</em>, <em>beta: int</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer.set_ideal_obs_rate_beta_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a beta distribution from which to sample ideal observation rate values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>beta</strong> (<em>alpha</em><em>,</em>) – Values to define the shape of the beta distribution</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="surveysim.layer.Layer.set_ideal_obs_rate_scalar">
+<code class="descname">set_ideal_obs_rate_scalar</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer.set_ideal_obs_rate_scalar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="surveysim.layer.Layer.set_time_penalty_scalar">
+<code class="descname">set_time_penalty_scalar</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer.set_time_penalty_scalar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="surveysim.layer.Layer.set_time_penalty_truncnorm_dist">
+<code class="descname">set_time_penalty_truncnorm_dist</code><span class="sig-paren">(</span><em>mean: float</em>, <em>sd: float</em>, <em>lower: float</em>, <em>upper: float</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.layer.Layer.set_time_penalty_truncnorm_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="surveysim.layer.Layer.uniform_disk">
+<em class="property">static </em><code class="descname">uniform_disk</code><span class="sig-paren">(</span><em>x: float</em>, <em>y: float</em>, <em>r: float</em><span class="sig-paren">)</span> &#x2192; Tuple[float, float]<a class="headerlink" href="#surveysim.layer.Layer.uniform_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly locate a point within a disk of specified radius</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>y</strong> (<em>x</em><em>,</em>) – Coordinates of disk center</li>
+<li><strong>r</strong> (<em>float</em>) – Radius of the disk</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Random point within the disk</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of floats</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.simulation">
+<span id="surveysim-simulation-module"></span><h2>surveysim.simulation module<a class="headerlink" href="#module-surveysim.simulation" title="Permalink to this headline">¶</a></h2>
+<p>[summary]
+Steps
+- find artifacts that lie within survey units
+- find distance from artifacts to surveyor (center of survey unit)
+- apply distance decay function to get probability
+-</p>
+</div>
+<div class="section" id="module-surveysim.survey_unit">
+<span id="surveysim-survey-unit-module"></span><h2>surveysim.survey_unit module<a class="headerlink" href="#module-surveysim.survey_unit" title="Permalink to this headline">¶</a></h2>
+<p>Description of file</p>
+<dl class="class">
+<dt id="surveysim.survey_unit.SurveyStrategy">
+<em class="property">class </em><code class="descclassname">surveysim.survey_unit.</code><code class="descname">SurveyStrategy</code><a class="headerlink" href="#surveysim.survey_unit.SurveyStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A set of shapes to use for the survey</p>
+<dl class="method">
+<dt id="surveysim.survey_unit.SurveyStrategy.add_checkerboard">
+<code class="descname">add_checkerboard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.survey_unit.SurveyStrategy.add_checkerboard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="surveysim.survey_unit.SurveyStrategy.add_search_points">
+<code class="descname">add_search_points</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.survey_unit.SurveyStrategy.add_search_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.surveyor">
+<span id="surveysim-surveyor-module"></span><h2>surveysim.surveyor module<a class="headerlink" href="#module-surveysim.surveyor" title="Permalink to this headline">¶</a></h2>
+<p>Create survey team members</p>
+<dl class="class">
+<dt id="surveysim.surveyor.Surveyor">
+<em class="property">class </em><code class="descclassname">surveysim.surveyor.</code><code class="descname">Surveyor</code><span class="sig-paren">(</span><em>name: str</em>, <em>surveyor_type: str</em>, <em>skill: float = 1.0</em>, <em>speed_penalty: float = 0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.surveyor.Surveyor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a person</p>
+<dl class="method">
+<dt id="surveysim.surveyor.Surveyor.set_skill_beta_dist">
+<code class="descname">set_skill_beta_dist</code><span class="sig-paren">(</span><em>alpha: int</em>, <em>beta: int</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.surveyor.Surveyor.set_skill_beta_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a beta distribution from which to sample skill values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>beta</strong> (<em>alpha</em><em>,</em>) – Values to define the shape of the beta distribution</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="surveysim.surveyor.Surveyor.set_speed_penalty_truncnorm_dist">
+<code class="descname">set_speed_penalty_truncnorm_dist</code><span class="sig-paren">(</span><em>mean: float</em>, <em>sd: float</em>, <em>lower: float</em>, <em>upper: float</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.surveyor.Surveyor.set_speed_penalty_truncnorm_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.team">
+<span id="surveysim-team-module"></span><h2>surveysim.team module<a class="headerlink" href="#module-surveysim.team" title="Permalink to this headline">¶</a></h2>
+<p>Create a survey team</p>
+<dl class="class">
+<dt id="surveysim.team.Team">
+<em class="property">class </em><code class="descclassname">surveysim.team.</code><code class="descname">Team</code><span class="sig-paren">(</span><em>name: str, surveyors: List[surveysim.surveyor.Surveyor]</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.team.Team" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="surveysim.team.Team.remove_surveyor">
+<code class="descname">remove_surveyor</code><span class="sig-paren">(</span><em>surveyor_name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#surveysim.team.Team.remove_surveyor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to remove a surveyor by name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>surveyor_name</strong> (<em>str</em>) – Name of the surveyor to drop</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-surveysim.utils">
+<span id="surveysim-utils-module"></span><h2>surveysim.utils module<a class="headerlink" href="#module-surveysim.utils" title="Permalink to this headline">¶</a></h2>
+<p>General utility functions</p>
+<dl class="function">
+<dt id="surveysim.utils.clip_lines_polys">
+<code class="descclassname">surveysim.utils.</code><code class="descname">clip_lines_polys</code><span class="sig-paren">(</span><em>lines_polys: geopandas.geodataframe.GeoDataFrame</em>, <em>by: geopandas.geodataframe.GeoDataFrame</em><span class="sig-paren">)</span> &#x2192; geopandas.geodataframe.GeoDataFrame<a class="headerlink" href="#surveysim.utils.clip_lines_polys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subset a GeoDataFrame of lines or polygons based on the boundaries of another GeoDataFrame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lines_polys</strong> (geopandas <cite>GeoDataFrame</cite>) – Features to be clipped</li>
+<li><strong>by</strong> (geopandas <cite>GeoDataFrame</cite>) – Boundaries to use for clipping</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A subset of the original <cite>lines_polys</cite></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">geopandas <cite>GeoDataFrame</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<p>Earth Analytics Python course, <a class="reference external" href="https://doi.org/10.5281/zenodo.2209415">https://doi.org/10.5281/zenodo.2209415</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="surveysim.utils.clip_points">
+<code class="descclassname">surveysim.utils.</code><code class="descname">clip_points</code><span class="sig-paren">(</span><em>points: geopandas.geodataframe.GeoDataFrame</em>, <em>by: geopandas.geodataframe.GeoDataFrame</em><span class="sig-paren">)</span> &#x2192; geopandas.geodataframe.GeoDataFrame<a class="headerlink" href="#surveysim.utils.clip_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>points</strong> (geopandas <cite>GeoDataFrame</cite>) – Point features to be clipped</li>
+<li><strong>by</strong> (geopandas <cite>GeoDataFrame</cite>) – Boundaries to use for clipping</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A subset of the original <cite>points</cite></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">geopandas <cite>GeoDataFrame</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<p>Earth Analytics Python course, <a class="reference external" href="https://doi.org/10.5281/zenodo.2209415">https://doi.org/10.5281/zenodo.2209415</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="surveysim.utils.make_beta_distribution">
+<code class="descclassname">surveysim.utils.</code><code class="descname">make_beta_distribution</code><span class="sig-paren">(</span><em>a: float</em>, <em>b: float</em><span class="sig-paren">)</span> &#x2192; scipy.stats._distn_infrastructure.rv_continuous<a class="headerlink" href="#surveysim.utils.make_beta_distribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="surveysim.utils.make_truncnorm_distribution">
+<code class="descclassname">surveysim.utils.</code><code class="descname">make_truncnorm_distribution</code><span class="sig-paren">(</span><em>mean: float</em>, <em>sd: float</em>, <em>lower: float</em>, <em>upper: float</em><span class="sig-paren">)</span> &#x2192; scipy.stats._distn_infrastructure.rv_continuous<a class="headerlink" href="#surveysim.utils.make_truncnorm_distribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-surveysim">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-surveysim" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">surveysim</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">surveysim package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.area">surveysim.area module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.assemblage">surveysim.assemblage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.block">surveysim.block module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.coverage">surveysim.coverage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.layer">surveysim.layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.simulation">surveysim.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.survey_unit">surveysim.survey_unit module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.surveyor">surveysim.surveyor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.team">surveysim.team module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim.utils">surveysim.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-surveysim">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to surveysim’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Author.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/surveysim.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
