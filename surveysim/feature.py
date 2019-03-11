@@ -9,8 +9,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
 from sqlalchemy.orm import relationship
 
 from typing import Union, Dict
+
 from shapely.geometry import Point, LineString, Polygon
-import numpy as np
 from scipy.stats._distn_infrastructure import rv_frozen
 
 
@@ -30,7 +30,7 @@ class Feature(Base):
     # assemblage = relationship('Assemblage', back_populates='features')
     layer = relationship('Layer', back_populates='features')
 
-    def __init__(self, name: str, layer_name: str, shape: Union[Point, LineString, Polygon], time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])):
+    def __init__(self, name: str, layer_name: str, shape: Union[Point, LineString, Polygon], time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
         self.name = name
         self.layer_name = layer_name
         self.shape = shape

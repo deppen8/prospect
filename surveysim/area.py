@@ -1,11 +1,11 @@
 
-from .simulation import Base
+from .simulation import Base, SimSession
 
 from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
 from sqlalchemy.orm import relationship
 
 from typing import Union, Tuple
-import numpy as np
+
 from scipy.stats._distn_infrastructure import rv_frozen
 from shapely.geometry import box, Polygon
 import geopandas as gpd
@@ -16,18 +16,18 @@ class Area(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column('name', String(50), unique=True)
+    survey_name = Column('survey_name', String(50), ForeignKey('surveys.id'))
     shape = Column('shape', PickleType)
     vis = Column('vis', PickleType)
+    df = Column('df', PickleType)
 
     # relationships
-    survey_name = Column('survey_name', String(50), ForeignKey('surveys.id'))
     survey = relationship("Survey", back_populates='area')
-
     assemblages = relationship("Assemblage", back_populates='area')
     layers = relationship("Layer", back_populates='area')
     coverage = relationship("Coverage", back_populates='area')
 
-    def __init__(self, name: str, survey_name: str, shape: Polygon, vis: Union[np.ndarray, rv_frozen] = np.array([1.0])):
+    def __init__(self, name: str, sim: SimSession, survey_name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0):
         self.name = name
         self.survey_name = survey_name
         self.shape = shape
@@ -42,23 +42,23 @@ class Area(Base):
         return f"Area object '{self.name}'"
 
     @classmethod
-    def from_shapefile(cls, name: str, survey_name: str, path: str, vis: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Area':
+    def from_shapefile(cls, name: str, sim: SimSession, survey_name: str, path: str, vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create an `Area` object from a shapefile
         """
 
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
-        return cls(name=name, survey_name=survey_name, shape=tmp_gdf['geometry'].iloc[0], vis=vis)
+        return cls(name=name, sim=sim, survey_name=survey_name, shape=tmp_gdf.geometry.iloc[0], vis=vis)
 
     @classmethod
-    def from_shapely_polygon(cls, name: str, survey_name: str, polygon: Polygon, vis: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Area':
+    def from_shapely_polygon(cls, name: str, sim: SimSession, survey_name: str, polygon: Polygon, vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create an `Area` object from a shapely `Polygon`
         """
 
-        return cls(name=name, survey_name=survey_name, shape=polygon, vis=vis)
+        return cls(name=name, sim=sim, survey_name=survey_name, shape=polygon, vis=vis)
 
     @classmethod
-    def from_area_value(cls, name: str, survey_name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0), vis: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Area':
+    def from_area_value(cls, name: str, sim: SimSession, survey_name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0), vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create a square `Area` object by specifying its area
         """
 
@@ -66,7 +66,7 @@ class Area(Base):
         side = sqrt(value)
         square_area = box(origin[0], origin[1],
                           origin[0] + side, origin[1] + side)
-        return cls(name=name, survey_name=survey_name, shape=square_area, vis=vis)
+        return cls(name=name, sim=sim, survey_name=survey_name, shape=square_area, vis=vis)
 
     def set_vis_beta_dist(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample visibility values

@@ -1,21 +1,20 @@
-"""A `Layer` should just be a container that unites a series of `Feature`s of the same type. For example, `Layer` can be used to create many point `Feature`s that represent one artifact type. 
+"""A `Layer` should just be a container that unites a series of `Feature`s of the same type. For example, `Layer` can be used to create many point `Feature`s that represent one artifact type.
 
 This class is also designed to make it easy to create groups of Features quickly.
 """
 
-
-from .simulation import Base
+from .simulation import Base, SimSession
+from .feature import Feature
 from .area import Area
 from .utils import clip_points
-from .feature import Feature
 
 from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
 from sqlalchemy.orm import relationship
 
-from typing import Tuple, List, Union
+from typing import Tuple, List, Union, Dict
+
 import geopandas as gpd
 from shapely.geometry import Point
-
 import numpy as np
 from scipy.stats import uniform, poisson, norm
 from scipy.stats._distn_infrastructure import rv_frozen
@@ -26,18 +25,18 @@ class Layer(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column('name', String(50), unique=True)
-    # shapes = Column('features', PickleType)
-
     area_name = Column('area_name', String(50), ForeignKey('areas.name'))
     assemblage_name = Column('assemblage_name', String(
         50), ForeignKey('assemblages.name'))
+    feature_list = Column('feature_list', PickleType)
+    df = Column('df', PickleType)
 
     # relationships
     area = relationship("Area", back_populates='layers')
     assemblage = relationship("Assemblage", back_populates='layers')
     features = relationship("Feature", back_populates='layer')
 
-    def __init__(self, name: str, area_name: str, assemblage_name: str, feature_list: List, time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])):
+    def __init__(self, name: str, sim: SimSession, area_name: str, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
         self.name = name
         self.area_name = area_name
         self.assemblage_name = assemblage_name
@@ -48,35 +47,42 @@ class Layer(Base):
 
         # clip by area
         if all(self.df.geom_type == 'Point'):
-            # TODO: Figure out how to call Area from it's name
-            # Can I do it before committing the Area object? If so, how?
-            self.df = clip_points(self.df, area.df)
+            # TODO: Test this in Jupyter Notebook
+            tmp_area = sim.session.query(
+                Area).filter_by(name=area_name).first()
+            self.df = clip_points(self.df, tmp_area.df)
+            shape_list = self.df.geometry.tolist()
+            self.feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
+                                         time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
     @classmethod
-    def from_shapefile(cls, path: str, name: str, area_name: str, assemblage_name: str, time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Layer':
+    def from_shapefile(cls, path: str, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` of artifacts/features from a shapefile
         """
         tmp_gdf = gpd.read_file(path)
-        feature_list = tmp_gdf.geometry.tolist()
+        shape_list = tmp_gdf.geometry.tolist()
+        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
+                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_pseudorandom_points(cls, n: int, name: str, area_name: str, assemblage_name: str, time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Layer':
+    def from_pseudorandom_points(cls, n: int, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` of pseudorandom points
         """
-        # TODO: Figure out how to call Area from it's name
-        # Can I do it before committing the Area object? If so, how?
-        bounds = area.df.total_bounds
+        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        bounds = tmp_area.df.total_bounds
         xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
         ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
         points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
-        feature_list = points_gds.geometry.tolist()
+        shape_list = points_gds.geometry.tolist()
+        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
+                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_poisson_points(cls, rate: float, name: str, area_name: str, assemblage_name: str, time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Layer':
+    def from_poisson_points(cls, rate: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` of points with a Poisson point process
 
         See Also
@@ -86,16 +92,17 @@ class Layer(Base):
         from_thomas_points : good for clusters with centers from Poisson points
         from_matern_points : good for clusters with centers from Poisson points
         """
-        # TODO: Figure out how to call Area from it's name
-        # Can I do it before committing the Area object? If so, how?
-        points = cls.poisson_points(area, rate)
+        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        points = cls.poisson_points(tmp_area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
-        feature_list = points_gds.geometry.tolist()
+        shape_list = points_gds.geometry.tolist()
+        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
+                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, area_name: str, assemblage_name: str, time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Layer':
+    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` with a Thomas point process. It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
 
         See Also
@@ -109,9 +116,8 @@ class Layer(Base):
         -----
         Parents (cluster centers) are NOT created as points in the output
         """
-        # TODO: Figure out how to call Area from it's name
-        # Can I do it before committing the Area object? If so, how?
-        parents = cls.poisson_points(area, parent_rate)
+        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        parents = cls.poisson_points(tmp_area, parent_rate)
         M = parents.shape[0]
 
         points = list()
@@ -122,12 +128,14 @@ class Layer(Base):
                 points.append(list(pdf.rvs(2)))
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
-        feature_list = points_gds.geometry.tolist()
+        shape_list = points_gds.geometry.tolist()
+        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
+                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, area_name: str, assemblage_name: str, time_penalty: Union[np.ndarray, rv_frozen] = np.array([1.0]), ideal_obs_rate: Union[np.ndarray, rv_frozen] = np.array([1.0])):
+    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
         """Create a `Layer` with a Matérn point process. It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
 
         See Also
@@ -142,9 +150,8 @@ class Layer(Base):
         -----
         Parents (cluster centers) are NOT created as points in the output
         """
-        # TODO: Figure out how to call Area from it's name
-        # Can I do it before committing the Area object? If so, how?
-        parents = cls.poisson_points(area, parent_rate)
+        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        parents = cls.poisson_points(tmp_area, parent_rate)
         M = parents.shape[0]
 
         points = list()
@@ -155,10 +162,13 @@ class Layer(Base):
                 points.append([x, y])
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
-        feature_list = points_gds.geometry.tolist()
+        shape_list = points_gds.geometry.tolist()
+        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
+                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
+    # START HERE: Fix to reflect sim.session pattern
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:
         """Create points from a Poisson process
@@ -176,8 +186,6 @@ class Layer(Base):
 
         The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
         """
-        # TODO: Figure out how to call Area from it's name
-        # Can I do it before committing the Area object? If so, how?
         bounds = area.df.total_bounds
         dx = bounds[2] - bounds[0]
         dy = bounds[3] - bounds[1]
@@ -212,7 +220,7 @@ class Layer(Base):
 
     # TODO: this.
     @classmethod
-    def from_rectangles(cls, area: Area, n):
+    def from_rectangles(cls, area: Area, n: int):
         # random centroid?
         # random rotation?
         # n_polygons?

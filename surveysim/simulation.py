@@ -27,15 +27,19 @@ class SimSession():
         Session = sessionmaker(bind=engine)
         self.session = Session()
 
-    def stage_block(self, block):
-        """Add a building block
+    def stage(self, block):
+        """Add a building block to the list of objects to save to the database
         """
         self.session.add(block)
 
-    def unstage_block(self, block):
+    def unstage(self, block):
         """Remove a building block
         """
         self.session.expunge(block)
 
     def remove_from_db(self, block):
         self.session.delete(block)
+
+
+# def start_session(SimSession()):
+#     pass
