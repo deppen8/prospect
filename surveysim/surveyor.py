@@ -1,45 +1,20 @@
-"""
-Create survey team members
-"""
-# TODO: documentation
-
-import pandas as pd
 
 
-class Surveyor:
-    """
-    Create a person
-    """
+from .simulation import Base
 
-    def __init__(self, name: str, surveyor_type: str, skill: float = 1.0, speed_penalty: float = 0.0):
-        self.name = name
-        self.surveyor_type = surveyor_type
-        self.skill = skill
-        self.speed_penalty = speed_penalty
-        self.df = pd.DataFrame({'surveyor_name': [self.name], 'surveyor_type': [
-            self.surveyor_type], 'skill': [self.skill], 'speed_penalty': [self.speed_penalty]})
+from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
+from sqlalchemy.orm import relationship
 
-    def set_skill_beta_dist(self, alpha: int, beta: int):
-        """Define a beta distribution from which to sample skill values
 
-        Parameters
-        ----------
-        alpha, beta : int
-            Values to define the shape of the beta distribution
-        """
+class Surveyor(Base):
+    __tablename__ = 'surveyors'
 
-        from .utils import make_beta_distribution
+    id = Column(Integer, primary_key=True)
+    name = Column('name', String(50), unique=True)
+    surveyor_type = Column('surveyor_type', String(50))
+    skill = Column('skill', PickleType)
+    speed_penalty = Column('speed_penalty', PickleType)
 
-        if alpha + beta == 10:
-            self.skill = make_beta_distribution(alpha, beta)
-            self.df['skill'] = self.skill
-        else:
-            # TODO: warn or error message
-            print('alpha and beta do not sum to 10')
-
-    def set_speed_penalty_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
-        from .utils import make_truncnorm_distribution
-
-        self.speed_penalty = make_truncnorm_distribution(
-            mean, sd, lower, upper)
-        self.df['speed_penalty'] = self.speed_penalty
+    # relationships
+    team_name = Column('team_name', String(50), ForeignKey('teams.name'))
+    team = relationship("Team", back_populates='surveyors')

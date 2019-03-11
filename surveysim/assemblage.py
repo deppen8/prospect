@@ -1,33 +1,23 @@
-"""
-Create an assemblage of artifacts
-"""
-# TODO:
-# - accept list (numpy array?) of Layers
-# - create dict(?) or df(?) of Layer attributes
-# - concat Layer.df objects
 
-from .layer import Layer
-from typing import List, Dict, Any
-import pandas as pd
-from geopandas import GeoDataFrame
+from .simulation import Base
+
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class Assemblage:
-    """Collect `Layer` objects
-    """
+class Assemblage(Base):
+    __tablename__ = 'assemblages'
 
-    def __init__(self, name: str, layers: List[Layer]):
-        self.name = name
+    id = Column(Integer, primary_key=True)
+    name = Column('name', String(50), unique=True)
 
-        self.layer_dict: Dict[str, Dict[str, Any]] = {}
-        for layer in layers:
-            self.layer_dict[layer.name] = {
-                'features': layer.features,
-                'n_features': layer.n_features,
-                'feature_type': layer.feature_type,
-                'time_penalty': layer.time_penalty,
-                'ideal_obs_rate': layer.ideal_obs_rate,
-            }
+    # relationships
+    survey_name = Column('survey_name', String(50), ForeignKey('surveys.name'))
+    survey = relationship("Survey", back_populates='assemblage')
 
-        self.df: GeoDataFrame = pd.concat(
-            [l.df for l in layers]).reset_index(drop=True)
+    area_name = Column('area_name', String(50), ForeignKey('areas.name'))
+    area = relationship("Area", back_populates='assemblages')
+
+    layers = relationship("Layer", back_populates='assemblage')
+
+    # features = relationship("Feature", back_populates='assemblage')

@@ -1,105 +1,72 @@
-"""
-Create and modify Area objects
-"""
-# TODO: get better/more example datasets
-# TODO: coordinate systems and projections...UGGGGGHHH
 
-from typing import Tuple
+from .simulation import Base
+
+from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
+from sqlalchemy.orm import relationship
+
+from typing import Union, Tuple
+import numpy as np
+from scipy.stats._distn_infrastructure import rv_frozen
 from shapely.geometry import box, Polygon
 import geopandas as gpd
 
 
-class Area:
-    """Define the space where the survey will occur
+class Area(Base):
+    __tablename__ = 'areas'
 
-    Attributes
-    ----------
-    name : str
-        Unique name for the `Area`
-    vis : float or other #TODO: update this when `set_vis()` is done
-        Surface visibility specification
-    shape : shapely `Polygon`
-        Shapely `Polygon` object that defines the spatial boundaries of the Area
-    data : geopandas `GeoDataFrame`
-        Handy container for the other attributes
-    """
+    id = Column(Integer, primary_key=True)
+    name = Column('name', String(50), unique=True)
+    shape = Column('shape', PickleType)
+    vis = Column('vis', PickleType)
 
-    def __init__(self, name: str = 'area', shape: Polygon = None, visibility: float = 1.0):
-        """Initialize an `Area` object
+    # relationships
+    survey_name = Column('survey_name', String(50), ForeignKey('surveys.id'))
+    survey = relationship("Survey", back_populates='area')
 
-        Parameters
-        ----------
-        name : str, optional
-            Unique name for the `Area`
-        shape : shapely `Polygon`, optional
-            A shapely `Polygon` object
-        visibility : float, optional
-            Visibility scalar value. This is set to 1.0 when an `Area` is first created.
-            More complicated visibility can be specified with the `set_vis()` method.
-        """
+    assemblages = relationship("Assemblage", back_populates='area')
+    layers = relationship("Layer", back_populates='area')
+    coverage = relationship("Coverage", back_populates='area')
 
+    def __init__(self, name: str, survey_name: str, shape: Polygon, vis: Union[np.ndarray, rv_frozen] = np.array([1.0])):
         self.name = name
-        self.vis = visibility
-        self.vis_type = "scalar"
+        self.survey_name = survey_name
         self.shape = shape
+        self.vis = vis
         self.df = gpd.GeoDataFrame(
-            {'area_name': [self.name], 'vis': [self.vis], 'geometry': self.shape}, geometry='geometry')
+            {'name': [self.name], 'survey_name': [self.survey_name], 'shape': self.shape, 'vis': [self.vis]}, geometry='shape')
 
     def __repr__(self):
-        return f"Area(name={repr(self.name)}, shape={repr(self.shape)}, vis={repr(self.vis)})"
+        return f"Area(name={repr(self.name)}, survey_name={repr(self.survey_name)}, shape={repr(self.shape)}, vis={repr(self.vis)})"
 
     def __str__(self):
-        return f"Area object named '{self.name}'"
+        return f"Area object '{self.name}'"
 
     @classmethod
-    def from_shapefile(cls, name: str, path: str) -> 'Area':
+    def from_shapefile(cls, name: str, survey_name: str, path: str, vis: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Area':
         """Create an `Area` object from a shapefile
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the `Area`
-        path : str
-            File path to the shapefile
         """
 
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
-        return cls(name, shape=tmp_gdf['geometry'].iloc[0])
+        return cls(name=name, survey_name=survey_name, shape=tmp_gdf['geometry'].iloc[0], vis=vis)
 
     @classmethod
-    def from_shapely_polygon(cls, name: str, polygon: Polygon) -> 'Area':
+    def from_shapely_polygon(cls, name: str, survey_name: str, polygon: Polygon, vis: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Area':
         """Create an `Area` object from a shapely `Polygon`
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the `Area`
-        polygon : shapely `Polygon`
-            A shapely `Polygon` object
         """
 
-        return cls(name, polygon)
+        return cls(name=name, survey_name=survey_name, shape=polygon, vis=vis)
 
     @classmethod
-    def from_area_value(cls, name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0)) -> 'Area':
+    def from_area_value(cls, name: str, survey_name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0), vis: Union[np.ndarray, rv_frozen] = np.array([1.0])) -> 'Area':
         """Create a square `Area` object by specifying its area
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the `Area`
-        value : int or float
-            Desired area in square units
-        origin : tuple of floats
-            Specify the lower left corner of the `Area`
         """
 
         from math import sqrt
         side = sqrt(value)
         square_area = box(origin[0], origin[1],
                           origin[0] + side, origin[1] + side)
-        return cls(name, square_area)
+        return cls(name=name, survey_name=survey_name, shape=square_area, vis=vis)
 
     def set_vis_beta_dist(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample visibility values
@@ -113,7 +80,6 @@ class Area:
 
         if alpha + beta == 10:
             self.vis = make_beta_distribution(alpha, beta)
-            self.vis_type = 'distribution'
             self.df['vis'] = self.vis
         else:
             # TODO: warn or error message

@@ -1,34 +1,18 @@
-"""
-Create a survey team
-"""
-# TODO: documentation
 
-from .surveyor import Surveyor
-import pandas as pd
-from typing import List
+from .simulation import Base
+
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class Team:
-    def __init__(self, name: str, surveyors: List[Surveyor]):
-        self.name = name
-        self.df = pd.DataFrame({'surveyor_name': [],
-                                'surveyor_type': [],
-                                'skill': [],
-                                'speed_penalty': []
-                                })
+class Team(Base):
+    __tablename__ = 'teams'
 
-        for person in surveyors:
-            self.df = pd.concat([self.df, person.df]
-                                ).reset_index(drop=True)
+    id = Column(Integer, primary_key=True)
+    name = Column('name', String(50), unique=True)
 
-    def remove_surveyor(self, surveyor_name: str):
-        """Convenience function to remove a surveyor by name
+    # relationships
+    survey_name = Column('survey_name', String(50), ForeignKey('surveys.name'))
+    survey = relationship("Survey", back_populates='team')
 
-        Parameters
-        ----------
-        surveyor_name : str
-            Name of the surveyor to drop
-
-        """
-        self.df = self.df.drop(
-            self.df[self.df['name'] == surveyor_name])
+    surveyors = relationship("Surveyor", back_populates='team')

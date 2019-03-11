@@ -1,9 +1,41 @@
-"""[summary]
-Steps
-- find artifacts that lie within survey units
-- find distance from artifacts to surveyor (center of survey unit)
-- apply distance decay function to get probability
-- 
+"""Handle creation of a simulation session
 
 """
 
+
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+Base = declarative_base()
+
+
+class SimSession():
+    from .survey import Survey
+    from .area import Area
+    from .assemblage import Assemblage
+    from .layer import Layer
+    from .feature import Feature
+    from .coverage import Coverage
+    from .surveyunit import SurveyUnit
+    from .team import Team
+    from .surveyor import Surveyor
+
+    def __init__(self, engine_str="sqlite:///simulation_default.db"):
+        engine = create_engine(engine_str)
+        Base.metadata.create_all(engine)
+        Session = sessionmaker(bind=engine)
+        self.session = Session()
+
+    def stage_block(self, block):
+        """Add a building block
+        """
+        self.session.add(block)
+
+    def unstage_block(self, block):
+        """Remove a building block
+        """
+        self.session.expunge(block)
+
+    def remove_from_db(self, block):
+        self.session.delete(block)
