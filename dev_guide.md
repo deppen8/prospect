@@ -19,9 +19,21 @@ Imports should almost always be at the top level. The only things that should be
 
 ## Type hints
 
-Everything that can be type-hinted, should be
+- Everything that can be type-hinted, should be
+- Make sure to include a return hint, `-> Thing`, if appropriate
+- Use `code` formatting when referring to objects
+
+## Docstrings
+
+- Use `"""`
+- Use numpy-style
+- space before first code line
 
 ## Building block classes
+
+### Arguments
+
+- If type is `float`, make default a `float`, not an `int`
 
 ### Method argument order
 
@@ -35,7 +47,8 @@ Everything that can be type-hinted, should be
 
 - type and default argument `Union[float, rv_frozen] = 1.0`
 
-### Table specifications
+### SQL Table specifications
 
 - table columns go first
 - all `relationship` statements grouped together
+
