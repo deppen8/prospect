@@ -11,7 +11,7 @@ from .utils import clip_points
 from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
 from sqlalchemy.orm import relationship
 
-from typing import Tuple, List, Union, Dict
+from typing import Tuple, List, Union
 
 import geopandas as gpd
 from shapely.geometry import Point
@@ -42,8 +42,8 @@ class Layer(Base):
         self.assemblage_name = assemblage_name
         self.feature_list = feature_list
 
-        self.df = gpd.DataFrame([feature.to_dict()
-                                 for feature in self.feature_list], geometry='shape')
+        self.df = gpd.GeoDataFrame([feature.to_dict()
+                                    for feature in self.feature_list], geometry='shape')
 
         # clip by area
         if all(self.df.geom_type == 'Point'):
