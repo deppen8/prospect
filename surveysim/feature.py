@@ -40,4 +40,10 @@ class Feature(Base):
     def to_dict(self) -> Dict:
         """Create dictionary from attributes to allow easy DataFrame creation by `Layer`
         """
-        return {'feature_name': self.name, 'layer_name': self.layer_name, 'shape': self.shape, 'time_penalty': self.time_penalty, 'ideal_obs_rate': self.ideal_obs_rate}
+        return {
+            'feature_name': self.name,
+            'layer_name': self.layer_name,
+            'shape': self.shape,
+            'time_penalty': self.time_penalty,
+            'ideal_obs_rate': self.ideal_obs_rate
+        }
