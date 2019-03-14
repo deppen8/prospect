@@ -17,7 +17,6 @@ class Survey(Base):
     ----------
     name : str
         Name of the survey
-
     """
 
     __tablename__ = 'surveys'

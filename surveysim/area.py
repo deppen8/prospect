@@ -35,7 +35,6 @@ class Area(Base):
         Geographic specification
     vis : Union[float, rv_frozen]
         Surface visibility
-
     """
 
     __tablename__ = 'areas'
@@ -86,7 +85,6 @@ class Area(Base):
         Returns
         -------
         Area
-
         """
 
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
@@ -111,7 +109,6 @@ class Area(Base):
         Returns
         -------
         Area
-
         """
 
         return cls(name=name, survey_name=survey_name, shape=polygon, vis=vis)
@@ -136,7 +133,6 @@ class Area(Base):
         Returns
         -------
         Area
-
         """
 
         from math import sqrt
@@ -152,7 +148,6 @@ class Area(Base):
         ----------
         alpha, beta : int
             Values to define the shape of the beta distribution
-
         """
 
         from .utils import make_beta_distribution
@@ -170,7 +165,6 @@ class Area(Base):
         Parameters
         ----------
         raster
-
         """
 
         pass
