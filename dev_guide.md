@@ -27,7 +27,6 @@ Imports should almost always be at the top level. The only things that should be
 
 - Use `"""`
 - Use numpy-style
-- Blank line after last doc line
 - Blank line before first code line
 
 ## Building block classes
