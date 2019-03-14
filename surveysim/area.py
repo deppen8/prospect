@@ -1,10 +1,10 @@
 
 from .simulation import Base
 
+from typing import Union, Tuple
+
 from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
 from sqlalchemy.orm import relationship
-
-from typing import Union, Tuple
 
 from scipy.stats._distn_infrastructure import rv_frozen
 from shapely.geometry import box, Polygon
@@ -12,6 +12,32 @@ import geopandas as gpd
 
 
 class Area(Base):
+    """Spatial extent of the survey
+
+    Parameters
+    ----------
+    name : str
+        Unique name for the area
+    survey_name : str
+        Name of the associated `Survey`
+    shape : Polygon
+        Geographic specification
+    vis : Union[float, rv_frozen], optional
+        Surface visibility (the default is 1.0, which means perfect surface visibility)
+
+    Attributes
+    ----------
+    name : str
+        Name of the area
+    survey_name : str
+        Name of the associated `Survey`
+    shape : Polygon
+        Geographic specification
+    vis : Union[float, rv_frozen]
+        Surface visibility
+
+    """
+
     __tablename__ = 'areas'
 
     id = Column(Integer, primary_key=True)
@@ -28,6 +54,7 @@ class Area(Base):
     coverage = relationship("Coverage", back_populates='area')
 
     def __init__(self, name: str, survey_name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0):
+
         self.name = name
         self.survey_name = survey_name
         self.shape = shape
@@ -44,6 +71,22 @@ class Area(Base):
     @classmethod
     def from_shapefile(cls, name: str, survey_name: str, path: str, vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create an `Area` object from a shapefile
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the area
+        survey_name : str
+            Name of the associated survey
+        path : str
+            File path to the shapefile
+        vis : Union[float, rv_frozen]
+            Surface visibility
+
+        Returns
+        -------
+        Area
+
         """
 
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
@@ -53,6 +96,22 @@ class Area(Base):
     @classmethod
     def from_shapely_polygon(cls, name: str, survey_name: str, polygon: Polygon, vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create an `Area` object from a shapely `Polygon`
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the area
+        survey_name : str
+            Name of the associated survey
+        polygon : Polygon
+            File path to the shapefile
+        vis : Union[float, rv_frozen]
+            Surface visibility
+
+        Returns
+        -------
+        Area
+
         """
 
         return cls(name=name, survey_name=survey_name, shape=polygon, vis=vis)
@@ -60,6 +119,24 @@ class Area(Base):
     @classmethod
     def from_area_value(cls, name: str, survey_name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0), vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create a square `Area` object by specifying its area
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the area
+        survey_name : str
+            Name of the associated survey
+        value : float
+            Area of the output shape
+        origin : Tuple[float, float]
+            Location of the bottom left corner of square
+        vis : Union[float, rv_frozen]
+            Surface visibility
+
+        Returns
+        -------
+        Area
+
         """
 
         from math import sqrt
@@ -75,7 +152,9 @@ class Area(Base):
         ----------
         alpha, beta : int
             Values to define the shape of the beta distribution
+
         """
+
         from .utils import make_beta_distribution
 
         if alpha + beta == 10:
@@ -86,4 +165,12 @@ class Area(Base):
             print('alpha and beta do not sum to 10')
 
     def set_vis_raster(self, raster):
+        """placeholder for future raster support
+
+        Parameters
+        ----------
+        raster
+
+        """
+
         pass
