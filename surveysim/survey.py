@@ -1,6 +1,3 @@
-"""Defines what a survey is and how it operates
-
-"""
 
 from .simulation import Base
 
@@ -9,6 +6,20 @@ from sqlalchemy.orm import relationship
 
 
 class Survey(Base):
+    """Unique set of `Area`, `Assemblage`, `Coverage`, and `Team`
+
+    Parameters
+    ----------
+    name : str
+        Unique name for the survey
+
+    Attributes
+    ----------
+    name : str
+        Name of the survey
+
+    """
+
     __tablename__ = 'surveys'
 
     id = Column(Integer, primary_key=True)
