@@ -37,4 +37,13 @@ class SurveyUnit(Base):
         self.base_time = None
 
     def to_dict(self) -> Dict:
-        return {'surveyunit_name': self.name, 'coverage_name': self.coverage_name, 'shape': self.shape, 'surveyunit_type': self.surveyunit_type, 'surveyunit_area': self.surveyunit_area, 'length': self.length, 'radius': self.radius, 'min_time_per_unit': self.min_time_per_unit}
+        return {
+            'surveyunit_name': self.name,
+            'coverage_name': self.coverage_name,
+            'shape': self.shape,
+            'surveyunit_type': self.surveyunit_type,
+            'surveyunit_area': self.surveyunit_area,
+            'length': self.length,
+            'radius': self.radius,
+            'min_time_per_unit': self.min_time_per_unit
+        }
