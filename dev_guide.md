@@ -1,4 +1,4 @@
-# SurveySim code style guide
+# Guide to code style and development conventions for SurveySim
 
 ## GitHub and git
 
@@ -9,8 +9,8 @@ Branch liberally
 ### Order
 
 - `surveysim` imports
-- `sqlalchemy` imports
 - stdlib imports
+- `sqlalchemy` imports
 - all other imports (in order used)
 
 ### Scope
@@ -27,7 +27,8 @@ Imports should almost always be at the top level. The only things that should be
 
 - Use `"""`
 - Use numpy-style
-- space before first code line
+- Blank line after last doc line
+- Blank line before first code line
 
 ## Building block classes
 
