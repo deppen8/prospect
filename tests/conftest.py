@@ -3,6 +3,36 @@ import surveysim
 from pathlib import Path
 
 
+@pytest.fixture(scope='session')
+def tmp_db_path(tmp_path_factory):
+    """Create a temporary path where the test db and other outputs can be stored.
+    """
+
+    return tmp_path_factory.mktemp('databases')
+
+
+# `Simulation` FIXTURES
+
+
+@pytest.fixture(scope='session')
+def a_simulation(tmp_db_path):
+    """Create SimSession session on the temporary path.
+    """
+
+    return surveysim.SimSession(engine_str=f'sqlite:///{tmp_db_path}/ test_session.db')
+
+
+# `Survey` FIXTURES
+
+
+SURVEY_NAMES = ['test_survey_1', 'test_survey_2', 'test_survey_3', 'test_survey_4', 'test_survey_5']
+
+@pytest.fixture(params=SURVEY_NAMES, scope='session')
+def a_survey(request):
+    return surveysim.Survey(name=request.param)
+
+
+
 # `Area` FIXTURES FOR USE IN OTHER MODULES
 
 
