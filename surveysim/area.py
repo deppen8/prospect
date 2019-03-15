@@ -96,28 +96,6 @@ class Area(Base):
         return cls(name=name, survey_name=survey_name, shape=tmp_gdf.geometry.iloc[0], vis=vis)
 
     @classmethod
-    def from_shapely_polygon(cls, name: str, survey_name: str, polygon: Polygon, vis: Union[float, rv_frozen] = 1.0) -> 'Area':
-        """Create an `Area` object from a shapely `Polygon`
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the area
-        survey_name : str
-            Name of the associated survey
-        polygon : Polygon
-            File path to the shapefile
-        vis : Union[float, rv_frozen]
-            Surface visibility
-
-        Returns
-        -------
-        Area
-        """
-
-        return cls(name=name, survey_name=survey_name, shape=polygon, vis=vis)
-
-    @classmethod
     def from_area_value(cls, name: str, survey_name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0), vis: Union[float, rv_frozen] = 1.0) -> 'Area':
         """Create a square `Area` object by specifying its area
 
