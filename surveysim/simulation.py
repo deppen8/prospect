@@ -14,16 +14,6 @@ class SimSession():
     session : SQLAlchemy `Session`
     """
 
-    from .survey import Survey
-    from .area import Area
-    from .assemblage import Assemblage
-    from .layer import Layer
-    from .feature import Feature
-    from .coverage import Coverage
-    from .surveyunit import SurveyUnit
-    from .team import Team
-    from .surveyor import Surveyor
-
     def __init__(self, engine_str="sqlite:///simulation_default.db"):
         """Create `SimSession` instance
 
