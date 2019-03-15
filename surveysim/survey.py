@@ -26,9 +26,9 @@ class Survey(Base):
     coverage = relationship("Coverage", uselist=False, back_populates='survey')
     team = relationship("Team", uselist=False, back_populates='survey')
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         """Create `Survey` instance
-        
+
         Parameters
         ----------
         name : str
