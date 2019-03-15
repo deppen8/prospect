@@ -52,3 +52,18 @@ Imports should almost always be at the top level. The only things that should be
 - table columns go first
 - all `relationship` statements grouped together
 
+## Testing
+
+### Testing each building block
+
+#### Test simplest version of object
+
+- Test that the correct class of object is created
+- Test that the object has all of the appropriate attributes
+- Test that the attributes are of the correct types
+
+#### Test factory methods
+
+- Test that the correct class of object is created
+- Test that the object has all of the appropriate attributes
+- Test that the attributes are of the correct types
