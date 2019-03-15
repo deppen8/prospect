@@ -1,23 +1,22 @@
-"""General utility functions
-"""
 
 import geopandas as gpd
-from scipy.stats import beta, truncnorm, rv_continuous
+from scipy.stats._distn_infrastructure import rv_frozen
+from scipy.stats import beta, truncnorm
 
 
 def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
-    """Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame
+    """Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame.
 
     Parameters
     ----------
-    points : geopandas `GeoDataFrame`
+    points : geopandas GeoDataFrame
         Point features to be clipped
-    by : geopandas `GeoDataFrame`
+    by : geopandas GeoDataFrame
         Boundaries to use for clipping
 
     Returns
     -------
-    geopandas `GeoDataFrame`
+    geopandas GeoDataFrame
         A subset of the original `points`
 
     References
@@ -30,18 +29,18 @@ def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFr
 
 
 def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
-    """Subset a GeoDataFrame of lines or polygons based on the boundaries of another GeoDataFrame
+    """Subset a GeoDataFrame of lines or polygons based on the boundaries of another GeoDataFrame.
 
     Parameters
     ----------
-    lines_polys : geopandas `GeoDataFrame`
+    lines_polys : geopandas GeoDataFrame
         Features to be clipped
-    by : geopandas `GeoDataFrame`
+    by : geopandas GeoDataFrame
         Boundaries to use for clipping
 
     Returns
     -------
-    geopandas `GeoDataFrame`
+    geopandas GeoDataFrame
         A subset of the original `lines_polys`
 
     References
@@ -68,9 +67,41 @@ def clip_lines_polys(lines_polys: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd
     return clipped[clipped.geometry.notnull()]
 
 
-def make_beta_distribution(a: float, b: float) -> rv_continuous:
+def make_beta_distribution(a: float, b: float) -> rv_frozen:
+    """Create a fixed beta distribution.
+
+    Parameters
+    ----------
+    a, b : float
+        Shape parameters
+
+    Returns
+    -------
+    rv_frozen
+        Fixed beta distribution
+    """
+
     return beta(a=a, b=b)
 
 
-def make_truncnorm_distribution(mean: float, sd: float, lower: float, upper: float) -> rv_continuous:
+def make_truncnorm_distribution(mean: float, sd: float, lower: float, upper: float) -> rv_frozen:
+    """Create a truncated normal distribution.
+
+    Parameters
+    ----------
+    mean : float
+        Mean of distribution
+    sd : float
+        Standard deviation of the distribution
+    lower : float
+        Lower bound
+    upper : float
+        Upper bound
+
+    Returns
+    -------
+    rv_frozen
+        Fixed truncated normal distribution
+    """
+
     return truncnorm((lower - mean) / sd, (upper - mean) / sd, loc=mean, scale=sd)

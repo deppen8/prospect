@@ -1,4 +1,4 @@
-# START HERE: document Team class
+
 from .simulation import Base
 from .surveyor import Surveyor
 
@@ -11,6 +11,20 @@ import pandas as pd
 
 
 class Team(Base):
+    """A collection of `Surveyor` objects.
+    
+    Attributes
+    ----------
+    name : str
+        Unique name for the team
+    survey_name : str
+        Name of the survey
+    surveyor_list : List[Surveyor]
+        List of surveyors that make up the team
+    df : pandas DataFrame
+        `DataFrame` with a row for each surveyor
+    """
+
     __tablename__ = 'teams'
 
     id = Column(Integer, primary_key=True)
@@ -23,6 +37,18 @@ class Team(Base):
     surveyors = relationship("Surveyor", back_populates='team')
 
     def __init__(self, name: str, survey_name: str, surveyor_list: List[Surveyor]):
+        """Create a `Team` instance.
+        
+        Parameters
+        ----------
+        name : str
+            Unique name for the team
+        survey_name : str
+            Name of the survey
+        surveyor_list : List[Surveyor]
+            List of surveyors that make up the team
+        """
+
         self.name = name
         self.survey_name = survey_name
         self.surveyor_list = surveyor_list

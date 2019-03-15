@@ -24,7 +24,7 @@ class Coverage(Base):
     Attributes
     ----------
     name : str
-        Unique name for the Coverage
+        Unique name for the coverage
     survey_name : str
         Name of the survey
     area_name : str
