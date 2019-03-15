@@ -1,184 +1,50 @@
-import pytest
+
 import surveysim
-import itertools
-from geopandas import GeoDataFrame
+
 from shapely.geometry import Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
+from geopandas import GeoDataFrame
 
 
-# `Area` FIXTURES
+def test_returns_Area(an_area):
+    assert isinstance(an_area, surveysim.Area)
 
 
-@pytest.fixture(scope='module')
-def a_default_Area():
-    """Create `Area` with defaults"""
-    return surveysim.Area()
+def test_has_name_attribute(an_area):
+    assert hasattr(an_area, 'name')
 
 
-# FIXTURES FOR THE `Area.from_shapely_polygon()` METHOD
+def test_name_attribute_str(an_area):
+    assert isinstance(an_area.name, str)
 
 
-shapely_polys = [
-    Polygon([(1, 1), (1, 3), (4, 3), (4, 1), (1, 1)]),
-    Polygon([(0, 0), (1, 1), (1, 0)]),
-    Polygon([(0.0, 0.0), (0.0, 2.0), (2.0, 2.0), (2.0, 0.0)]),
-    Polygon([(0.0, 0.0), (0.0, 1.0), (1.0, 1.0), (2.0, -1.0), (0.0, 0.0),
-             (0.25, 0.25), (0.25, 0.5), (0.5, 0.5), (0.5, 0.25), (0.25, 0.25)])
-]
+def test_has_survey_name_attribute(an_area):
+    assert hasattr(an_area, 'survey_name')
 
 
-@pytest.fixture(params=shapely_polys, scope='module')
-def a_shapely_polygon(request):
-    return request.param
+def test_survey_name_attribute_str(an_area):
+    assert isinstance(an_area.survey_name, str)
 
 
-@pytest.fixture(params=shapely_polys, scope='module')
-def an_area_from_shapely_polygon(request):
-    area = surveysim.Area.from_shapely_polygon(
-        name='test_area_from_shapely', polygon=request.param)
-    return area
+def test_has_shape_attribute(an_area):
+    assert hasattr(an_area, 'shape')
 
 
-# FIXTURES FOR THE `Area.from_area_value()` METHOD
+def test_shape_attribute_Polygon(an_area):
+    assert isinstance(an_area.shape, Polygon)
 
 
-area_values = [1, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000]
-origins = [
-    (0.0, 0.0),
-    (10.0, 0.0),
-    (0.0, 10.0),
-    (10.0, 10.0),
-    (10, 10),
-    (-10.0, 0.0),
-    (0.0, -10.0),
-    (-10.0, -10.0),
-    (0.5, 0.5),
-    (5, 5.0),
-]
+def test_has_vis_attribute(an_area):
+    assert hasattr(an_area, 'vis')
 
-area_origin_pairs = list(itertools.product(area_values, origins))
 
+def test_vis_attribute_float_rv_frozen(an_area):
+    assert isinstance(an_area.vis, (float, rv_frozen))
 
-@pytest.fixture(params=area_origin_pairs, scope='module')
-def an_area_origin_pair(request):
-    return request.param
 
+def test_has_df_attribute(an_area):
+    assert hasattr(an_area, 'df')
 
-@pytest.fixture(params=area_origin_pairs, scope='module')
-def an_area_from_area_origin_pair(request):
-    area = surveysim.Area.from_area_value(
-        name='test_area_from_area_value', value=request.param[0], origin=request.param[1])
-    return area
 
-
-# TEST FOR DEFAULT CONSTRUCTION
-
-
-def test_default_params_returns_Area(a_default_Area):
-    assert isinstance(a_default_Area, surveysim.Area)
-
-
-def test_default_df_is_GeoDataFrame(a_default_Area):
-    assert isinstance(a_default_Area.df, GeoDataFrame)
-
-
-def test_default_df_is_length_1(a_default_Area):
-    assert a_default_Area.df.shape[0] == 1
-
-
-def test_default_shape_is_None(a_default_Area):
-    assert a_default_Area.shape is None
-
-
-def test_default_default_columns_exist(a_default_Area):
-    for col in ['area_name', 'vis', 'geometry']:
-        assert col in a_default_Area.df.columns
-
-
-# TESTS FOR `from_shapefile()` METHOD
-
-
-def test_from_shapefile_path_returns_Area(an_area_shapefile_path):
-    '''Test that `from_shapefile()` factory function returns an `Area` object'''
-    area = surveysim.Area.from_shapefile(name='test_name', path=an_area_shapefile_path)
-    assert isinstance(area, surveysim.Area)
-
-
-def test_from_shapefile_df_is_GeoDataFrame(an_area_from_shapefile):
-    assert isinstance(an_area_from_shapefile.df, GeoDataFrame)
-
-
-def test_from_shapefile_df_is_length_1(an_area_from_shapefile):
-    assert an_area_from_shapefile.df.shape[0] == 1
-
-
-def test_from_shapefile_shape_is_Polygon(an_area_from_shapefile):
-    assert isinstance(an_area_from_shapefile.shape, Polygon)
-
-
-def test_from_shapefile_default_columns_exist(an_area_from_shapefile):
-    for col in ['area_name', 'vis', 'geometry']:
-        assert col in an_area_from_shapefile.df.columns
-
-
-# TESTS FOR `from_shapely_polygon()` METHOD
-
-
-def test_from_shapely_polygon_returns_Area(a_shapely_polygon):
-    '''Test that `from_shapely_polygon()` factory function returns an `Area` object'''
-    area = surveysim.Area.from_shapely_polygon(
-        name='test_name', polygon=a_shapely_polygon)
-    assert isinstance(area, surveysim.Area)
-
-
-def test_from_shapely_polygon_df_is_GeoDataFrame(an_area_from_shapely_polygon):
-    assert isinstance(an_area_from_shapely_polygon.df, GeoDataFrame)
-
-
-def test_from_shapely_polygon_df_is_length_1(an_area_from_shapely_polygon):
-    assert an_area_from_shapely_polygon.df.shape[0] == 1
-
-
-def test_from_shapely_polygon_shape_is_Polygon(an_area_from_shapely_polygon):
-    assert isinstance(an_area_from_shapely_polygon.shape, Polygon)
-
-
-def test_from_shapely_polygon_default_columns_exist(an_area_from_shapely_polygon):
-    for col in ['area_name', 'vis', 'geometry']:
-        assert col in an_area_from_shapely_polygon.df.columns
-
-
-# TESTS FOR `from_area_value()` METHOD
-
-
-def test_from_area_value_returns_Area(an_area_origin_pair):
-    '''Test that `from_area_value()` factory function returns an `Area` object'''
-    area = surveysim.Area.from_area_value(
-        name='test_name', value=an_area_origin_pair[0], origin=an_area_origin_pair[1])
-    assert isinstance(area, surveysim.Area)
-
-
-def test_from_area_value_df_is_GeoDataFrame(an_area_from_area_origin_pair):
-    assert isinstance(an_area_from_area_origin_pair.df, GeoDataFrame)
-
-
-def test_from_area_value_df_is_length_1(an_area_from_area_origin_pair):
-    assert an_area_from_area_origin_pair.df.shape[0] == 1
-
-
-def test_from_area_value_shape_is_Polygon(an_area_from_area_origin_pair):
-    assert isinstance(an_area_from_area_origin_pair.shape, Polygon)
-
-
-def test_from_area_value_default_columns_exist(an_area_from_area_origin_pair):
-    for col in ['area_name', 'vis', 'geometry']:
-        assert col in an_area_from_area_origin_pair.df.columns
-
-
-# TESTS FOR `set_vis_beta_dist()` METHOD
-
-
-def test_set_vis_beta_dist_creates_rv_frozen(an_area_from_shapefile):
-    area = an_area_from_shapefile
-    area.set_vis_beta_dist(alpha=9, beta=1)
-    assert isinstance(area.vis, rv_frozen)
+def test_df_attribute_gdf(an_area):
+    assert isinstance(an_area.df, GeoDataFrame)
