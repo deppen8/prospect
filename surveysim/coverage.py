@@ -1,5 +1,5 @@
 
-from .simulation import Base, SimSession
+from .simulation import Base
 from .surveyunit import SurveyUnit
 from .area import Area
 from .utils import clip_lines_polys
@@ -61,17 +61,17 @@ class Coverage(Base):
     area = relationship("Area", back_populates='coverage')
     surveyunit = relationship('SurveyUnit', back_populates='coverage')
 
-    def __init__(self, name: str, survey_name: str, area_name: str, surveyunit_list: List[SurveyUnit], orientation: float, spacing: float, sweep_width: float = None, radius: float = None):
+    def __init__(self, name: str, area: Area, survey_name: str, surveyunit_list: List[SurveyUnit], orientation: float, spacing: float, sweep_width: float = None, radius: float = None):
         """Create a `Coverage` instance.
 
         Parameters
         ----------
         name : str
             Unique name for the Coverage
+        area : Area
+            Containing area
         survey_name : str
             Name of the survey
-        area_name : str
-            Name of the containing area
         surveyunit_list : List[SurveyUnit]
             List of survey units that make up the coverage
         orientation : float
@@ -86,7 +86,7 @@ class Coverage(Base):
 
         self.name = name
         self.survey_name = survey_name
-        self.area_name = area_name
+        self.area_name = area.name
         self.surveyunit_list = surveyunit_list
         self.orientation = orientation
         self.spacing = spacing
@@ -105,7 +105,7 @@ class Coverage(Base):
         #     self.df['search_time_base'] = self.min_time_per_unit
 
     @classmethod
-    def from_shapefile(cls, path: str, name: str, sim: SimSession, survey_name: str, area_name: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+    def from_shapefile(cls, path: str, name: str, area: Area, survey_name: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
         """Create a `Coverage` instance from a shapefile.
 
         Parameters
@@ -114,12 +114,10 @@ class Coverage(Base):
             Filepath to the shapefile
         name : str
             Unique name for the Coverage
-        sim : SimSession
-            Session where desired area is stored
+        area : Area
+            Containing area
         survey_name : str
             Name of the survey
-        area_name : str
-            Name of the containing area
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
         spacing : float
@@ -139,7 +137,7 @@ class Coverage(Base):
         """
 
         tmp_gdf = gpd.read_file(path)
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         orientation = cls._optimize_orientation_by_area_orient(
             min_rect=min_rot_rect, axis=orient_axis)
@@ -150,10 +148,10 @@ class Coverage(Base):
             surveyunit_list.append(SurveyUnit(name=f'{name}_{row.Index}', coverage_name=name, shape=row.geometry,
                                               surveyunit_type=surveyunit_type, min_time_per_unit=min_time_per_unit))
 
-        return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing)
+        return cls(name=name, area=area, survey_name=survey_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing)
 
     @classmethod
-    def from_GeoDataFrame(cls, gdf: gpd.GeoDataFrame, name: str, sim: SimSession, survey_name: str, area_name: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+    def from_GeoDataFrame(cls, gdf: gpd.GeoDataFrame, name: str, area: Area, survey_name: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
         """Create a `Coverage` instance from a geopandas `GeoDataFrame`
 
         Parameters
@@ -162,12 +160,10 @@ class Coverage(Base):
             `GeoDataFrame` where each row is a survey unit
         name : str
             Unique name for the Coverage
-        sim : SimSession
-            Session where desired area is stored
+        area : Area
+            Containing area
         survey_name : str
             Name of the survey
-        area_name : str
-            Name of the containing area
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
         spacing : float
@@ -186,7 +182,7 @@ class Coverage(Base):
         Coverage
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
 
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         orientation = cls._optimize_orientation_by_area_orient(
@@ -198,22 +194,20 @@ class Coverage(Base):
             surveyunit_list.append(SurveyUnit(name=f'{name}_{row.Index}', coverage_name=name, shape=row.geometry,
                                               surveyunit_type=surveyunit_type, min_time_per_unit=min_time_per_unit))
 
-        return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing)
+        return cls(name=name, area=area, survey_name=survey_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing)
 
     @classmethod
-    def from_transects(cls, name: str, sim: SimSession, survey_name: str, area_name: str, spacing: float = 10.0, sweep_width: float = 2.0, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5.0, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+    def from_transects(cls, name: str, area: Area, survey_name: str, spacing: float = 10.0, sweep_width: float = 2.0, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5.0, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
         """Create a `Coverage` instance of transects.
 
         Parameters
         ----------
         name : str
             Unique name for the Coverage
-        sim : SimSession
-            Session where desired area is stored
+        area : Area
+            Containing area
         survey_name : str
             Name of the survey
-        area_name : str
-            Name of the containing area
         spacing : float, optional
             Distance between survey units (the default is 10.0)
         sweep_width : float, optional
@@ -236,7 +230,7 @@ class Coverage(Base):
         Coverage
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
 
@@ -272,22 +266,20 @@ class Coverage(Base):
             surveyunit_list.append(SurveyUnit(name=f'{name}_{row.Index}', coverage_name=name, shape=row.geometry,
                                               surveyunit_type='transect', length=row.length, min_time_per_unit=min_time_per_unit))
 
-        return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing, sweep_width=sweep_width, radius=None)
+        return cls(name=name, area=area, survey_name=survey_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing, sweep_width=sweep_width, radius=None)
 
     @classmethod
-    def from_radials(cls, name: str, sim: SimSession, survey_name: str, area_name: str, spacing: float = 10.0, radius: float = 1.78, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5.0, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+    def from_radials(cls, name: str, area: Area, survey_name: str, spacing: float = 10.0, radius: float = 1.78, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5.0, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
         """Create a `Coverage` instance of radial units.
 
         Parameters
         ----------
         name : str
             Unique name for the Coverage
-        sim : SimSession
-            Session where desired area is stored
+        area : Area
+            Containing area
         survey_name : str
             Name of the survey
-        area_name : str
-            Name of the containing area
         spacing : float, optional
             Distance between survey units (the default is 10.0)
         radius : float, optional
@@ -310,7 +302,7 @@ class Coverage(Base):
         Coverage
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
 
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
@@ -345,7 +337,7 @@ class Coverage(Base):
             surveyunit_list.append(SurveyUnit(name=f'{name}_{row.Index}', coverage_name=name, shape=row.geometry,
                                               surveyunit_type='radial', radius=radius, min_time_per_unit=min_time_per_unit))
 
-        return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing, sweep_width=None, radius=radius)
+        return cls(name=name, area=area, survey_name=survey_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing, sweep_width=None, radius=radius)
 
     @staticmethod
     def _make_unit_bases(surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0) -> gpd.GeoSeries:
