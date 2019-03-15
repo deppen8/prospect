@@ -8,11 +8,6 @@ from sqlalchemy.orm import relationship
 class Survey(Base):
     """Unique set of `Area`, `Assemblage`, `Coverage`, and `Team`
 
-    Parameters
-    ----------
-    name : str
-        Unique name for the survey
-
     Attributes
     ----------
     name : str
@@ -32,4 +27,12 @@ class Survey(Base):
     team = relationship("Team", uselist=False, back_populates='survey')
 
     def __init__(self, name):
+        """Create `Survey` instance
+        
+        Parameters
+        ----------
+        name : str
+            Unique name for the survey
+        """
+
         self.name = name

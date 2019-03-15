@@ -4,10 +4,10 @@ from .surveyunit import SurveyUnit
 from .area import Area
 from .utils import clip_lines_polys
 
+from typing import List, Dict, Union
+
 from sqlalchemy import Column, Integer, String, Float, PickleType, ForeignKey
 from sqlalchemy.orm import relationship
-
-from typing import List, Dict, Union
 
 import geopandas as gpd
 from shapely.geometry import Point, LineString, Polygon
@@ -17,6 +17,32 @@ import pandas as pd
 
 
 class Coverage(Base):
+    """A collection of `SurveyUnit` objects
+
+    The `Coverage` class is mostly useful as a way to create groups of similar survey units.
+
+    Attributes
+    ----------
+    name : str
+        Unique name for the Coverage
+    survey_name : str
+        Name of the survey
+    area_name : str
+        Name of the containing area
+    surveyunit_list : List[SurveyUnit]
+        List of survey units that make up the coverage
+    orientation : float
+        Angle of the predominant axis of the survey units
+    spacing : float
+        Distance between survey units
+    sweep_width : float
+        Buffer distance around transects
+    radius : float
+        Buffer distance for radial survey units
+    df : geopandas GeoDataFrame
+        `GeoDataFrame` with a row for each survey unit
+    """
+
     __tablename__ = 'coverages'
 
     id = Column(Integer, primary_key=True)
@@ -36,6 +62,28 @@ class Coverage(Base):
     surveyunit = relationship('SurveyUnit', back_populates='coverage')
 
     def __init__(self, name: str, survey_name: str, area_name: str, surveyunit_list: List[SurveyUnit], orientation: float, spacing: float, sweep_width: float = None, radius: float = None):
+        """Create a `Coverage` instance.
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the Coverage
+        survey_name : str
+            Name of the survey
+        area_name : str
+            Name of the containing area
+        surveyunit_list : List[SurveyUnit]
+            List of survey units that make up the coverage
+        orientation : float
+            Angle of the predominant axis of the survey units
+        spacing : float
+            Distance between survey units
+        sweep_width : float, optional
+            Buffer distance around transects (the default is None, which is only updated if the survey units are transects)
+        radius : float, optional
+            Buffer distance for radial survey units (the default is None, which is only update if the survey units are radial)
+        """
+
         self.name = name
         self.survey_name = survey_name
         self.area_name = area_name
@@ -57,14 +105,43 @@ class Coverage(Base):
         #     self.df['search_time_base'] = self.min_time_per_unit
 
     @classmethod
-    def from_shapefile(cls, name: str, sim: SimSession, survey_name: str, area_name: str, path: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+    def from_shapefile(cls, path: str, name: str, sim: SimSession, survey_name: str, area_name: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+        """Create a `Coverage` instance from a shapefile.
+
+        Parameters
+        ----------
+        path : str
+            Filepath to the shapefile
+        name : str
+            Unique name for the Coverage
+        sim : SimSession
+            Session where desired area is stored
+        survey_name : str
+            Name of the survey
+        area_name : str
+            Name of the containing area
+        surveyunit_type : {'transect', 'radial'}
+            Type of units to create
+        spacing : float
+            Distance between survey units
+        orient_axis : {'long', 'short'}, optional
+            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+        min_time_per_unit : Union[float, rv_frozen], optional
+            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+
+            Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).
+
+            For radial survey units, this term should be specified more simply as time per one survey unit.
+
+        Returns
+        -------
+        Coverage
+        """
 
         tmp_gdf = gpd.read_file(path)
-
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
-
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
-        orientation = cls.optimize_orientation_by_area_orient(
+        orientation = cls._optimize_orientation_by_area_orient(
             min_rect=min_rot_rect, axis=orient_axis)
 
         tmp_gdf = tmp_gdf.reset_index()
@@ -76,12 +153,43 @@ class Coverage(Base):
         return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing)
 
     @classmethod
-    def from_GeoDataFrame(cls, name: str, sim: SimSession, survey_name: str, area_name: str, gdf: gpd.GeoDataFrame, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+    def from_GeoDataFrame(cls, gdf: gpd.GeoDataFrame, name: str, sim: SimSession, survey_name: str, area_name: str, surveyunit_type: str, spacing: float, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+        """Create a `Coverage` instance from a geopandas `GeoDataFrame`
+
+        Parameters
+        ----------
+        gdf : geopandas GeoDataFrame
+            `GeoDataFrame` where each row is a survey unit
+        name : str
+            Unique name for the Coverage
+        sim : SimSession
+            Session where desired area is stored
+        survey_name : str
+            Name of the survey
+        area_name : str
+            Name of the containing area
+        surveyunit_type : {'transect', 'radial'}
+            Type of units to create
+        spacing : float
+            Distance between survey units
+        orient_axis : {'long', 'short'}, optional
+            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+        min_time_per_unit : Union[float, rv_frozen], optional
+            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+
+            Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).
+
+            For radial survey units, this term should be specified more simply as time per one survey unit.
+
+        Returns
+        -------
+        Coverage
+        """
 
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
 
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
-        orientation = cls.optimize_orientation_by_area_orient(
+        orientation = cls._optimize_orientation_by_area_orient(
             min_rect=min_rot_rect, axis=orient_axis)
 
         tmp_gdf = gdf.reset_index()
@@ -93,22 +201,53 @@ class Coverage(Base):
         return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing)
 
     @classmethod
-    def from_transects(cls, name: str, sim: SimSession, survey_name: str, area_name: str, spacing: float = 10.0, sweep_width: float = 2.0, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5, orient_axis: str = None, min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
-        """
+    def from_transects(cls, name: str, sim: SimSession, survey_name: str, area_name: str, spacing: float = 10.0, sweep_width: float = 2.0, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5.0, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+        """Create a `Coverage` instance of transects.
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the Coverage
+        sim : SimSession
+            Session where desired area is stored
+        survey_name : str
+            Name of the survey
+        area_name : str
+            Name of the containing area
+        spacing : float, optional
+            Distance between survey units (the default is 10.0)
+        sweep_width : float, optional
+            Buffer distance around transects (the default is 2.0)
+        orientation : float, optional
+            Angle of the predominant axis of the survey units (the default is 0.0)
+        optimize_orient_by : {'area_coverage', 'area_orient'}, optional
+            Metric to optimize in determining the orientation of survey units. 'area_coverage' chooses the orientation that maximizes the area covered by the survey units. 'area_orient' chooses the orientation that best parallels the `orient_axis` of the area. The default is None, in which case the `orientation` parameter is used directly.
+        orient_increment : float, optional
+            Step size (in degrees) to use when testing different orientations. (the default is 5.0)
+        orient_axis : {'long', 'short'}, optional
+            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+        min_time_per_unit : Union[float, rv_frozen]
+            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+
+            Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).
+
+        Returns
+        -------
+        Coverage
         """
 
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
 
-        lines_gs = cls.get_unit_bases(
+        lines_gs = cls._make_unit_bases(
             surveyunit_type='transect', area=tmp_area, centroid=centroid, spacing=spacing)
 
         if optimize_orient_by == 'area_coverage':  # set orientation to maximize area
-            orientation = cls.optimize_orientation_by_area_coverage(
+            orientation = cls._optimize_orientation_by_area_coverage(
                 lines_gs, centroid, area=tmp_area, buffer=sweep_width, increment=orient_increment)
         elif optimize_orient_by == 'area_orient':
-            orientation = cls.optimize_orientation_by_area_orient(
+            orientation = cls._optimize_orientation_by_area_orient(
                 min_rect=min_rot_rect, axis=orient_axis)
 
         lines_gs = lines_gs.rotate(orientation, origin=centroid)  # rotate
@@ -136,9 +275,39 @@ class Coverage(Base):
         return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing, sweep_width=sweep_width, radius=None)
 
     @classmethod
-    def from_radials(cls, name: str, sim: SimSession, survey_name: str, area_name: str, spacing: float = 10.0, radius: float = 1.78, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5, orient_axis: str = None, min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
-        """[summary]
+    def from_radials(cls, name: str, sim: SimSession, survey_name: str, area_name: str, spacing: float = 10.0, radius: float = 1.78, orientation: float = 0.0, optimize_orient_by: str = None, orient_increment: float = 5.0, orient_axis: str = 'long', min_time_per_unit: Union[float, rv_frozen] = 0.0) -> 'Coverage':
+        """Create a `Coverage` instance of radial units.
 
+        Parameters
+        ----------
+        name : str
+            Unique name for the Coverage
+        sim : SimSession
+            Session where desired area is stored
+        survey_name : str
+            Name of the survey
+        area_name : str
+            Name of the containing area
+        spacing : float, optional
+            Distance between survey units (the default is 10.0)
+        radius : float, optional
+            Buffer distance for radial survey units (the default is 1.78, which leads to radial units of roughly 10 square units of area)
+        orientation : float, optional
+            Angle of the predominant axis of the survey units (the default is 0.0)
+        optimize_orient_by : {'area_coverage', 'area_orient'}, optional
+            Metric to optimize in determining the orientation of survey units. 'area_coverage' chooses the orientation that maximizes the area covered by the survey units. 'area_orient' chooses the orientation that best parallels the `orient_axis` of the area. The default is None, in which case the `orientation` parameter is used directly.
+        orient_increment : float, optional
+            Step size (in degrees) to use when testing different orientations. (the default is 5.0)
+        orient_axis : {'long', 'short'}, optional
+            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+        min_time_per_unit : Union[float, rv_frozen]
+            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+
+            For radial survey units, this term should be specified more simply as time per one survey unit.
+
+        Returns
+        -------
+        Coverage
         """
 
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
@@ -146,14 +315,14 @@ class Coverage(Base):
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
 
-        points_gs = cls.get_unit_bases(
+        points_gs = cls._make_unit_bases(
             surveyunit_type='radial', area=tmp_area, centroid=centroid, spacing=spacing)
 
         if optimize_orient_by == 'area_coverage':  # set orientation to maximize area
-            orientation = cls.optimize_orientation_by_area_coverage(
+            orientation = cls._optimize_orientation_by_area_coverage(
                 points_gs, centroid, area=tmp_area, buffer=radius, increment=orient_increment)
         elif optimize_orient_by == 'area_orient':
-            orientation = cls.optimize_orientation_by_area_orient(
+            orientation = cls._optimize_orientation_by_area_orient(
                 min_rect=min_rot_rect, axis=orient_axis)
 
         points_gs = points_gs.rotate(orientation, origin=centroid)  # rotate
@@ -179,8 +348,23 @@ class Coverage(Base):
         return cls(name=name, survey_name=survey_name, area_name=area_name, surveyunit_list=surveyunit_list, orientation=orientation, spacing=spacing, sweep_width=None, radius=radius)
 
     @staticmethod
-    def get_unit_bases(surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0) -> gpd.GeoSeries:
-        """Return Points or LineStrings as GeoSeries
+    def _make_unit_bases(surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0) -> gpd.GeoSeries:
+        """Create the Point and LineString objects that will be buffered to make survey units.
+
+        Parameters
+        ----------
+        surveyunit_type : {'transect', 'radial'}
+            Type of unit to create
+        area : Area
+            Containing area
+        centroid : Point
+            Centroid of the area's minimum rotated rectangle
+        spacing : float, optional
+            Distance between survey units (the default is 10.0)
+
+        Returns
+        -------
+        geopandas GeoSeries
         """
 
         from math import sqrt
@@ -198,7 +382,7 @@ class Coverage(Base):
             n_transects = 3
 
         # calculate x values
-        xs = Coverage.coord_vals_from_centroid_val(
+        xs = Coverage._coord_vals_from_centroid_val(
             centroid.x, n_transects, spacing)
 
         # calculate y values
@@ -214,7 +398,7 @@ class Coverage(Base):
                                 for coord_pair in zip(top_coords, bottom_coords)])
 
         elif surveyunit_type == 'radial':
-            ys = Coverage.coord_vals_from_centroid_val(
+            ys = Coverage._coord_vals_from_centroid_val(
                 centroid.y, n_transects, spacing)
             coord_pairs = np.array(np.meshgrid(xs, ys)).T.reshape(-1, 2)
             # return Points
@@ -223,7 +407,24 @@ class Coverage(Base):
         return gs
 
     @staticmethod
-    def coord_vals_from_centroid_val(centroid_val, n_transects, spacing):
+    def _coord_vals_from_centroid_val(centroid_val: float, n_transects: int, spacing: float = 10.0) -> np.ndarray:
+        """Allocate values across an area to get the x or y coordinates.
+
+        Parameters
+        ----------
+        centroid_val : float
+            Either the x or y dimension of an area's minimum rotated rectangle's centroid
+        n_transects : int
+            Number of rows to allocate across the space.
+        spacing : float, optional
+            Distance between survey units (the default is 10.0)
+
+        Returns
+        -------
+        vals : numpy ndarray
+            An array of values representing either x or y coordinates
+        """
+
         if n_transects % 2 == 0:  # even num units
             lower_start = centroid_val - spacing / 2
             upper_start = centroid_val + spacing / 2
@@ -241,8 +442,25 @@ class Coverage(Base):
         return vals
 
     @staticmethod
-    def optimize_orientation_by_area_coverage(survey_units: gpd.GeoSeries, rotation_pt: Point, area: Area, buffer: float = 0, increment: float = 5) -> float:
-        """Find the orientation value that allows maximum area
+    def _optimize_orientation_by_area_coverage(survey_units: gpd.GeoSeries, rotation_pt: Point, area: Area, buffer: float = 0.0, increment: float = 5.0) -> float:
+        """Find the orientation value that allows maximum coverage of the area by survey units.
+
+        Parameters
+        ----------
+        survey_units : geopandas GeoSeries
+            A `GeoSeries` of survey units that is at least as large as the containing area.
+        rotation_pt : Point
+            Point around which to pivot the survey unit axis
+        area : Area
+            Containing area
+        buffer : float, optional
+            Buffer around survey unit used to determine the area value (the default is 0.0)
+        increment : float, optional
+            Step size (in degrees) to use when testing different orientations. (the default is 5.0)
+
+        Returns
+        -------
+        float
         """
 
         deg_val: Dict[int, float] = {}
@@ -262,8 +480,20 @@ class Coverage(Base):
         return max(deg_val, key=lambda k: deg_val[k])
 
     @staticmethod
-    def optimize_orientation_by_area_orient(min_rect: Polygon, axis: str = None) -> float:
-        """Find the angle that best matches the orientation of the `Area` object
+    def _optimize_orientation_by_area_orient(min_rect: Polygon, axis: str = 'long') -> float:
+        """Find the angle that best matches the orientation of the survey area.
+
+        Parameters
+        ----------
+        min_rect : Polygon
+            Minimum rotated rectangle of the area
+        axis : {'long', 'short'}, optional
+            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+
+        Returns
+        -------
+        angle : float
+            Angle value in degrees
         """
 
         import math

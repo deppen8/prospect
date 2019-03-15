@@ -13,17 +13,6 @@ import pandas as pd
 
 class Assemblage(Base):
     """A collection of all `Layer` objects for a survey
-    
-    Parameters
-    ----------
-    name : str
-        Unique name for the assemblage
-    survey_name : str
-        Name of the survey
-    area_name : str
-        Name of the containing area
-    layer_list : List[Layer]
-        List of layers that make up the assemblage
 
     Attributes
     ----------
@@ -33,7 +22,7 @@ class Assemblage(Base):
         Name of the survey
     area_name : str
         Name of the containing area
-    df : geopandas `GeoDataFrame`
+    df : geopandas GeoDataFrame
         `GeoDataFrame` with a row for each feature in the assemblage
     """
 
@@ -52,6 +41,19 @@ class Assemblage(Base):
     # features = relationship("Feature", back_populates='assemblage')
 
     def __init__(self, name: str, survey_name: str, area_name: str, layer_list: List[Layer]):
+        """Create an `Assemblage` instance
+        
+        Parameters
+        ----------
+        name : str
+            Unique name for the assemblage
+        survey_name : str
+            Name of the survey
+        area_name : str
+            Name of the containing area
+        layer_list : list of Layer
+            List of layers that make up the assemblage
+        """
 
         self.name = name
         self.survey_name = survey_name

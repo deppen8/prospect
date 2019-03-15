@@ -9,18 +9,9 @@ Base = declarative_base()
 class SimSession():
     """Object to handle setup/teardown as well as transactions for a SQLAlchemy `Session`
 
-    Parameters
-    ----------
-    engine_str : str, optional
-        Database URL (the default is "sqlite:///simulation_default.db")
-
     Attributes
     ----------
     session : SQLAlchemy `Session`
-
-    Notes
-    -----
-    The SQLAlchemy docs have some good examples of different types of database URLs. `https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls <https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls>`_
     """
 
     from .survey import Survey
@@ -34,6 +25,17 @@ class SimSession():
     from .surveyor import Surveyor
 
     def __init__(self, engine_str="sqlite:///simulation_default.db"):
+        """Create `SimSession` instance
+
+        Parameters
+        ----------
+        engine_str : str, optional
+            Database URL (the default is "sqlite:///simulation_default.db")
+
+        Notes
+        -----
+        The SQLAlchemy docs have some good examples of different types of database URLs. `https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls <https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls>`_
+        """
 
         engine = create_engine(engine_str)
         Base.metadata.create_all(engine)

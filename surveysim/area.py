@@ -14,17 +14,6 @@ import geopandas as gpd
 class Area(Base):
     """Spatial extent of the survey
 
-    Parameters
-    ----------
-    name : str
-        Unique name for the area
-    survey_name : str
-        Name of the associated `Survey`
-    shape : Polygon
-        Geographic specification
-    vis : Union[float, rv_frozen], optional
-        Surface visibility (the default is 1.0, which means perfect surface visibility)
-
     Attributes
     ----------
     name : str
@@ -35,6 +24,8 @@ class Area(Base):
         Geographic specification
     vis : Union[float, rv_frozen]
         Surface visibility
+    df : geopandas GeoDataFrame
+        GeoDataFrame with one row that summarizes the area's attributes
     """
 
     __tablename__ = 'areas'
@@ -53,6 +44,19 @@ class Area(Base):
     coverage = relationship("Coverage", back_populates='area')
 
     def __init__(self, name: str, survey_name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0):
+        """Create an `Area` instance
+        
+        Parameters
+        ----------
+        name : str
+            Unique name for the area
+        survey_name : str
+            Name of the associated `Survey`
+        shape : Polygon
+            Geographic specification
+        vis : Union[float, rv_frozen], optional
+            Surface visibility (the default is 1.0, which means perfect surface visibility)
+        """
 
         self.name = name
         self.survey_name = survey_name

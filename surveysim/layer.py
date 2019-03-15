@@ -1,17 +1,13 @@
-"""A `Layer` should just be a container that unites a series of `Feature`s of the same type. For example, `Layer` can be used to create many point `Feature`s that represent one artifact type.
-
-This class is also designed to make it easy to create groups of Features quickly.
-"""
 
 from .simulation import Base, SimSession
 from .feature import Feature
 from .area import Area
 from .utils import clip_points
 
+from typing import Tuple, List, Union
+
 from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
 from sqlalchemy.orm import relationship
-
-from typing import Tuple, List, Union
 
 import geopandas as gpd
 from shapely.geometry import Point
@@ -21,6 +17,24 @@ from scipy.stats._distn_infrastructure import rv_frozen
 
 
 class Layer(Base):
+    """A container for `Feature` objects
+
+    The `Layer` class is mostly useful as a way to create groups of similar features.
+
+    Attributes
+    ----------
+    name : str
+        Name of the layer
+    area_name : str
+        Name of the containing area
+    assemblage_name : str
+        Name of the parent assemblage
+    feature_list : List[Feature]
+        List of features that make up the layer
+    df : geopandas GeoDataFrame
+        `GeoDataFrame` with a row for each feature in the layer
+    """
+
     __tablename__ = 'layers'
 
     id = Column(Integer, primary_key=True)
@@ -36,7 +50,33 @@ class Layer(Base):
     assemblage = relationship("Assemblage", back_populates='layers')
     features = relationship("Feature", back_populates='layer')
 
-    def __init__(self, name: str, sim: SimSession, area_name: str, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
+    def __init__(self, name: str, sim: SimSession, area_name: str, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
+        """Create a `Layer` instance.
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the layer
+        sim : SimSession
+            Session where the containing area is stored
+        area_name : str
+            Name of the containing area
+        assemblage_name : str
+            Name of the parent assemblage
+        feature_list : List[Feature]
+            List of features that make up the layer
+        time_penalty : Union[float, rv_frozen], optional
+            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        ideal_obs_rate : Union[float, rv_frozen], optional
+            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+            - It lies inside or intersects the Coverage
+            - Surface visibility is 100%
+            - The surveyor is highly skilled
+
+            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+        """
+
         self.name = name
         self.area_name = area_name
         self.assemblage_name = assemblage_name
@@ -56,9 +96,37 @@ class Layer(Base):
                                          time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
     @classmethod
-    def from_shapefile(cls, path: str, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
-        """Create a `Layer` of artifacts/features from a shapefile
+    def from_shapefile(cls, path: str, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+        """Create a `Layer` instance from a shapefile.
+
+        Parameters
+        ----------
+        path : str
+            Filepath to the shapefile
+        name : str
+            Unique name for the layer
+        sim : SimSession
+            Session where the desired area is stored
+        area_name : str
+            Name of the containing area
+        assemblage_name : str
+            Name of the parent assemblage
+        time_penalty : Union[float, rv_frozen], optional
+            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        ideal_obs_rate : Union[float, rv_frozen], optional
+            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+            - It lies inside or intersects the Coverage
+            - Surface visibility is 100%
+            - The surveyor is highly skilled
+
+            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+
+        Returns
+        -------
+        Layer
         """
+
         tmp_gdf = gpd.read_file(path)
         shape_list = tmp_gdf.geometry.tolist()
         feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
@@ -67,9 +135,48 @@ class Layer(Base):
         return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_pseudorandom_points(cls, n: int, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
-        """Create a `Layer` of pseudorandom points
+    def from_pseudorandom_points(cls, n: int, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+        """Create a `Layer` instance of pseudorandom points
+
+        Parameters
+        ----------
+        n : int
+            Number of points to generate
+        name : str
+            Unique name for the layer
+        sim : SimSession
+            Session where the desired area is stored
+        area_name : str
+            Name of the containing area
+        assemblage_name : str
+            Name of the parent assemblage
+        time_penalty : Union[float, rv_frozen], optional
+            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        ideal_obs_rate : Union[float, rv_frozen], optional
+            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+            - It lies inside or intersects the Coverage
+            - Surface visibility is 100%
+            - The surveyor is highly skilled
+
+            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+
+        Returns
+        -------
+        Layer
+
+        See Also
+        --------
+        from_poisson_points : simple Poisson points `Layer`
+        from_thomas_points : good for clusters with centers from Poisson points
+        from_matern_points : good for clusters with centers from Poisson points
+
+
+        Notes
+        -----
+        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
         """
+
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
         bounds = tmp_area.df.total_bounds
         xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
@@ -82,8 +189,35 @@ class Layer(Base):
         return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_poisson_points(cls, rate: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
-        """Create a `Layer` of points with a Poisson point process
+    def from_poisson_points(cls, rate: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+        """Create a `Layer` instance of points with a Poisson point process
+
+        Parameters
+        ----------
+        rate : float
+            Theoretical events per unit area across the whole space. See Notes in `poisson_points()` for more details
+        name : str
+            Unique name for the layer
+        sim : SimSession
+            Session where the desired area is stored
+        area_name : str
+            Name of the containing area
+        assemblage_name : str
+            Name of the parent assemblage
+        time_penalty : Union[float, rv_frozen], optional
+            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        ideal_obs_rate : Union[float, rv_frozen], optional
+            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+            - It lies inside or intersects the Coverage
+            - Surface visibility is 100%
+            - The surveyor is highly skilled
+
+            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+
+        Returns
+        -------
+        Layer
 
         See Also
         --------
@@ -91,7 +225,12 @@ class Layer(Base):
         from_pseudorandom_points : faster, naive point creation
         from_thomas_points : good for clusters with centers from Poisson points
         from_matern_points : good for clusters with centers from Poisson points
+
+        Notes
+        -----
+        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
         """
+
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
         points = cls.poisson_points(tmp_area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
@@ -102,8 +241,41 @@ class Layer(Base):
         return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
-        """Create a `Layer` with a Thomas point process. It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
+    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+        """Create a `Layer` instance with a Thomas point process.
+
+        It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
+
+        Parameters
+        ----------
+        parent_rate : float
+            Theoretical clusters per unit area across the whole space. See Notes in `poisson_points()` for more details
+        child_rate : float
+            Theoretical child points per unit area per cluster across the whole space.
+        gauss_var : float
+            Variance of the isotropic Gaussian distributions around the cluster centers
+        name : str
+            Unique name for the layer
+        sim : SimSession
+            Session where the desired area is stored
+        area_name : str
+            Name of the containing area
+        assemblage_name : str
+            Name of the parent assemblage
+        time_penalty : Union[float, rv_frozen], optional
+            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        ideal_obs_rate : Union[float, rv_frozen], optional
+            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+            - It lies inside or intersects the Coverage
+            - Surface visibility is 100%
+            - The surveyor is highly skilled
+
+            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+
+        Returns
+        -------
+        Layer
 
         See Also
         --------
@@ -114,8 +286,11 @@ class Layer(Base):
 
         Notes
         -----
-        Parents (cluster centers) are NOT created as points in the output
+        1. Parents (cluster centers) are NOT created as points in the output
+
+        2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
         """
+
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
         parents = cls.poisson_points(tmp_area, parent_rate)
         M = parents.shape[0]
@@ -135,8 +310,41 @@ class Layer(Base):
         return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 1.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
-        """Create a `Layer` with a Matérn point process. It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
+    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+        """Create a `Layer` instance with a Matérn point process.
+
+        It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
+
+        Parameters
+        ----------
+        parent_rate : float
+            Theoretical clusters per unit area across the whole space. See Notes in `poisson_points()` for more details
+        child_rate : float
+            Theoretical child points per unit area per cluster across the whole space.
+        radius : float
+            Radius of the disk around the cluster centers
+        name : str
+            Unique name for the layer
+        sim : SimSession
+            Session where the desired area is stored
+        area_name : str
+            Name of the containing area
+        assemblage_name : str
+            Name of the parent assemblage
+        time_penalty : Union[float, rv_frozen], optional
+            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        ideal_obs_rate : Union[float, rv_frozen], optional
+            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+            - It lies inside or intersects the Coverage (see below)
+            - Surface visibility is 100%
+            - The surveyor is highly skilled
+
+            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+
+        Returns
+        -------
+        Layer
 
         See Also
         --------
@@ -150,6 +358,7 @@ class Layer(Base):
         -----
         Parents (cluster centers) are NOT created as points in the output
         """
+
         tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
         parents = cls.poisson_points(tmp_area, parent_rate)
         M = parents.shape[0]
@@ -168,10 +377,20 @@ class Layer(Base):
 
         return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
-    # START HERE: Fix to reflect sim.session pattern
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:
-        """Create points from a Poisson process
+        """Create point coordinates from a Poisson process.
+
+        Parameters
+        ----------
+        area : Area
+            Bounding area
+        rate : float
+            Theoretical events per unit area across the whole space. See Notes for more details
+
+        Returns
+        -------
+        np.ndarray
 
         See Also
         --------
@@ -186,6 +405,7 @@ class Layer(Base):
 
         The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
         """
+
         bounds = area.df.total_bounds
         dx = bounds[2] - bounds[0]
         dy = bounds[3] - bounds[1]
@@ -208,7 +428,7 @@ class Layer(Base):
 
         Returns
         -------
-        tuple of floats
+        Tuple[float, float]
             Random point within the disk
         """
 

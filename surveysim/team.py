@@ -1,11 +1,11 @@
-
+# START HERE: document Team class
 from .simulation import Base
 from .surveyor import Surveyor
 
+from typing import List
+
 from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
 from sqlalchemy.orm import relationship
-
-from typing import List
 
 import pandas as pd
 
