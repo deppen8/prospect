@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 
 
 class Survey(Base):
-    """Unique set of `Area`, `Assemblage`, `Coverage`, and `Team`
+    """Unique index for a set of `Area`, `Assemblage`, `Coverage`, and `Team`
 
     Attributes
     ----------
