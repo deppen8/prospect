@@ -1,5 +1,5 @@
 
-from .simulation import Base, SimSession
+from .simulation import Base
 from .feature import Feature
 from .area import Area
 from .utils import clip_points
@@ -50,17 +50,15 @@ class Layer(Base):
     assemblage = relationship("Assemblage", back_populates='layers')
     features = relationship("Feature", back_populates='layer')
 
-    def __init__(self, name: str, sim: SimSession, area_name: str, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
+    def __init__(self, name: str, area: Area, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
         """Create a `Layer` instance.
 
         Parameters
         ----------
         name : str
             Unique name for the layer
-        sim : SimSession
-            Session where the containing area is stored
-        area_name : str
-            Name of the containing area
+        area : Area
+            Containing area
         assemblage_name : str
             Name of the parent assemblage
         feature_list : List[Feature]
@@ -78,7 +76,7 @@ class Layer(Base):
         """
 
         self.name = name
-        self.area_name = area_name
+        self.area_name = area.name
         self.assemblage_name = assemblage_name
         self.feature_list = feature_list
 
@@ -88,15 +86,14 @@ class Layer(Base):
         # clip by area
         if all(self.df.geom_type == 'Point'):
             # TODO: Test this in Jupyter Notebook
-            tmp_area = sim.session.query(
-                Area).filter_by(name=area_name).first()
+            tmp_area = area
             self.df = clip_points(self.df, tmp_area.df)
             shape_list = self.df.geometry.tolist()
             self.feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
                                          time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
     @classmethod
-    def from_shapefile(cls, path: str, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_shapefile(cls, path: str, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` instance from a shapefile.
 
         Parameters
@@ -105,10 +102,8 @@ class Layer(Base):
             Filepath to the shapefile
         name : str
             Unique name for the layer
-        sim : SimSession
-            Session where the desired area is stored
-        area_name : str
-            Name of the containing area
+        area : Area
+            Containing area
         assemblage_name : str
             Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
@@ -132,10 +127,10 @@ class Layer(Base):
         feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
                                 time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_pseudorandom_points(cls, n: int, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_pseudorandom_points(cls, n: int, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` instance of pseudorandom points
 
         Parameters
@@ -144,10 +139,8 @@ class Layer(Base):
             Number of points to generate
         name : str
             Unique name for the layer
-        sim : SimSession
-            Session where the desired area is stored
-        area_name : str
-            Name of the containing area
+        area : Area
+            Containing area
         assemblage_name : str
             Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
@@ -171,13 +164,12 @@ class Layer(Base):
         from_thomas_points : good for clusters with centers from Poisson points
         from_matern_points : good for clusters with centers from Poisson points
 
-
         Notes
         -----
         The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
         bounds = tmp_area.df.total_bounds
         xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
         ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
@@ -186,10 +178,10 @@ class Layer(Base):
         feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
                                 time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_poisson_points(cls, rate: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_poisson_points(cls, rate: float, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` instance of points with a Poisson point process
 
         Parameters
@@ -198,10 +190,8 @@ class Layer(Base):
             Theoretical events per unit area across the whole space. See Notes in `poisson_points()` for more details
         name : str
             Unique name for the layer
-        sim : SimSession
-            Session where the desired area is stored
-        area_name : str
-            Name of the containing area
+        area : Area
+            Containing area
         assemblage_name : str
             Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
@@ -231,17 +221,17 @@ class Layer(Base):
         The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
         points = cls.poisson_points(tmp_area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
         feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
                                 time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` instance with a Thomas point process.
 
         It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
@@ -256,10 +246,8 @@ class Layer(Base):
             Variance of the isotropic Gaussian distributions around the cluster centers
         name : str
             Unique name for the layer
-        sim : SimSession
-            Session where the desired area is stored
-        area_name : str
-            Name of the containing area
+        area : Area
+            Containing area
         assemblage_name : str
             Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
@@ -291,7 +279,7 @@ class Layer(Base):
         2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
         parents = cls.poisson_points(tmp_area, parent_rate)
         M = parents.shape[0]
 
@@ -307,10 +295,10 @@ class Layer(Base):
         feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
                                 time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @classmethod
-    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, sim: SimSession, area_name: str, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
         """Create a `Layer` instance with a Matérn point process.
 
         It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
@@ -325,10 +313,8 @@ class Layer(Base):
             Radius of the disk around the cluster centers
         name : str
             Unique name for the layer
-        sim : SimSession
-            Session where the desired area is stored
-        area_name : str
-            Name of the containing area
+        area : Area
+            Containing area
         assemblage_name : str
             Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
@@ -359,7 +345,7 @@ class Layer(Base):
         Parents (cluster centers) are NOT created as points in the output
         """
 
-        tmp_area = sim.session.query(Area).filter_by(name=area_name).first()
+        tmp_area = area
         parents = cls.poisson_points(tmp_area, parent_rate)
         M = parents.shape[0]
 
@@ -375,7 +361,7 @@ class Layer(Base):
         feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
                                 time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
 
-        return cls(name=name, sim=sim, area_name=area_name, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
 
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:
