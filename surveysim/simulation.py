@@ -11,7 +11,8 @@ class SimSession():
 
     Attributes
     ----------
-    session : SQLAlchemy `Session`
+    engine : sqlalchemy Engine
+    session : sqlalchemy Session
     """
 
     def __init__(self, engine_str="sqlite:///simulation_default.db"):
@@ -27,9 +28,9 @@ class SimSession():
         The SQLAlchemy docs have some good examples of different types of database URLs. `https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls <https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls>`_
         """
 
-        engine = create_engine(engine_str)
-        Base.metadata.create_all(engine)
-        Session = sessionmaker(bind=engine)
+        self.engine = create_engine(engine_str)
+        Base.metadata.create_all(self.engine)
+        Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
     def stage(self, block):
