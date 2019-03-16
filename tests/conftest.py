@@ -29,13 +29,9 @@ def a_simulation(tmp_db_path):
 # `Survey` FIXTURES
 
 
-SURVEY_NAMES = ['test_survey_1', 'test_survey_2',
-                'test_survey_3', 'test_survey_4', 'test_survey_5']
-
-
-@pytest.fixture(params=SURVEY_NAMES, scope='module')
-def a_survey(request):
-    return surveysim.Survey(name=request.param)
+@pytest.fixture(scope='module')
+def a_survey():
+    return surveysim.Survey(name='test_survey')
 
 
 # `Area` FIXTURES
@@ -51,8 +47,8 @@ POLYGONS = [
 
 
 @pytest.fixture(params=POLYGONS, scope='module')
-def an_area(request, a_survey):
-    return surveysim.Area(name=f'test_area_{request.param}', survey_name=a_survey.name,
+def an_area(request):
+    return surveysim.Area(name=f'test_area', survey_name='test_survey',
                           shape=request.param, vis=1.0)
 
 
@@ -71,18 +67,52 @@ def a_feature(request):
     return surveysim.Feature(name='test_feature', layer_name='test_layer', shape=request.param, time_penalty=0.0, ideal_obs_rate=1.0)
 
 
-# START HERE: Figure out how to test Layer more cleanly
 # `Layer` FIXTURES
 
 
-LAYER_NAMES = ['test_layer_1', 'test_layer_2', 'test_layer_3']
+@pytest.fixture(scope='module')
+def a_layer(an_area, a_feature):
+    return surveysim.Layer(name='test_layer', area=an_area, assemblage_name='test_parent_assemblage', feature_list=[a_feature], time_penalty=0.0, ideal_obs_rate=0.0)
 
 
-@pytest.fixture(params=LAYER_NAMES, scope='module')
-def a_layer(request, a_simulation, an_area, a_feature):
-    return surveysim.Layer(name=request.param, sim=a_simulation, area_name=an_area.name, assemblage_name='test_parent_assemblage', feature_list=list(a_feature), time_penalty=0.0, ideal_obs_rate=0.0)
+# `Assemblage` FIXTURES
 
-    # `Assemblage` FIXTURES
+
+@pytest.fixture(scope='module')
+def an_assemblage(a_survey, an_area, a_layer):
+    return surveysim.Assemblage(name='test_assemblage', survey_name=a_survey.name, area_name=an_area.name, layer_list=[a_layer])
+
+
+# `SurveyUnit` FIXTURES
+
+
+@pytest.fixture(params=POLYGONS, scope='module')
+def a_surveyunit(request):
+    return surveysim.SurveyUnit(name='test_surveyunit', coverage_name='test_coverage', shape=request.param, surveyunit_type='radial', length=None, radius=10.0, min_time_per_unit=0.0)
+
+
+# `Coverage` FIXTURES
+
+
+@pytest.fixture(scope='module')
+def a_coverage(an_area, a_surveyunit):
+    return surveysim.Coverage(name='test_coverage', area=an_area, survey_name='test_survey', surveyunit_list=[a_surveyunit], orientation=0.0, spacing=10.0, sweep_width=None, radius=None)
+
+
+# `Surveyor` FIXTURES
+
+
+@pytest.fixture(scope='module')
+def a_surveyor():
+    return surveysim.Surveyor(name='test_surveyor', team_name='test_team', surveyor_type='test_type', skill=1.0, speed_penalty=0.0)
+
+
+# `Team` FIXTURES
+
+
+@pytest.fixture(scope='module')
+def a_team(a_surveyor):
+    return surveysim.Team(name='test_team', survey_name='test_survey', surveyor_list=[a_surveyor])
 
     # LEIAP_AREA_PATHS = ['leiap_field1.shp', 'leiap_field2.shp', 'leiap_field3.shp', 'leiap_field4.shp',
     #                     'leiap_field5.shp', 'leiap_field6.shp', 'leiap_field7.shp', 'leiap_field8.shp']
