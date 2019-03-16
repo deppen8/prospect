@@ -1,7 +1,7 @@
 
 from .simulation import Base
 
-from typing import Union
+from typing import Union, Dict
 
 from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
 from sqlalchemy.orm import relationship
@@ -86,3 +86,23 @@ class SurveyUnit(Base):
         self.length = length
         self.radius = radius
         self.min_time_per_unit = min_time_per_unit
+
+    def to_dict(self) -> Dict:
+        """Create dictionary from attributes to allow easy DataFrame creation by `Coverage`.
+
+        Returns
+        -------
+        dict
+            Dictionary containing pairs of class attributes and their values
+        """
+
+        return {
+            'surveyunit_name': self.name,
+            'coverage_name': self.coverage_name,
+            'shape': self.shape,
+            'surveyunit_type': self.surveyunit_type,
+            'surveyunit_area': self.surveyunit_area,
+            'length': self.length,
+            'radius': self.radius,
+            'min_time_per_unit': self.min_time_per_unit
+        }
