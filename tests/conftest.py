@@ -5,6 +5,8 @@ import pytest
 
 from pathlib import Path
 from shapely.geometry import Point, LineString, Polygon
+from geopandas import GeoDataFrame
+import pandas as pd
 
 
 @pytest.fixture(scope='module')
@@ -113,6 +115,47 @@ def a_surveyor():
 @pytest.fixture(scope='module')
 def a_team(a_surveyor):
     return surveysim.Team(name='test_team', survey_name='test_survey', surveyor_list=[a_surveyor])
+
+
+# `utils` FIXTUREs
+
+
+@pytest.fixture(scope='module')
+def a_points_gdf_for_clip():
+    df = pd.DataFrame({
+        'intersects': [True, True, True, False, False, False],
+        'coords': [(0, 1), (1, 1.5), (1.5, 0), (-1, 1), (1, 0.5), (1, 2.5)]
+    })
+    df['coords'] = df['coords'].apply(Point)
+    return GeoDataFrame(df, geometry='coords')
+
+
+@pytest.fixture(scope='module')
+def a_polygon_gdf_for_clip():
+    exterior = [(0, 0), (0, 2), (2, 2), (2, 0), (0, 0)]
+    interior = [(1, 0), (0.5, 0.5), (1, 1), (1.5, 0.5), (1, 0)][::-1]
+    polygon = Polygon(exterior, [interior])
+    return GeoDataFrame({'name': ['test_polygon_gdf'],
+                         'geometry': polygon}, geometry='geometry')
+
+
+@pytest.fixture(scope='module')
+def a_shifted_polygon_gdf_for_clip():
+    exterior = [(0.5, 0), (0.5, 2), (2.5, 2), (2.5, 0), (0.5, 0)]
+    interior = [(1.5, 0), (1.0, 0.5), (1.5, 1), (2.0, 0.5), (1.5, 0)][::-1]
+    polygon = Polygon(exterior, [interior])
+    return GeoDataFrame({'name': ['test_shifted_polygon_gdf'],
+                        'geometry': polygon}, geometry='geometry')
+
+
+@pytest.fixture(scope='module')
+def a_line_string_gdf_for_clip():
+    line_coords = [[(0, 0), (1, 1)], [(0, 1), (2, 3)],
+                   [(0, 0.5), (1, 0.5), (2.5, 0.5)]]
+    lines = [LineString(coords) for coords in line_coords]
+    return GeoDataFrame({'name': [f'test_line{i}' for i in range(len(lines))],
+                         'geometry': lines
+                         }, geometry='geometry')
 
     # LEIAP_AREA_PATHS = ['leiap_field1.shp', 'leiap_field2.shp', 'leiap_field3.shp', 'leiap_field4.shp',
     #                     'leiap_field5.shp', 'leiap_field6.shp', 'leiap_field7.shp', 'leiap_field8.shp']
