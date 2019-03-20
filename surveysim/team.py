@@ -12,7 +12,7 @@ import pandas as pd
 
 class Team(Base):
     """A collection of `Surveyor` objects.
-    
+
     Attributes
     ----------
     name : str
@@ -38,7 +38,7 @@ class Team(Base):
 
     def __init__(self, name: str, survey_name: str, surveyor_list: List[Surveyor]):
         """Create a `Team` instance.
-        
+
         Parameters
         ----------
         name : str
