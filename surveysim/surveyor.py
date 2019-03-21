@@ -12,6 +12,19 @@ from scipy.stats._distn_infrastructure import rv_frozen
 class Surveyor(Base):
     """Represents an individual who will participate in the survey.
 
+    Parameters
+    ----------
+    name : str
+        Unique name for the surveyor
+    team_name : str
+        Name of the parent team
+    surveyor_type : str
+        A helpful way of grouping surveyors with like traits (e.g., 'student' or 'expert')
+    skill : Union[float, rv_frozen], optional
+        Assuming perfect visibility and ideal observation rate, what is the expected probability that this person would identify any feature that crossed their survey unit. The default is 1.0, which would mean this surveyor recorded everything they encountered (after controlling for other factors).
+    speed_penalty : Union[float, rv_frozen], optional
+        Time factor added to each of this surveyor's survey units. The default is 0.0, which applies no penalty. Penalties should range between 0.0 and 1.0.
+
     Attributes
     ----------
     name : str
@@ -40,19 +53,6 @@ class Surveyor(Base):
 
     def __init__(self, name: str, team_name: str, surveyor_type: str, skill: Union[float, rv_frozen] = 1.0, speed_penalty: Union[float, rv_frozen] = 0.0):
         """[summary]
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the surveyor
-        team_name : str
-            Name of the parent team
-        surveyor_type : str
-            A helpful way of grouping surveyors with like traits (e.g., 'student' or 'expert')
-        skill : Union[float, rv_frozen], optional
-            Assuming perfect visibility and ideal observation rate, what is the expected probability that this person would identify any feature that crossed their survey unit. The default is 1.0, which would mean this surveyor recorded everything they encountered (after controlling for other factors).
-        speed_penalty : Union[float, rv_frozen], optional
-            Time factor added to each of this surveyor's survey units. The default is 0.0, which applies no penalty. Penalties should range between 0.0 and 1.0.
         """
 
         self.name = name

@@ -13,6 +13,15 @@ import pandas as pd
 class Team(Base):
     """A collection of `Surveyor` objects.
 
+    Parameters
+    ----------
+    name : str
+        Unique name for the team
+    survey_name : str
+        Name of the survey
+    surveyor_list : List[Surveyor]
+        List of surveyors that make up the team
+
     Attributes
     ----------
     name : str
@@ -38,15 +47,6 @@ class Team(Base):
 
     def __init__(self, name: str, survey_name: str, surveyor_list: List[Surveyor]):
         """Create a `Team` instance.
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the team
-        survey_name : str
-            Name of the survey
-        surveyor_list : List[Surveyor]
-            List of surveyors that make up the team
         """
 
         self.name = name

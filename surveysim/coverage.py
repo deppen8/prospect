@@ -21,6 +21,25 @@ class Coverage(Base):
 
     The `Coverage` class is mostly useful as a way to create groups of similar survey units.
 
+    Parameters
+    ----------
+    name : str
+        Unique name for the Coverage
+    area : Area
+        Containing area
+    survey_name : str
+        Name of the survey
+    surveyunit_list : List[SurveyUnit]
+        List of survey units that make up the coverage
+    orientation : float
+        Angle of the predominant axis of the survey units
+    spacing : float
+        Distance between survey units
+    sweep_width : float, optional
+        Buffer distance around transects (the default is None, which is only updated if the survey units are transects)
+    radius : float, optional
+        Buffer distance for radial survey units (the default is None, which is only update if the survey units are radial)
+
     Attributes
     ----------
     name : str
@@ -63,25 +82,6 @@ class Coverage(Base):
 
     def __init__(self, name: str, area: Area, survey_name: str, surveyunit_list: List[SurveyUnit], orientation: float, spacing: float, sweep_width: float = None, radius: float = None):
         """Create a `Coverage` instance.
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the Coverage
-        area : Area
-            Containing area
-        survey_name : str
-            Name of the survey
-        surveyunit_list : List[SurveyUnit]
-            List of survey units that make up the coverage
-        orientation : float
-            Angle of the predominant axis of the survey units
-        spacing : float
-            Distance between survey units
-        sweep_width : float, optional
-            Buffer distance around transects (the default is None, which is only updated if the survey units are transects)
-        radius : float, optional
-            Buffer distance for radial survey units (the default is None, which is only update if the survey units are radial)
         """
 
         self.name = name

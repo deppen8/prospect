@@ -21,6 +21,27 @@ class Layer(Base):
 
     The `Layer` class is mostly useful as a way to create groups of similar features.
 
+    Parameters
+    ----------
+    name : str
+        Unique name for the layer
+    area : Area
+        Containing area
+    assemblage_name : str
+        Name of the parent assemblage
+    feature_list : List[Feature]
+        List of features that make up the layer
+    time_penalty : Union[float, rv_frozen], optional
+        Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+    ideal_obs_rate : Union[float, rv_frozen], optional
+        Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+
+        - It lies inside or intersects the Coverage
+        - Surface visibility is 100%
+        - The surveyor is highly skilled
+
+        The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+
     Attributes
     ----------
     name : str
@@ -52,27 +73,6 @@ class Layer(Base):
 
     def __init__(self, name: str, area: Area, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
         """Create a `Layer` instance.
-
-        Parameters
-        ----------
-        name : str
-            Unique name for the layer
-        area : Area
-            Containing area
-        assemblage_name : str
-            Name of the parent assemblage
-        feature_list : List[Feature]
-            List of features that make up the layer
-        time_penalty : Union[float, rv_frozen], optional
-            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
-        ideal_obs_rate : Union[float, rv_frozen], optional
-            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
-
-            - It lies inside or intersects the Coverage
-            - Surface visibility is 100%
-            - The surveyor is highly skilled
-
-            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
         """
 
         self.name = name

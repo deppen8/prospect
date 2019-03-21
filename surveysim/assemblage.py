@@ -14,6 +14,17 @@ import pandas as pd
 class Assemblage(Base):
     """A collection of all `Layer` objects for a survey
 
+    Parameters
+    ----------
+    name : str
+        Unique name for the assemblage
+    survey_name : str
+        Name of the survey
+    area_name : str
+        Name of the containing area
+    layer_list : list of Layer
+        List of layers that make up the assemblage
+
     Attributes
     ----------
     name : str
@@ -42,17 +53,6 @@ class Assemblage(Base):
 
     def __init__(self, name: str, survey_name: str, area_name: str, layer_list: List[Layer]):
         """Create an `Assemblage` instance
-        
-        Parameters
-        ----------
-        name : str
-            Unique name for the assemblage
-        survey_name : str
-            Name of the survey
-        area_name : str
-            Name of the containing area
-        layer_list : list of Layer
-            List of layers that make up the assemblage
         """
 
         self.name = name
