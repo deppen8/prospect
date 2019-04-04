@@ -27,13 +27,16 @@ def bb_plot(area: Area, assemblage: Assemblage, coverage: Coverage, title_size:
     Returns
     -------
     matplotlib.figure.Figure
-        [description]
+        Large plot with three subplots of the spatial building blocks
     """
 
+    # function to create basemap of polygon outline
     def _make_outline(gdf, ax):
         return gdf.plot(ax=ax, facecolor='white', edgecolor='black')
 
     fig, axarr = plt.subplots(3, 1, figsize=figsize, sharex=True, sharey=True)
+
+    # add Area, Assemblage, and Coverage subplots
     area.df.plot(ax=_make_outline(area.df, axarr[0]))
     axarr[0].set_title(f'{area.name} (Area)', fontsize=title_size)
 
@@ -46,9 +49,9 @@ def bb_plot(area: Area, assemblage: Assemblage, coverage: Coverage, title_size:
     axarr[2].set_title(
         f'{coverage.name} (Coverage)', fontsize=title_size)
 
-    for ax in axarr:
+    for ax in axarr:        # remove axis lines
         ax.set_axis_off()
 
-    plt.close()
+    plt.close()  # close the plot so that Jupyter won't print it twice
 
     return fig
