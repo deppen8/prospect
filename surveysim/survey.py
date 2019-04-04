@@ -36,12 +36,3 @@ class Survey(Base):
         """
 
         self.name = name
-
-    def plot(self, area=None, assemblage=None, layers=None, features=None, coverage=None, surveyunits=None, team=None):
-        """method to create plot matrix for all building blocks
-
-        Useful for quick inspections of the survey elements
-
-        """
-
-        pass
