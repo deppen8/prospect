@@ -66,7 +66,7 @@ class Survey(Base):
             List of building block objects
 
         """
-
+        # TODO: check that bb is a list
         for block in bb:
             if isinstance(block, Area):
                 self.area = block
