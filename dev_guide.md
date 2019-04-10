@@ -38,7 +38,6 @@ Imports should almost always be at the top level. The only things that should be
 ### Method argument order
 
 - first argument is `name`
-- second argument is `sim`
 - next arguments are names referring to other building blocks (e.g., `survey_name`)
 - shapes
 - model parameters
