@@ -21,6 +21,16 @@ class Team(Base):
         Name of the survey
     surveyor_list : List[Surveyor]
         List of surveyors that make up the team
+    assignment : {'naive', 'speed', 'random'}
+        Strategy for assigning team members to survey units.
+        
+        * 'naive' - cycle through `Team.df` in index order, assigning surveyors
+          to survey units in `Coverage.df` in index order until all survey
+          units have a surveyor.
+        * 'speed' - calculate the total base time required for the coverage and
+          allocate survey units proportional to surveyor speed.
+        * 'random' - for each survey unit, randomly select (with replacement)
+          a surveyor from the team
 
     Attributes
     ----------
@@ -30,6 +40,8 @@ class Team(Base):
         Name of the survey
     surveyor_list : List[Surveyor]
         List of surveyors that make up the team
+    assignment : str
+        Strategy for assigning team members to survey units. 
     df : pandas DataFrame
         `DataFrame` with a row for each surveyor
     """
@@ -45,13 +57,14 @@ class Team(Base):
     survey = relationship("Survey", back_populates='team')
     surveyors = relationship("Surveyor", back_populates='team')
 
-    def __init__(self, name: str, survey_name: str, surveyor_list: List[Surveyor]):
+    def __init__(self, name: str, survey_name: str, surveyor_list: List[Surveyor], assignment: str = 'naive'):
         """Create a `Team` instance.
         """
 
         self.name = name
         self.survey_name = survey_name
         self.surveyor_list = surveyor_list
+        self.assignment = assignment  # TODO
 
         self.df = pd.DataFrame([surveyor.to_dict()
                                 for surveyor in self.surveyor_list])
