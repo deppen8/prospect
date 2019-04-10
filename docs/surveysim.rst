@@ -1,80 +1,80 @@
 Modules
 =======
 
-surveysim.simulation
+prospect.simulation
 ---------------------------
 
-.. automodule:: surveysim.simulation
+.. automodule:: prospect.simulation
     :members:
     :show-inheritance:
 
-surveysim.survey
+prospect.survey
 -----------------------
 
-.. automodule:: surveysim.survey
+.. automodule:: prospect.survey
     :members:
     :show-inheritance:
 
-surveysim.area
+prospect.area
 ---------------------
 
-.. automodule:: surveysim.area
+.. automodule:: prospect.area
     :members:
     :show-inheritance:
 
-surveysim.assemblage
+prospect.assemblage
 ---------------------------
 
-.. automodule:: surveysim.assemblage
+.. automodule:: prospect.assemblage
     :members:
     :show-inheritance:
 
-surveysim.layer
+prospect.layer
 ----------------------
 
-.. automodule:: surveysim.layer
+.. automodule:: prospect.layer
     :members:
     :show-inheritance:
 
-surveysim.feature
+prospect.feature
 ------------------------
 
-.. automodule:: surveysim.feature
+.. automodule:: prospect.feature
     :members:
     :show-inheritance:
 
-surveysim.coverage
+prospect.coverage
 -------------------------
 
-.. automodule:: surveysim.coverage
+.. automodule:: prospect.coverage
     :members:
     :show-inheritance:
 
-surveysim.surveyunit
+prospect.surveyunit
 ---------------------------
 
-.. automodule:: surveysim.surveyunit
+.. automodule:: prospect.surveyunit
     :members:
     :show-inheritance:
 
 
-surveysim.team
+prospect.team
 ---------------------
 
-.. automodule:: surveysim.team
+.. automodule:: prospect.team
     :members:
     :show-inheritance:
 
-surveysim.surveyor
+prospect.surveyor
 -------------------------
 
-.. automodule:: surveysim.surveyor
+.. automodule:: prospect.surveyor
     :members:
     :show-inheritance:
 
-surveysim.utils
+prospect.utils
 ----------------------
 
-.. automodule:: surveysim.utils
+.. automodule:: prospect.utils
     :members:
     :show-inheritance:

@@ -1,5 +1,5 @@
 # import pytest
-# import surveysim
+# import prospect
 # import itertools
 # from geopandas import GeoDataFrame
 # from shapely.geometry import Polygon
@@ -12,7 +12,7 @@
 # @pytest.fixture(scope='module')
 # def a_default_Area():
 #     """Create `Area` with defaults"""
-#     return surveysim.Area()
+#     return prospect.Area()
 
 
 # # FIXTURES FOR THE `Area.from_shapely_polygon()` METHOD
@@ -34,7 +34,7 @@
 
 # @pytest.fixture(params=shapely_polys, scope='module')
 # def an_area_from_shapely_polygon(request):
-#     area = surveysim.Area.from_shapely_polygon(
+#     area = prospect.Area.from_shapely_polygon(
 #         name='test_area_from_shapely', polygon=request.param)
 #     return area
 
@@ -66,7 +66,7 @@
 
 # @pytest.fixture(params=area_origin_pairs, scope='module')
 # def an_area_from_area_origin_pair(request):
-#     area = surveysim.Area.from_area_value(
+#     area = prospect.Area.from_area_value(
 #         name='test_area_from_area_value', value=request.param[0], origin=request.param[1])
 #     return area
 
@@ -75,7 +75,7 @@
 
 
 # def test_default_params_returns_Area(a_default_Area):
-#     assert isinstance(a_default_Area, surveysim.Area)
+#     assert isinstance(a_default_Area, prospect.Area)
 
 
 # def test_default_df_is_GeoDataFrame(a_default_Area):
@@ -100,8 +100,8 @@
 
 # def test_from_shapefile_path_returns_Area(an_area_shapefile_path):
 #     '''Test that `from_shapefile()` factory function returns an `Area` object'''
-#     area = surveysim.Area.from_shapefile(name='test_name', path=an_area_shapefile_path)
-#     assert isinstance(area, surveysim.Area)
+#     area = prospect.Area.from_shapefile(name='test_name', path=an_area_shapefile_path)
+#     assert isinstance(area, prospect.Area)
 
 
 # def test_from_shapefile_df_is_GeoDataFrame(an_area_from_shapefile):
@@ -126,9 +126,9 @@
 
 # def test_from_shapely_polygon_returns_Area(a_shapely_polygon):
 #     '''Test that `from_shapely_polygon()` factory function returns an `Area` object'''
-#     area = surveysim.Area.from_shapely_polygon(
+#     area = prospect.Area.from_shapely_polygon(
 #         name='test_name', polygon=a_shapely_polygon)
-#     assert isinstance(area, surveysim.Area)
+#     assert isinstance(area, prospect.Area)
 
 
 # def test_from_shapely_polygon_df_is_GeoDataFrame(an_area_from_shapely_polygon):
@@ -153,9 +153,9 @@
 
 # def test_from_area_value_returns_Area(an_area_origin_pair):
 #     '''Test that `from_area_value()` factory function returns an `Area` object'''
-#     area = surveysim.Area.from_area_value(
+#     area = prospect.Area.from_area_value(
 #         name='test_name', value=an_area_origin_pair[0], origin=an_area_origin_pair[1])
-#     assert isinstance(area, surveysim.Area)
+#     assert isinstance(area, prospect.Area)
 
 
 # def test_from_area_value_df_is_GeoDataFrame(an_area_from_area_origin_pair):

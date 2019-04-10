@@ -1,5 +1,5 @@
 import pytest
-import surveysim
+import prospect
 import itertools
 from numpy import ndarray
 from geopandas import GeoDataFrame
@@ -12,9 +12,9 @@ from scipy.stats._distn_infrastructure import rv_frozen
 @pytest.fixture(scope='module')
 def a_default_Layer():
     """Create `Layer` with defaults"""
-    simple_Area = surveysim.Area.from_area_value(
+    simple_Area = prospect.Area.from_area_value(
         name='test_area4layer', value=1.0)
-    return surveysim.Layer(area=simple_Area)
+    return prospect.Layer(area=simple_Area)
 
 
 n_vals = [10, 100, 1000, 10000]
@@ -22,7 +22,7 @@ n_vals = [10, 100, 1000, 10000]
 
 @pytest.fixture(params=n_vals, scope='module')
 def a_layer_from_pseudorandom_points(request, an_area_from_shapefile):
-    return surveysim.Layer.from_pseudorandom_points(n=request.param, area=an_area_from_shapefile, name='test_pseudorandom_points_layer')
+    return prospect.Layer.from_pseudorandom_points(n=request.param, area=an_area_from_shapefile, name='test_pseudorandom_points_layer')
 
 
 # poisson_parent_rates = [1, 10, 100]
@@ -33,7 +33,7 @@ poisson_child_rates = [1]
 
 @pytest.fixture(params=poisson_parent_rates, scope='module')
 def a_layer_from_poisson_points(request, an_area_from_shapefile):
-    return surveysim.Layer.from_poisson_points(rate=request.param, area=an_area_from_shapefile, name='test_poisson_points_layer')
+    return prospect.Layer.from_poisson_points(rate=request.param, area=an_area_from_shapefile, name='test_poisson_points_layer')
 
 
 # gauss_vars = [0, 0.1, 1, 10, 1000]
@@ -45,17 +45,17 @@ thomas_parent_child_gauss = list(itertools.product(
 
 @pytest.fixture(params=thomas_parent_child_gauss, scope='module')
 def a_layer_from_thomas_points(request, an_area_from_shapefile):
-    return surveysim.Layer.from_thomas_points(parent_rate=request.param[0], child_rate=request.param[1], gauss_var=request.param[2], area=an_area_from_shapefile, name='test_thomas_points_layer')
+    return prospect.Layer.from_thomas_points(parent_rate=request.param[0], child_rate=request.param[1], gauss_var=request.param[2], area=an_area_from_shapefile, name='test_thomas_points_layer')
 
 
 @pytest.fixture(params=thomas_parent_child_gauss, scope='module')
 def a_layer_from_matern_points(request, an_area_from_shapefile):
-    return surveysim.Layer.from_matern_points(parent_rate=request.param[0], child_rate=request.param[1], radius=request.param[2], area=an_area_from_shapefile, name='test_matern_points_layer')
+    return prospect.Layer.from_matern_points(parent_rate=request.param[0], child_rate=request.param[1], radius=request.param[2], area=an_area_from_shapefile, name='test_matern_points_layer')
 
 
 @pytest.fixture(scope='module')
 def a_simple_Area():
-    return surveysim.Area.from_area_value(
+    return prospect.Area.from_area_value(
         name='test_area4layer', value=1.0)
 
 
@@ -63,7 +63,7 @@ def a_simple_Area():
 
 
 def test_default_params_returns_Layer(a_default_Layer):
-    assert isinstance(a_default_Layer, surveysim.Layer)
+    assert isinstance(a_default_Layer, prospect.Layer)
 
 
 def test_default_df_is_GeoDataFrame(a_default_Layer):
@@ -85,13 +85,13 @@ def test_default_default_columns_exist(a_default_Layer):
 def test_from_shapefile_path_returns_Layer(a_layer_shapefile_path, an_area_from_shapefile):
     '''Test that `from_shapefile()` factory function returns a `Layer` object'''
     area = an_area_from_shapefile
-    layer = surveysim.Layer.from_shapefile(
+    layer = prospect.Layer.from_shapefile(
         path=a_layer_shapefile_path, area=area, name='test_layer', feature_type=None)
-    assert isinstance(layer, surveysim.Layer)
+    assert isinstance(layer, prospect.Layer)
 
 
 def test_from_shapefile_returns_Layer(a_layer_from_shapefile):
-    assert isinstance(a_layer_from_shapefile, surveysim.Layer)
+    assert isinstance(a_layer_from_shapefile, prospect.Layer)
 
 
 def test_from_shapefile_df_is_GeoDataFrame(a_layer_from_shapefile):
@@ -111,7 +111,7 @@ def test_from_shapefile_default_columns_exist(a_layer_from_shapefile):
 
 
 def test_from_pseudorandom_points_returns_Layer(a_layer_from_pseudorandom_points):
-    assert isinstance(a_layer_from_pseudorandom_points, surveysim.Layer)
+    assert isinstance(a_layer_from_pseudorandom_points, prospect.Layer)
 
 
 def test_from_pseudorandom_points_df_is_GeoDataFrame(a_layer_from_pseudorandom_points):
@@ -131,7 +131,7 @@ def test_from_pseudorandom_points_default_columns_exist(a_layer_from_pseudorando
 
 
 def test_from_poisson_points_returns_Layer(a_layer_from_poisson_points):
-    assert isinstance(a_layer_from_poisson_points, surveysim.Layer)
+    assert isinstance(a_layer_from_poisson_points, prospect.Layer)
 
 
 def test_from_poisson_points_df_is_GeoDataFrame(a_layer_from_poisson_points):
@@ -151,7 +151,7 @@ def test_from_poisson_points_default_columns_exist(a_layer_from_poisson_points):
 
 
 def test_from_thomas_points_returns_Layer(a_layer_from_thomas_points):
-    assert isinstance(a_layer_from_thomas_points, surveysim.Layer)
+    assert isinstance(a_layer_from_thomas_points, prospect.Layer)
 
 
 def test_from_thomas_points_df_is_GeoDataFrame(a_layer_from_thomas_points):
@@ -167,7 +167,7 @@ def test_from_thomas_points_default_columns_exist(a_layer_from_thomas_points):
 
 
 def test_from_matern_points_returns_Layer(a_layer_from_matern_points):
-    assert isinstance(a_layer_from_matern_points, surveysim.Layer)
+    assert isinstance(a_layer_from_matern_points, prospect.Layer)
 
 
 def test_from_matern_points_df_is_GeoDataFrame(a_layer_from_matern_points):
@@ -183,7 +183,7 @@ def test_from_matern_points_default_columns_exist(a_layer_from_matern_points):
 
 
 def test_poisson_points_returns(an_area_from_shapefile):
-    poisson_point_vals = surveysim.Layer.poisson_points(
+    poisson_point_vals = prospect.Layer.poisson_points(
         area=an_area_from_shapefile, rate=10.0)
     assert isinstance(poisson_point_vals, ndarray)
     assert poisson_point_vals.shape[1] == 2
@@ -193,7 +193,7 @@ def test_poisson_points_returns(an_area_from_shapefile):
 
 
 def test_uniform_disk_returns():
-    disk = surveysim.Layer.uniform_disk(x=0, y=0, r=10)
+    disk = prospect.Layer.uniform_disk(x=0, y=0, r=10)
     assert isinstance(disk, tuple)
     assert len(disk) == 2
     assert isinstance(disk[0], float)

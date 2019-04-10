@@ -1,9 +1,9 @@
 
-import surveysim
+import prospect
 
 
 def test_returns_Coverage(a_coverage):
-    assert isinstance(a_coverage, surveysim.Coverage)
+    assert isinstance(a_coverage, prospect.Coverage)
 
 
 def test_has_desired_attributes(a_coverage):

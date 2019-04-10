@@ -1,9 +1,9 @@
 
-import surveysim
+import prospect
 
 
 def test_returns_Surveyor(a_surveyor):
-    assert isinstance(a_surveyor, surveysim.Surveyor)
+    assert isinstance(a_surveyor, prospect.Surveyor)
 
 
 def test_has_desired_attributes(a_surveyor):

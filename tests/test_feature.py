@@ -1,12 +1,12 @@
 
-import surveysim
+import prospect
 
 from shapely.geometry import Point, LineString, Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
 
 
 def test_returns_Feature(a_feature):
-    assert isinstance(a_feature, surveysim.Feature)
+    assert isinstance(a_feature, prospect.Feature)
 
 
 def test_has_desired_attributes(a_feature):

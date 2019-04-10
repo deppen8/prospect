@@ -1,5 +1,5 @@
 
-import surveysim
+import prospect
 
 from shapely.geometry import Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
@@ -7,7 +7,7 @@ from geopandas import GeoDataFrame
 
 
 def test_returns_Area(an_area):
-    assert isinstance(an_area, surveysim.Area)
+    assert isinstance(an_area, prospect.Area)
 
 
 def test_has_desired_attributes(an_area):

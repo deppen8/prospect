@@ -1,6 +1,6 @@
-# SurveySim
+# Prospect
 
-SurveySim is a set of tools for simulating archaeological field surveys.
+Prospect is a set of tools for simulating archaeological field surveys.
 
 ## TODO
 
@@ -53,7 +53,7 @@ TODO for above steps
 
 ## Building blocks
 
-SurveySim is designed around a few simple building blocks that can be customized (or not) to whatever degree the user requires.
+Prospect is designed around a few simple building blocks that can be customized (or not) to whatever degree the user requires.
 
 ### `Simulation`
 
@@ -71,11 +71,11 @@ The Area has attributes like min/max bounds and area (as in m²).
 
 ### `Assemblage`
 
-The Assemblage represents the artifacts or other features-of-interest in an Area. The Assemblage needs to be able to handle multiple inputs because archaeologists are often interested in identifying more than one type of artifact or feature in their survey. SurveySim does this with Layers.
+The Assemblage represents the artifacts or other features-of-interest in an Area. The Assemblage needs to be able to handle multiple inputs because archaeologists are often interested in identifying more than one type of artifact or feature in their survey. Prospect does this with Layers.
 
 #### `Layers`
 
-Each Layer of an Assemblage should be a homogeneous type of shape (e.g., points, lines, or polygons). The user can ask SurveySim to place these shapes in various configurations (random, Poisson, Matern, etc.) with specified densities or, in a case where the survey has already taken place, the user can provide their own shapefile(s).
+Each Layer of an Assemblage should be a homogeneous type of shape (e.g., points, lines, or polygons). The user can ask Prospect to place these shapes in various configurations (random, Poisson, Matern, etc.) with specified densities or, in a case where the survey has already taken place, the user can provide their own shapefile(s).
 
 Each Layer is given a name that facilitates tracking and analysis through the simulation process.
 
@@ -94,7 +94,7 @@ These assumptions are important to consider further. The ideal observation rate 
 
 ### `Coverage`
 
-The Coverage is where the user defines how the survey will be set up. The user can define the shape of the survey unit (transects, radial, quadrat, checkerboard, etc.) and the intervals at which they'd like them to be spaced. Alternatively, they can specify the survey unit and the percent of the Area they'd like covered, and SurveySim will generate a Coverage to fit.
+The Coverage is where the user defines how the survey will be set up. The user can define the shape of the survey unit (transects, radial, quadrat, checkerboard, etc.) and the intervals at which they'd like them to be spaced. Alternatively, they can specify the survey unit and the percent of the Area they'd like covered, and Prospect will generate a Coverage to fit.
 
 The Coverage also defines how an artifact or feature's distance from the survey unit impacts whether or not it is discovered.
 
@@ -108,7 +108,7 @@ This forms the baseline to which additional time is added. Time can be added for
   
 #### `Transects`
 
-Transects are probably the most common type of coverage. They are represented in SurveySim by lines. The user will also specify a buffer distance around the lines that represents the "sweep width". Artifacts or features within the sweep width are "eligible" to be observed in the survey. Whether they are *actually* observed depends on the suite of all factors like ideal observation rate, surface visibility, and surveyor skill.
+Transects are probably the most common type of coverage. They are represented in Prospect by lines. The user will also specify a buffer distance around the lines that represents the "sweep width". Artifacts or features within the sweep width are "eligible" to be observed in the survey. Whether they are *actually* observed depends on the suite of all factors like ideal observation rate, surface visibility, and surveyor skill.
 
 #### `Radial`
 

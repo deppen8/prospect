@@ -14,7 +14,7 @@
 #
 # import os
 # import sys
-# sys.path.insert(0, '/Users/jacobdeppen/Dropbox/Dissertation/code/surveysim/surveysim')
+# sys.path.insert(0, '/Users/jacobdeppen/Dropbox/Dissertation/code/prospect/prospect')
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'surveysim'
+project = 'prospect'
 copyright = '2019, Jacob Deppen'
 author = 'Jacob Deppen'
 
@@ -107,7 +107,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'surveysimdoc'
+htmlhelp_basename = 'prospectdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -134,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'surveysim.tex', 'surveysim Documentation',
+    (master_doc, 'prospect.tex', 'prospect Documentation',
      'Author', 'manual'),
 ]
 
@@ -144,7 +144,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'surveysim', 'surveysim Documentation',
+    (master_doc, 'prospect', 'prospect Documentation',
      [author], 1)
 ]
 
@@ -155,8 +155,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'surveysim', 'surveysim Documentation',
-     author, 'surveysim', 'One line description of project.',
+    (master_doc, 'prospect', 'prospect Documentation',
+     author, 'prospect', 'One line description of project.',
      'Miscellaneous'),
 ]
 

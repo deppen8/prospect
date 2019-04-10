@@ -1,4 +1,4 @@
-name: surveysim
+name: prospect
 channels:
   - conda-forge
   - nodefaults

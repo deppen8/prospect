@@ -1,9 +1,9 @@
 
-import surveysim
+import prospect
 
 
 def test_returns_Team(a_team):
-    assert isinstance(a_team, surveysim.Team)
+    assert isinstance(a_team, prospect.Team)
 
 
 def test_has_desired_attributes(a_team):

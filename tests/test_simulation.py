@@ -1,10 +1,10 @@
 
 # import pytest
-import surveysim
+import prospect
 
 
 def test_returns_SimSession(a_simulation):
-    assert isinstance(a_simulation, surveysim.SimSession)
+    assert isinstance(a_simulation, prospect.SimSession)
 
 
 def test_has_desired_attributes(a_simulation):

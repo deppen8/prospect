@@ -1,5 +1,5 @@
 
-import surveysim
+import prospect
 
 import pytest
 
@@ -25,7 +25,7 @@ def a_simulation(tmp_db_path):
     """Create SimSession session on the temporary path.
     """
 
-    return surveysim.SimSession(engine_str=f'sqlite:///{tmp_db_path}/test_session.db')
+    return prospect.SimSession(engine_str=f'sqlite:///{tmp_db_path}/test_session.db')
 
 
 # `Survey` FIXTURES
@@ -33,7 +33,7 @@ def a_simulation(tmp_db_path):
 
 @pytest.fixture(scope='module')
 def a_survey():
-    return surveysim.Survey(name='test_survey')
+    return prospect.Survey(name='test_survey')
 
 
 # `Area` FIXTURES
@@ -50,7 +50,7 @@ POLYGONS = [
 
 @pytest.fixture(params=POLYGONS, scope='module')
 def an_area(request):
-    return surveysim.Area(name=f'test_area', survey_name='test_survey',
+    return prospect.Area(name=f'test_area', survey_name='test_survey',
                           shape=request.param, vis=1.0)
 
 
@@ -66,7 +66,7 @@ FEATURE_SHAPES = [
 
 @pytest.fixture(params=FEATURE_SHAPES, scope='module')
 def a_feature(request):
-    return surveysim.Feature(name='test_feature', layer_name='test_layer', shape=request.param, time_penalty=0.0, ideal_obs_rate=1.0)
+    return prospect.Feature(name='test_feature', layer_name='test_layer', shape=request.param, time_penalty=0.0, ideal_obs_rate=1.0)
 
 
 # `Layer` FIXTURES
@@ -74,7 +74,7 @@ def a_feature(request):
 
 @pytest.fixture(scope='module')
 def a_layer(an_area, a_feature):
-    return surveysim.Layer(name='test_layer', area=an_area, assemblage_name='test_parent_assemblage', feature_list=[a_feature], time_penalty=0.0, ideal_obs_rate=0.0)
+    return prospect.Layer(name='test_layer', area=an_area, assemblage_name='test_parent_assemblage', feature_list=[a_feature], time_penalty=0.0, ideal_obs_rate=0.0)
 
 
 # `Assemblage` FIXTURES
@@ -82,7 +82,7 @@ def a_layer(an_area, a_feature):
 
 @pytest.fixture(scope='module')
 def an_assemblage(a_survey, an_area, a_layer):
-    return surveysim.Assemblage(name='test_assemblage', survey_name=a_survey.name, area_name=an_area.name, layer_list=[a_layer])
+    return prospect.Assemblage(name='test_assemblage', survey_name=a_survey.name, area_name=an_area.name, layer_list=[a_layer])
 
 
 # `SurveyUnit` FIXTURES
@@ -90,7 +90,7 @@ def an_assemblage(a_survey, an_area, a_layer):
 
 @pytest.fixture(params=POLYGONS, scope='module')
 def a_surveyunit(request):
-    return surveysim.SurveyUnit(name='test_surveyunit', coverage_name='test_coverage', shape=request.param, surveyunit_type='radial', length=None, radius=10.0, min_time_per_unit=0.0)
+    return prospect.SurveyUnit(name='test_surveyunit', coverage_name='test_coverage', shape=request.param, surveyunit_type='radial', length=None, radius=10.0, min_time_per_unit=0.0)
 
 
 # `Coverage` FIXTURES
@@ -98,7 +98,7 @@ def a_surveyunit(request):
 
 @pytest.fixture(scope='module')
 def a_coverage(an_area, a_surveyunit):
-    return surveysim.Coverage(name='test_coverage', area=an_area, survey_name='test_survey', surveyunit_list=[a_surveyunit], orientation=0.0, spacing=10.0, sweep_width=None, radius=None)
+    return prospect.Coverage(name='test_coverage', area=an_area, survey_name='test_survey', surveyunit_list=[a_surveyunit], orientation=0.0, spacing=10.0, sweep_width=None, radius=None)
 
 
 # `Surveyor` FIXTURES
@@ -106,7 +106,7 @@ def a_coverage(an_area, a_surveyunit):
 
 @pytest.fixture(scope='module')
 def a_surveyor():
-    return surveysim.Surveyor(name='test_surveyor', team_name='test_team', surveyor_type='test_type', skill=1.0, speed_penalty=0.0)
+    return prospect.Surveyor(name='test_surveyor', team_name='test_team', surveyor_type='test_type', skill=1.0, speed_penalty=0.0)
 
 
 # `Team` FIXTURES
@@ -114,7 +114,7 @@ def a_surveyor():
 
 @pytest.fixture(scope='module')
 def a_team(a_surveyor):
-    return surveysim.Team(name='test_team', survey_name='test_survey', surveyor_list=[a_surveyor])
+    return prospect.Team(name='test_team', survey_name='test_survey', surveyor_list=[a_surveyor])
 
 
 # `utils` FIXTUREs
@@ -166,7 +166,7 @@ def a_line_string_gdf_for_clip():
 
     # @pytest.fixture(params=LEIAP_AREA_PATHS, ids=LEIAP_AREA_PATHS, scope='session')
     # def an_area_from_shapefile(request):
-    #     area = surveysim.Area.from_shapefile(name='test_area_from_shapefile', path=Path(
+    #     area = prospect.Area.from_shapefile(name='test_area_from_shapefile', path=Path(
     #         f'tests/test_datasets/shapefiles/areas/{request.param}'))
     #     return area
 
@@ -192,9 +192,9 @@ def a_line_string_gdf_for_clip():
 
     # @pytest.fixture(params=area_layer_tuples, scope='session')
     # def a_layer_from_shapefile(request):
-    #     area = surveysim.Area.from_shapefile(name='test_area4layer', path=Path(
+    #     area = prospect.Area.from_shapefile(name='test_area4layer', path=Path(
     #         f'tests/test_datasets/shapefiles/areas/{request.param[0]}'))
-    #     layer = surveysim.Layer.from_shapefile(path=Path(
+    #     layer = prospect.Layer.from_shapefile(path=Path(
     #         f'tests/test_datasets/shapefiles/layers/{request.param[1]}'), area=area, name='test_layer', feature_type=None)
     #     return layer
 
@@ -202,9 +202,9 @@ def a_line_string_gdf_for_clip():
     # def a_layer_list(request):
     #     layer_list = []
     #     for a, l in request.param:
-    #         area = surveysim.Area.from_shapefile(name='test_area4layer', path=Path(
+    #         area = prospect.Area.from_shapefile(name='test_area4layer', path=Path(
     #             f'tests/test_datasets/shapefiles/areas/{a}'))
-    #         layer = surveysim.Layer.from_shapefile(path=Path(
+    #         layer = prospect.Layer.from_shapefile(path=Path(
     #             f'tests/test_datasets/shapefiles/layers/{l}'), area=area, name='test_layer', feature_type=None)
     #         layer_list.append(layer)
     #     return layer_list
@@ -213,4 +213,4 @@ def a_line_string_gdf_for_clip():
 
     # @pytest.fixture(scope='session')
     # def an_assemblage(a_layer_list):
-    #     return surveysim.Assemblage(name='test_assemblage', layers=a_layer_list)
+    #     return prospect.Assemblage(name='test_assemblage', layers=a_layer_list)

@@ -1,7 +1,7 @@
 
 import pytest
 
-import surveysim
+import prospect
 
 from geopandas import GeoDataFrame
 from shapely.geometry import LineString, MultiLineString, MultiPolygon
@@ -9,7 +9,7 @@ from shapely.geometry import LineString, MultiLineString, MultiPolygon
 
 @pytest.fixture(scope='module')
 def a_clipped_points_gdf(a_points_gdf_for_clip, a_polygon_gdf_for_clip):
-    return surveysim.utils.clip_points(
+    return prospect.utils.clip_points(
         points=a_points_gdf_for_clip, by=a_polygon_gdf_for_clip)
 
 
@@ -25,7 +25,7 @@ def test_clip_points_returns_expected_points(a_clipped_points_gdf):
 
 @pytest.fixture(scope='module')
 def a_clipped_lines_gdf(a_line_string_gdf_for_clip, a_polygon_gdf_for_clip):
-    return surveysim.utils.clip_lines_polys(
+    return prospect.utils.clip_lines_polys(
         lines_polys=a_line_string_gdf_for_clip, by=a_polygon_gdf_for_clip)
 
 
@@ -44,7 +44,7 @@ def test_clip_lines_polys_returns_correct_lines(a_clipped_lines_gdf):
 
 @pytest.fixture(scope='module')
 def a_clipped_poly_gdf(a_polygon_gdf_for_clip, a_shifted_polygon_gdf_for_clip):
-    return surveysim.utils.clip_lines_polys(lines_polys=a_polygon_gdf_for_clip, by=a_shifted_polygon_gdf_for_clip)
+    return prospect.utils.clip_lines_polys(lines_polys=a_polygon_gdf_for_clip, by=a_shifted_polygon_gdf_for_clip)
 
 
 def test_clip_polys_returns_GeoDataFrame(a_clipped_poly_gdf):

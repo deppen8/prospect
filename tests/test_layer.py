@@ -1,9 +1,9 @@
 
-import surveysim
+import prospect
 
 
 def test_returns_Layer(a_layer):
-    assert isinstance(a_layer, surveysim.Layer)
+    assert isinstance(a_layer, prospect.Layer)
 
 
 def test_has_desired_attributes(a_layer):
