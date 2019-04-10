@@ -18,7 +18,8 @@ import pandas as pd
 class Coverage(Base):
     """A collection of `SurveyUnit` objects
 
-    The `Coverage` class is mostly useful as a way to create groups of similar survey units.
+    The `Coverage` class is mostly useful as a way to create groups of similar
+    survey units.
 
     Parameters
     ----------
@@ -35,9 +36,11 @@ class Coverage(Base):
     spacing : float
         Distance between survey units
     sweep_width : float, optional
-        Buffer distance around transects (the default is None, which is only updated if the survey units are transects)
+        Buffer distance around transects (the default is None, which is only
+        updated if the survey units are transects)
     radius : float, optional
-        Buffer distance for radial survey units (the default is None, which is only update if the survey units are radial)
+        Buffer distance for radial survey units (the default is None, which is
+        only update if the survey units are radial)
 
     Attributes
     ----------
@@ -107,11 +110,13 @@ class Coverage(Base):
             geometry="shape",
         )
 
-        # TODO: this needs to be calculated when the simulation is run to allow for a distribution to be used for min_time_per_unit
+        # TODO: this needs to be calculated when the simulation is run to
+        # allow for a distribution to be used for min_time_per_unit
 
         # extra_cols: List
         # if all(self.df['surveyunit_type'] == 'transect'):
-        #     self.df['search_time_base'] = self.min_time_per_unit * self.df['length']
+        #     self.df['search_time_base'] = self.min_time_per_unit * self.d
+        # ['length']
         # elif all(self.df['surveyunit_type'] == 'radial'):
         #     self.df['search_time_base'] = self.min_time_per_unit
 
@@ -144,13 +149,20 @@ class Coverage(Base):
         spacing : float
             Distance between survey units
         orient_axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+            Axis of the area along which to orient the survey units (the
+            default is 'long', which creates rows parallel to the longest axis
+            of the area's minimum rotated rectangle)
         min_time_per_unit : Union[float, rv_frozen], optional
-            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+            Minimum amount of time required to complete one "unit" of survey,
+            given no surveyor speed penalty and no time penalty for recording
+            features. The default is 0.0.
 
-            Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).
+            Because transects can differ in length, transect coverages should
+            specify this term as time per one unit of distance (e.g., seconds
+            per meter).
 
-            For radial survey units, this term should be specified more simply as time per one survey unit.
+            For radial survey units, this term should be specified more simply
+            as time per one survey unit.
 
         Returns
         -------
@@ -215,13 +227,20 @@ class Coverage(Base):
         spacing : float
             Distance between survey units
         orient_axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+            Axis of the area along which to orient the survey units (the
+            default is 'long', which creates rows parallel to the longest axis
+            of the area's minimum rotated rectangle)
         min_time_per_unit : Union[float, rv_frozen], optional
-            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+            Minimum amount of time required to complete one "unit" of survey,
+            given no surveyor speed penalty and no time penalty for recording
+            features. The default is 0.0.
 
-            Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).
+            Because transects can differ in length, transect coverages should
+            specify this term as time per one unit of distance (e.g., seconds
+            per meter).
 
-            For radial survey units, this term should be specified more simply as time per one survey unit.
+            For radial survey units, this term should be specified more simply
+            as time per one survey unit.
 
         Returns
         -------
@@ -286,17 +305,29 @@ class Coverage(Base):
         sweep_width : float, optional
             Buffer distance around transects (the default is 2.0)
         orientation : float, optional
-            Angle of the predominant axis of the survey units (the default is 0.0)
+            Angle of the predominant axis of the survey units (the default is
+            0.0)
         optimize_orient_by : {'area_coverage', 'area_orient'}, optional
-            Metric to optimize in determining the orientation of survey units. 'area_coverage' chooses the orientation that maximizes the area covered by the survey units. 'area_orient' chooses the orientation that best parallels the `orient_axis` of the area. The default is None, in which case the `orientation` parameter is used directly.
+            Metric to optimize in determining the orientation of survey units.
+            'area_coverage' chooses the orientation that maximizes the area
+            covered by the survey units. 'area_orient' chooses the orientation
+            that best parallels the `orient_axis` of the area. The default is
+            None, in which case the `orientation` parameter is used directly.
         orient_increment : float, optional
-            Step size (in degrees) to use when testing different orientations. (the default is 5.0)
+            Step size (in degrees) to use when testing different orientations.
+            (the default is 5.0)
         orient_axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+            Axis of the area along which to orient the survey units (the
+            default is 'long', which creates rows parallel to the longest axis
+            of the area's minimum rotated rectangle)
         min_time_per_unit : Union[float, rv_frozen]
-            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+            Minimum amount of time required to complete one "unit" of survey,
+            given no surveyor speed penalty and no time penalty for recording
+            features. The default is 0.0.
 
-            Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).
+            Because transects can differ in length, transect coverages should
+            specify this term as time per one unit of distance (e.g., seconds
+            per meter).
 
         Returns
         -------
@@ -314,7 +345,8 @@ class Coverage(Base):
             spacing=spacing,
         )
 
-        if optimize_orient_by == "area_coverage":  # set orientation to maximize area
+        # set orientation to maximize area
+        if optimize_orient_by == "area_coverage":
             orientation = cls._optimize_orientation_by_area_coverage(
                 lines_gs,
                 centroid,
@@ -328,11 +360,14 @@ class Coverage(Base):
             )
 
         lines_gs = lines_gs.rotate(orientation, origin=centroid)  # rotate
-        lines_gdf = gpd.GeoDataFrame({"geometry": lines_gs}, geometry="geometry")
+        lines_gdf = gpd.GeoDataFrame({"geometry": lines_gs},
+                                     geometry="geometry")
 
-        lines_clipped = clip_lines_polys(lines_gdf, tmp_area.df)  # clip lines by area
+        # clip lines by area
+        lines_clipped = clip_lines_polys(lines_gdf, tmp_area.df)  
 
-        transects_buffer = lines_clipped.buffer(sweep_width)  # buffer transects
+        # buffer transects
+        transects_buffer = lines_clipped.buffer(sweep_width)  
         buffer_gdf = gpd.GeoDataFrame(
             {
                 "orientation": [orientation] * transects_buffer.shape[0],
@@ -400,19 +435,31 @@ class Coverage(Base):
         spacing : float, optional
             Distance between survey units (the default is 10.0)
         radius : float, optional
-            Buffer distance for radial survey units (the default is 1.78, which leads to radial units of roughly 10 square units of area)
+            Buffer distance for radial survey units (the default is 1.78,
+            which leads to radial units of roughly 10 square units of area)
         orientation : float, optional
-            Angle of the predominant axis of the survey units (the default is 0.0)
+            Angle of the predominant axis of the survey units (the default is
+            0.0)
         optimize_orient_by : {'area_coverage', 'area_orient'}, optional
-            Metric to optimize in determining the orientation of survey units. 'area_coverage' chooses the orientation that maximizes the area covered by the survey units. 'area_orient' chooses the orientation that best parallels the `orient_axis` of the area. The default is None, in which case the `orientation` parameter is used directly.
+            Metric to optimize in determining the orientation of survey units.
+            'area_coverage' chooses the orientation that maximizes the area
+            covered by the survey units. 'area_orient' chooses the orientation
+            that best parallels the `orient_axis` of the area. The default is
+            None, in which case the `orientation` parameter is used directly.
         orient_increment : float, optional
-            Step size (in degrees) to use when testing different orientations. (the default is 5.0)
+            Step size (in degrees) to use when testing different orientations.
+            (the default is 5.0)
         orient_axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+            Axis of the area along which to orient the survey units (the
+            default is 'long', which creates rows parallel to the longest axis
+            of the area's minimum rotated rectangle)
         min_time_per_unit : Union[float, rv_frozen]
-            Minimum amount of time required to complete one "unit" of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.
+            Minimum amount of time required to complete one "unit" of survey,
+            given no surveyor speed penalty and no time penalty for recording
+            features. The default is 0.0.
 
-            For radial survey units, this term should be specified more simply as time per one survey unit.
+            For radial survey units, this term should be specified more simply
+            as time per one survey unit.
 
         Returns
         -------
@@ -425,10 +472,12 @@ class Coverage(Base):
         centroid = min_rot_rect.centroid
 
         points_gs = cls._make_unit_bases(
-            surveyunit_type="radial", area=tmp_area, centroid=centroid, spacing=spacing
+            surveyunit_type="radial", area=tmp_area, centroid=centroid,
+            spacing=spacing
         )
 
-        if optimize_orient_by == "area_coverage":  # set orientation to maximize area
+        # set orientation to maximize area
+        if optimize_orient_by == "area_coverage":
             orientation = cls._optimize_orientation_by_area_coverage(
                 points_gs,
                 centroid,
@@ -442,7 +491,8 @@ class Coverage(Base):
             )
 
         points_gs = points_gs.rotate(orientation, origin=centroid)  # rotate
-        points_gdf = gpd.GeoDataFrame({"geometry": points_gs}, geometry="geometry")
+        points_gdf = gpd.GeoDataFrame({"geometry": points_gs},
+                                      geometry="geometry")
 
         points_clipped = clip_lines_polys(
             points_gdf, tmp_area.df
@@ -488,9 +538,11 @@ class Coverage(Base):
 
     @staticmethod
     def _make_unit_bases(
-        surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0
+        surveyunit_type: str, area: Area, centroid: Point, 
+        spacing: float = 10.0
     ) -> gpd.GeoSeries:
-        """Create the Point and LineString objects that will be buffered to make survey units.
+        """Create the Point and LineString objects that will be buffered to
+        make survey units.
 
         Parameters
         ----------
@@ -524,7 +576,8 @@ class Coverage(Base):
             n_transects = 3
 
         # calculate x values
-        xs = Coverage._coord_vals_from_centroid_val(centroid.x, n_transects, spacing)
+        xs = Coverage._coord_vals_from_centroid_val(centroid.x, n_transects,
+                                                    spacing)
 
         # calculate y values
         if surveyunit_type == "transect":
@@ -561,7 +614,8 @@ class Coverage(Base):
         Parameters
         ----------
         centroid_val : float
-            Either the x or y dimension of an area's minimum rotated rectangle's centroid
+            Either the x or y dimension of an area's minimum rotated
+            rectangle's centroid
         n_transects : int
             Number of rows to allocate across the space.
         spacing : float, optional
@@ -576,15 +630,18 @@ class Coverage(Base):
         if n_transects % 2 == 0:  # even num units
             lower_start = centroid_val - spacing / 2
             upper_start = centroid_val + spacing / 2
-            lower_vals = lower_start - (np.arange(0, n_transects / 2) * spacing)
-            upper_vals = upper_start + (np.arange(0, n_transects / 2) * spacing)
+            lower_vals = lower_start - (np.arange(0, n_transects / 2) *
+                                        spacing)
+            upper_vals = upper_start + (np.arange(0, n_transects / 2) *
+                                        spacing)
             vals = np.sort(np.concatenate([lower_vals, upper_vals]))
         else:  # odd num units
             start_val = centroid_val
             lower_vals = start_val - (np.arange(1, n_transects / 2) * spacing)
             upper_vals = start_val + (np.arange(1, n_transects / 2) * spacing)
             vals = np.sort(
-                np.insert(np.concatenate([lower_vals, upper_vals]), 1, start_val)
+                np.insert(np.concatenate([lower_vals, upper_vals]), 1,
+                          start_val)
             )
         return vals
 
@@ -596,20 +653,24 @@ class Coverage(Base):
         buffer: float = 0.0,
         increment: float = 5.0,
     ) -> float:
-        """Find the orientation value that allows maximum coverage of the area by survey units.
+        """Find the orientation value that allows maximum coverage of the area
+        by survey units.
 
         Parameters
         ----------
         survey_units : geopandas GeoSeries
-            A `GeoSeries` of survey units that is at least as large as the containing area.
+            A `GeoSeries` of survey units that is at least as large as the
+            containing area.
         rotation_pt : Point
             Point around which to pivot the survey unit axis
         area : Area
             Containing area
         buffer : float, optional
-            Buffer around survey unit used to determine the area value (the default is 0.0)
+            Buffer around survey unit used to determine the area value (the
+            default is 0.0)
         increment : float, optional
-            Step size (in degrees) to use when testing different orientations. (the default is 5.0)
+            Step size (in degrees) to use when testing different orientations.
+            (the default is 5.0)
 
         Returns
         -------
@@ -618,7 +679,8 @@ class Coverage(Base):
 
         deg_val: Dict[int, float] = {}
         for deg in np.arange(0, 180, increment):
-            survey_units_gs = survey_units.rotate(deg, origin=rotation_pt)  # rotate
+            # rotate
+            survey_units_gs = survey_units.rotate(deg, origin=rotation_pt)
             survey_units_gdf = gpd.GeoDataFrame(
                 {"geometry": survey_units_gs}, geometry="geometry"
             )
@@ -643,7 +705,9 @@ class Coverage(Base):
         min_rect : Polygon
             Minimum rotated rectangle of the area
         axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the default is 'long', which creates rows parallel to the longest axis of the area's minimum rotated rectangle)
+            Axis of the area along which to orient the survey units (the
+            default is 'long', which creates rows parallel to the longest axis
+            of the area's minimum rotated rectangle)
 
         Returns
         -------
@@ -700,6 +764,7 @@ class Coverage(Base):
     ):
         from .utils import make_truncnorm_distribution
 
-        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower, upper)
+        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower,
+                                                             upper)
         self.df["min_time_per_unit"] = self.min_time_per_unit
 

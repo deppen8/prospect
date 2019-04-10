@@ -79,7 +79,9 @@ class Area(Base):
         )
 
     def __repr__(self):
-        return f"Area(name={repr(self.name)}, survey_name={repr(self.survey_name)}, shape={repr(self.shape)}, vis={repr(self.vis)})"
+        return f"Area(name={repr(self.name)}, survey_name= \
+        {repr(self.survey_name)}, shape={repr(self.shape)}, \
+        vis={repr(self.vis)})"
 
     def __str__(self):
         return f"Area object '{self.name}'"

@@ -51,7 +51,8 @@ class Assemblage(Base):
     # features = relationship("Feature", back_populates='assemblage')
 
     def __init__(
-        self, name: str, survey_name: str, area_name: str, layer_list: List[Layer]
+        self, name: str, survey_name: str, area_name: str, layer_list: List
+        [Layer]
     ):
         """Create an `Assemblage` instance
         """
@@ -59,6 +60,15 @@ class Assemblage(Base):
         self.name = name
         self.survey_name = survey_name
         self.area_name = area_name
+        self.layer_list = layer_list
         self.df: GeoDataFrame = pd.concat(
-            [layer.df for layer in layer_list]
+            [layer.df for layer in self.layer_list]
         ).reset_index(drop=True)
+
+    def __repr__(self):
+        return f"Assemblage(name={repr(self.name)}, survey_name= \
+        {repr(self.survey_name)}, area_name={repr(self.area_name)}, \
+        layer_list={repr(self.layer_list)})"
+
+    def __str__(self):
+        return f"Assemblage object '{self.name}'"
