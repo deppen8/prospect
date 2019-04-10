@@ -1,4 +1,3 @@
-
 import prospect
 
 from shapely.geometry import Point, LineString, Polygon
@@ -10,7 +9,7 @@ def test_returns_Feature(a_feature):
 
 
 def test_has_desired_attributes(a_feature):
-    for a in ['name', 'layer_name', 'shape', 'time_penalty', 'ideal_obs_rate']:
+    for a in ["name", "layer_name", "shape", "time_penalty", "ideal_obs_rate"]:
         assert hasattr(a_feature, a)
 
 

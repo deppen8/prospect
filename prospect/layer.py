@@ -1,4 +1,3 @@
-
 from .simulation import Base
 from .feature import Feature
 from .area import Area
@@ -56,22 +55,31 @@ class Layer(Base):
         `GeoDataFrame` with a row for each feature in the layer
     """
 
-    __tablename__ = 'layers'
+    __tablename__ = "layers"
 
     id = Column(Integer, primary_key=True)
-    name = Column('name', String(50), unique=True)
-    area_name = Column('area_name', String(50), ForeignKey('areas.name'))
-    assemblage_name = Column('assemblage_name', String(
-        50), ForeignKey('assemblages.name'))
-    feature_list = Column('feature_list', PickleType)
-    df = Column('df', PickleType)
+    name = Column("name", String(50), unique=True)
+    area_name = Column("area_name", String(50), ForeignKey("areas.name"))
+    assemblage_name = Column(
+        "assemblage_name", String(50), ForeignKey("assemblages.name")
+    )
+    feature_list = Column("feature_list", PickleType)
+    df = Column("df", PickleType)
 
     # relationships
-    area = relationship("Area", back_populates='layers')
-    assemblage = relationship("Assemblage", back_populates='layers')
-    features = relationship("Feature", back_populates='layer')
+    area = relationship("Area", back_populates="layers")
+    assemblage = relationship("Assemblage", back_populates="layers")
+    features = relationship("Feature", back_populates="layer")
 
-    def __init__(self, name: str, area: Area, assemblage_name: str, feature_list: List[Feature], time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
+    def __init__(
+        self,
+        name: str,
+        area: Area,
+        assemblage_name: str,
+        feature_list: List[Feature],
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ):
         """Create a `Layer` instance.
         """
 
@@ -80,20 +88,37 @@ class Layer(Base):
         self.assemblage_name = assemblage_name
         self.feature_list = feature_list
 
-        self.df = gpd.GeoDataFrame([feature.to_dict()
-                                    for feature in self.feature_list], geometry='shape')
+        self.df = gpd.GeoDataFrame(
+            [feature.to_dict() for feature in self.feature_list], geometry="shape"
+        )
 
         # clip by area
-        if all(self.df.geom_type == 'Point'):
+        if all(self.df.geom_type == "Point"):
             # TODO: Test this in Jupyter Notebook
             tmp_area = area
             self.df = clip_points(self.df, tmp_area.df)
             shape_list = self.df.geometry.tolist()
-            self.feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
-                                         time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
+            self.feature_list = [
+                Feature(
+                    name=f"{name}_{i}",
+                    layer_name=name,
+                    shape=shape_list[i],
+                    time_penalty=time_penalty,
+                    ideal_obs_rate=ideal_obs_rate,
+                )
+                for i in range(len(shape_list))
+            ]
 
     @classmethod
-    def from_shapefile(cls, path: str, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_shapefile(
+        cls,
+        path: str,
+        name: str,
+        area: Area,
+        assemblage_name: str,
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ) -> "Layer":
         """Create a `Layer` instance from a shapefile.
 
         Parameters
@@ -124,13 +149,36 @@ class Layer(Base):
 
         tmp_gdf = gpd.read_file(path)
         shape_list = tmp_gdf.geometry.tolist()
-        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
-                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
+        feature_list = [
+            Feature(
+                name=f"{name}_{i}",
+                layer_name=name,
+                shape=shape_list[i],
+                time_penalty=time_penalty,
+                ideal_obs_rate=ideal_obs_rate,
+            )
+            for i in range(len(shape_list))
+        ]
 
-        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(
+            name=name,
+            area=area,
+            assemblage_name=assemblage_name,
+            feature_list=feature_list,
+            time_penalty=time_penalty,
+            ideal_obs_rate=ideal_obs_rate,
+        )
 
     @classmethod
-    def from_pseudorandom_points(cls, n: int, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_pseudorandom_points(
+        cls,
+        n: int,
+        name: str,
+        area: Area,
+        assemblage_name: str,
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ) -> "Layer":
         """Create a `Layer` instance of pseudorandom points
 
         Parameters
@@ -175,13 +223,36 @@ class Layer(Base):
         ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
         points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
         shape_list = points_gds.geometry.tolist()
-        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
-                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
+        feature_list = [
+            Feature(
+                name=f"{name}_{i}",
+                layer_name=name,
+                shape=shape_list[i],
+                time_penalty=time_penalty,
+                ideal_obs_rate=ideal_obs_rate,
+            )
+            for i in range(len(shape_list))
+        ]
 
-        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(
+            name=name,
+            area=area,
+            assemblage_name=assemblage_name,
+            feature_list=feature_list,
+            time_penalty=time_penalty,
+            ideal_obs_rate=ideal_obs_rate,
+        )
 
     @classmethod
-    def from_poisson_points(cls, rate: float, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_poisson_points(
+        cls,
+        rate: float,
+        name: str,
+        area: Area,
+        assemblage_name: str,
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ) -> "Layer":
         """Create a `Layer` instance of points with a Poisson point process
 
         Parameters
@@ -225,13 +296,38 @@ class Layer(Base):
         points = cls.poisson_points(tmp_area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
-        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
-                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
+        feature_list = [
+            Feature(
+                name=f"{name}_{i}",
+                layer_name=name,
+                shape=shape_list[i],
+                time_penalty=time_penalty,
+                ideal_obs_rate=ideal_obs_rate,
+            )
+            for i in range(len(shape_list))
+        ]
 
-        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(
+            name=name,
+            area=area,
+            assemblage_name=assemblage_name,
+            feature_list=feature_list,
+            time_penalty=time_penalty,
+            ideal_obs_rate=ideal_obs_rate,
+        )
 
     @classmethod
-    def from_thomas_points(cls, parent_rate: float, child_rate: float, gauss_var: float, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_thomas_points(
+        cls,
+        parent_rate: float,
+        child_rate: float,
+        gauss_var: float,
+        name: str,
+        area: Area,
+        assemblage_name: str,
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ) -> "Layer":
         """Create a `Layer` instance with a Thomas point process.
 
         It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.
@@ -292,13 +388,38 @@ class Layer(Base):
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
-        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
-                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
+        feature_list = [
+            Feature(
+                name=f"{name}_{i}",
+                layer_name=name,
+                shape=shape_list[i],
+                time_penalty=time_penalty,
+                ideal_obs_rate=ideal_obs_rate,
+            )
+            for i in range(len(shape_list))
+        ]
 
-        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(
+            name=name,
+            area=area,
+            assemblage_name=assemblage_name,
+            feature_list=feature_list,
+            time_penalty=time_penalty,
+            ideal_obs_rate=ideal_obs_rate,
+        )
 
     @classmethod
-    def from_matern_points(cls, parent_rate: float, child_rate: float, radius: float, name: str, area: Area, assemblage_name: str, time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0) -> 'Layer':
+    def from_matern_points(
+        cls,
+        parent_rate: float,
+        child_rate: float,
+        radius: float,
+        name: str,
+        area: Area,
+        assemblage_name: str,
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ) -> "Layer":
         """Create a `Layer` instance with a Matérn point process.
 
         It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.
@@ -358,10 +479,25 @@ class Layer(Base):
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
-        feature_list = [Feature(name=f'{name}_{i}', layer_name=name, shape=shape_list[i],
-                                time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate) for i in range(len(shape_list))]
+        feature_list = [
+            Feature(
+                name=f"{name}_{i}",
+                layer_name=name,
+                shape=shape_list[i],
+                time_penalty=time_penalty,
+                ideal_obs_rate=ideal_obs_rate,
+            )
+            for i in range(len(shape_list))
+        ]
 
-        return cls(name=name, area=area, assemblage_name=assemblage_name, feature_list=feature_list, time_penalty=time_penalty, ideal_obs_rate=ideal_obs_rate)
+        return cls(
+            name=name,
+            area=area,
+            assemblage_name=assemblage_name,
+            feature_list=feature_list,
+            time_penalty=time_penalty,
+            ideal_obs_rate=ideal_obs_rate,
+        )
 
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:
@@ -418,7 +554,7 @@ class Layer(Base):
             Random point within the disk
         """
 
-        r = uniform(0, r**2.0).rvs()
+        r = uniform(0, r ** 2.0).rvs()
         theta = uniform(0, 2 * np.pi).rvs()
         xt = np.sqrt(r) * np.cos(theta)
         yt = np.sqrt(r) * np.sin(theta)
@@ -456,16 +592,19 @@ class Layer(Base):
 
         if alpha + beta == 10:
             self.ideal_obs_rate = make_beta_distribution(alpha, beta)
-            self.df['ideal_obs_rate'] = self.ideal_obs_rate
+            self.df["ideal_obs_rate"] = self.ideal_obs_rate
         else:
             # TODO: warn or error message
-            print('alpha and beta do not sum to 10')
+            print("alpha and beta do not sum to 10")
 
     def set_time_penalty_scalar(self, value):
         pass
 
-    def set_time_penalty_truncnorm_dist(self, mean: float, sd: float, lower: float, upper: float):
+    def set_time_penalty_truncnorm_dist(
+        self, mean: float, sd: float, lower: float, upper: float
+    ):
         from .utils import make_truncnorm_distribution
 
         self.time_penalty = make_truncnorm_distribution(mean, sd, lower, upper)
-        self.df['time_penalty'] = self.time_penalty
+        self.df["time_penalty"] = self.time_penalty
+

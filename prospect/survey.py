@@ -1,4 +1,3 @@
-
 from .simulation import Base
 from .area import Area
 from .assemblage import Assemblage
@@ -25,25 +24,25 @@ class Survey(Base):
         Name of the survey
     """
 
-    __tablename__ = 'surveys'
+    __tablename__ = "surveys"
 
     id = Column(Integer, primary_key=True)
-    name = Column('name', String(50), unique=True)
+    name = Column("name", String(50), unique=True)
 
     # relationships
-    area = relationship("Area", uselist=False, back_populates='survey')
-    assemblage = relationship(
-        "Assemblage", uselist=False, back_populates='survey')
-    coverage = relationship("Coverage", uselist=False, back_populates='survey')
-    team = relationship("Team", uselist=False, back_populates='survey')
+    area = relationship("Area", uselist=False, back_populates="survey")
+    assemblage = relationship("Assemblage", uselist=False, back_populates="survey")
+    coverage = relationship("Coverage", uselist=False, back_populates="survey")
+    team = relationship("Team", uselist=False, back_populates="survey")
 
-    def __init__(self,
-                 name: str,
-                 area: Area = None,
-                 assemblage: Assemblage = None,
-                 coverage: Coverage = None,
-                 team: Team = None
-                 ):
+    def __init__(
+        self,
+        name: str,
+        area: Area = None,
+        assemblage: Assemblage = None,
+        coverage: Coverage = None,
+        team: Team = None,
+    ):
         """Create `Survey` instance
         """
 
@@ -53,11 +52,7 @@ class Survey(Base):
         self.coverage = coverage
         self.team = team
 
-    def add_bb(self, bb: List[Union[Area,
-                                    Assemblage,
-                                    Coverage,
-                                    Team]
-                              ]):
+    def add_bb(self, bb: List[Union[Area, Assemblage, Coverage, Team]]):
         """Attach building blocks to survey.
 
         Parameters

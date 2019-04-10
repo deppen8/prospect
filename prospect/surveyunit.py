@@ -1,4 +1,3 @@
-
 from .simulation import Base
 
 from typing import Union, Dict
@@ -60,21 +59,29 @@ class SurveyUnit(Base):
         For radial survey units, this term should be specified more simply as time per one survey unit.
     """
 
-    __tablename__ = 'surveyunits'
+    __tablename__ = "surveyunits"
 
     id = Column(Integer, primary_key=True)
-    name = Column('name', String(50), unique=True)
-    coverage_name = Column('coverage_name', String(50),
-                           ForeignKey('coverages.name'))
-    shape = Column('shape', PickleType)
-    surveyunit_type = Column('surveyunit_type', String(50))
-    min_time_per_unit = Column('min_time_per_unit', PickleType)
-    base_time = Column('base_time', PickleType)
+    name = Column("name", String(50), unique=True)
+    coverage_name = Column("coverage_name", String(50), ForeignKey("coverages.name"))
+    shape = Column("shape", PickleType)
+    surveyunit_type = Column("surveyunit_type", String(50))
+    min_time_per_unit = Column("min_time_per_unit", PickleType)
+    base_time = Column("base_time", PickleType)
 
     # relationships
-    coverage = relationship('Coverage', back_populates='surveyunit')
+    coverage = relationship("Coverage", back_populates="surveyunit")
 
-    def __init__(self, name: str, coverage_name: str, shape: Polygon, surveyunit_type: str, length: float = None, radius: float = None, min_time_per_unit: Union[float, rv_frozen] = 0.0):
+    def __init__(
+        self,
+        name: str,
+        coverage_name: str,
+        shape: Polygon,
+        surveyunit_type: str,
+        length: float = None,
+        radius: float = None,
+        min_time_per_unit: Union[float, rv_frozen] = 0.0,
+    ):
         """[summary]
         """
 
@@ -97,12 +104,12 @@ class SurveyUnit(Base):
         """
 
         return {
-            'surveyunit_name': self.name,
-            'coverage_name': self.coverage_name,
-            'shape': self.shape,
-            'surveyunit_type': self.surveyunit_type,
-            'surveyunit_area': self.surveyunit_area,
-            'length': self.length,
-            'radius': self.radius,
-            'min_time_per_unit': self.min_time_per_unit
+            "surveyunit_name": self.name,
+            "coverage_name": self.coverage_name,
+            "shape": self.shape,
+            "surveyunit_type": self.surveyunit_type,
+            "surveyunit_area": self.surveyunit_area,
+            "length": self.length,
+            "radius": self.radius,
+            "min_time_per_unit": self.min_time_per_unit,
         }

@@ -1,4 +1,3 @@
-
 import prospect
 
 
@@ -7,4 +6,4 @@ def test_returns_Survey(a_survey):
 
 
 def test_has_name_attribute(a_survey):
-    assert hasattr(a_survey, 'name')
+    assert hasattr(a_survey, "name")

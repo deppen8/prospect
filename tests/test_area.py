@@ -1,4 +1,3 @@
-
 import prospect
 
 from shapely.geometry import Polygon
@@ -11,7 +10,7 @@ def test_returns_Area(an_area):
 
 
 def test_has_desired_attributes(an_area):
-    for a in ['name', 'survey_name', 'shape', 'vis', 'df']:
+    for a in ["name", "survey_name", "shape", "vis", "df"]:
         assert hasattr(an_area, a)
 
 

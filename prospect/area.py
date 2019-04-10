@@ -1,4 +1,3 @@
-
 from .simulation import Base
 
 from typing import Union, Tuple
@@ -39,22 +38,28 @@ class Area(Base):
         GeoDataFrame with one row that summarizes the area's attributes
     """
 
-    __tablename__ = 'areas'
+    __tablename__ = "areas"
 
     id = Column(Integer, primary_key=True)
-    name = Column('name', String(50), unique=True)
-    survey_name = Column('survey_name', String(50), ForeignKey('surveys.id'))
-    shape = Column('shape', PickleType)
-    vis = Column('vis', PickleType)
-    df = Column('df', PickleType)
+    name = Column("name", String(50), unique=True)
+    survey_name = Column("survey_name", String(50), ForeignKey("surveys.id"))
+    shape = Column("shape", PickleType)
+    vis = Column("vis", PickleType)
+    df = Column("df", PickleType)
 
     # relationships
-    survey = relationship("Survey", back_populates='area')
-    assemblages = relationship("Assemblage", back_populates='area')
-    layers = relationship("Layer", back_populates='area')
-    coverage = relationship("Coverage", back_populates='area')
+    survey = relationship("Survey", back_populates="area")
+    assemblages = relationship("Assemblage", back_populates="area")
+    layers = relationship("Layer", back_populates="area")
+    coverage = relationship("Coverage", back_populates="area")
 
-    def __init__(self, name: str, survey_name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0):
+    def __init__(
+        self,
+        name: str,
+        survey_name: str,
+        shape: Polygon,
+        vis: Union[float, rv_frozen] = 1.0,
+    ):
         """Create an `Area` instance
         """
 
@@ -63,7 +68,14 @@ class Area(Base):
         self.shape = shape
         self.vis = vis
         self.df = gpd.GeoDataFrame(
-            {'name': [self.name], 'survey_name': [self.survey_name], 'shape': self.shape, 'vis': [self.vis]}, geometry='shape')
+            {
+                "name": [self.name],
+                "survey_name": [self.survey_name],
+                "shape": self.shape,
+                "vis": [self.vis],
+            },
+            geometry="shape",
+        )
 
     def __repr__(self):
         return f"Area(name={repr(self.name)}, survey_name={repr(self.survey_name)}, shape={repr(self.shape)}, vis={repr(self.vis)})"
@@ -72,7 +84,9 @@ class Area(Base):
         return f"Area object '{self.name}'"
 
     @classmethod
-    def from_shapefile(cls, name: str, survey_name: str, path: str, vis: Union[float, rv_frozen] = 1.0) -> 'Area':
+    def from_shapefile(
+        cls, name: str, survey_name: str, path: str, vis: Union[float, rv_frozen] = 1.0
+    ) -> "Area":
         """Create an `Area` object from a shapefile
 
         Parameters
@@ -93,10 +107,19 @@ class Area(Base):
 
         # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
-        return cls(name=name, survey_name=survey_name, shape=tmp_gdf.geometry.iloc[0], vis=vis)
+        return cls(
+            name=name, survey_name=survey_name, shape=tmp_gdf.geometry.iloc[0], vis=vis
+        )
 
     @classmethod
-    def from_area_value(cls, name: str, survey_name: str, value: float, origin: Tuple[float, float] = (0.0, 0.0), vis: Union[float, rv_frozen] = 1.0) -> 'Area':
+    def from_area_value(
+        cls,
+        name: str,
+        survey_name: str,
+        value: float,
+        origin: Tuple[float, float] = (0.0, 0.0),
+        vis: Union[float, rv_frozen] = 1.0,
+    ) -> "Area":
         """Create a square `Area` object by specifying its area
 
         Parameters
@@ -118,9 +141,9 @@ class Area(Base):
         """
 
         from math import sqrt
+
         side = sqrt(value)
-        square_area = box(origin[0], origin[1],
-                          origin[0] + side, origin[1] + side)
+        square_area = box(origin[0], origin[1], origin[0] + side, origin[1] + side)
         return cls(name=name, survey_name=survey_name, shape=square_area, vis=vis)
 
     def set_vis_beta_dist(self, alpha: int, beta: int):
@@ -136,10 +159,10 @@ class Area(Base):
 
         if alpha + beta == 10:
             self.vis = make_beta_distribution(alpha, beta)
-            self.df['vis'] = self.vis
+            self.df["vis"] = self.vis
         else:
             # TODO: warn or error message
-            print('alpha and beta do not sum to 10')
+            print("alpha and beta do not sum to 10")
 
     def set_vis_raster(self, raster):
         """placeholder for future raster support

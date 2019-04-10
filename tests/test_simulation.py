@@ -1,4 +1,3 @@
-
 # import pytest
 import prospect
 
@@ -8,5 +7,5 @@ def test_returns_SimSession(a_simulation):
 
 
 def test_has_desired_attributes(a_simulation):
-    for a in ['engine', 'session']:
+    for a in ["engine", "session"]:
         assert hasattr(a_simulation, a)

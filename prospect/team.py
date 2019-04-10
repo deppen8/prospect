@@ -1,4 +1,3 @@
-
 from .simulation import Base
 from .surveyor import Surveyor
 
@@ -46,18 +45,24 @@ class Team(Base):
         `DataFrame` with a row for each surveyor
     """
 
-    __tablename__ = 'teams'
+    __tablename__ = "teams"
 
     id = Column(Integer, primary_key=True)
-    name = Column('name', String(50), unique=True)
-    survey_name = Column('survey_name', String(50), ForeignKey('surveys.name'))
-    surveyor_list = Column('surveyor_list', PickleType)
+    name = Column("name", String(50), unique=True)
+    survey_name = Column("survey_name", String(50), ForeignKey("surveys.name"))
+    surveyor_list = Column("surveyor_list", PickleType)
 
     # relationships
-    survey = relationship("Survey", back_populates='team')
-    surveyors = relationship("Surveyor", back_populates='team')
+    survey = relationship("Survey", back_populates="team")
+    surveyors = relationship("Surveyor", back_populates="team")
 
-    def __init__(self, name: str, survey_name: str, surveyor_list: List[Surveyor], assignment: str = 'naive'):
+    def __init__(
+        self,
+        name: str,
+        survey_name: str,
+        surveyor_list: List[Surveyor],
+        assignment: str = "naive",
+    ):
         """Create a `Team` instance.
         """
 
@@ -66,5 +71,4 @@ class Team(Base):
         self.surveyor_list = surveyor_list
         self.assignment = assignment  # TODO
 
-        self.df = pd.DataFrame([surveyor.to_dict()
-                                for surveyor in self.surveyor_list])
+        self.df = pd.DataFrame([surveyor.to_dict() for surveyor in self.surveyor_list])

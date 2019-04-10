@@ -1,4 +1,3 @@
-
 from .simulation import Base
 
 from typing import Union, Dict
@@ -52,22 +51,29 @@ class Feature(Base):
         - The surveyor is highly skilled
     """
 
-    __tablename__ = 'features'
+    __tablename__ = "features"
 
     id = Column(Integer, primary_key=True)
-    name = Column('name', String(50), unique=True)
+    name = Column("name", String(50), unique=True)
     # assemblage_name = Column('assemblage_name', String(
     #     50), ForeignKey('assemblages.name'))
-    layer_name = Column('layer_name', String(50), ForeignKey('layers.name'))
-    shape = Column('shape', PickleType)
-    time_penalty = Column('time_penalty', PickleType)
-    ideal_obs_rate = Column('ideal_obs_rate', PickleType)
+    layer_name = Column("layer_name", String(50), ForeignKey("layers.name"))
+    shape = Column("shape", PickleType)
+    time_penalty = Column("time_penalty", PickleType)
+    ideal_obs_rate = Column("ideal_obs_rate", PickleType)
 
     # relationships
     # assemblage = relationship('Assemblage', back_populates='features')
-    layer = relationship('Layer', back_populates='features')
+    layer = relationship("Layer", back_populates="features")
 
-    def __init__(self, name: str, layer_name: str, shape: Union[Point, LineString, Polygon], time_penalty: Union[float, rv_frozen] = 0.0, ideal_obs_rate: Union[float, rv_frozen] = 1.0):
+    def __init__(
+        self,
+        name: str,
+        layer_name: str,
+        shape: Union[Point, LineString, Polygon],
+        time_penalty: Union[float, rv_frozen] = 0.0,
+        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+    ):
         """Create a `Feature` instance.
         """
 
@@ -87,9 +93,9 @@ class Feature(Base):
         """
 
         return {
-            'feature_name': self.name,
-            'layer_name': self.layer_name,
-            'shape': self.shape,
-            'time_penalty': self.time_penalty,
-            'ideal_obs_rate': self.ideal_obs_rate
+            "feature_name": self.name,
+            "layer_name": self.layer_name,
+            "shape": self.shape,
+            "time_penalty": self.time_penalty,
+            "ideal_obs_rate": self.ideal_obs_rate,
         }

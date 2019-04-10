@@ -1,4 +1,3 @@
-
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -6,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 Base = declarative_base()
 
 
-class SimSession():
+class SimSession:
     """Object to handle setup/teardown as well as transactions for a SQLAlchemy `Session`
 
     Parameters
