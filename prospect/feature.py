@@ -12,7 +12,9 @@ from scipy.stats._distn_infrastructure import rv_frozen
 class Feature(Base):
     """Represents an observable thing like an artifact or landscape feature.
 
-    This class is not normally used directly. It is usually more efficient to use the constructor methods of the `Layer` class to create many `Feature` objects at once.
+    This class is not normally used directly. It is usually more efficient to
+    use the constructor methods of the `Layer` class to create many `Feature`
+    objects at once.
 
     Parameters
     ----------
@@ -23,15 +25,18 @@ class Feature(Base):
     shape : Union[Point, LineString, Polygon]
         Geographic specification
     time_penalty : Union[float, rv_frozen], optional
-        Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
+        Minimum amount of time it takes to record a feature (the default is
+        0.0, which indicates no time cost for feature recording)
     ideal_obs_rate : Union[float, rv_frozen], optional
-        Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+        Ideal observation rate: the frequency with which an artifact or
+        feature will be recorded, assuming the following ideal conditions:
 
         - It lies inside or intersects the Coverage
         - Surface visibility is 100%
         - The surveyor is highly skilled
 
-        The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
+        The default is 1.0, which indicates that when visibility and surveyor
+        skill allow, the feature will always be recorded.
 
     Attributes
     ----------
@@ -44,7 +49,8 @@ class Feature(Base):
     time_penalty : Union[float, rv_frozen]
         Minimum amount of time it takes to record a feature
     ideal_obs_rate : Union[float, rv_frozen]
-        Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
+        Ideal observation rate: the frequency with which an artifact or
+        feature will be recorded, assuming the following ideal conditions:
 
         - It lies inside or intersects the Coverage
         - Surface visibility is 100%
@@ -84,7 +90,8 @@ class Feature(Base):
         self.ideal_obs_rate = ideal_obs_rate
 
     def to_dict(self) -> Dict:
-        """Create dictionary from attributes to allow easy DataFrame creation by `Layer`.
+        """Create dictionary from attributes to allow easy DataFrame creation
+        by `Layer`.
 
         Returns
         -------
