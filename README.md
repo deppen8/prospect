@@ -4,7 +4,6 @@ SurveySim is a set of tools for simulating archaeological field surveys.
 
 ## TODO
 
-- [ ] define data types used for each building block
 - [ ] specify default values
   - [ ] track down estimates of survey speed
   - [ ] calculate time added by artifact recording in LEIA Project or elsewhere
@@ -16,13 +15,13 @@ SurveySim is a set of tools for simulating archaeological field surveys.
 
 ## Discovery parameters
 
-1. Proximity
-2. Surface visibility
+1. Surface visibility
     - beta distribution
     - If 10 artifacts were randomly placed in that area/unit, how many would be visible? Assume ideal observation rate and perfect skill
-3. Ideal observation rate
+2. Ideal observation rate
     - beta distribution
     - If 10 artifacts of that type were in a survey unit, how many would be detected? Assume perfect visibility and a surveyor with top skill level
+3. Proximity
 4. Surveyor skill
     - beta distribution
     - If this surveyor encountered 10 artifacts, how many would they recognize and record? Assume perfect visibility and ideal observation rate
@@ -32,6 +31,25 @@ SurveySim is a set of tools for simulating archaeological field surveys.
 1. Artifact/feature recording time penalty
 2. Survey unit minimum time
 3. Surveyor speed penalty
+
+## One simulation run
+
+Surface vis and ideal obs rate are already properties in the world, so those get defined first. Then, a feature has to intersect the coverage to be discoverable. Finally, the surveyor's skill is the last filter in the sequence.
+
+- Assign surface visibility value to features (TODO: what to do for visibility of non-point features?)
+- Ideal observation rate already attached to features
+- Multiply last two steps together to get an environmental probability for all features
+
+- Find all features that intersect a survey unit and set proximity probability to 1.0
+- Note which features do not intersect any survey units and set proximity probability to 0.0
+
+- Allocate surveyors according to strategy defined by `Team.assignment`
+- For features that do intersect a survey unit, get a surveyor skill value and multiply that by environmental probability for final probability.
+
+TODO for above steps
+
+- Need table of
+
 
 ## Building blocks
 
