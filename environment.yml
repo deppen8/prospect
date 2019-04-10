@@ -4,6 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - python=3.6
+  - autopep8
   - black
   - flake8
   - geopandas
