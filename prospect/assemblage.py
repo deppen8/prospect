@@ -51,8 +51,7 @@ class Assemblage(Base):
     # features = relationship("Feature", back_populates='assemblage')
 
     def __init__(
-        self, name: str, survey_name: str, area_name: str, layer_list: List
-        [Layer]
+        self, name: str, survey_name: str, area_name: str, layer_list: List[Layer]
     ):
         """Create an `Assemblage` instance
         """

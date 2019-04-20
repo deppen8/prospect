@@ -607,4 +607,3 @@ class Layer(Base):
 
         self.time_penalty = make_truncnorm_distribution(mean, sd, lower, upper)
         self.df["time_penalty"] = self.time_penalty
-

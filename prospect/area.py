@@ -88,11 +88,7 @@ class Area(Base):
 
     @classmethod
     def from_shapefile(
-        cls,
-        name: str,
-        survey_name: str,
-        path: str,
-        vis: Union[float, rv_frozen] = 1.0,
+        cls, name: str, survey_name: str, path: str, vis: Union[float, rv_frozen] = 1.0
     ) -> "Area":
         """Create an `Area` object from a shapefile
 
@@ -116,10 +112,7 @@ class Area(Base):
         # [0]==1)
         tmp_gdf = gpd.read_file(path)
         return cls(
-            name=name,
-            survey_name=survey_name,
-            shape=tmp_gdf.geometry.iloc[0],
-            vis=vis,
+            name=name, survey_name=survey_name, shape=tmp_gdf.geometry.iloc[0], vis=vis
         )
 
     @classmethod
@@ -154,12 +147,8 @@ class Area(Base):
         from math import sqrt
 
         side = sqrt(value)
-        square_area = box(
-            origin[0], origin[1], origin[0] + side, origin[1] + side
-        )
-        return cls(
-            name=name, survey_name=survey_name, shape=square_area, vis=vis
-        )
+        square_area = box(origin[0], origin[1], origin[0] + side, origin[1] + side)
+        return cls(name=name, survey_name=survey_name, shape=square_area, vis=vis)
 
     def set_vis_beta_dist(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample visibility values

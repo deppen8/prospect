@@ -107,5 +107,4 @@ def make_truncnorm_distribution(
         Fixed truncated normal distribution
     """
 
-    return truncnorm((lower - mean) / sd, (upper - mean) / sd, loc=mean,
-                     scale=sd)
+    return truncnorm((lower - mean) / sd, (upper - mean) / sd, loc=mean, scale=sd)
