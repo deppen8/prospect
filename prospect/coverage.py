@@ -110,12 +110,6 @@ class Coverage(Base):
             geometry="shape",
         )
 
-        self.df.loc[:, "search_time"] = np.where(
-            self.df.loc[:, "surveyunit_type"] == "transect",
-            self.df.loc[:, "min_time_per_unit"] * self.df.loc[:, "length"],
-            self.df.loc[:, "min_time_per_unit"]
-        )
-
         # TODO: this needs to be calculated when the simulation is run to
         # allow for a distribution to be used for min_time_per_unit
 
