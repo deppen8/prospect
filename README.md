@@ -57,7 +57,10 @@ Prospect is designed around a few simple building blocks that can be customized 
 
 ### `Simulation`
 
-A Simulation is receives all of the inputs and runs the digital survey.
+
+### `Survey`
+
+A Survey is one complete set of building blocks. For some purposes, only one Survey will need to be created, but in most cases, multiple Surveys will need to be generated. For example, if you want to randomize the locations of artifacts/features between simulations, a new Survey will need to be created for each different set of .
 
 ### `Area`
 
