@@ -5,12 +5,14 @@ from .coverage import Coverage
 from .team import Team
 
 from typing import Union, List
+from itertools import cycle
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-import numpy as np
 from scipy.stats._distn_infrastructure import rv_frozen
+import geopandas as gpd
+import numpy as np
 
 
 class Survey(Base):
@@ -91,36 +93,73 @@ class Survey(Base):
                 return item
 
         # Create inputs df of features from assemblage
-        assemblage = self.assemblage.df.copy()
+        assemblage_inputs = self.assemblage.df.copy()
 
         # Extract obs_rate values
-        assemblage.loc[:, "obs_rate"] = assemblage.loc[
+        assemblage_inputs.loc[:, "obs_rate"] = assemblage_inputs.loc[
             :, "ideal_obs_rate"
         ].apply(_get_floats_or_distr_vals)
 
         # Extract feature time_penalty values
-        assemblage.loc[:, "time_penalty_obs"] = assemblage.loc[
+        assemblage_inputs.loc[:, "time_penalty_obs"] = assemblage_inputs.loc[
             :, "time_penalty"
         ].apply(_get_floats_or_distr_vals)
 
-        # START HERE
         # Extract surface visibility values
-        # if dist, randomly select
-        # if scalar, assign
         # TODO: if raster, extract value from raster
+        assemblage_inputs.loc[:, "vis_obs"] = [
+            _get_floats_or_distr_vals(self.area.vis)
+            for i in range(assemblage_inputs.shape[0])
+        ]
+
+        # get survey units
+        coverage_inputs = self.coverage.df.copy()
+
+        # extract min_time_per_unit
+        coverage_inputs.loc[:, "min_time_per_unit_obs"] = coverage_inputs.loc[
+            :, "min_time_per_unit"
+        ].apply(_get_floats_or_distr_vals)
+
+        # calculate search_time
+        coverage_inputs.loc[:, "search_time"] = np.where(
+            coverage_inputs.loc[:, "surveyunit_type"] == "transect",
+            coverage_inputs.loc[:, "min_time_per_unit"]
+            * coverage_inputs.loc[:, "length"],
+            coverage_inputs.loc[:, "min_time_per_unit"],
+        )
+
+        # Allocate surveyors to survey units based on method
+        # Map surveyors to inputs df based on survey units
+        # def _assign_surveyors(team, coverage):
+        if self.team.assignment == "naive":
+            people = cycle(self.team.df.loc[:, "surveyor_name"])
+            coverage_inputs["surveyor_name"] = [
+                next(people) for i in range(coverage_inputs.shape[0])
+            ]
+        elif self.team.assignment == "speed":
+            # minimize total team time
+            # TODO: figure out how to optimize assignment
+            # Can calculate:
+            # - total search time,
+            # - individual surveyor's fraction of the total team time
+            pass
+        elif self.team.assignment == "random":
+            pass
 
         # Find features that intersect coverage
+        assemblage_coverage = gpd.sjoin(
+            assemblage_inputs, coverage_inputs, how="left"
+        )
+
         # record which survey unit it intersects (or NaN)
         # if intersects
         # set proximity to 1.0
-        # extract min_time_per_unit
-        # if dist, randomly select
-        # if scalar, assign
         # else
         # set proximity to 0.0
-        # set min_time_per_unit to NaN
-        # Allocate surveyors to survey units based on method
-        # Map surveyors to inputs df based on survey units
+        assemblage_coverage.loc[:, "proximity_obs"] = np.where(
+            ~assemblage_coverage.loc[:, "surveyunit_name"].isna(), 1.0, 0.0
+        )
+
         # Extract surveyor skill values
         # if surveyor name exists
         # if skill is dist, randomly select
