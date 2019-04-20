@@ -110,6 +110,12 @@ class Coverage(Base):
             geometry="shape",
         )
 
+        self.df.loc[:, "search_time"] = np.where(
+            self.df.loc[:, "surveyunit_type"] == "transect",
+            self.df.loc[:, "min_time_per_unit"] * self.df.loc[:, "length"],
+            self.df.loc[:, "min_time_per_unit"]
+        )
+
         # TODO: this needs to be calculated when the simulation is run to
         # allow for a distribution to be used for min_time_per_unit
 
@@ -360,14 +366,13 @@ class Coverage(Base):
             )
 
         lines_gs = lines_gs.rotate(orientation, origin=centroid)  # rotate
-        lines_gdf = gpd.GeoDataFrame({"geometry": lines_gs},
-                                     geometry="geometry")
+        lines_gdf = gpd.GeoDataFrame({"geometry": lines_gs}, geometry="geometry")
 
         # clip lines by area
-        lines_clipped = clip_lines_polys(lines_gdf, tmp_area.df)  
+        lines_clipped = clip_lines_polys(lines_gdf, tmp_area.df)
 
         # buffer transects
-        transects_buffer = lines_clipped.buffer(sweep_width)  
+        transects_buffer = lines_clipped.buffer(sweep_width)
         buffer_gdf = gpd.GeoDataFrame(
             {
                 "orientation": [orientation] * transects_buffer.shape[0],
@@ -472,8 +477,7 @@ class Coverage(Base):
         centroid = min_rot_rect.centroid
 
         points_gs = cls._make_unit_bases(
-            surveyunit_type="radial", area=tmp_area, centroid=centroid,
-            spacing=spacing
+            surveyunit_type="radial", area=tmp_area, centroid=centroid, spacing=spacing
         )
 
         # set orientation to maximize area
@@ -491,8 +495,7 @@ class Coverage(Base):
             )
 
         points_gs = points_gs.rotate(orientation, origin=centroid)  # rotate
-        points_gdf = gpd.GeoDataFrame({"geometry": points_gs},
-                                      geometry="geometry")
+        points_gdf = gpd.GeoDataFrame({"geometry": points_gs}, geometry="geometry")
 
         points_clipped = clip_lines_polys(
             points_gdf, tmp_area.df
@@ -538,8 +541,7 @@ class Coverage(Base):
 
     @staticmethod
     def _make_unit_bases(
-        surveyunit_type: str, area: Area, centroid: Point, 
-        spacing: float = 10.0
+        surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0
     ) -> gpd.GeoSeries:
         """Create the Point and LineString objects that will be buffered to
         make survey units.
@@ -576,8 +578,7 @@ class Coverage(Base):
             n_transects = 3
 
         # calculate x values
-        xs = Coverage._coord_vals_from_centroid_val(centroid.x, n_transects,
-                                                    spacing)
+        xs = Coverage._coord_vals_from_centroid_val(centroid.x, n_transects, spacing)
 
         # calculate y values
         if surveyunit_type == "transect":
@@ -630,18 +631,15 @@ class Coverage(Base):
         if n_transects % 2 == 0:  # even num units
             lower_start = centroid_val - spacing / 2
             upper_start = centroid_val + spacing / 2
-            lower_vals = lower_start - (np.arange(0, n_transects / 2) *
-                                        spacing)
-            upper_vals = upper_start + (np.arange(0, n_transects / 2) *
-                                        spacing)
+            lower_vals = lower_start - (np.arange(0, n_transects / 2) * spacing)
+            upper_vals = upper_start + (np.arange(0, n_transects / 2) * spacing)
             vals = np.sort(np.concatenate([lower_vals, upper_vals]))
         else:  # odd num units
             start_val = centroid_val
             lower_vals = start_val - (np.arange(1, n_transects / 2) * spacing)
             upper_vals = start_val + (np.arange(1, n_transects / 2) * spacing)
             vals = np.sort(
-                np.insert(np.concatenate([lower_vals, upper_vals]), 1,
-                          start_val)
+                np.insert(np.concatenate([lower_vals, upper_vals]), 1, start_val)
             )
         return vals
 
@@ -764,7 +762,5 @@ class Coverage(Base):
     ):
         from .utils import make_truncnorm_distribution
 
-        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower,
-                                                             upper)
+        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower, upper)
         self.df["min_time_per_unit"] = self.min_time_per_unit
-
