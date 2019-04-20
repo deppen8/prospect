@@ -6,7 +6,8 @@ Base = declarative_base()
 
 
 class SimSession:
-    """Object to handle setup/teardown as well as transactions for a SQLAlchemy `Session`
+    """Object to handle setup/teardown as well as transactions for a
+    SQLAlchemy `Session`
 
     Parameters
     ----------
@@ -15,7 +16,8 @@ class SimSession:
 
     Notes
     -----
-    The SQLAlchemy docs have some good examples of different types of database URLs. `https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls <https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls>`_
+    The SQLAlchemy docs have some good examples of different types of database
+    URLs. `https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls <https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls>`_
 
     Attributes
     ----------
