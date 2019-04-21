@@ -89,8 +89,10 @@ class Survey(Base):
             """
             if isinstance(item, rv_frozen):
                 return item.rvs(size=1)[0]
-            else:
+            elif isinstance(float(item), float):
                 return item
+            else:
+                return np.nan
 
         # Create inputs df of features from assemblage
         assemblage_inputs = self.assemblage.df.copy()
@@ -129,7 +131,6 @@ class Survey(Base):
         )
 
         # Allocate surveyors to survey units based on method
-        # Map surveyors to inputs df based on survey units
         # def _assign_surveyors(team, coverage):
         if self.team.assignment == "naive":
             people = cycle(self.team.df.loc[:, "surveyor_name"])
@@ -146,33 +147,53 @@ class Survey(Base):
         elif self.team.assignment == "random":
             pass
 
+        # Map surveyors to inputs df based on survey units
+        coverage_team = coverage_inputs.merge(
+            self.team.df, how="left", on="surveyor_name"
+        )
+
         # Find features that intersect coverage
-        assemblage_coverage = gpd.sjoin(
-            assemblage_inputs, coverage_inputs, how="left"
+        assem_cov_team = gpd.sjoin(
+            assemblage_inputs, coverage_team, how="left"
         )
 
         # record which survey unit it intersects (or NaN)
-        # if intersects
-        # set proximity to 1.0
-        # else
-        # set proximity to 0.0
-        assemblage_coverage.loc[:, "proximity_obs"] = np.where(
-            ~assemblage_coverage.loc[:, "surveyunit_name"].isna(), 1.0, 0.0
+        # if intersects, set proximity to 1.0
+        # else set proximity to 0.0
+        assem_cov_team.loc[:, "proximity_obs"] = np.where(
+            ~assem_cov_team.loc[:, "surveyunit_name"].isna(), 1.0, 0.0
         )
 
         # Extract surveyor skill values
-        # if surveyor name exists
-        # if skill is dist, randomly select
-        # if skill is scalar, assign
-        # elif surveyor name doesn't exist
-        # surveyor skill is NaN or 0.0?
+        assem_cov_team.loc[:, "skill_obs"] = assem_cov_team.loc[
+            :, "skill"
+        ].apply(_get_floats_or_distr_vals)
+
         # Extract surveyor speed penalty values
-        # if survey name exists
-        # if speed penalty is dist, randomly select
-        # if speed penalty is scalar, assign
-        # elif surveyor name doesn't exist
-        # speed penalty is NaN or 1.0?
+        assem_cov_team.loc[:, "speed_penalty_obs"] = assem_cov_team.loc[
+            :, "speed_penalty"
+        ].apply(_get_floats_or_distr_vals)
+
         # Calculate final probability of discovery
+        assem_cov_team.loc[:, "discovery_prob"] = (
+            assem_cov_team.loc[:, "obs_rate"]
+            * assem_cov_team.loc[:, "vis_obs"]
+            * assem_cov_team.loc[:, "proximity_obs"]
+            * assem_cov_team.loc[:, "skill_obs"]
+        )
+
+        discovery_df = assem_cov_team.loc[
+            :,
+            [
+                "feature_name",
+                "shape",
+                "obs_rate",
+                "vis_obs",
+                "proximity_obs",
+                "skill_obs",
+                "discovery_prob",
+            ],
+        ]
 
         # Calculate time stats
         # per survey unit
