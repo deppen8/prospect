@@ -80,6 +80,13 @@ class Survey(Base):
                 self.team = block
 
     def run(self):
+        # TODO:
+        # add run_id column to output
+        # add parameters
+        # threshold probability
+        # n_runs
+        # start_run_id
+        # append_to
         """Determine input parameters, resolve discovery probabilities, and calculate search times
         """
 
@@ -182,6 +189,8 @@ class Survey(Base):
             * assem_cov_team.loc[:, "skill_obs"]
         )
 
+        self.raw = assem_cov_team
+
         discovery_df = assem_cov_team.loc[
             :,
             [
@@ -195,8 +204,19 @@ class Survey(Base):
             ],
         ]
 
+        self.finds = discovery_df
+
+        # START HERE
         # Calculate time stats
+        # TODO: Duplicate calculations for threshold and no threshold
+        # time_cols = ["time_penalty_obs", "search_time", "speed_penalty_obs"]
         # per survey unit
+        # calculate total artifact recording time per unit
+
+        # per layer
+
+        # per coverage
+
         # per surveyor
         # total time
 
