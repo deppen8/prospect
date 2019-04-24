@@ -2,7 +2,8 @@
 
 ## GitHub and git
 
-Branch liberally
+- Branch liberally
+- Use `jupytext` to put notebooks under better version control. `*.ipynb` added to .gitignore
 
 ## Imports
 
