@@ -4,7 +4,7 @@ from .assemblage import Assemblage
 from .coverage import Coverage
 from .team import Team
 
-from typing import Union, List
+from typing import Union, List, Tuple
 from itertools import cycle
 
 from sqlalchemy import Column, Integer, String
@@ -13,6 +13,8 @@ from sqlalchemy.orm import relationship
 from scipy.stats._distn_infrastructure import rv_frozen
 import geopandas as gpd
 import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 
 
 class Survey(Base):
@@ -130,7 +132,7 @@ class Survey(Base):
         ].apply(_get_floats_or_distr_vals)
 
         # calculate search_time
-        coverage_inputs.loc[:, "search_time"] = np.where(
+        coverage_inputs.loc[:, "base_search_time"] = np.where(
             coverage_inputs.loc[:, "surveyunit_type"] == "transect",
             coverage_inputs.loc[:, "min_time_per_unit"]
             * coverage_inputs.loc[:, "length"],
@@ -159,6 +161,13 @@ class Survey(Base):
             self.team.df, how="left", on="surveyor_name"
         )
 
+        # Extract surveyor speed penalty values
+        coverage_team.loc[:, "speed_penalty_obs"] = coverage_team.loc[
+            :, "speed_penalty"
+        ].apply(_get_floats_or_distr_vals)
+
+        self.coverage_team = coverage_team
+
         # Find features that intersect coverage
         assem_cov_team = gpd.sjoin(
             assemblage_inputs, coverage_team, how="left"
@@ -174,11 +183,6 @@ class Survey(Base):
         # Extract surveyor skill values
         assem_cov_team.loc[:, "skill_obs"] = assem_cov_team.loc[
             :, "skill"
-        ].apply(_get_floats_or_distr_vals)
-
-        # Extract surveyor speed penalty values
-        assem_cov_team.loc[:, "speed_penalty_obs"] = assem_cov_team.loc[
-            :, "speed_penalty"
         ].apply(_get_floats_or_distr_vals)
 
         # Calculate final probability of discovery
@@ -204,20 +208,105 @@ class Survey(Base):
             ],
         ]
 
-        self.finds = discovery_df
+        self.discovery = discovery_df
 
-        # START HERE
         # Calculate time stats
         # TODO: Duplicate calculations for threshold and no threshold
-        # time_cols = ["time_penalty_obs", "search_time", "speed_penalty_obs"]
-        # per survey unit
-        # calculate total artifact recording time per unit
 
-        # per layer
+        # def _total_time_calc(
+        #     df,
+        #     out_col="total",
+        #     base_col="base_search_time",
+        #     t_pen_col="time_penalty_obs",
+        #     speed_pen_col="speed_penalty_obs",
+        # ):
+        #     base_pen = df.loc[:, base_col] + df.loc[:, t_pen_col]
+        #     df.loc[:, out_col] = (base_pen) + (
+        #         base_pen * df.loc[:, speed_pen_col]
+        #     )
+        #     return df
 
-        # per coverage
+        # groupby survey unit
+        time_per_surveyunit = (
+            self.raw.groupby(
+                ["surveyunit_name", "surveyor_name", "base_search_time"]
+            )
+            .agg({"time_penalty_obs": "sum", "speed_penalty_obs": "mean"})
+            .reset_index()
+            .rename(columns={"time_penalty_obs": "sum_time_penalty_obs"})
+        )
+
+        # base penalty = base search time + sum(artifact penalties)
+
+        # surveyor penalty =
+        # base penalty * surveyor penalty factor
+
+        # total time =
+        # base penalty + surveyor penalty
+
+        base_pen = (
+            time_per_surveyunit.loc[:, "base_search_time"]
+            + time_per_surveyunit.loc[:, "sum_time_penalty_obs"]
+        )
+
+        surveyor_pen = (
+            base_pen * time_per_surveyunit.loc[:, "speed_penalty_obs"]
+        )
+
+        # multiply above base
+        time_per_surveyunit.loc[:, "total_time_per_surveyunit"] = (
+            base_pen + surveyor_pen
+        )
+
+        self.time_surveyunit = time_per_surveyunit
+        self.total_time = self.time_surveyunit.loc[
+            :, "total_time_per_surveyunit"
+        ].sum()
 
         # per surveyor
-        # total time
+        self.time_surveyor = (
+            self.time_surveyunit.groupby("surveyor_name")
+            .agg(
+                {
+                    "base_search_time": "sum",
+                    "sum_time_penalty_obs": "sum",
+                    "speed_penalty_obs": "mean",
+                    "total_time_per_surveyunit": "sum",
+                }
+            )
+            .reset_index()
+            .rename(
+                columns={
+                    "base_search_time": "sum_base_search_time",
+                    "total_time_per_surveyunit": "total_time_per_surveyor",
+                }
+            )
+        )
 
-        pass
+    def discovery_plot(
+        self,
+        title_size: int = 20,
+        figsize: Tuple[float, float] = (8.0, 20.0),
+        **kwargs,
+    ) -> Figure:
+
+        # function to create basemap of polygon outline
+        def _make_outline(gdf, ax):
+            return gdf.plot(ax=ax, facecolor="white", edgecolor="black")
+
+        fig, axarr = plt.subplots(1, 1, figsize=figsize)
+
+        self.discovery.plot(
+            ax=_make_outline(self.area.df, axarr),
+            column="discovery_prob",
+            legend=False,
+            legend_kwds={"loc": (1, 0)},
+        )
+        axarr.set_title(f"{self.name} (Survey)", fontsize=title_size)
+
+        axarr.set_axis_off()
+
+        plt.close()  # close the plot so that Jupyter won't print it twice
+
+        return fig
+
