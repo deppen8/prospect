@@ -68,7 +68,7 @@ def clip_lines_polys(
     return clipped[clipped.geometry.notnull()]
 
 
-def make_beta_distribution(a: float, b: float) -> rv_frozen:
+def beta_dist(a: float, b: float) -> rv_frozen:
     """Create a fixed beta distribution.
 
     Parameters
@@ -85,7 +85,7 @@ def make_beta_distribution(a: float, b: float) -> rv_frozen:
     return beta(a=a, b=b)
 
 
-def make_truncnorm_distribution(
+def truncnorm_dist(
     mean: float, sd: float, lower: float, upper: float
 ) -> rv_frozen:
     """Create a truncated normal distribution.
