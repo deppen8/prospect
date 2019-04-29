@@ -2,7 +2,7 @@ from .simulation import Base
 
 from typing import Dict, Union
 
-from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
+from sqlalchemy import Column, String, ForeignKey, PickleType
 from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen

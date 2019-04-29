@@ -3,8 +3,8 @@ from .layer import Layer
 
 from typing import List
 
-from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, PickleType, ForeignKey
+# from sqlalchemy.orm import relationship
 
 from geopandas import GeoDataFrame
 import pandas as pd

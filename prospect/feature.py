@@ -2,8 +2,8 @@ from .simulation import Base
 
 from typing import Union, Dict
 
-from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, ForeignKey, PickleType
+# from sqlalchemy.orm import relationship
 
 from shapely.geometry import Point, LineString, Polygon
 from scipy.stats._distn_infrastructure import rv_frozen

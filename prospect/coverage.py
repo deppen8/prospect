@@ -5,8 +5,8 @@ from .utils import clip_lines_polys
 
 from typing import List, Dict, Union
 
-from sqlalchemy import Column, Integer, String, Float, PickleType, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Float, PickleType, ForeignKey
+# from sqlalchemy.orm import relationship
 
 import geopandas as gpd
 from shapely.geometry import Point, LineString, Polygon

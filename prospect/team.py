@@ -3,7 +3,7 @@ from .surveyor import Surveyor
 
 from typing import List
 
-from sqlalchemy import Column, Integer, String, PickleType
+from sqlalchemy import Column, String, PickleType
 from sqlalchemy.orm import relationship
 
 import pandas as pd
@@ -20,7 +20,6 @@ class Team(Base):
         List of surveyors that make up the team
     assignment : {'naive', 'speed', 'random'}
         Strategy for assigning team members to survey units.
-        
         * 'naive' - cycle through `Team.df` in index order, assigning surveyors
           to survey units in `Coverage.df` in index order until all survey
           units have a surveyor.

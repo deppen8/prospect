@@ -7,7 +7,7 @@ from .team import Team
 from typing import Union, List, Tuple
 from itertools import cycle
 
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen

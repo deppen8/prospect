@@ -5,8 +5,8 @@ from .utils import clip_points
 
 from typing import Tuple, List, Union
 
-from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, PickleType, ForeignKey
+# from sqlalchemy.orm import relationship
 
 import geopandas as gpd
 from shapely.geometry import Point

@@ -3,8 +3,8 @@ from .simulation import Base
 from typing import Union, Tuple
 import warnings
 
-from sqlalchemy import Column, Integer, String, PickleType
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, PickleType
+# from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen
 from shapely.geometry import box, Polygon
