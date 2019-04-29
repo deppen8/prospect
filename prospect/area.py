@@ -3,7 +3,7 @@ from .simulation import Base
 from typing import Union, Tuple
 import warnings
 
-from sqlalchemy import Column, Integer, String, ForeignKey, PickleType
+from sqlalchemy import Column, Integer, String, PickleType
 from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen
@@ -18,8 +18,6 @@ class Area(Base):
     ----------
     name : str
         Unique name for the area
-    survey_name : str
-        Name of the associated `Survey`
     shape : Polygon
         Geographic specification
     vis : Union[float, rv_frozen], optional
@@ -30,8 +28,6 @@ class Area(Base):
     ----------
     name : str
         Name of the area
-    survey_name : str
-        Name of the associated `Survey`
     shape : Polygon
         Geographic specification
     vis : Union[float, rv_frozen]
@@ -42,46 +38,37 @@ class Area(Base):
 
     __tablename__ = "areas"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
-    survey_name = Column("survey_name", String(50), ForeignKey("surveys.name"))
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     shape = Column("shape", PickleType)
     vis = Column("vis", PickleType)
     df = Column("df", PickleType)
 
     # relationships
-    survey = relationship("Survey", back_populates="area")
-    assemblages = relationship("Assemblage", back_populates="area")
-    layers = relationship("Layer", back_populates="area")
-    coverage = relationship("Coverage", back_populates="area")
+    # assemblages = relationship("Assemblage")
+    # layers = relationship("Layer")
+    # coverage = relationship("Coverage")
 
     def __init__(
-        self,
-        name: str,
-        survey_name: str,
-        shape: Polygon,
-        vis: Union[float, rv_frozen] = 1.0,
+        self, name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0
     ):
         """Create an `Area` instance
         """
 
         self.name = name
-        self.survey_name = survey_name
         self.shape = shape
         self.vis = vis
         self.df = gpd.GeoDataFrame(
-            {
-                "name": [self.name],
-                "survey_name": [self.survey_name],
-                "shape": self.shape,
-                "vis": [self.vis],
-            },
+            {"name": [self.name], "shape": self.shape, "vis": [self.vis]},
             geometry="shape",
         )
 
     def __repr__(self):
-        return f"Area(name={repr(self.name)}, survey_name= \
-        {repr(self.survey_name)}, shape={repr(self.shape)}, \
+        return f"Area(name={repr(self.name)}, shape={repr(self.shape)}, \
         vis={repr(self.vis)})"
 
     def __str__(self):
@@ -89,11 +76,7 @@ class Area(Base):
 
     @classmethod
     def from_shapefile(
-        cls,
-        name: str,
-        survey_name: str,
-        path: str,
-        vis: Union[float, rv_frozen] = 1.0,
+        cls, name: str, path: str, vis: Union[float, rv_frozen] = 1.0
     ) -> "Area":
         """Create an `Area` object from a shapefile
 
@@ -101,8 +84,6 @@ class Area(Base):
         ----------
         name : str
             Unique name for the area
-        survey_name : str
-            Name of the associated survey
         path : str
             File path to the shapefile
         vis : Union[float, rv_frozen]
@@ -120,18 +101,12 @@ class Area(Base):
                 "Shapefile has more than one feature. Using only the first."
             )
 
-        return cls(
-            name=name,
-            survey_name=survey_name,
-            shape=tmp_gdf.geometry.iloc[0],
-            vis=vis,
-        )
+        return cls(name=name, shape=tmp_gdf.geometry.iloc[0], vis=vis)
 
     @classmethod
     def from_area_value(
         cls,
         name: str,
-        survey_name: str,
         value: float,
         origin: Tuple[float, float] = (0.0, 0.0),
         vis: Union[float, rv_frozen] = 1.0,
@@ -142,8 +117,6 @@ class Area(Base):
         ----------
         name : str
             Unique name for the area
-        survey_name : str
-            Name of the associated survey
         value : float
             Area of the output shape
         origin : Tuple[float, float]
@@ -162,9 +135,7 @@ class Area(Base):
         square_area = box(
             origin[0], origin[1], origin[0] + side, origin[1] + side
         )
-        return cls(
-            name=name, survey_name=survey_name, shape=square_area, vis=vis
-        )
+        return cls(name=name, shape=square_area, vis=vis)
 
     def set_vis_beta_dist(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample visibility values
@@ -175,10 +146,10 @@ class Area(Base):
             Values to define the shape of the beta distribution
         """
 
-        from .utils import make_beta_distribution
+        from .utils import beta_dist
 
         if alpha + beta == 10:
-            self.vis = make_beta_distribution(alpha, beta)
+            self.vis = beta_dist(alpha, beta)
             self.df["vis"] = self.vis
         else:
             # TODO: warn or error message
@@ -193,3 +164,6 @@ class Area(Base):
         """
 
         pass
+
+    def add_to(self, session):
+        session.merge(self)

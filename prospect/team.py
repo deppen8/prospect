@@ -3,7 +3,7 @@ from .surveyor import Surveyor
 
 from typing import List
 
-from sqlalchemy import Column, Integer, String, PickleType, ForeignKey
+from sqlalchemy import Column, Integer, String, PickleType
 from sqlalchemy.orm import relationship
 
 import pandas as pd
@@ -16,8 +16,6 @@ class Team(Base):
     ----------
     name : str
         Unique name for the team
-    survey_name : str
-        Name of the survey
     surveyor_list : List[Surveyor]
         List of surveyors that make up the team
     assignment : {'naive', 'speed', 'random'}
@@ -35,31 +33,30 @@ class Team(Base):
     ----------
     name : str
         Unique name for the team
-    survey_name : str
-        Name of the survey
     surveyor_list : List[Surveyor]
         List of surveyors that make up the team
     assignment : str
-        Strategy for assigning team members to survey units. 
+        Strategy for assigning team members to survey units.
     df : pandas DataFrame
         `DataFrame` with a row for each surveyor
     """
 
     __tablename__ = "teams"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
-    survey_name = Column("survey_name", String(50), ForeignKey("surveys.name"))
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     surveyor_list = Column("surveyor_list", PickleType)
 
     # relationships
-    survey = relationship("Survey", back_populates="team")
-    surveyors = relationship("Surveyor", back_populates="team")
+    surveyors = relationship("Surveyor")
 
     def __init__(
         self,
         name: str,
-        survey_name: str,
         surveyor_list: List[Surveyor],
         assignment: str = "naive",
     ):
@@ -67,8 +64,21 @@ class Team(Base):
         """
 
         self.name = name
-        self.survey_name = survey_name
         self.surveyor_list = surveyor_list
         self.assignment = assignment  # TODO
 
-        self.df = pd.DataFrame([surveyor.to_dict() for surveyor in self.surveyor_list])
+        self.df = pd.DataFrame(
+            [surveyor.to_dict() for surveyor in self.surveyor_list]
+        )
+
+    def add_to(self, session):
+        """Add `Team` and constituent `Surveyor` objects to sqlalchemy session
+        
+        Parameters
+        ----------
+        session : [type]
+            [description]
+        """
+        for surveyor in self.surveyor_list:
+            surveyor.add_to(session)
+        session.merge(self)

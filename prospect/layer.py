@@ -57,8 +57,12 @@ class Layer(Base):
 
     __tablename__ = "layers"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     area_name = Column("area_name", String(50), ForeignKey("areas.name"))
     assemblage_name = Column(
         "assemblage_name", String(50), ForeignKey("assemblages.name")
@@ -67,9 +71,9 @@ class Layer(Base):
     df = Column("df", PickleType)
 
     # relationships
-    area = relationship("Area", back_populates="layers")
-    assemblage = relationship("Assemblage", back_populates="layers")
-    features = relationship("Feature", back_populates="layer")
+    # area = relationship("Area")
+    # assemblage = relationship("Assemblage")
+    # features = relationship("Feature")
 
     def __init__(
         self,
@@ -89,7 +93,8 @@ class Layer(Base):
         self.feature_list = feature_list
 
         self.df = gpd.GeoDataFrame(
-            [feature.to_dict() for feature in self.feature_list], geometry="shape"
+            [feature.to_dict() for feature in self.feature_list],
+            geometry="shape",
         )
 
         # clip by area
@@ -588,10 +593,10 @@ class Layer(Base):
             Values to define the shape of the beta distribution
         """
 
-        from .utils import make_beta_distribution
+        from .utils import beta_dist
 
         if alpha + beta == 10:
-            self.ideal_obs_rate = make_beta_distribution(alpha, beta)
+            self.ideal_obs_rate = beta_dist(alpha, beta)
             self.df["ideal_obs_rate"] = self.ideal_obs_rate
         else:
             # TODO: warn or error message
@@ -603,7 +608,12 @@ class Layer(Base):
     def set_time_penalty_truncnorm_dist(
         self, mean: float, sd: float, lower: float, upper: float
     ):
-        from .utils import make_truncnorm_distribution
+        from .utils import truncnorm_dist
 
-        self.time_penalty = make_truncnorm_distribution(mean, sd, lower, upper)
+        self.time_penalty = truncnorm_dist(mean, sd, lower, upper)
         self.df["time_penalty"] = self.time_penalty
+
+    def add_to(self, session):
+        for feature in self.feature_list:
+            feature.add_to(session)
+        session.merge(self)

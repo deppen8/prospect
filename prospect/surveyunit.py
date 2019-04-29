@@ -61,16 +61,22 @@ class SurveyUnit(Base):
 
     __tablename__ = "surveyunits"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
-    coverage_name = Column("coverage_name", String(50), ForeignKey("coverages.name"))
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
+    coverage_name = Column(
+        "coverage_name", String(50), ForeignKey("coverages.name")
+    )
     shape = Column("shape", PickleType)
     surveyunit_type = Column("surveyunit_type", String(50))
     min_time_per_unit = Column("min_time_per_unit", PickleType)
     base_time = Column("base_time", PickleType)
 
     # relationships
-    coverage = relationship("Coverage", back_populates="surveyunit")
+    # coverage = relationship("Coverage")
 
     def __init__(
         self,
@@ -113,3 +119,6 @@ class SurveyUnit(Base):
             "radius": self.radius,
             "min_time_per_unit": self.min_time_per_unit,
         }
+
+    def add_to(self, session):
+        session.merge(self)

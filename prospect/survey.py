@@ -7,7 +7,7 @@ from .team import Team
 from typing import Union, List, Tuple
 from itertools import cycle
 
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen
@@ -33,16 +33,26 @@ class Survey(Base):
 
     __tablename__ = "surveys"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
+    area_name = Column("area", String(50), ForeignKey("areas.name"))
+    assemblage_name = Column(
+        "assemblage", String(50), ForeignKey("assemblages.name")
+    )
+    coverage_name = Column(
+        "coverage", String(50), ForeignKey("coverages.name")
+    )
+    team_name = Column("team", String(50), ForeignKey("teams.name"))
 
     # relationships
-    area = relationship("Area", uselist=False, back_populates="survey")
-    assemblage = relationship(
-        "Assemblage", uselist=False, back_populates="survey"
-    )
-    coverage = relationship("Coverage", uselist=False, back_populates="survey")
-    team = relationship("Team", uselist=False, back_populates="survey")
+    area = relationship("Area")
+    assemblage = relationship("Assemblage")
+    coverage = relationship("Coverage")
+    team = relationship("Team")
 
     def __init__(
         self,
@@ -310,3 +320,9 @@ class Survey(Base):
 
         return fig
 
+    def add_to(self, session):
+        self.area.add_to(session)
+        self.assemblage.add_to(session)
+        self.coverage.add_to(session)
+        self.team.add_to(session)
+        session.merge(self)

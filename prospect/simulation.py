@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -34,12 +36,11 @@ class SimSession:
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
-    def stage(self, block):
+    def stage(self, blocks: List):
         """Add a building block to the list of objects to save to the database
-
         """
-
-        self.session.add(block)
+        for block in blocks:
+            block.add_to(self.session)
 
     def unstage(self, block):
         """Remove a building block

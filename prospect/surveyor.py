@@ -40,15 +40,19 @@ class Surveyor(Base):
 
     __tablename__ = "surveyors"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     team_name = Column("team_name", String(50), ForeignKey("teams.name"))
     surveyor_type = Column("surveyor_type", String(50))
     skill = Column("skill", PickleType)
     speed_penalty = Column("speed_penalty", PickleType)
 
     # relationships
-    team = relationship("Team", back_populates="surveyors")
+    team = relationship("Team")
 
     def __init__(
         self,
@@ -83,3 +87,6 @@ class Surveyor(Base):
             "skill": self.skill,
             "speed_penalty": self.speed_penalty,
         }
+
+    def add_to(self, session):
+        session.merge(self)

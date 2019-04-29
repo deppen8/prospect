@@ -59,8 +59,12 @@ class Feature(Base):
 
     __tablename__ = "features"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     # assemblage_name = Column('assemblage_name', String(
     #     50), ForeignKey('assemblages.name'))
     layer_name = Column("layer_name", String(50), ForeignKey("layers.name"))
@@ -70,7 +74,7 @@ class Feature(Base):
 
     # relationships
     # assemblage = relationship('Assemblage', back_populates='features')
-    layer = relationship("Layer", back_populates="features")
+    # layer = relationship("Layer")
 
     def __init__(
         self,
@@ -106,3 +110,6 @@ class Feature(Base):
             "time_penalty": self.time_penalty,
             "ideal_obs_rate": self.ideal_obs_rate,
         }
+
+    def add_to(self, session):
+        session.merge(self)

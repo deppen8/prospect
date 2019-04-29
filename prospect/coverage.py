@@ -27,8 +27,6 @@ class Coverage(Base):
         Unique name for the Coverage
     area : Area
         Containing area
-    survey_name : str
-        Name of the survey
     surveyunit_list : List[SurveyUnit]
         List of survey units that make up the coverage
     orientation : float
@@ -46,8 +44,6 @@ class Coverage(Base):
     ----------
     name : str
         Unique name for the coverage
-    survey_name : str
-        Name of the survey
     area_name : str
         Name of the containing area
     surveyunit_list : List[SurveyUnit]
@@ -66,9 +62,12 @@ class Coverage(Base):
 
     __tablename__ = "coverages"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
-    survey_name = Column("survey_name", String(50), ForeignKey("surveys.name"))
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     area_name = Column("area_name", String(50), ForeignKey("areas.name"))
     surveyunit_list = Column("surveyunit_list", PickleType)
     # survey_unit_type = Column('survey_unit_type', String(50))
@@ -78,15 +77,13 @@ class Coverage(Base):
     radius = Column("radius", Float, default=None)
 
     # relationships
-    survey = relationship("Survey", back_populates="coverage")
-    area = relationship("Area", back_populates="coverage")
-    surveyunit = relationship("SurveyUnit", back_populates="coverage")
+    # area = relationship("Area")
+    # surveyunit = relationship("SurveyUnit")
 
     def __init__(
         self,
         name: str,
         area: Area,
-        survey_name: str,
         surveyunit_list: List[SurveyUnit],
         orientation: float,
         spacing: float,
@@ -97,7 +94,6 @@ class Coverage(Base):
         """
 
         self.name = name
-        self.survey_name = survey_name
         self.area_name = area.name
         self.surveyunit_list = surveyunit_list
         self.orientation = orientation
@@ -126,7 +122,6 @@ class Coverage(Base):
         path: str,
         name: str,
         area: Area,
-        survey_name: str,
         surveyunit_type: str,
         spacing: float,
         orient_axis: str = "long",
@@ -142,8 +137,6 @@ class Coverage(Base):
             Unique name for the Coverage
         area : Area
             Containing area
-        survey_name : str
-            Name of the survey
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
         spacing : float
@@ -192,7 +185,6 @@ class Coverage(Base):
         return cls(
             name=name,
             area=area,
-            survey_name=survey_name,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -204,7 +196,6 @@ class Coverage(Base):
         gdf: gpd.GeoDataFrame,
         name: str,
         area: Area,
-        survey_name: str,
         surveyunit_type: str,
         spacing: float,
         orient_axis: str = "long",
@@ -220,8 +211,6 @@ class Coverage(Base):
             Unique name for the Coverage
         area : Area
             Containing area
-        survey_name : str
-            Name of the survey
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
         spacing : float
@@ -270,7 +259,6 @@ class Coverage(Base):
         return cls(
             name=name,
             area=area,
-            survey_name=survey_name,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -281,7 +269,6 @@ class Coverage(Base):
         cls,
         name: str,
         area: Area,
-        survey_name: str,
         spacing: float = 10.0,
         sweep_width: float = 2.0,
         orientation: float = 0.0,
@@ -298,8 +285,6 @@ class Coverage(Base):
             Unique name for the Coverage
         area : Area
             Containing area
-        survey_name : str
-            Name of the survey
         spacing : float, optional
             Distance between survey units (the default is 10.0)
         sweep_width : float, optional
@@ -360,7 +345,9 @@ class Coverage(Base):
             )
 
         lines_gs = lines_gs.rotate(orientation, origin=centroid)  # rotate
-        lines_gdf = gpd.GeoDataFrame({"geometry": lines_gs}, geometry="geometry")
+        lines_gdf = gpd.GeoDataFrame(
+            {"geometry": lines_gs}, geometry="geometry"
+        )
 
         # clip lines by area
         lines_clipped = clip_lines_polys(lines_gdf, tmp_area.df)
@@ -399,7 +386,6 @@ class Coverage(Base):
         return cls(
             name=name,
             area=area,
-            survey_name=survey_name,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -412,7 +398,6 @@ class Coverage(Base):
         cls,
         name: str,
         area: Area,
-        survey_name: str,
         spacing: float = 10.0,
         radius: float = 1.78,
         orientation: float = 0.0,
@@ -429,8 +414,6 @@ class Coverage(Base):
             Unique name for the Coverage
         area : Area
             Containing area
-        survey_name : str
-            Name of the survey
         spacing : float, optional
             Distance between survey units (the default is 10.0)
         radius : float, optional
@@ -471,7 +454,10 @@ class Coverage(Base):
         centroid = min_rot_rect.centroid
 
         points_gs = cls._make_unit_bases(
-            surveyunit_type="radial", area=tmp_area, centroid=centroid, spacing=spacing
+            surveyunit_type="radial",
+            area=tmp_area,
+            centroid=centroid,
+            spacing=spacing,
         )
 
         # set orientation to maximize area
@@ -489,7 +475,9 @@ class Coverage(Base):
             )
 
         points_gs = points_gs.rotate(orientation, origin=centroid)  # rotate
-        points_gdf = gpd.GeoDataFrame({"geometry": points_gs}, geometry="geometry")
+        points_gdf = gpd.GeoDataFrame(
+            {"geometry": points_gs}, geometry="geometry"
+        )
 
         points_clipped = clip_lines_polys(
             points_gdf, tmp_area.df
@@ -525,7 +513,6 @@ class Coverage(Base):
         return cls(
             name=name,
             area=area,
-            survey_name=survey_name,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -535,7 +522,10 @@ class Coverage(Base):
 
     @staticmethod
     def _make_unit_bases(
-        surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0
+        surveyunit_type: str,
+        area: Area,
+        centroid: Point,
+        spacing: float = 10.0,
     ) -> gpd.GeoSeries:
         """Create the Point and LineString objects that will be buffered to
         make survey units.
@@ -572,7 +562,9 @@ class Coverage(Base):
             n_transects = 3
 
         # calculate x values
-        xs = Coverage._coord_vals_from_centroid_val(centroid.x, n_transects, spacing)
+        xs = Coverage._coord_vals_from_centroid_val(
+            centroid.x, n_transects, spacing
+        )
 
         # calculate y values
         if surveyunit_type == "transect":
@@ -625,15 +617,21 @@ class Coverage(Base):
         if n_transects % 2 == 0:  # even num units
             lower_start = centroid_val - spacing / 2
             upper_start = centroid_val + spacing / 2
-            lower_vals = lower_start - (np.arange(0, n_transects / 2) * spacing)
-            upper_vals = upper_start + (np.arange(0, n_transects / 2) * spacing)
+            lower_vals = lower_start - (
+                np.arange(0, n_transects / 2) * spacing
+            )
+            upper_vals = upper_start + (
+                np.arange(0, n_transects / 2) * spacing
+            )
             vals = np.sort(np.concatenate([lower_vals, upper_vals]))
         else:  # odd num units
             start_val = centroid_val
             lower_vals = start_val - (np.arange(1, n_transects / 2) * spacing)
             upper_vals = start_val + (np.arange(1, n_transects / 2) * spacing)
             vals = np.sort(
-                np.insert(np.concatenate([lower_vals, upper_vals]), 1, start_val)
+                np.insert(
+                    np.concatenate([lower_vals, upper_vals]), 1, start_val
+                )
             )
         return vals
 
@@ -754,7 +752,12 @@ class Coverage(Base):
     def set_min_time_truncnorm_dist(
         self, mean: float, sd: float, lower: float, upper: float
     ):
-        from .utils import make_truncnorm_distribution
+        from .utils import truncnorm_dist
 
-        self.min_time_per_unit = make_truncnorm_distribution(mean, sd, lower, upper)
+        self.min_time_per_unit = truncnorm_dist(mean, sd, lower, upper)
         self.df["min_time_per_unit"] = self.min_time_per_unit
+
+    def add_to(self, session):
+        for surveyunit in self.surveyunit_list:
+            surveyunit.add_to(session)
+        session.merge(self)

@@ -17,8 +17,6 @@ class Assemblage(Base):
     ----------
     name : str
         Unique name for the assemblage
-    survey_name : str
-        Name of the survey
     area_name : str
         Name of the containing area
     layer_list : list of Layer
@@ -28,8 +26,6 @@ class Assemblage(Base):
     ----------
     name : str
         Name of the assemblage
-    survey_name : str
-        Name of the survey
     area_name : str
         Name of the containing area
     df : geopandas GeoDataFrame
@@ -38,26 +34,25 @@ class Assemblage(Base):
 
     __tablename__ = "assemblages"
 
-    id = Column(Integer, primary_key=True)
-    name = Column("name", String(50), unique=True)
-    survey_name = Column("survey_name", String(50), ForeignKey("surveys.name"))
+    name = Column(
+        "name",
+        String(50),
+        primary_key=True,
+        sqlite_on_conflict_unique="IGNORE",
+    )
     area_name = Column("area_name", String(50), ForeignKey("areas.name"))
     df = Column("df", PickleType)
 
     # relationships
-    survey = relationship("Survey", back_populates="assemblage")
-    area = relationship("Area", back_populates="assemblages")
-    layers = relationship("Layer", back_populates="assemblage")
+    # area = relationship("Area")
+    # layers = relationship("Layer")
     # features = relationship("Feature", back_populates='assemblage')
 
-    def __init__(
-        self, name: str, survey_name: str, area_name: str, layer_list: List[Layer]
-    ):
+    def __init__(self, name: str, area_name: str, layer_list: List[Layer]):
         """Create an `Assemblage` instance
         """
 
         self.name = name
-        self.survey_name = survey_name
         self.area_name = area_name
         self.layer_list = layer_list
         self.df: GeoDataFrame = pd.concat(
@@ -65,9 +60,12 @@ class Assemblage(Base):
         ).reset_index(drop=True)
 
     def __repr__(self):
-        return f"Assemblage(name={repr(self.name)}, survey_name= \
-        {repr(self.survey_name)}, area_name={repr(self.area_name)}, \
-        layer_list={repr(self.layer_list)})"
+        return f"Assemblage(name={repr(self.name)}, area_name={repr(self.area_name)}, layer_list={repr(self.layer_list)})"
 
     def __str__(self):
         return f"Assemblage object '{self.name}'"
+
+    def add_to(self, session):
+        for layer in self.layer_list:
+            layer.add_to(session)
+        session.merge(self)
