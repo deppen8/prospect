@@ -78,7 +78,7 @@ class Survey(Base):
         self.discovery = None
         self.time_surveyunit = None
         self.time_surveyor = None
-        self.total_time = None
+        self.total_time = 0
 
     def add_bb(self, bb: List[Union[Area, Assemblage, Coverage, Team]]):
         """Attach building blocks to survey.
@@ -107,26 +107,6 @@ class Survey(Base):
         discovery_threshold: float = 0.0,
         overwrite: bool = False,
     ):
-        def _update_outputs(new_outputs):
-            """
-            """
-            self.raw = pd.concat(
-                [self.raw, new_outputs.raw], ignore_index=True
-            )
-            self.discovery = pd.concat(
-                [self.discovery, new_outputs.discovery], ignore_index=True
-            )
-            self.time_surveyunit = pd.concat(
-                [self.time_surveyunit, new_outputs.time_surveyunit],
-                ignore_index=True,
-            )
-            self.time_surveyor = pd.concat(
-                [self.time_surveyor, new_outputs.time_surveyor],
-                ignore_index=True,
-            )
-            self.total_time = pd.concat(
-                [self.total_time, new_outputs.total_time], ignore_index=True
-            )
 
         stop_run_id = start_run_id + n_runs
 
@@ -136,12 +116,39 @@ class Survey(Base):
             self.discovery = None
             self.time_surveyunit = None
             self.time_surveyor = None
-            self.total_time = None
+            self.total_time = 0
 
-        for run in range(start_run_id, stop_run_id):
-            run_output = self._resolve(run_id=run)
+        resolved_runs = [
+            self._resolve(run_id=run_id)
+            for run_id in range(start_run_id, stop_run_id)
+        ]
 
-            _update_outputs(run_output)
+        raws = pd.concat([run.raw for run in resolved_runs], ignore_index=True)
+        self.raw = pd.concat([self.raw, raws], ignore_index=True)
+
+        discoveries = pd.concat(
+            [run.discovery for run in resolved_runs], ignore_index=True
+        )
+        self.discovery = pd.concat(
+            [self.discovery, discoveries], ignore_index=True
+        )
+
+        time_surveyunits = pd.concat(
+            [run.time_surveyunit for run in resolved_runs], ignore_index=True
+        )
+        self.time_surveyunit = pd.concat(
+            [self.time_surveyunit, time_surveyunits], ignore_index=True
+        )
+
+        time_surveyors = pd.concat(
+            [run.time_surveyor for run in resolved_runs], ignore_index=True
+        )
+        self.time_surveyor = pd.concat(
+            [self.time_surveyor, time_surveyors], ignore_index=True
+        )
+
+        for i in range(len(resolved_runs)):
+            self.total_time += resolved_runs[i].total_time
 
     def _resolve(self, run_id: int):
         """Determine input parameters, resolve discovery probabilities, and calculate search times
@@ -341,9 +348,7 @@ class Survey(Base):
             ],
         ]
 
-        total_time = time_surveyunit.loc[
-            :, "total_time_per_surveyunit"
-        ].sum()
+        total_time = time_surveyunit.loc[:, "total_time_per_surveyunit"].sum()
 
         # per surveyor
         time_per_surveyor = (
