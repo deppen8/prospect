@@ -16,6 +16,7 @@ import geopandas as gpd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+import pandas as pd
 
 
 class Survey(Base):
@@ -72,6 +73,13 @@ class Survey(Base):
         self.coverage = coverage
         self.team = team
 
+        # initialize empty outputs
+        self.raw = None
+        self.discovery = None
+        self.time_surveyunit = None
+        self.time_surveyor = None
+        self.total_time = None
+
     def add_bb(self, bb: List[Union[Area, Assemblage, Coverage, Team]]):
         """Attach building blocks to survey.
 
@@ -97,26 +105,44 @@ class Survey(Base):
         n_runs: int,
         start_run_id: int = 0,
         discovery_threshold: float = 0.0,
-        overwrite: bool = True,
+        overwrite: bool = False,
     ):
-        # TODO:
-        # add run_id column to output
-        # add parameters
-        # threshold probability
-        # n_runs
-        # start_run_id
-        # append_to
+        def _update_outputs(new_outputs):
+            """
+            """
+            self.raw = pd.concat(
+                [self.raw, new_outputs.raw], ignore_index=True
+            )
+            self.discovery = pd.concat(
+                [self.discovery, new_outputs.discovery], ignore_index=True
+            )
+            self.time_surveyunit = pd.concat(
+                [self.time_surveyunit, new_outputs.time_surveyunit],
+                ignore_index=True,
+            )
+            self.time_surveyor = pd.concat(
+                [self.time_surveyor, new_outputs.time_surveyor],
+                ignore_index=True,
+            )
+            self.total_time = pd.concat(
+                [self.total_time, new_outputs.total_time], ignore_index=True
+            )
+
         stop_run_id = start_run_id + n_runs
+
+        # From pandas.concat() docs: Any None objects will be dropped silently unless they are all None in which case a ValueError will be raised
+        if overwrite:
+            self.raw = None
+            self.discovery = None
+            self.time_surveyunit = None
+            self.time_surveyor = None
+            self.total_time = None
+
         for run in range(start_run_id, stop_run_id):
-            self._resolve(run_id=run)
+            run_output = self._resolve(run_id=run)
 
-            # take output from resolve, reassemble into attributes of Survey
-            # if overwrite == True: initialize output gdfs
-            # if overwrite == False: update output gdfs
+            _update_outputs(run_output)
 
-        pass
-
-    # START HERE: figure out what _resolve should return. NamedTuple?
     def _resolve(self, run_id: int):
         """Determine input parameters, resolve discovery probabilities, and calculate search times
         """
@@ -134,6 +160,17 @@ class Survey(Base):
 
         def _extract_values(df, input_col):
             return df.loc[:, input_col].apply(_get_floats_or_distr_vals)
+
+        ResolvedRun = collections.namedtuple(
+            "ResolvedRun",
+            [
+                "raw",
+                "discovery",
+                "time_surveyunit",
+                "time_surveyor",
+                "total_time",
+            ],
+        )
 
         # Create inputs df of features from assemblage
         assemblage_inputs = self.assemblage.df.copy()
@@ -198,7 +235,7 @@ class Survey(Base):
             coverage_team, "speed_penalty"
         )
 
-        self.coverage_team = coverage_team
+        # self.coverage_team = coverage_team
 
         # Find features that intersect coverage
         assem_cov_team = gpd.sjoin(
@@ -227,8 +264,6 @@ class Survey(Base):
 
         assem_cov_team.loc[:, "run"] = run_id
 
-        self.raw = assem_cov_team
-
         discovery_df = assem_cov_team.loc[
             :,
             [
@@ -242,8 +277,6 @@ class Survey(Base):
                 "discovery_prob",
             ],
         ]
-
-        self.discovery = discovery_df
 
         # Calculate time stats
         # TODO: Duplicate calculations for threshold and no threshold
@@ -263,7 +296,7 @@ class Survey(Base):
 
         # groupby survey unit
         time_per_surveyunit = (
-            self.raw.groupby(
+            assem_cov_team.groupby(
                 ["surveyunit_name", "surveyor_name", "base_search_time"]
             )
             .agg({"time_penalty_obs": "sum", "speed_penalty_obs": "mean"})
@@ -295,7 +328,7 @@ class Survey(Base):
 
         time_per_surveyunit.loc[:, "run"] = run_id
 
-        self.time_surveyunit = time_per_surveyunit.loc[
+        time_surveyunit = time_per_surveyunit.loc[
             :,
             [
                 "run",
@@ -308,13 +341,13 @@ class Survey(Base):
             ],
         ]
 
-        self.total_time = self.time_surveyunit.loc[
+        total_time = time_surveyunit.loc[
             :, "total_time_per_surveyunit"
         ].sum()
 
         # per surveyor
         time_per_surveyor = (
-            self.time_surveyunit.groupby("surveyor_name")
+            time_surveyunit.groupby("surveyor_name")
             .agg(
                 {
                     "base_search_time": "sum",
@@ -334,7 +367,7 @@ class Survey(Base):
 
         time_per_surveyor.loc[:, "run"] = run_id
 
-        self.time_surveyor = time_per_surveyor.loc[
+        time_surveyor = time_per_surveyor.loc[
             :,
             [
                 "run",
@@ -346,6 +379,14 @@ class Survey(Base):
             ],
         ]
 
+        return ResolvedRun(
+            raw=assem_cov_team,
+            discovery=discovery_df,
+            time_surveyunit=time_surveyunit,
+            time_surveyor=time_surveyor,
+            total_time=total_time,
+        )
+
     def discovery_plot(
         self,
         title_size: int = 20,
@@ -353,6 +394,7 @@ class Survey(Base):
         **kwargs,
     ) -> Figure:
 
+        # TODO: raise error if self.discovery is None
         # function to create basemap of polygon outline
         def _make_outline(gdf, ax):
             return gdf.plot(ax=ax, facecolor="white", edgecolor="black")
