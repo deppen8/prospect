@@ -6,6 +6,7 @@ from .team import Team
 
 from typing import Union, List, Tuple
 from itertools import cycle
+import collections
 
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
@@ -91,7 +92,13 @@ class Survey(Base):
             elif isinstance(block, Team):
                 self.team = block
 
-    def run(self):
+    def run(
+        self,
+        n_runs: int,
+        start_run_id: int = 0,
+        discovery_threshold: float = 0.0,
+        overwrite: bool = True,
+    ):
         # TODO:
         # add run_id column to output
         # add parameters
@@ -99,6 +106,18 @@ class Survey(Base):
         # n_runs
         # start_run_id
         # append_to
+        stop_run_id = start_run_id + n_runs
+        for run in range(start_run_id, stop_run_id):
+            self._resolve(run_id=run)
+
+            # take output from resolve, reassemble into attributes of Survey
+            # if overwrite == True: initialize output gdfs
+            # if overwrite == False: update output gdfs
+
+        pass
+
+    # START HERE: figure out what _resolve should return. NamedTuple?
+    def _resolve(self, run_id: int):
         """Determine input parameters, resolve discovery probabilities, and calculate search times
         """
 
@@ -113,18 +132,21 @@ class Survey(Base):
             else:
                 return np.nan
 
+        def _extract_values(df, input_col):
+            return df.loc[:, input_col].apply(_get_floats_or_distr_vals)
+
         # Create inputs df of features from assemblage
         assemblage_inputs = self.assemblage.df.copy()
 
         # Extract obs_rate values
-        assemblage_inputs.loc[:, "obs_rate"] = assemblage_inputs.loc[
-            :, "ideal_obs_rate"
-        ].apply(_get_floats_or_distr_vals)
+        assemblage_inputs.loc[:, "obs_rate"] = _extract_values(
+            assemblage_inputs, "ideal_obs_rate"
+        )
 
         # Extract feature time_penalty values
-        assemblage_inputs.loc[:, "time_penalty_obs"] = assemblage_inputs.loc[
-            :, "time_penalty"
-        ].apply(_get_floats_or_distr_vals)
+        assemblage_inputs.loc[:, "time_penalty_obs"] = _extract_values(
+            assemblage_inputs, "time_penalty"
+        )
 
         # Extract surface visibility values
         # TODO: if raster, extract value from raster
@@ -137,9 +159,9 @@ class Survey(Base):
         coverage_inputs = self.coverage.df.copy()
 
         # extract min_time_per_unit
-        coverage_inputs.loc[:, "min_time_per_unit_obs"] = coverage_inputs.loc[
-            :, "min_time_per_unit"
-        ].apply(_get_floats_or_distr_vals)
+        coverage_inputs.loc[:, "min_time_per_unit_obs"] = _extract_values(
+            coverage_inputs, "min_time_per_unit"
+        )
 
         # calculate search_time
         coverage_inputs.loc[:, "base_search_time"] = np.where(
@@ -172,9 +194,9 @@ class Survey(Base):
         )
 
         # Extract surveyor speed penalty values
-        coverage_team.loc[:, "speed_penalty_obs"] = coverage_team.loc[
-            :, "speed_penalty"
-        ].apply(_get_floats_or_distr_vals)
+        coverage_team.loc[:, "speed_penalty_obs"] = _extract_values(
+            coverage_team, "speed_penalty"
+        )
 
         self.coverage_team = coverage_team
 
@@ -191,9 +213,9 @@ class Survey(Base):
         )
 
         # Extract surveyor skill values
-        assem_cov_team.loc[:, "skill_obs"] = assem_cov_team.loc[
-            :, "skill"
-        ].apply(_get_floats_or_distr_vals)
+        assem_cov_team.loc[:, "skill_obs"] = _extract_values(
+            assem_cov_team, "skill"
+        )
 
         # Calculate final probability of discovery
         assem_cov_team.loc[:, "discovery_prob"] = (
@@ -203,11 +225,14 @@ class Survey(Base):
             * assem_cov_team.loc[:, "skill_obs"]
         )
 
+        assem_cov_team.loc[:, "run"] = run_id
+
         self.raw = assem_cov_team
 
         discovery_df = assem_cov_team.loc[
             :,
             [
+                "run",
                 "feature_name",
                 "shape",
                 "obs_rate",
@@ -268,13 +293,27 @@ class Survey(Base):
             base_pen + surveyor_pen
         )
 
-        self.time_surveyunit = time_per_surveyunit
+        time_per_surveyunit.loc[:, "run"] = run_id
+
+        self.time_surveyunit = time_per_surveyunit.loc[
+            :,
+            [
+                "run",
+                "surveyunit_name",
+                "surveyor_name",
+                "base_search_time",
+                "sum_time_penalty_obs",
+                "speed_penalty_obs",
+                "total_time_per_surveyunit",
+            ],
+        ]
+
         self.total_time = self.time_surveyunit.loc[
             :, "total_time_per_surveyunit"
         ].sum()
 
         # per surveyor
-        self.time_surveyor = (
+        time_per_surveyor = (
             self.time_surveyunit.groupby("surveyor_name")
             .agg(
                 {
@@ -292,6 +331,20 @@ class Survey(Base):
                 }
             )
         )
+
+        time_per_surveyor.loc[:, "run"] = run_id
+
+        self.time_surveyor = time_per_surveyor.loc[
+            :,
+            [
+                "run",
+                "surveyor_name",
+                "sum_base_search_time",
+                "sum_time_penalty_obs",
+                "speed_penalty_obs",
+                "total_time_per_surveyor",
+            ],
+        ]
 
     def discovery_plot(
         self,
