@@ -70,7 +70,7 @@ def clip_lines_polys(
     return clipped[clipped.geometry.notnull()]
 
 
-def beta(a: float, b: float) -> rv_frozen:
+def beta(a: float, b: float, **kwargs) -> rv_frozen:
     """Create a fixed beta distribution.
 
     Parameters
@@ -84,7 +84,7 @@ def beta(a: float, b: float) -> rv_frozen:
         Fixed beta distribution
     """
 
-    return scipy.stats.beta(a=a, b=b)
+    return scipy.stats.beta(a=a, b=b, **kwargs)
 
 
 def truncnorm(mean: float, sd: float, lower: float, upper: float) -> rv_frozen:
