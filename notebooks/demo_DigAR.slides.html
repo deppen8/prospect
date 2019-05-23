@@ -13287,7 +13287,7 @@ a.anchor-link {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">prospect</span> <span class="k">as</span> <span class="nn">pspt</span>
-<span class="kn">from</span> <span class="nn">prospect.utils</span> <span class="k">import</span> <span class="n">beta_dist</span><span class="p">,</span> <span class="n">truncnorm_dist</span>
+<span class="kn">from</span> <span class="nn">prospect.utils</span> <span class="k">import</span> <span class="n">beta</span><span class="p">,</span> <span class="n">truncnorm</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -13340,7 +13340,7 @@ a.anchor-link {
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;area_from_shp&#39;</span><span class="p">,</span> 
     <span class="n">survey_name</span><span class="o">=</span><span class="s1">&#39;deprecated&#39;</span><span class="p">,</span> 
     <span class="n">path</span><span class="o">=</span><span class="n">shapefile_path</span><span class="p">,</span> 
-    <span class="n">vis</span><span class="o">=</span><span class="n">beta_dist</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">vis</span><span class="o">=</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -13580,7 +13580,7 @@ a.anchor-link {
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ceramics&#39;</span><span class="p">,</span> 
     <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
     <span class="n">assemblage_name</span><span class="o">=</span><span class="s1">&#39;iron_age&#39;</span><span class="p">,</span>
-    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm_dist</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span>
+    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span>
     <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="mf">1.0</span>
 <span class="p">)</span>
 </pre></div>
@@ -13643,8 +13643,8 @@ a.anchor-link {
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lithics&#39;</span><span class="p">,</span> 
     <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
     <span class="n">assemblage_name</span><span class="o">=</span><span class="s1">&#39;iron_age&#39;</span><span class="p">,</span> 
-    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm_dist</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span> 
-    <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">beta_dist</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span> 
+    <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">beta</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -13710,7 +13710,7 @@ a.anchor-link {
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;metals&#39;</span><span class="p">,</span> 
     <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span> 
     <span class="n">assemblage_name</span><span class="o">=</span><span class="s1">&#39;iron_age&#39;</span><span class="p">,</span> 
-    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm_dist</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span> 
+    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span> 
     <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="mf">1.0</span>
 <span class="p">)</span>
 </pre></div>
@@ -13777,7 +13777,7 @@ a.anchor-link {
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;bones&#39;</span><span class="p">,</span> 
     <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span> 
     <span class="n">assemblage_name</span><span class="o">=</span><span class="s1">&#39;iron_age&#39;</span><span class="p">,</span> 
-    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm_dist</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span> 
+    <span class="n">time_penalty</span><span class="o">=</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">600</span><span class="p">),</span> 
     <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="mf">1.0</span>
 <span class="p">)</span>
 </pre></div>
@@ -14139,7 +14139,7 @@ a.anchor-link {
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;novice2&#39;</span><span class="p">,</span> 
     <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;leiap_team&#39;</span><span class="p">,</span> 
     <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;novice_person&#39;</span><span class="p">,</span> 
-    <span class="n">skill</span><span class="o">=</span><span class="n">beta_dist</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="n">beta</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> 
     <span class="n">speed_penalty</span><span class="o">=</span><span class="mf">0.2</span>
 <span class="p">)</span>
 <span class="n">novice3</span> <span class="o">=</span> <span class="n">pspt</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>

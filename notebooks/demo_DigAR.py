@@ -37,7 +37,7 @@
 # + {"slideshow": {"slide_type": "fragment"}}
 # %matplotlib inline
 import prospect as pspt
-from prospect.utils import beta_dist, truncnorm_dist
+from prospect.utils import beta, truncnorm
 
 import matplotlib.pyplot as plt
 
@@ -62,9 +62,9 @@ radial_survey = pspt.Survey(name='radial_survey')
 shapefile_path = '../tests/test_data/shapefiles/areas/leiap_field1.shp'
 area_from_shp = pspt.Area.from_shapefile(
     name='area_from_shp', 
-    survey_name='deprecated', 
+#     survey_name='deprecated', 
     path=shapefile_path, 
-    vis=beta_dist(a=9, b=1)
+    vis=beta(a=9, b=1)
 )
 
 # + {"slideshow": {"slide_type": "fragment"}, "cell_type": "markdown"}
@@ -88,7 +88,8 @@ type(area_from_shp.df)
 # ## Visualize with generic `geopandas` plot
 
 # + {"slideshow": {"slide_type": "fragment"}}
-area_from_shp.df.plot();
+area_from_shp.df.plot()
+plt.savefig("../outputs/uw_gis_symp/area_demo.png")
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Create four `Layer` objects
@@ -104,12 +105,12 @@ layer_from_shp = pspt.Layer.from_shapefile(
     name='ceramics', 
     area=area_from_shp,
     assemblage_name='iron_age',
-    time_penalty=truncnorm_dist(mean=30, sd=10, lower=5, upper=600),
+    time_penalty=truncnorm(mean=30, sd=10, lower=5, upper=600),
     ideal_obs_rate=1.0
 )
 
 # + {"slideshow": {"slide_type": "fragment"}}
-layer_from_shp.df.plot();
+layer_from_shp.df.plot()
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ### Layer 2 from a Poisson point process
@@ -121,12 +122,13 @@ layer_from_poisson = pspt.Layer.from_poisson_points(
     name='lithics', 
     area=area_from_shp,
     assemblage_name='iron_age', 
-    time_penalty=truncnorm_dist(mean=30, sd=10, lower=5, upper=600), 
-    ideal_obs_rate=beta_dist(9.5, 0.5)
+    time_penalty=truncnorm(mean=30, sd=10, lower=5, upper=600), 
+    ideal_obs_rate=beta(9.5, 0.5)
 )
 
 # + {"slideshow": {"slide_type": "fragment"}}
-layer_from_poisson.df.plot();
+layer_from_poisson.df.plot()
+plt.savefig("poisson_demo.png");
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ### Layer 3 from a Thomas point process
@@ -142,7 +144,7 @@ layer_from_thomas = pspt.Layer.from_thomas_points(
     name='metals', 
     area=area_from_shp, 
     assemblage_name='iron_age', 
-    time_penalty=truncnorm_dist(mean=20, sd=5, lower=2, upper=600), 
+    time_penalty=truncnorm(mean=20, sd=5, lower=2, upper=600), 
     ideal_obs_rate=1.0
 )
 
@@ -163,7 +165,7 @@ layer_from_matern = pspt.Layer.from_matern_points(
     name='bones', 
     area=area_from_shp, 
     assemblage_name='iron_age', 
-    time_penalty=truncnorm_dist(mean=30, sd=10, lower=5, upper=600), 
+    time_penalty=truncnorm(mean=30, sd=10, lower=5, upper=600), 
     ideal_obs_rate=1.0
 )
 
@@ -181,7 +183,7 @@ layer_from_matern.df.plot();
 # + {"slideshow": {"slide_type": "fragment"}}
 iron_age_assemblage = pspt.Assemblage(
     name='iron_age', 
-    survey_name='deprecated', 
+#     survey_name='deprecated', 
     area_name='area_from_shp', 
     layer_list=[layer_from_shp, layer_from_poisson, layer_from_thomas, layer_from_matern]
 )
@@ -202,7 +204,7 @@ iron_age_assemblage.df.plot();
 coverage_transects = pspt.Coverage.from_transects(
     name='transects', 
     area=area_from_shp, 
-    survey_name='deprecated', 
+#     survey_name='deprecated', 
     spacing=10.0, 
     sweep_width=2.0, 
     orientation=0.0,
@@ -213,7 +215,8 @@ coverage_transects = pspt.Coverage.from_transects(
 )
 
 # + {"slideshow": {"slide_type": "slide"}}
-coverage_transects.df.plot();
+coverage_transects.df.plot()
+plt.savefig("../outputs/uw_gis_symp/coverage_demo.png")
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Create radial `Coverage`
@@ -222,7 +225,7 @@ coverage_transects.df.plot();
 coverage_radials = pspt.Coverage.from_radials(
     name='radials',
     area=area_from_shp,
-    survey_name="deprecated",
+#     survey_name="deprecated",
     spacing=10.0, 
     radius=2.0, 
     orientation=0.0,
@@ -233,7 +236,8 @@ coverage_radials = pspt.Coverage.from_radials(
 )
 
 # + {"slideshow": {"slide_type": "slide"}}
-coverage_radials.df.plot();
+coverage_radials.df.plot()
+plt.savefig("../outputs/uw_gis_symp/radials_demo.png");
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # Can also create `Coverage` from:
@@ -291,7 +295,7 @@ novice2 = pspt.Surveyor(
     name='novice2', 
     team_name='leiap_team', 
     surveyor_type='novice_person', 
-    skill=beta_dist(7, 3), 
+    skill=beta(7, 3), 
     speed_penalty=0.2
 )
 novice3 = pspt.Surveyor(
@@ -309,7 +313,7 @@ novice3 = pspt.Surveyor(
 team_list = [expert, mid1, mid2, novice1, novice2, novice3]
 leiap_team = pspt.Team(
     name='leiap_team', 
-    survey_name='deprecated', 
+#     survey_name='deprecated', 
     surveyor_list=team_list,
     assignment='naive'
 )
@@ -322,7 +326,7 @@ leiap_team.df
 
 # + {"slideshow": {"slide_type": "fragment"}}
 from prospect.plotting import bb_plot
-bb_plot(area_from_shp, iron_age_assemblage, coverage_transects, figsize=(10,8))
+bb_plot(area_from_shp, iron_age_assemblage, coverage_transects, figsize=(20,20))
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Add building blocks to their respective `Survey` objects
@@ -335,8 +339,7 @@ radial_survey.add_bb(bb=[area_from_shp, iron_age_assemblage, coverage_radials, l
 # ## Run the transect survey!!!
 
 # + {"slideshow": {"slide_type": "fragment"}}
-# %%timeit
-transect_survey.run()
+transect_survey.run(n_runs=100)
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## What happened?
@@ -373,7 +376,10 @@ transect_survey.raw.head()
 transect_survey.raw.shape
 
 # + {"slideshow": {"slide_type": "slide"}}
-transect_survey.discovery.head()
+transect_survey.discovery.iloc[7:15]
+# -
+
+transect_survey.discovery[transect_survey.discovery["discovery_prob"].notna()].groupby(["run"]).count()
 
 # + {"slideshow": {"slide_type": "fragment"}}
 transect_survey.discovery.shape
@@ -383,13 +389,52 @@ transect_survey.discovery.describe()
 
 # + {"slideshow": {"slide_type": "slide"}}
 transect_survey.discovery_plot()
+# -
+
+import pandas as pd
+import altair as alt
+alt.data_transformers.enable('json')
+
+tmp = pd.DataFrame(transect_survey.discovery.drop(columns=['shape']))
+
+run0 = tmp[tmp["discovery_prob"].notna() & (tmp["run"]==0)]
+run1 = tmp[tmp["discovery_prob"].notna() & (tmp["run"]==1)]
+run2 = tmp[tmp["discovery_prob"].notna() & (tmp["run"]==2)]
+
+run0.head()
+
+run1.head()
+
+
+class Surveyor(Base):
+    __tablename__ = "surveyors"
+
+    name = Column("name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE")
+    team_name = Column("team_name", String(50), ForeignKey("teams.name"))
+    surveyor_type = Column("surveyor_type", String(50))
+    skill = Column("skill", PickleType)
+    speed_penalty = Column("speed_penalty", PickleType)
+
+    # relationships
+    team = relationship("Team")
+
+
+
+
+tmp_grp = tmp.groupby("feature_name").agg({"discovery_prob":"mean"})
+tmp_grp = tmp_grp.dropna().reset_index()
+tmp_grp
+
+alt.Chart(tmp_grp.head(15)).mark_bar().encode(
+    y = alt.Y("feature_name:N", title="artifact"),
+    x = alt.X("discovery_prob:Q", title="mean discovery probability")
+)
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Run the radial survey!!!
 
 # + {"slideshow": {"slide_type": "fragment"}}
-# %%timeit
-radial_survey.run()
+radial_survey.run(n_runs=1)
 
 # + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Inspect the results
@@ -431,7 +476,19 @@ transect_survey.coverage.df.area.sum(), radial_survey.coverage.df.area.sum()
 transect_survey.total_time / 3600, radial_survey.total_time / 3600
 
 # + {"slideshow": {"slide_type": "slide"}}
-transect_survey.time_surveyunit.head()
+transect_survey.time_surveyunit.head(10)
+# -
+
+import altair as alt
+
+alt.Chart(transect_survey.time_surveyunit).mark_bar().encode(
+    x = alt.X("sum(total_time_per_surveyunit):Q", title="Total time (seconds)"),
+    y = alt.Y("surveyor_name:N", title="Surveyor")
+)
+
+
+
+
 
 # + {"slideshow": {"slide_type": "fragment"}}
 transect_survey.time_surveyor

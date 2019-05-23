@@ -175,10 +175,10 @@
 #         assert col in an_area_from_area_origin_pair.df.columns
 
 
-# # TESTS FOR `set_vis_beta_dist()` METHOD
+# # TESTS FOR `set_vis_beta()` METHOD
 
 
-# def test_set_vis_beta_dist_creates_rv_frozen(an_area_from_shapefile):
+# def test_set_vis_beta_creates_rv_frozen(an_area_from_shapefile):
 #     area = an_area_from_shapefile
-#     area.set_vis_beta_dist(alpha=9, beta=1)
+#     area.set_vis_beta(alpha=9, beta=1)
 #     assert isinstance(area.vis, rv_frozen)

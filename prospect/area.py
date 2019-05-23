@@ -137,7 +137,7 @@ class Area(Base):
         )
         return cls(name=name, shape=square_area, vis=vis)
 
-    def set_vis_beta_dist(self, alpha: int, beta: int):
+    def set_vis_beta(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample visibility values
 
         Parameters
@@ -146,10 +146,10 @@ class Area(Base):
             Values to define the shape of the beta distribution
         """
 
-        from .utils import beta_dist
+        from .utils import beta
 
         if alpha + beta == 10:
-            self.vis = beta_dist(alpha, beta)
+            self.vis = beta(alpha, beta)
             self.df["vis"] = self.vis
         else:
             # TODO: warn or error message

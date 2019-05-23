@@ -200,19 +200,19 @@ def test_uniform_disk_returns():
     assert isinstance(disk[1], float)
 
 
-# TESTS FOR `set_ideal_obs_rate_beta_dist()` METHOD
+# TESTS FOR `set_ideal_obs_rate_beta()` METHOD
 
 
-def test_set_ideal_obs_rate_beta_dist_creates_rv_frozen(a_layer_from_shapefile):
+def test_set_ideal_obs_rate_beta_creates_rv_frozen(a_layer_from_shapefile):
     layer = a_layer_from_shapefile
-    layer.set_ideal_obs_rate_beta_dist(alpha=9, beta=1)
+    layer.set_ideal_obs_rate_beta(alpha=9, beta=1)
     assert isinstance(layer.ideal_obs_rate, rv_frozen)
 
 
-# TESTS FOR `set_time_penalty_truncnorm_dist()` METHOD
+# TESTS FOR `set_time_penalty_truncnorm()` METHOD
 
 
-def test_set_time_penalty_truncnorm_dist_creates_rv_frozen(a_layer_from_shapefile):
+def test_set_time_penalty_truncnorm_creates_rv_frozen(a_layer_from_shapefile):
     layer = a_layer_from_shapefile
-    layer.set_time_penalty_truncnorm_dist(mean=300, sd=600, lower=0, upper=10000)
+    layer.set_time_penalty_truncnorm(mean=300, sd=600, lower=0, upper=10000)
     assert isinstance(layer.time_penalty, rv_frozen)

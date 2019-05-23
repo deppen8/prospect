@@ -35,7 +35,7 @@
 # + {"slideshow": {"slide_type": "fragment"}}
 # %matplotlib inline
 import prospect as pspt
-from prospect.utils import beta_dist, truncnorm_dist
+from prospect.utils import beta, truncnorm
 
 import matplotlib.pyplot as plt
 
@@ -61,7 +61,7 @@ shapefile_path = '../tests/test_data/shapefiles/areas/leiap_field1.shp'
 area_from_shp = pspt.Area.from_shapefile(
     name='area_from_shp', 
     path=shapefile_path, 
-    vis=beta_dist(a=9, b=1)
+    vis=beta(a=9, b=1)
 )
 
 # + {"slideshow": {"slide_type": "fragment"}, "cell_type": "markdown"}
@@ -101,7 +101,7 @@ layer_from_shp = pspt.Layer.from_shapefile(
     name='ceramics', 
     area=area_from_shp,
     assemblage_name='iron_age',
-    time_penalty=truncnorm_dist(mean=30, sd=10, lower=5, upper=600),
+    time_penalty=truncnorm(mean=30, sd=10, lower=5, upper=600),
     ideal_obs_rate=1.0
 )
 
@@ -118,8 +118,8 @@ layer_from_poisson = pspt.Layer.from_poisson_points(
     name='lithics', 
     area=area_from_shp,
     assemblage_name='iron_age', 
-    time_penalty=truncnorm_dist(mean=30, sd=10, lower=5, upper=600), 
-    ideal_obs_rate=beta_dist(9.5, 0.5)
+    time_penalty=truncnorm(mean=30, sd=10, lower=5, upper=600), 
+    ideal_obs_rate=beta(9.5, 0.5)
 )
 
 # + {"slideshow": {"slide_type": "fragment"}}
@@ -139,7 +139,7 @@ layer_from_thomas = pspt.Layer.from_thomas_points(
     name='metals', 
     area=area_from_shp, 
     assemblage_name='iron_age', 
-    time_penalty=truncnorm_dist(mean=20, sd=5, lower=2, upper=600), 
+    time_penalty=truncnorm(mean=20, sd=5, lower=2, upper=600), 
     ideal_obs_rate=1.0
 )
 
@@ -160,7 +160,7 @@ layer_from_matern = pspt.Layer.from_matern_points(
     name='bones', 
     area=area_from_shp, 
     assemblage_name='iron_age', 
-    time_penalty=truncnorm_dist(mean=30, sd=10, lower=5, upper=600), 
+    time_penalty=truncnorm(mean=30, sd=10, lower=5, upper=600), 
     ideal_obs_rate=1.0
 )
 
@@ -285,7 +285,7 @@ novice2 = pspt.Surveyor(
     name='novice2', 
     team_name='leiap_team', 
     surveyor_type='novice_person', 
-    skill=beta_dist(7, 3), 
+    skill=beta(7, 3), 
     speed_penalty=0.2
 )
 novice3 = pspt.Surveyor(
@@ -338,6 +338,8 @@ transect_survey.run()
 # # %%timeit
 radial_survey.run()
 # -
+
+transect_survey.time_surveyor
 
 simulation_test = pspt.SimSession()
 

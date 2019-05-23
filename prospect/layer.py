@@ -584,7 +584,7 @@ class Layer(Base):
     def set_ideal_obs_rate_scalar(self, value):
         pass
 
-    def set_ideal_obs_rate_beta_dist(self, alpha: int, beta: int):
+    def set_ideal_obs_rate_beta(self, alpha: int, beta: int):
         """Define a beta distribution from which to sample ideal observation rate values
 
         Parameters
@@ -593,10 +593,10 @@ class Layer(Base):
             Values to define the shape of the beta distribution
         """
 
-        from .utils import beta_dist
+        from .utils import beta
 
         if alpha + beta == 10:
-            self.ideal_obs_rate = beta_dist(alpha, beta)
+            self.ideal_obs_rate = beta(alpha, beta)
             self.df["ideal_obs_rate"] = self.ideal_obs_rate
         else:
             # TODO: warn or error message
@@ -605,12 +605,12 @@ class Layer(Base):
     def set_time_penalty_scalar(self, value):
         pass
 
-    def set_time_penalty_truncnorm_dist(
+    def set_time_penalty_truncnorm(
         self, mean: float, sd: float, lower: float, upper: float
     ):
-        from .utils import truncnorm_dist
+        from .utils import truncnorm
 
-        self.time_penalty = truncnorm_dist(mean, sd, lower, upper)
+        self.time_penalty = truncnorm(mean, sd, lower, upper)
         self.df["time_penalty"] = self.time_penalty
 
     def add_to(self, session):

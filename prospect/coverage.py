@@ -749,12 +749,12 @@ class Coverage(Base):
         return angle
 
     # TODO: Move this to the SurveyUnit level?
-    def set_min_time_truncnorm_dist(
+    def set_min_time_truncnorm(
         self, mean: float, sd: float, lower: float, upper: float
     ):
-        from .utils import truncnorm_dist
+        from .utils import truncnorm
 
-        self.min_time_per_unit = truncnorm_dist(mean, sd, lower, upper)
+        self.min_time_per_unit = truncnorm(mean, sd, lower, upper)
         self.df["min_time_per_unit"] = self.min_time_per_unit
 
     def add_to(self, session):

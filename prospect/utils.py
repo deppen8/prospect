@@ -1,9 +1,11 @@
 import geopandas as gpd
 from scipy.stats._distn_infrastructure import rv_frozen
-from scipy.stats import beta, truncnorm
+import scipy.stats
 
 
-def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+def clip_points(
+    points: gpd.GeoDataFrame, by: gpd.GeoDataFrame
+) -> gpd.GeoDataFrame:
     """Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame.
 
     Parameters
@@ -68,7 +70,7 @@ def clip_lines_polys(
     return clipped[clipped.geometry.notnull()]
 
 
-def beta_dist(a: float, b: float) -> rv_frozen:
+def beta(a: float, b: float) -> rv_frozen:
     """Create a fixed beta distribution.
 
     Parameters
@@ -82,12 +84,10 @@ def beta_dist(a: float, b: float) -> rv_frozen:
         Fixed beta distribution
     """
 
-    return beta(a=a, b=b)
+    return scipy.stats.beta(a=a, b=b)
 
 
-def truncnorm_dist(
-    mean: float, sd: float, lower: float, upper: float
-) -> rv_frozen:
+def truncnorm(mean: float, sd: float, lower: float, upper: float) -> rv_frozen:
     """Create a truncated normal distribution.
 
     Parameters
@@ -107,4 +107,6 @@ def truncnorm_dist(
         Fixed truncated normal distribution
     """
 
-    return truncnorm((lower - mean) / sd, (upper - mean) / sd, loc=mean, scale=sd)
+    return scipy.stats.truncnorm(
+        (lower - mean) / sd, (upper - mean) / sd, loc=mean, scale=sd
+    )
