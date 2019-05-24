@@ -28,8 +28,8 @@ class Layer(Base):
         Containing area
     assemblage_name : str
         Name of the parent assemblage
-    feature_list : List[Feature]
-        List of features that make up the layer
+    input_features : List[Feature]
+        List of features that originally made up the Layer (before clipping)
     time_penalty : Union[float, rv_frozen], optional
         Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
     ideal_obs_rate : Union[float, rv_frozen], optional
@@ -49,7 +49,7 @@ class Layer(Base):
         Name of the containing area
     assemblage_name : str
         Name of the parent assemblage
-    feature_list : List[Feature]
+    input_features : List[Feature]
         List of features that make up the layer
     df : geopandas GeoDataFrame
         `GeoDataFrame` with a row for each feature in the layer
@@ -67,7 +67,7 @@ class Layer(Base):
     assemblage_name = Column(
         "assemblage_name", String(50), ForeignKey("assemblages.name")
     )
-    feature_list = Column("feature_list", PickleType)
+    input_features = Column("feature_list", PickleType)
     df = Column("df", PickleType)
 
     # relationships
@@ -80,9 +80,9 @@ class Layer(Base):
         name: str,
         area: Area,
         assemblage_name: str,
-        feature_list: List[Feature],
-        time_penalty: Union[float, rv_frozen] = 0.0,
-        ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+        input_features: List[Feature],
+        # time_penalty: Union[float, rv_frozen] = 0.0,
+        # ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ):
         """Create a `Layer` instance.
         """
@@ -90,29 +90,28 @@ class Layer(Base):
         self.name = name
         self.area_name = area.name
         self.assemblage_name = assemblage_name
-        self.feature_list = feature_list
+        self.input_features = input_features
 
         self.df = gpd.GeoDataFrame(
-            [feature.to_dict() for feature in self.feature_list],
+            [feature.to_dict() for feature in self.input_features],
             geometry="shape",
         )
 
         # clip by area
         if all(self.df.geom_type == "Point"):
-            # TODO: Test this in Jupyter Notebook
             tmp_area = area
             self.df = clip_points(self.df, tmp_area.df)
-            shape_list = self.df.geometry.tolist()
-            self.feature_list = [
-                Feature(
-                    name=f"{name}_{i}",
-                    layer_name=name,
-                    shape=shape_list[i],
-                    time_penalty=time_penalty,
-                    ideal_obs_rate=ideal_obs_rate,
-                )
-                for i in range(len(shape_list))
-            ]
+            # shape_list = self.df.geometry.tolist()
+            # self.feature_list = [
+            #     Feature(
+            #         name=f"{name}_{i}",
+            #         layer_name=name,
+            #         shape=shape_list[i],
+            #         time_penalty=time_penalty[i],
+            #         ideal_obs_rate=ideal_obs_rate[i],
+            #     )
+            #     for i in range(len(shape_list))
+            # ]
 
     @classmethod
     def from_shapefile(
@@ -169,9 +168,9 @@ class Layer(Base):
             name=name,
             area=area,
             assemblage_name=assemblage_name,
-            feature_list=feature_list,
-            time_penalty=time_penalty,
-            ideal_obs_rate=ideal_obs_rate,
+            input_features=feature_list,
+            # time_penalty=time_penalty,
+            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -243,9 +242,9 @@ class Layer(Base):
             name=name,
             area=area,
             assemblage_name=assemblage_name,
-            feature_list=feature_list,
-            time_penalty=time_penalty,
-            ideal_obs_rate=ideal_obs_rate,
+            input_features=feature_list,
+            # time_penalty=time_penalty,
+            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -316,9 +315,9 @@ class Layer(Base):
             name=name,
             area=area,
             assemblage_name=assemblage_name,
-            feature_list=feature_list,
-            time_penalty=time_penalty,
-            ideal_obs_rate=ideal_obs_rate,
+            input_features=feature_list,
+            # time_penalty=time_penalty,
+            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -408,9 +407,9 @@ class Layer(Base):
             name=name,
             area=area,
             assemblage_name=assemblage_name,
-            feature_list=feature_list,
-            time_penalty=time_penalty,
-            ideal_obs_rate=ideal_obs_rate,
+            input_features=feature_list,
+            # time_penalty=time_penalty,
+            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -499,9 +498,9 @@ class Layer(Base):
             name=name,
             area=area,
             assemblage_name=assemblage_name,
-            feature_list=feature_list,
-            time_penalty=time_penalty,
-            ideal_obs_rate=ideal_obs_rate,
+            input_features=feature_list,
+            # time_penalty=time_penalty,
+            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @staticmethod
@@ -614,6 +613,6 @@ class Layer(Base):
         self.df["time_penalty"] = self.time_penalty
 
     def add_to(self, session):
-        for feature in self.feature_list:
+        for feature in self.input_features:
             feature.add_to(session)
         session.merge(self)
