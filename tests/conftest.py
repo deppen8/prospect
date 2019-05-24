@@ -96,9 +96,7 @@ def a_layer(an_area, a_feature):
         name="test_layer",
         area=an_area,
         assemblage_name="test_parent_assemblage",
-        feature_list=[a_feature],
-        time_penalty=0.0,
-        ideal_obs_rate=0.0,
+        input_features=[a_feature]
     )
 
 
