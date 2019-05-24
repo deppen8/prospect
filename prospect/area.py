@@ -137,33 +137,5 @@ class Area(Base):
         )
         return cls(name=name, shape=square_area, vis=vis)
 
-    def set_vis_beta(self, alpha: int, beta: int):
-        """Define a beta distribution from which to sample visibility values
-
-        Parameters
-        ----------
-        alpha, beta : int
-            Values to define the shape of the beta distribution
-        """
-
-        from .utils import beta
-
-        if alpha + beta == 10:
-            self.vis = beta(alpha, beta)
-            self.df["vis"] = self.vis
-        else:
-            # TODO: warn or error message
-            print("alpha and beta do not sum to 10")
-
-    def set_vis_raster(self, raster):
-        """placeholder for future raster support
-
-        Parameters
-        ----------
-        raster
-        """
-
-        pass
-
     def add_to(self, session):
         session.merge(self)
