@@ -8,7 +8,6 @@ Prospect is a set of tools for simulating archaeological field surveys.
   - [ ] track down estimates of survey speed
   - [ ] calculate time added by artifact recording in LEIA Project or elsewhere
 - [ ] determine measures to calculate for any given simulation
-- [ ] plan returns of the simulation
 - [ ] plan visualization methods
 - [ ] create hypothetical experiments to derive parameters
 - [ ] allow *any* scipy `rv_continuous` distribution to be used for parameters
