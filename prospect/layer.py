@@ -6,6 +6,7 @@ from .utils import clip_points
 from typing import Tuple, List, Union
 
 from sqlalchemy import Column, String, PickleType, ForeignKey
+
 # from sqlalchemy.orm import relationship
 
 import geopandas as gpd
@@ -218,25 +219,34 @@ class Layer(Base):
 
         Notes
         -----
-        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
+        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.
         """
 
         tmp_area = area
         bounds = tmp_area.df.total_bounds
-        xs = (np.random.random(n) * (bounds[2] - bounds[0])) + bounds[0]
-        ys = (np.random.random(n) * (bounds[3] - bounds[1])) + bounds[1]
-        points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
-        shape_list = points_gds.geometry.tolist()
-        feature_list = [
-            Feature(
-                name=f"{name}_{i}",
+
+        n_pts: int = 0
+        feature_list: List[Feature] = []
+        while n_pts < n:
+            xs = (np.random.random(1) * (bounds[2] - bounds[0])) + bounds[0]
+            ys = (np.random.random(1) * (bounds[3] - bounds[1])) + bounds[1]
+            points_gds = gpd.GeoSeries([Point(xy) for xy in zip(xs, ys)])
+            shape_list = points_gds.geometry.tolist()
+            feature = Feature(
+                name=f"{name}_{n_pts}",
                 layer_name=name,
-                shape=shape_list[i],
+                shape=shape_list[0],
                 time_penalty=time_penalty,
                 ideal_obs_rate=ideal_obs_rate,
             )
-            for i in range(len(shape_list))
-        ]
+
+            tmp_df = gpd.GeoDataFrame([feature.to_dict()], geometry="shape")
+
+            # clip by area
+            clipped_df = clip_points(tmp_df, tmp_area.df)
+            if clipped_df.shape[0] > 0:
+                feature_list.append(feature)
+                n_pts += 1
 
         return cls(
             name=name,
@@ -293,7 +303,7 @@ class Layer(Base):
 
         Notes
         -----
-        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
+        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.        
         """
 
         tmp_area = area
@@ -376,7 +386,7 @@ class Layer(Base):
         -----
         1. Parents (cluster centers) are NOT created as points in the output
 
-        2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `feature_list`.
+        2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.
         """
 
         tmp_area = area
@@ -467,7 +477,9 @@ class Layer(Base):
 
         Notes
         -----
-        Parents (cluster centers) are NOT created as points in the output
+        1. Parents (cluster centers) are NOT created as points in the output
+        
+        2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.
         """
 
         tmp_area = area
@@ -527,9 +539,9 @@ class Layer(Base):
 
         Notes
         -----
-        A Poisson point process is usually said to be more "purely" random than most random number generators (like the one used in `from_pseudorandom_points()`)
+        1. A Poisson point process is usually said to be more "purely" random than most random number generators (like the one used in `from_pseudorandom_points()`)
 
-        The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
+        2. The rate (usually called "lambda") of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.
         """
 
         bounds = area.df.total_bounds
