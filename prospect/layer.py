@@ -31,16 +31,6 @@ class Layer(Base):
         Name of the parent assemblage
     input_features : List[Feature]
         List of features that originally made up the Layer (before clipping)
-    time_penalty : Union[float, rv_frozen], optional
-        Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
-    ideal_obs_rate : Union[float, rv_frozen], optional
-        Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:
-
-        - It lies inside or intersects the Coverage
-        - Surface visibility is 100%
-        - The surveyor is highly skilled
-
-        The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.
 
     Attributes
     ----------
@@ -82,8 +72,6 @@ class Layer(Base):
         area: Area,
         assemblage_name: str,
         input_features: List[Feature],
-        # time_penalty: Union[float, rv_frozen] = 0.0,
-        # ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ):
         """Create a `Layer` instance.
         """
@@ -102,17 +90,6 @@ class Layer(Base):
         if all(self.df.geom_type == "Point"):
             tmp_area = area
             self.df = clip_points(self.df, tmp_area.df)
-            # shape_list = self.df.geometry.tolist()
-            # self.feature_list = [
-            #     Feature(
-            #         name=f"{name}_{i}",
-            #         layer_name=name,
-            #         shape=shape_list[i],
-            #         time_penalty=time_penalty[i],
-            #         ideal_obs_rate=ideal_obs_rate[i],
-            #     )
-            #     for i in range(len(shape_list))
-            # ]
 
     @classmethod
     def from_shapefile(
@@ -170,8 +147,6 @@ class Layer(Base):
             area=area,
             assemblage_name=assemblage_name,
             input_features=feature_list,
-            # time_penalty=time_penalty,
-            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -253,8 +228,6 @@ class Layer(Base):
             area=area,
             assemblage_name=assemblage_name,
             input_features=feature_list,
-            # time_penalty=time_penalty,
-            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -326,8 +299,6 @@ class Layer(Base):
             area=area,
             assemblage_name=assemblage_name,
             input_features=feature_list,
-            # time_penalty=time_penalty,
-            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -418,8 +389,6 @@ class Layer(Base):
             area=area,
             assemblage_name=assemblage_name,
             input_features=feature_list,
-            # time_penalty=time_penalty,
-            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @classmethod
@@ -511,8 +480,6 @@ class Layer(Base):
             area=area,
             assemblage_name=assemblage_name,
             input_features=feature_list,
-            # time_penalty=time_penalty,
-            # ideal_obs_rate=ideal_obs_rate,
         )
 
     @staticmethod
