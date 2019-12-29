@@ -126,6 +126,7 @@ class Coverage(Base):
         spacing: float,
         orient_axis: str = "long",
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
+        **kwargs
     ) -> "Coverage":
         """Create a `Coverage` instance from a shapefile.
 
@@ -162,7 +163,7 @@ class Coverage(Base):
         Coverage
         """
 
-        tmp_gdf = gpd.read_file(path)
+        tmp_gdf = gpd.read_file(path, **kwargs)
         tmp_area = area
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         orientation = cls._optimize_orientation_by_area_orient(

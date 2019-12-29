@@ -100,6 +100,7 @@ class Layer(Base):
         assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
+        **kwargs,
     ) -> "Layer":
         """Create a `Layer` instance from a shapefile.
 
@@ -129,7 +130,7 @@ class Layer(Base):
         Layer
         """
 
-        tmp_gdf = gpd.read_file(path)
+        tmp_gdf = gpd.read_file(path, **kwargs)
         shape_list = tmp_gdf.geometry.tolist()
         feature_list = [
             Feature(
