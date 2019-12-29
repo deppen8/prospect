@@ -4,6 +4,7 @@ from typing import Union, Tuple
 import warnings
 
 from sqlalchemy import Column, String, PickleType
+
 # from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen
@@ -76,7 +77,7 @@ class Area(Base):
 
     @classmethod
     def from_shapefile(
-        cls, name: str, path: str, vis: Union[float, rv_frozen] = 1.0
+        cls, name: str, path: str, vis: Union[float, rv_frozen] = 1.0, **kwargs
     ) -> "Area":
         """Create an `Area` object from a shapefile
 
@@ -94,7 +95,7 @@ class Area(Base):
         Area
         """
 
-        tmp_gdf = gpd.read_file(path)
+        tmp_gdf = gpd.read_file(path, **kwargs)
 
         if tmp_gdf.shape[0] > 1:
             warnings.warn(
