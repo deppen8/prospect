@@ -3,7 +3,7 @@ from .surveyunit import SurveyUnit
 from .area import Area
 from .utils import clip_lines_polys
 
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Optional
 
 from sqlalchemy import Column, String, Float, PickleType, ForeignKey
 # from sqlalchemy.orm import relationship
@@ -85,10 +85,10 @@ class Coverage(Base):
         name: str,
         area: Area,
         surveyunit_list: List[SurveyUnit],
-        orientation: float,
-        spacing: float,
-        sweep_width: float = None,
-        radius: float = None,
+        orientation: Optional[float],
+        spacing: Optional[float],
+        sweep_width: Optional[float] = None,
+        radius: Optional[float] = None,
     ):
         """Create a `Coverage` instance.
         """
@@ -123,8 +123,6 @@ class Coverage(Base):
         name: str,
         area: Area,
         surveyunit_type: str,
-        spacing: float,
-        orient_axis: str = "long",
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
         **kwargs
     ) -> "Coverage":
@@ -138,14 +136,8 @@ class Coverage(Base):
             Unique name for the Coverage
         area : Area
             Containing area
-        surveyunit_type : {'transect', 'radial'}
+        surveyunit_type : str
             Type of units to create
-        spacing : float
-            Distance between survey units
-        orient_axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the
-            default is 'long', which creates rows parallel to the longest axis
-            of the area's minimum rotated rectangle)
         min_time_per_unit : Union[float, rv_frozen], optional
             Minimum amount of time required to complete one "unit" of survey,
             given no surveyor speed penalty and no time penalty for recording
@@ -164,12 +156,6 @@ class Coverage(Base):
         """
 
         tmp_gdf = gpd.read_file(path, **kwargs)
-        tmp_area = area
-        min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
-        orientation = cls._optimize_orientation_by_area_orient(
-            min_rect=min_rot_rect, axis=orient_axis
-        )
-
         tmp_gdf = tmp_gdf.reset_index()
         surveyunit_list: List = []
         for row in tmp_gdf.itertuples():
@@ -187,8 +173,8 @@ class Coverage(Base):
             name=name,
             area=area,
             surveyunit_list=surveyunit_list,
-            orientation=orientation,
-            spacing=spacing,
+            orientation=None,
+            spacing=None,
         )
 
     @classmethod
@@ -198,8 +184,6 @@ class Coverage(Base):
         name: str,
         area: Area,
         surveyunit_type: str,
-        spacing: float,
-        orient_axis: str = "long",
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
     ) -> "Coverage":
         """Create a `Coverage` instance from a geopandas `GeoDataFrame`
@@ -214,12 +198,6 @@ class Coverage(Base):
             Containing area
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
-        spacing : float
-            Distance between survey units
-        orient_axis : {'long', 'short'}, optional
-            Axis of the area along which to orient the survey units (the
-            default is 'long', which creates rows parallel to the longest axis
-            of the area's minimum rotated rectangle)
         min_time_per_unit : Union[float, rv_frozen], optional
             Minimum amount of time required to complete one "unit" of survey,
             given no surveyor speed penalty and no time penalty for recording
@@ -236,13 +214,6 @@ class Coverage(Base):
         -------
         Coverage
         """
-
-        tmp_area = area
-
-        min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
-        orientation = cls._optimize_orientation_by_area_orient(
-            min_rect=min_rot_rect, axis=orient_axis
-        )
 
         tmp_gdf = gdf.reset_index()
         surveyunit_list: List = []
@@ -261,8 +232,8 @@ class Coverage(Base):
             name=name,
             area=area,
             surveyunit_list=surveyunit_list,
-            orientation=orientation,
-            spacing=spacing,
+            orientation=None,
+            spacing=None,
         )
 
     @classmethod
