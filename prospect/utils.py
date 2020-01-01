@@ -1,3 +1,5 @@
+import warnings
+
 import geopandas as gpd
 from scipy.stats._distn_infrastructure import rv_frozen
 import scipy.stats
@@ -50,6 +52,7 @@ def clip_lines_polys(
     ----------
     Earth Analytics Python course, https://doi.org/10.5281/zenodo.2209415
     """
+    warnings.filterwarnings("ignore", "GeoSeries.notna", UserWarning)
 
     # Create a single polygon object for clipping
     poly = by.geometry.unary_union
@@ -67,7 +70,7 @@ def clip_lines_polys(
     clipped["geometry"] = thing_sub.intersection(poly)
 
     # Return the clipped layer with no null geometry values
-    return clipped[clipped.geometry.notnull()]
+    return clipped[(~clipped.geometry.is_empty) & (clipped.geometry.notna())]
 
 
 def beta(a: float, b: float, **kwargs) -> rv_frozen:
