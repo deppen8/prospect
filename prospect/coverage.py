@@ -6,6 +6,7 @@ from .utils import clip_lines_polys
 from typing import List, Dict, Union, Optional
 
 from sqlalchemy import Column, String, Float, PickleType, ForeignKey
+
 # from sqlalchemy.orm import relationship
 
 import geopandas as gpd
@@ -124,7 +125,7 @@ class Coverage(Base):
         area: Area,
         surveyunit_type: str,
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
-        **kwargs
+        **kwargs,
     ) -> "Coverage":
         """Create a `Coverage` instance from a shapefile.
 
@@ -157,17 +158,12 @@ class Coverage(Base):
 
         tmp_gdf = gpd.read_file(path, **kwargs)
         tmp_gdf = tmp_gdf.reset_index()
-        surveyunit_list: List = []
-        for row in tmp_gdf.itertuples():
-            surveyunit_list.append(
-                SurveyUnit(
-                    name=f"{name}_{row.Index}",
-                    coverage_name=name,
-                    shape=row.geometry,
-                    surveyunit_type=surveyunit_type,
-                    min_time_per_unit=min_time_per_unit,
-                )
-            )
+        surveyunit_list: List = cls._gdf_to_surveyunit_list(
+            tmp_gdf,
+            name=name,
+            surveyunit_type=surveyunit_type,
+            min_time_per_unit=min_time_per_unit,
+        )
 
         return cls(
             name=name,
@@ -214,19 +210,13 @@ class Coverage(Base):
         -------
         Coverage
         """
-
         tmp_gdf = gdf.reset_index()
-        surveyunit_list: List = []
-        for row in tmp_gdf.itertuples():
-            surveyunit_list.append(
-                SurveyUnit(
-                    name=f"{name}_{row.Index}",
-                    coverage_name=name,
-                    shape=row.geometry,
-                    surveyunit_type=surveyunit_type,
-                    min_time_per_unit=min_time_per_unit,
-                )
-            )
+        surveyunit_list: List = cls._gdf_to_surveyunit_list(
+            tmp_gdf,
+            name=name,
+            surveyunit_type=surveyunit_type,
+            min_time_per_unit=min_time_per_unit,
+        )
 
         return cls(
             name=name,
@@ -342,18 +332,19 @@ class Coverage(Base):
         ]
 
         transects = transects.reset_index()
-        surveyunit_list: List = []
-        for row in transects.itertuples():
-            surveyunit_list.append(
-                SurveyUnit(
-                    name=f"{name}_{row.Index}",
-                    coverage_name=name,
-                    shape=row.geometry,
-                    surveyunit_type="transect",
-                    length=row.length,
-                    min_time_per_unit=min_time_per_unit,
-                )
-            )
+        geom_name = transects.geometry.name
+
+        surveyunit_list = transects.apply(
+            lambda row: SurveyUnit(
+                name=f"{name}_{row.index}",
+                coverage_name=name,
+                shape=row[geom_name],
+                surveyunit_type="transect",
+                length=row["length"],
+                min_time_per_unit=min_time_per_unit,
+            ),
+            axis=1,
+        ).tolist()
 
         return cls(
             name=name,
@@ -469,18 +460,20 @@ class Coverage(Base):
         radials = radials.loc[:, ["orientation", "radius", "geometry"]]
 
         radials = radials.reset_index()
-        surveyunit_list: List = []
-        for row in radials.itertuples():
-            surveyunit_list.append(
-                SurveyUnit(
-                    name=f"{name}_{row.Index}",
-                    coverage_name=name,
-                    shape=row.geometry,
-                    surveyunit_type="radial",
-                    radius=radius,
-                    min_time_per_unit=min_time_per_unit,
-                )
-            )
+
+        geom_name = radials.geometry.name
+
+        surveyunit_list = radials.apply(
+            lambda row: SurveyUnit(
+                name=f"{name}_{row.index}",
+                coverage_name=name,
+                shape=row[geom_name],
+                surveyunit_type="radial",
+                radius=radius,
+                min_time_per_unit=min_time_per_unit,
+            ),
+            axis=1,
+        ).tolist()
 
         return cls(
             name=name,
@@ -491,6 +484,22 @@ class Coverage(Base):
             sweep_width=None,
             radius=radius,
         )
+
+    @staticmethod
+    def _gdf_to_surveyunit_list(
+        gdf, name, surveyunit_type, min_time_per_unit
+    ) -> List[SurveyUnit]:
+        geom_name = gdf.geometry.name
+        return gdf.apply(
+            lambda row: SurveyUnit(
+                name=f"{name}_{row.index}",
+                coverage_name=name,
+                shape=row[geom_name],
+                surveyunit_type=surveyunit_type,
+                min_time_per_unit=min_time_per_unit,
+            ),
+            axis=1,
+        ).tolist()
 
     @staticmethod
     def _make_unit_bases(
