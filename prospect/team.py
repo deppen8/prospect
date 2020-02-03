@@ -1,7 +1,7 @@
 from .simulation import Base
 from .surveyor import Surveyor
 
-from typing import List
+from typing import List, Union
 
 from sqlalchemy import Column, String, PickleType
 from sqlalchemy.orm import relationship
@@ -70,9 +70,30 @@ class Team(Base):
             [surveyor.to_dict() for surveyor in self.surveyor_list]
         )
 
+    def add_surveyor(self, new_surveyors: Union[Surveyor, List[Surveyor]]):
+        """Update the Team with a new surveyor or surveyors
+
+        Parameters
+        ----------
+        new_surveyors : Surveyor or list of Surveyor objects
+            [description]
+        """
+        if isinstance(new_surveyors, list):
+            self.surveyor_list += new_surveyors
+        elif isinstance(new_surveyors, Surveyor):
+            self.surveyor_list.append(new_surveyors)
+        else:
+            raise TypeError(
+                "new_surveyors must be a Surveyor or list of Surveyor objects"
+            )
+
+        self.df = pd.DataFrame(
+            [surveyor.to_dict() for surveyor in self.surveyor_list]
+        )
+
     def add_to(self, session):
         """Add `Team` and constituent `Surveyor` objects to sqlalchemy session
-        
+
         Parameters
         ----------
         session : [type]
