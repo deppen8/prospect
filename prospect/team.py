@@ -70,26 +70,32 @@ class Team(Base):
             [surveyor.to_dict() for surveyor in self.surveyor_list]
         )
 
-    def add_surveyor(self, new_surveyors: Union[Surveyor, List[Surveyor]]):
+    def add_surveyors(self, surveyors: List[Surveyor]):
         """Update the Team with a new surveyor or surveyors
 
         Parameters
         ----------
-        new_surveyors : Surveyor or list of Surveyor objects
-            [description]
+        surveyors : list of Surveyor objects
         """
-        if isinstance(new_surveyors, list):
-            self.surveyor_list += new_surveyors
-        elif isinstance(new_surveyors, Surveyor):
-            self.surveyor_list.append(new_surveyors)
-        else:
-            raise TypeError(
-                "new_surveyors must be a Surveyor or list of Surveyor objects"
-            )
+        self.surveyor_list += surveyors
 
         self.df = pd.DataFrame(
             [surveyor.to_dict() for surveyor in self.surveyor_list]
         )
+
+    def drop_surveyors(self, surveyors: List[str]):
+        """Remove a surveyor or surveyors from the Team
+
+        Parameters
+        ----------
+        surveyors : list of str
+            List of surveyor.name attributes for the surveyors you want to remove
+        """
+        self.surveyor_list = [
+            s for s in self.surveyor_list if s.name not in surveyors
+        ]
+
+        self.df = self.df[~self.df["surveyor_name"].isin(surveyors)]
 
     def add_to(self, session):
         """Add `Team` and constituent `Surveyor` objects to sqlalchemy session
