@@ -1,19 +1,18 @@
-from .simulation import Base
-from .feature import Feature
-from .area import Area
-from .utils import clip_points
-
-from typing import Tuple, List, Union
-
-from sqlalchemy import Column, String, PickleType, ForeignKey
-
-# from sqlalchemy.orm import relationship
+from typing import List, Tuple, Union
 
 import geopandas as gpd
-from shapely.geometry import Point
 import numpy as np
-from scipy.stats import uniform, poisson, norm
+from scipy.stats import norm, poisson, uniform
 from scipy.stats._distn_infrastructure import rv_frozen
+from shapely.geometry import Point
+from sqlalchemy import Column, ForeignKey, PickleType, String
+
+from .area import Area
+from .feature import Feature
+from .simulation import Base
+from .utils import clip_points
+
+# from sqlalchemy.orm import relationship
 
 
 class Layer(Base):
@@ -49,10 +48,7 @@ class Layer(Base):
     __tablename__ = "layers"
 
     name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
+        "name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE",
     )
     area_name = Column("area_name", String(50), ForeignKey("areas.name"))
     assemblage_name = Column(
@@ -82,8 +78,7 @@ class Layer(Base):
         self.input_features = input_features
 
         self.df = gpd.GeoDataFrame(
-            [feature.to_dict() for feature in self.input_features],
-            geometry="shape",
+            [feature.to_dict() for feature in self.input_features], geometry="shape",
         )
 
         # clip by area
@@ -277,7 +272,7 @@ class Layer(Base):
 
         Notes
         -----
-        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.        
+        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.
         """
 
         tmp_area = area
@@ -448,7 +443,7 @@ class Layer(Base):
         Notes
         -----
         1. Parents (cluster centers) are NOT created as points in the output
-        
+
         2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.
         """
 
@@ -558,7 +553,9 @@ class Layer(Base):
         # create rectangle of given dimensions around centroids
         # rotate
 
-        pass
+        raise NotImplementedError(
+            "`from_rectangles()` will be available in a future version of prospect"
+        )
 
     def add_to(self, session):
         for feature in self.input_features:
