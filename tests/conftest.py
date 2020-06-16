@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 import pytest
 from geopandas import GeoDataFrame
@@ -60,6 +62,47 @@ POLYGONS = [
 @pytest.fixture(params=POLYGONS, scope="module")
 def an_area(request):
     return prospect.Area(name="test_area", shape=request.param, vis=1.0)
+
+
+LEIAP_AREA_PATHS = [
+    "leiap_field1.shp",
+    "leiap_field2.shp",
+    "leiap_field3.shp",
+    "leiap_field4.shp",
+    "leiap_field5.shp",
+    "leiap_field6.shp",
+    "leiap_field7.shp",
+    "leiap_field8.shp",
+]
+
+
+@pytest.fixture(params=LEIAP_AREA_PATHS, ids=LEIAP_AREA_PATHS, scope="session")
+def an_area_shapefile_path(request):
+    return Path(f"./tests/test_data/shapefiles/areas/{request.param}")
+
+
+@pytest.fixture(params=LEIAP_AREA_PATHS, ids=LEIAP_AREA_PATHS, scope="session")
+def an_area_from_shapefile(request):
+    area = prospect.Area.from_shapefile(
+        name="test_area_from_shapefile",
+        path=Path(f"./tests/test_data/shapefiles/areas/{request.param}"),
+    )
+    return area
+
+
+VALUE_ORIGIN_PARAMS = [(100, (0.0, 0.0)), (0, (0.0, 0.0)), (100, (-10.0, -10.0))]
+
+
+@pytest.fixture(
+    params=VALUE_ORIGIN_PARAMS, scope="session",
+)
+def an_area_from_area_value(request):
+    area = prospect.Area.from_area_value(
+        name="test_area_from_area_value",
+        value=request.param[0],
+        origin=request.param[1],
+    )
+    return area
 
 
 # `Feature` FIXTURES
@@ -203,19 +246,6 @@ def a_line_string_gdf_for_clip():
         {"name": [f"test_line{i}" for i in range(len(lines))], "geometry": lines},
         geometry="geometry",
     )
-
-    # LEIAP_AREA_PATHS = ['leiap_field1.shp', 'leiap_field2.shp', 'leiap_field3.shp', 'leiap_field4.shp',
-    #                     'leiap_field5.shp', 'leiap_field6.shp', 'leiap_field7.shp', 'leiap_field8.shp']
-
-    # @pytest.fixture(params=LEIAP_AREA_PATHS, ids=LEIAP_AREA_PATHS, scope='session')
-    # def an_area_shapefile_path(request):
-    #     return Path(f'tests/test_datasets/shapefiles/areas/{request.param}')
-
-    # @pytest.fixture(params=LEIAP_AREA_PATHS, ids=LEIAP_AREA_PATHS, scope='session')
-    # def an_area_from_shapefile(request):
-    #     area = prospect.Area.from_shapefile(name='test_area_from_shapefile', path=Path(
-    #         f'tests/test_datasets/shapefiles/areas/{request.param}'))
-    #     return area
 
     # # `Layer` FIXTURES FOR USE IN OTHER MODULES
 
