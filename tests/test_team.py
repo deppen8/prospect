@@ -6,5 +6,5 @@ def test_returns_Team(a_team):
 
 
 def test_has_desired_attributes(a_team):
-    for a in ["name", "survey_name", "surveyor_list", "df"]:
+    for a in ["name", "surveyor_list", "assignment", "df"]:
         assert hasattr(a_team, a)

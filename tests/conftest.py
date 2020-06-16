@@ -1,11 +1,9 @@
-import prospect
-
-import pytest
-
-from pathlib import Path
-from shapely.geometry import Point, LineString, Polygon
-from geopandas import GeoDataFrame
 import pandas as pd
+import pytest
+from geopandas import GeoDataFrame
+from shapely.geometry import LineString, Point, Polygon
+
+import prospect
 
 
 @pytest.fixture(scope="module")
@@ -61,9 +59,7 @@ POLYGONS = [
 
 @pytest.fixture(params=POLYGONS, scope="module")
 def an_area(request):
-    return prospect.Area(
-        name=f"test_area", survey_name="test_survey", shape=request.param, vis=1.0
-    )
+    return prospect.Area(name="test_area", shape=request.param, vis=1.0)
 
 
 # `Feature` FIXTURES
@@ -96,7 +92,7 @@ def a_layer(an_area, a_feature):
         name="test_layer",
         area=an_area,
         assemblage_name="test_parent_assemblage",
-        input_features=[a_feature]
+        input_features=[a_feature],
     )
 
 
@@ -106,10 +102,7 @@ def a_layer(an_area, a_feature):
 @pytest.fixture(scope="module")
 def an_assemblage(a_survey, an_area, a_layer):
     return prospect.Assemblage(
-        name="test_assemblage",
-        survey_name=a_survey.name,
-        area_name=an_area.name,
-        layer_list=[a_layer],
+        name="test_assemblage", area_name=an_area.name, layer_list=[a_layer],
     )
 
 
@@ -137,7 +130,6 @@ def a_coverage(an_area, a_surveyunit):
     return prospect.Coverage(
         name="test_coverage",
         area=an_area,
-        survey_name="test_survey",
         surveyunit_list=[a_surveyunit],
         orientation=0.0,
         spacing=10.0,
@@ -165,9 +157,7 @@ def a_surveyor():
 
 @pytest.fixture(scope="module")
 def a_team(a_surveyor):
-    return prospect.Team(
-        name="test_team", survey_name="test_survey", surveyor_list=[a_surveyor]
-    )
+    return prospect.Team(name="test_team", surveyor_list=[a_surveyor])
 
 
 # `utils` FIXTUREs

@@ -8,7 +8,6 @@ def test_returns_Coverage(a_coverage):
 def test_has_desired_attributes(a_coverage):
     for a in [
         "name",
-        "survey_name",
         "area_name",
         "surveyunit_list",
         "orientation",
