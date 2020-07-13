@@ -279,6 +279,9 @@ class Layer(Base):
         points = cls.poisson_points(tmp_area, rate)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
+        # check to see that some points were created
+        assert len(shape_list) > 0, "Parameters resulted in zero points"
+
         feature_list = [
             Feature(
                 name=f"{name}_{i}",
@@ -369,6 +372,10 @@ class Layer(Base):
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
+
+        # check to see that some points were created
+        assert len(shape_list) > 0, "Parameters resulted in zero points"
+
         feature_list = [
             Feature(
                 name=f"{name}_{i}",
@@ -460,6 +467,10 @@ class Layer(Base):
         points = np.array(points)
         points_gds = gpd.GeoSeries([Point(xy) for xy in points])
         shape_list = points_gds.geometry.tolist()
+
+        # check to see that some points were created
+        assert len(shape_list) > 0, "Parameters resulted in zero points"
+
         feature_list = [
             Feature(
                 name=f"{name}_{i}",
