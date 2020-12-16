@@ -2,3 +2,5 @@ pandas
 numpy
 geopandas
 scipy
+sqlalchemy
+matplotlib

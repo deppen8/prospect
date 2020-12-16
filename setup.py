@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 # from os import path
 
@@ -110,6 +110,7 @@ setup(
         "geopandas",
         "scipy",
         "sqlalchemy",
+        "matplotlib",
     ],  # Optional
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
@@ -160,7 +161,6 @@ setup(
     # what's used to render the link text on PyPI.
     project_urls={  # Optional
         "Bug Reports": "https://github.com/deppen8/prospect/",
-        "Source": "https://github.com/pypa/sampleproject/",
         "Research project home": "https://deppen8.github.io/",
     },
 )
