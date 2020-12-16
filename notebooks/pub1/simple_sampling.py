@@ -30,12 +30,12 @@ sample_universe.df.plot()
 sample_population_lithics = prospect.Layer.from_poisson_points(rate=0.001, area=sample_universe, assemblage_name="sample_population", name="lithics")
 
 # %%
-sample_population_lithics.df.plot();
+sample_population_lithics.df.plot()
 
 # %%
 sample_population_ceramics = prospect.Layer.from_thomas_points(
-    parent_rate=0.001, 
-    child_rate=5, 
+    parent_rate=0.001,
+    child_rate=5,
     gauss_var=5,
     name="ceramics",
     area=sample_universe,
@@ -43,17 +43,17 @@ sample_population_ceramics = prospect.Layer.from_thomas_points(
 )
 
 # %%
-sample_population_ceramics.df.plot();
+sample_population_ceramics.df.plot()
 
 # %%
 sample_population = prospect.Assemblage(
-    name="sample_population", 
-    area_name="sample_universe", 
+    name="sample_population",
+    area_name="sample_universe",
     layer_list=[sample_population_lithics, sample_population_ceramics]
 )
 
 # %%
-sample_population.df.plot(column='layer_name', legend=True);
+sample_population.df.plot(column='layer_name', legend=True)
 
 # %%
 sample_units = prospect.Coverage.from_transects(name="transect_10m", area=sample_universe, orientation=90)

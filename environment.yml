@@ -4,18 +4,25 @@ channels:
   - nodefaults
 dependencies:
   - python=3.7
-  - black
-  - flake8
   - geopandas
   - descartes
   - jupyter
   - jupyterlab
   - matplotlib
-  - mypy
   - numpy
   - pandas
-  - pytest
-  - rope
   - scipy
   - sqlalchemy
+  - black
+  - isort
+  - flake8
+  - pre-commit
+  - pytest
+  - pytest-cov
+  - mypy
+  - rope
   - jupytext
+  - voila-gridstack
+  - pip:
+    - jupyter-book
+    - cookiecutter

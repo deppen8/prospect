@@ -1,19 +1,18 @@
-from .simulation import Base
-from .surveyunit import SurveyUnit
-from .area import Area
-from .utils import clip_lines_polys
-
-from typing import List, Dict, Union, Optional
-
-from sqlalchemy import Column, String, Float, PickleType, ForeignKey
-
-# from sqlalchemy.orm import relationship
+from typing import Dict, List, Optional, Union
 
 import geopandas as gpd
-from shapely.geometry import Point, LineString, Polygon
-from scipy.stats._distn_infrastructure import rv_frozen
 import numpy as np
 import pandas as pd
+from scipy.stats._distn_infrastructure import rv_frozen
+from shapely.geometry import LineString, Point, Polygon
+from sqlalchemy import Column, Float, ForeignKey, PickleType, String
+
+from .area import Area
+from .simulation import Base
+from .surveyunit import SurveyUnit
+from .utils import clip_lines_polys
+
+# from sqlalchemy.orm import relationship
 
 
 class Coverage(Base):
@@ -64,10 +63,7 @@ class Coverage(Base):
     __tablename__ = "coverages"
 
     name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
+        "name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE",
     )
     area_name = Column("area_name", String(50), ForeignKey("areas.name"))
     surveyunit_list = Column("surveyunit_list", PickleType)
@@ -281,6 +277,11 @@ class Coverage(Base):
         Coverage
         """
 
+        # Validate spacing and sweep_width values
+        assert (
+            sweep_width * 2 <= spacing
+        ), "sweep_width * 2 must be less than or equal to spacing to prevent overlap"
+
         tmp_area = area
         min_rot_rect = tmp_area.df.geometry[0].minimum_rotated_rectangle
         centroid = min_rot_rect.centroid
@@ -307,9 +308,7 @@ class Coverage(Base):
             )
 
         lines_gs = lines_gs.rotate(orientation, origin=centroid)  # rotate
-        lines_gdf = gpd.GeoDataFrame(
-            {"geometry": lines_gs}, geometry="geometry"
-        )
+        lines_gdf = gpd.GeoDataFrame({"geometry": lines_gs}, geometry="geometry")
 
         # clip lines by area
         lines_clipped = clip_lines_polys(lines_gdf, tmp_area.df)
@@ -336,7 +335,7 @@ class Coverage(Base):
 
         surveyunit_list = transects.apply(
             lambda row: SurveyUnit(
-                name=f"{name}_{row.index}",
+                name=f"{name}_{row['index']}",
                 coverage_name=name,
                 shape=row[geom_name],
                 surveyunit_type="transect",
@@ -410,6 +409,10 @@ class Coverage(Base):
         -------
         Coverage
         """
+        # Validate spacing and radius values
+        assert (
+            radius * 2 <= spacing
+        ), "radius * 2 must be less than or equal to spacing to prevent overlap"
 
         tmp_area = area
 
@@ -417,10 +420,7 @@ class Coverage(Base):
         centroid = min_rot_rect.centroid
 
         points_gs = cls._make_unit_bases(
-            surveyunit_type="radial",
-            area=tmp_area,
-            centroid=centroid,
-            spacing=spacing,
+            surveyunit_type="radial", area=tmp_area, centroid=centroid, spacing=spacing,
         )
 
         # set orientation to maximize area
@@ -438,9 +438,7 @@ class Coverage(Base):
             )
 
         points_gs = points_gs.rotate(orientation, origin=centroid)  # rotate
-        points_gdf = gpd.GeoDataFrame(
-            {"geometry": points_gs}, geometry="geometry"
-        )
+        points_gdf = gpd.GeoDataFrame({"geometry": points_gs}, geometry="geometry")
 
         points_clipped = clip_lines_polys(
             points_gdf, tmp_area.df
@@ -503,10 +501,7 @@ class Coverage(Base):
 
     @staticmethod
     def _make_unit_bases(
-        surveyunit_type: str,
-        area: Area,
-        centroid: Point,
-        spacing: float = 10.0,
+        surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0,
     ) -> gpd.GeoSeries:
         """Create the Point and LineString objects that will be buffered to
         make survey units.
@@ -543,9 +538,7 @@ class Coverage(Base):
             n_transects = 3
 
         # calculate x values
-        xs = Coverage._coord_vals_from_centroid_val(
-            centroid.x, n_transects, spacing
-        )
+        xs = Coverage._coord_vals_from_centroid_val(centroid.x, n_transects, spacing)
 
         # calculate y values
         if surveyunit_type == "transect":
@@ -598,21 +591,15 @@ class Coverage(Base):
         if n_transects % 2 == 0:  # even num units
             lower_start = centroid_val - spacing / 2
             upper_start = centroid_val + spacing / 2
-            lower_vals = lower_start - (
-                np.arange(0, n_transects / 2) * spacing
-            )
-            upper_vals = upper_start + (
-                np.arange(0, n_transects / 2) * spacing
-            )
+            lower_vals = lower_start - (np.arange(0, n_transects / 2) * spacing)
+            upper_vals = upper_start + (np.arange(0, n_transects / 2) * spacing)
             vals = np.sort(np.concatenate([lower_vals, upper_vals]))
         else:  # odd num units
             start_val = centroid_val
             lower_vals = start_val - (np.arange(1, n_transects / 2) * spacing)
             upper_vals = start_val + (np.arange(1, n_transects / 2) * spacing)
             vals = np.sort(
-                np.insert(
-                    np.concatenate([lower_vals, upper_vals]), 1, start_val
-                )
+                np.insert(np.concatenate([lower_vals, upper_vals]), 1, start_val)
             )
         return vals
 

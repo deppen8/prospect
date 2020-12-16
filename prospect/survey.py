@@ -1,22 +1,21 @@
-from .simulation import Base
+import collections
+from itertools import cycle
+from typing import List, Tuple, Union
+
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from matplotlib.figure import Figure
+from scipy.stats._distn_infrastructure import rv_frozen
+from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy.orm import relationship
+
 from .area import Area
 from .assemblage import Assemblage
 from .coverage import Coverage
+from .simulation import Base
 from .team import Team
-
-from typing import Union, List, Tuple
-from itertools import cycle
-import collections
-
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
-
-from scipy.stats._distn_infrastructure import rv_frozen
-import geopandas as gpd
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
-import pandas as pd
 
 
 class Survey(Base):
@@ -36,18 +35,11 @@ class Survey(Base):
     __tablename__ = "surveys"
 
     name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
+        "name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE",
     )
     area_name = Column("area", String(50), ForeignKey("areas.name"))
-    assemblage_name = Column(
-        "assemblage", String(50), ForeignKey("assemblages.name")
-    )
-    coverage_name = Column(
-        "coverage", String(50), ForeignKey("coverages.name")
-    )
+    assemblage_name = Column("assemblage", String(50), ForeignKey("assemblages.name"))
+    coverage_name = Column("coverage", String(50), ForeignKey("coverages.name"))
     team_name = Column("team", String(50), ForeignKey("teams.name"))
 
     # relationships
@@ -118,8 +110,7 @@ class Survey(Base):
             self.total_time = 0
 
         resolved_runs = [
-            _resolve(self, run_id=run_id)
-            for run_id in range(start_run_id, stop_run_id)
+            _resolve(self, run_id=run_id) for run_id in range(start_run_id, stop_run_id)
         ]
 
         # first concat outputs, then concat those with class attributes
@@ -130,9 +121,7 @@ class Survey(Base):
         discoveries = pd.concat(
             [run.discovery for run in resolved_runs], ignore_index=True
         )
-        self.discovery = pd.concat(
-            [self.discovery, discoveries], ignore_index=True
-        )
+        self.discovery = pd.concat([self.discovery, discoveries], ignore_index=True)
 
         time_surveyunits = pd.concat(
             [run.time_surveyunit for run in resolved_runs], ignore_index=True
@@ -206,14 +195,7 @@ def _resolve(survey, run_id: int):
         return df.loc[:, input_col].apply(_get_floats_or_distr_vals)
 
     ResolvedRun = collections.namedtuple(
-        "ResolvedRun",
-        [
-            "raw",
-            "discovery",
-            "time_surveyunit",
-            "time_surveyor",
-            "total_time",
-        ],
+        "ResolvedRun", "raw discovery time_surveyunit time_surveyor total_time",
     )
 
     # Create inputs df of features from assemblage
@@ -247,8 +229,7 @@ def _resolve(survey, run_id: int):
     # calculate search_time
     coverage_inputs.loc[:, "base_search_time"] = np.where(
         coverage_inputs.loc[:, "surveyunit_type"] == "transect",
-        coverage_inputs.loc[:, "min_time_per_unit"]
-        * coverage_inputs.loc[:, "length"],
+        coverage_inputs.loc[:, "min_time_per_unit"] * coverage_inputs.loc[:, "length"],
         coverage_inputs.loc[:, "min_time_per_unit"],
     )
 
@@ -282,9 +263,10 @@ def _resolve(survey, run_id: int):
     # self.coverage_team = coverage_team
 
     # Find features that intersect coverage
-    assem_cov_team = gpd.sjoin(
-        assemblage_inputs, coverage_team, how="left"
-    )
+    assem_cov_team = gpd.sjoin(assemblage_inputs, coverage_team, how="left")
+    assert (
+        assem_cov_team.shape[0] == assemblage_inputs.shape[0]
+    ), "Problem with spatial join. Check for accidental spatial overlap in Coverage."
 
     # record which survey unit it intersects (or NaN)
     # if intersects, set proximity to 1.0
@@ -294,9 +276,7 @@ def _resolve(survey, run_id: int):
     )
 
     # Extract surveyor skill values
-    assem_cov_team.loc[:, "skill_obs"] = _extract_values(
-        assem_cov_team, "skill"
-    )
+    assem_cov_team.loc[:, "skill_obs"] = _extract_values(assem_cov_team, "skill")
 
     # Calculate final probability of discovery
     assem_cov_team.loc[:, "discovery_prob"] = (
@@ -340,9 +320,7 @@ def _resolve(survey, run_id: int):
 
     # groupby survey unit
     time_per_surveyunit = (
-        assem_cov_team.groupby(
-            ["surveyunit_name", "surveyor_name", "base_search_time"]
-        )
+        assem_cov_team.groupby(["surveyunit_name", "surveyor_name", "base_search_time"])
         .agg({"time_penalty_obs": "sum", "speed_penalty_obs": "mean"})
         .reset_index()
         .rename(columns={"time_penalty_obs": "sum_time_penalty_obs"})
@@ -361,14 +339,10 @@ def _resolve(survey, run_id: int):
         + time_per_surveyunit.loc[:, "sum_time_penalty_obs"]
     )
 
-    surveyor_pen = (
-        base_pen * time_per_surveyunit.loc[:, "speed_penalty_obs"]
-    )
+    surveyor_pen = base_pen * time_per_surveyunit.loc[:, "speed_penalty_obs"]
 
     # multiply above base
-    time_per_surveyunit.loc[:, "total_time_per_surveyunit"] = (
-        base_pen + surveyor_pen
-    )
+    time_per_surveyunit.loc[:, "total_time_per_surveyunit"] = base_pen + surveyor_pen
 
     time_per_surveyunit.loc[:, "run"] = run_id
 
