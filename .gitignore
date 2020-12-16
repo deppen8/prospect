@@ -120,3 +120,5 @@ dmypy.json
 .vscode/
 TODO
 
+# Annoying MacOS thing
+.DS_Store
