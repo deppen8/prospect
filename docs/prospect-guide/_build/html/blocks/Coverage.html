@@ -1,0 +1,1444 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coverage &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Team" href="Team.html" />
+    <link rel="prev" title="Assemblage" href="Assemblage.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/blocks/Coverage.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fblocks/Coverage.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/blocks/Coverage.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/deppen8/prospect-guide/main?urlpath=lab/tree/blocks/Coverage.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-coverage">
+   Creating a
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Coverage
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-a-list-of-surveyunit-objects">
+     From a list of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SurveyUnit
+      </span>
+     </code>
+     objects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-a-shapefile">
+     From a shapefile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-a-geodataframe">
+     From a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       GeoDataFrame
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bulk-create-transects">
+     Bulk-create transects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bulk-create-radial-units">
+     Bulk-create radial units
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#min-time-per-unit-parameter">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     min_time_per_unit
+    </span>
+   </code>
+   parameter
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="coverage">
+<h1>Coverage<a class="headerlink" href="#coverage" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> represents the areas searched by the <code class="docutils literal notranslate"><span class="pre">Team</span></code> in a survey. Any <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects located within the <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> <em>might</em> be discovered and collected; any <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects located outside the <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> will definitely <em>not</em> be discovered and collected (at least in the current configuration of <code class="docutils literal notranslate"><span class="pre">prospect</span></code>). Like the <code class="docutils literal notranslate"><span class="pre">Assemblage</span></code>, the <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> requires an <code class="docutils literal notranslate"><span class="pre">Area</span></code> object be passed as a parameter of the creation methods.</p>
+<p>The shape and location of these areas are governed by the survey strategy adopted in the simulation. For example, the chosen spacing between transects (and the choice of transects themselves) can be represented in the <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> building block.</p>
+<div class="section" id="creating-a-coverage">
+<h2>Creating a <code class="docutils literal notranslate"><span class="pre">Coverage</span></code><a class="headerlink" href="#creating-a-coverage" title="Permalink to this headline">¶</a></h2>
+<p>A single <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> is created from a list of <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> objects. These <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> objects can be created manually, but because these units are typically regularly-shaped, regularly-spaced, and sharing the same <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> parameter, there are a some convenience methods provided to create them in bulk and add them to the <code class="docutils literal notranslate"><span class="pre">Coverage</span></code>.</p>
+<div class="section" id="from-a-list-of-surveyunit-objects">
+<h3>From a list of <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> objects<a class="headerlink" href="#from-a-list-of-surveyunit-objects" title="Permalink to this headline">¶</a></h3>
+<p>First, however, let us create some small square <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> objects manually and use them to create a <code class="docutils literal notranslate"><span class="pre">Coverage</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">import</span> <span class="nn">prospect</span>
+
+<span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">circ1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>  <span class="c1"># create circle</span>
+<span class="n">su1</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">SurveyUnit</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surveyunit1&quot;</span><span class="p">,</span>
+        <span class="n">coverage_name</span><span class="o">=</span><span class="s2">&quot;demo_coverage&quot;</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="n">circ1</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span>
+        <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">circ2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>  <span class="c1"># create circle</span>
+<span class="n">su2</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">SurveyUnit</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surveyunit2&quot;</span><span class="p">,</span>
+        <span class="n">coverage_name</span><span class="o">=</span><span class="s2">&quot;demo_coverage&quot;</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="n">circ2</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span>
+        <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">circ3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>  <span class="c1"># create circle</span>
+<span class="n">su3</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">SurveyUnit</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surveyunit3&quot;</span><span class="p">,</span>
+        <span class="n">coverage_name</span><span class="o">=</span><span class="s2">&quot;demo_coverage&quot;</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="n">circ3</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span>
+        <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">circ1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.polygon.Polygon
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">su1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prospect.surveyunit.SurveyUnit
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_area</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Area</span><span class="o">.</span><span class="n">from_area_value</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;demo_area&#39;</span><span class="p">,</span> 
+    <span class="n">value</span><span class="o">=</span><span class="mi">10000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_list</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_coverage&quot;</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">demo_area</span><span class="p">,</span> <span class="n">surveyunit_list</span><span class="o">=</span><span class="p">[</span><span class="n">su1</span><span class="p">,</span> <span class="n">su2</span><span class="p">,</span> <span class="n">su3</span><span class="p">],</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">coverage_from_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prospect.coverage.Coverage
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_list</span><span class="o">.</span><span class="vm">__dict__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7f8c2bf55f70&gt;,
+ &#39;name&#39;: &#39;demo_coverage&#39;,
+ &#39;area_name&#39;: &#39;demo_area&#39;,
+ &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x7f8c2bf1f850&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x7f8c2f735400&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x7f8c2f753a90&gt;],
+ &#39;orientation&#39;: None,
+ &#39;spacing&#39;: None,
+ &#39;sweep_width&#39;: None,
+ &#39;radius&#39;: None,
+ &#39;df&#39;:   surveyunit_name  coverage_name  \
+ 0     surveyunit1  demo_coverage   
+ 1     surveyunit2  demo_coverage   
+ 2     surveyunit3  demo_coverage   
+ 
+                                                shape surveyunit_type  \
+ 0  POLYGON ((20.000 10.000, 19.952 9.020, 19.808 ...          radial   
+ 1  POLYGON ((60.000 50.000, 59.952 49.020, 59.808...          radial   
+ 2  POLYGON ((100.000 90.000, 99.952 89.020, 99.80...          radial   
+ 
+    surveyunit_area length  radius  \
+ 0       313.654849   None      10   
+ 1       313.654849   None      10   
+ 2       313.654849   None      10   
+ 
+                                    min_time_per_unit  
+ 0  &lt;scipy.stats._distn_infrastructure.rv_frozen o...  
+ 1  &lt;scipy.stats._distn_infrastructure.rv_frozen o...  
+ 2  &lt;scipy.stats._distn_infrastructure.rv_frozen o...  }
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_list</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surveyunit_name</th>
+      <th>coverage_name</th>
+      <th>shape</th>
+      <th>surveyunit_type</th>
+      <th>surveyunit_area</th>
+      <th>length</th>
+      <th>radius</th>
+      <th>min_time_per_unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>surveyunit1</td>
+      <td>demo_coverage</td>
+      <td>POLYGON ((20.000 10.000, 19.952 9.020, 19.808 ...</td>
+      <td>radial</td>
+      <td>313.654849</td>
+      <td>None</td>
+      <td>10</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>surveyunit2</td>
+      <td>demo_coverage</td>
+      <td>POLYGON ((60.000 50.000, 59.952 49.020, 59.808...</td>
+      <td>radial</td>
+      <td>313.654849</td>
+      <td>None</td>
+      <td>10</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>surveyunit3</td>
+      <td>demo_coverage</td>
+      <td>POLYGON ((100.000 90.000, 99.952 89.020, 99.80...</td>
+      <td>radial</td>
+      <td>313.654849</td>
+      <td>None</td>
+      <td>10</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">coverage_from_list</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_list</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">demo_area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_15_0.png" src="../_images/Coverage_15_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="from-a-shapefile">
+<h3>From a shapefile<a class="headerlink" href="#from-a-shapefile" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">from_shapefile()</span></code> method is useful for reading in existing surveys as <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> objects. These could be the locations of survey units from a completed field survey or maybe survey units that are not shaped according to one of the built-in methods (transects and radial units).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_from_shp</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Area</span><span class="o">.</span><span class="n">from_shapefile</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;area_shp&quot;</span><span class="p">,</span> 
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;./data/demo_area.shp&quot;</span>
+<span class="p">)</span>
+
+<span class="n">coverage_from_shp</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_shapefile</span><span class="p">(</span>
+    <span class="s2">&quot;./data/demo_coverage.shp&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_coverage_from_shp&quot;</span><span class="p">,</span>
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">orient_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_shp</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surveyunit_name</th>
+      <th>coverage_name</th>
+      <th>shape</th>
+      <th>surveyunit_type</th>
+      <th>surveyunit_area</th>
+      <th>length</th>
+      <th>radius</th>
+      <th>min_time_per_unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>demo_coverage_from_shp_Index(['index', 'id', '...</td>
+      <td>demo_coverage_from_shp</td>
+      <td>POLYGON ((533601.766 4388853.524, 533595.418 4...</td>
+      <td>polygon</td>
+      <td>1295.255792</td>
+      <td>None</td>
+      <td>None</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>demo_coverage_from_shp_Index(['index', 'id', '...</td>
+      <td>demo_coverage_from_shp</td>
+      <td>POLYGON ((533675.077 4388864.631, 533708.717 4...</td>
+      <td>polygon</td>
+      <td>905.067539</td>
+      <td>None</td>
+      <td>None</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>demo_coverage_from_shp_Index(['index', 'id', '...</td>
+      <td>demo_coverage_from_shp</td>
+      <td>POLYGON ((533650.957 4388775.135, 533694.119 4...</td>
+      <td>polygon</td>
+      <td>935.686338</td>
+      <td>None</td>
+      <td>None</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>demo_coverage_from_shp_Index(['index', 'id', '...</td>
+      <td>demo_coverage_from_shp</td>
+      <td>POLYGON ((533768.382 4388875.422, 533769.016 4...</td>
+      <td>polygon</td>
+      <td>641.383273</td>
+      <td>None</td>
+      <td>None</td>
+      <td>20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_20_0.png" src="../_images/Coverage_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="from-a-geodataframe">
+<h3>From a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code><a class="headerlink" href="#from-a-geodataframe" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">from_GeoDataFrame()</span></code> method is intended to be used much like the <code class="docutils literal notranslate"><span class="pre">from_shapefile()</span></code> method: when you have the spatial properties of the survey units already defined (in this case in a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>), even if they are irregular, you can quickly create a <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> object from them.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> can also be useful when your spatial data is stored in some format other than a shapefile. You can use any package (e.g., <code class="docutils literal notranslate"><span class="pre">shapely</span></code>) to read from the native format to something useable by <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> (e.g., WKT format). <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> can then read this to a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> for use in <code class="docutils literal notranslate"><span class="pre">prospect</span></code>.</p>
+<p>For the sake of example, let’s load the shapefile we used above, convert it to well-known text (WKT) format, then load into a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">shape</span><span class="p">,</span> <span class="n">Polygon</span>
+
+<span class="n">polys</span> <span class="o">=</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;./data/demo_coverage.shp&quot;</span><span class="p">)</span>
+<span class="n">collection_of_polys</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">]</span>
+<span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="n">Polygon</span><span class="p">(</span><span class="n">poly</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">wkt</span> <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">collection_of_polys</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at an example of the units.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;POLYGON ((533601.7657606293 4388853.523606064, 533595.4184860958 4388846.541604077, 533587.8017566557 4388877.643249291, 533624.6159489499 4388880.816886557, 533637.310498017 4388855.427788423, 533630.3284960302 4388846.541604077, 533612.5561273363 4388844.637421716, 533612.5561273363 4388844.637421716, 533612.5561273363 4388844.637421716, 533601.7657606293 4388853.523606064))&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we can put this string representation in a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">wkt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;names&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;unit1&quot;</span><span class="p">,</span> <span class="s2">&quot;unit2&quot;</span><span class="p">,</span> <span class="s2">&quot;unit3&quot;</span><span class="p">,</span> <span class="s2">&quot;unit4&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span><span class="n">units</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wkt_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>names</th>
+      <th>coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>unit1</td>
+      <td>POLYGON ((533601.7657606293 4388853.523606064,...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>unit2</td>
+      <td>POLYGON ((533675.0767814913 4388864.631336497,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>unit3</td>
+      <td>POLYGON ((533650.957138264 4388775.134765575, ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>unit4</td>
+      <td>POLYGON ((533768.3817171339 4388875.421703205,...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Confirm that the entries in the new column <code class="docutils literal notranslate"><span class="pre">&quot;coordinates&quot;</span></code> are strings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">wkt_df</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">wkt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">wkt_df</span><span class="p">[</span><span class="s2">&quot;geo_coordinates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wkt_df</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">wkt</span><span class="o">.</span><span class="n">loads</span><span class="p">)</span>
+<span class="n">wkt_geodf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">wkt_df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geo_coordinates&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wkt_geodf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>names</th>
+      <th>coordinates</th>
+      <th>geo_coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>unit1</td>
+      <td>POLYGON ((533601.7657606293 4388853.523606064,...</td>
+      <td>POLYGON ((533601.766 4388853.524, 533595.418 4...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>unit2</td>
+      <td>POLYGON ((533675.0767814913 4388864.631336497,...</td>
+      <td>POLYGON ((533675.077 4388864.631, 533708.717 4...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>unit3</td>
+      <td>POLYGON ((533650.957138264 4388775.134765575, ...</td>
+      <td>POLYGON ((533650.957 4388775.135, 533694.119 4...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>unit4</td>
+      <td>POLYGON ((533768.3817171339 4388875.421703205,...</td>
+      <td>POLYGON ((533768.382 4388875.422, 533769.016 4...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;coordinates&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;geo_coordinates&quot;</span></code> look similar, but the latter now contains <code class="docutils literal notranslate"><span class="pre">shapely</span></code> <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> objects instead of strings and the whole thing is a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> suitable for <code class="docutils literal notranslate"><span class="pre">prospect</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">wkt_geodf</span><span class="p">[</span><span class="s1">&#39;geo_coordinates&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.polygon.Polygon
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">wkt_geodf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s complete the cycle by turning this into a <code class="docutils literal notranslate"><span class="pre">prospect</span></code> <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_from_shp</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Area</span><span class="o">.</span><span class="n">from_shapefile</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;area_shp&quot;</span><span class="p">,</span> 
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;./data/demo_area.shp&quot;</span>
+<span class="p">)</span>
+
+<span class="n">coverage_from_gdf</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_GeoDataFrame</span><span class="p">(</span>
+    <span class="n">gdf</span><span class="o">=</span><span class="n">wkt_geodf</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_coverage_from_gdf&quot;</span><span class="p">,</span>
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_from_gdf</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_39_0.png" src="../_images/Coverage_39_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="bulk-create-transects">
+<h3>Bulk-create transects<a class="headerlink" href="#bulk-create-transects" title="Permalink to this headline">¶</a></h3>
+<p>Transects are probably the most common type of survey strategy in use in the field. As such, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> includes a <code class="docutils literal notranslate"><span class="pre">from_transects()</span></code> method to easily create a transect-based survey approach.</p>
+<p>This method for constructing <code class="docutils literal notranslate"><span class="pre">Coverage</span></code> objects comes with a few special parameters that help <code class="docutils literal notranslate"><span class="pre">prospect</span></code> create the appropriate transects for the given <code class="docutils literal notranslate"><span class="pre">Area</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spacing</span></code>: Distance between transects (the default is 10.0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sweep_width</span></code>: Buffer distance around transects (the default is 2.0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orientation</span></code>: Angle of the predominant axis of the transects (the default is 0.0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimize_orient_by</span></code> (<code class="docutils literal notranslate"><span class="pre">'area_coverage'</span></code> or <code class="docutils literal notranslate"><span class="pre">'area_orient'</span></code>): Metric to optimize in determining the orientation of transects. <code class="docutils literal notranslate"><span class="pre">'area_coverage'</span></code> chooses the orientation that maximizes the area covered by the transects. <code class="docutils literal notranslate"><span class="pre">'area_orient'</span></code> chooses the orientation that best parallels the <code class="docutils literal notranslate"><span class="pre">orient_axis</span></code> of the area. The default is <code class="docutils literal notranslate"><span class="pre">None</span></code>, in which case the <code class="docutils literal notranslate"><span class="pre">orientation</span></code> parameter is used directly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orient_increment</span></code>: Step size (in degrees) to use when testing different orientations. (the default is 5.0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orient_axis</span></code> (<code class="docutils literal notranslate"><span class="pre">'long'</span></code> or <code class="docutils literal notranslate"><span class="pre">'short'</span></code>): Axis of the area along which to orient the survey units (the default is <code class="docutils literal notranslate"><span class="pre">'long'</span></code>, which creates rows parallel to the longest axis of the area’s minimum rotated rectangle)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code>: Minimum amount of time required to complete one “unit” of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0. <em>Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).</em></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">from_transects()</span></code> method has a series of possible customizations. We will explore them one-by-one using the same <code class="docutils literal notranslate"><span class="pre">Area</span></code> object we have been using.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_from_shp</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Area</span><span class="o">.</span><span class="n">from_shapefile</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;area_shp&quot;</span><span class="p">,</span> 
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;./data/demo_area.shp&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s start, however, with a simple version of a transect <code class="docutils literal notranslate"><span class="pre">Coverage</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_transects</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_simple_transects&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span> 
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">sweep_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_transects</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_46_0.png" src="../_images/Coverage_46_0.png" />
+</div>
+</div>
+<p>We can vary the spacing and the width of the transects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_transects_spacing</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_simple_transects_spacing&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span> 
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">sweep_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_transects_spacing</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_49_0.png" src="../_images/Coverage_49_0.png" />
+</div>
+</div>
+<p>Notice that by default, the transects are oriented directly north-south. If you know what orientation you would like to use, you can specify that directly with the <code class="docutils literal notranslate"><span class="pre">orientation</span></code> parameter. Here we rotate them 90 degrees to an east-west orientation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_transects_orientation&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">sweep_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">orientation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_52_0.png" src="../_images/Coverage_52_0.png" />
+</div>
+</div>
+<p>There are also ways to optimize the orientation of the transects. First, you can choose to find the orientation that maximizes the areal extent of the survey units (<code class="docutils literal notranslate"><span class="pre">'area_coverage'</span></code>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">orient_increment</span></code> parameter determines the orientations that <code class="docutils literal notranslate"><span class="pre">prospect</span></code> will iterate through. This is useful to specify if you are planning to put a team in the field. It may be impractical to orient a team to fractions of a degree or even a single degree. You might prefer to stick to increments of 5 or 10 degrees. Below, we check every 5 degrees, which is the default.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_cov</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_transects_orientation_areal_cov&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">sweep_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">optimize_orient_by</span><span class="o">=</span><span class="s2">&quot;area_coverage&quot;</span><span class="p">,</span>
+    <span class="n">orient_increment</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_cov</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_55_0.png" src="../_images/Coverage_55_0.png" />
+</div>
+</div>
+<p>You can then examine the orientation that was chosen via the <code class="docutils literal notranslate"><span class="pre">orientation</span></code> attribute</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_cov</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
+</pre></div>
+</div>
+</div>
+</div>
+<p>The other optimization option is <code class="docutils literal notranslate"><span class="pre">'area_orient'</span></code>, which chooses the orientation that best parallels the <code class="docutils literal notranslate"><span class="pre">orient_axis</span></code> of the area. You can choose to follow the <code class="docutils literal notranslate"><span class="pre">'long'</span></code> or <code class="docutils literal notranslate"><span class="pre">'short'</span></code> axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_orient</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_transects_orientation_areal_orient&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">sweep_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">optimize_orient_by</span><span class="o">=</span><span class="s2">&quot;area_orient&quot;</span><span class="p">,</span>
+    <span class="n">orient_axis</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_orient</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_60_0.png" src="../_images/Coverage_60_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_orient</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-42.04645468087444
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, optimizing by the long axis yields an orientation of -42 degrees (e.g., 318 degrees).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_orient_short</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_transects_orientation_areal_orient_short&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">sweep_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">optimize_orient_by</span><span class="o">=</span><span class="s2">&quot;area_orient&quot;</span><span class="p">,</span>
+    <span class="n">orient_axis</span><span class="o">=</span><span class="s2">&quot;short&quot;</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_orient_short</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_64_0.png" src="../_images/Coverage_64_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transects_orientation_areal_orient_short</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>47.95354531912556
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bulk-create-radial-units">
+<h3>Bulk-create radial units<a class="headerlink" href="#bulk-create-radial-units" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">from_radials()</span></code> method creates a regularly-spaced grid of circular survey plots. It has all of the same special parameters as the <code class="docutils literal notranslate"><span class="pre">from_transects()</span></code> method with the exception of the following:</p>
+<ul class="simple">
+<li><p>Instead of <code class="docutils literal notranslate"><span class="pre">sweep_width</span></code>, radials have a <code class="docutils literal notranslate"><span class="pre">radius</span></code> (naturally) that controls how large the survey plots will be.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> can be specified as the minimum time it takes to survey one circular plot.</p></li>
+</ul>
+<p>Let’s start, however, with a simple version of a radials <code class="docutils literal notranslate"><span class="pre">Coverage</span></code>. The default radius is 1.78, which gives you radials with roughly 10 square units of area.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_radials</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_radials</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_simple_radials&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span> 
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mf">1.78</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_radials</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_70_0.png" src="../_images/Coverage_70_0.png" />
+</div>
+</div>
+<p>Notice that, like the transects, by default, the transects are oriented directly north-south. If we were to rotate them 90 degrees as we did for the transects, we would get much the same result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_radials</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_radials_orientation&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">radius</span><span class="o">=</span><span class="mf">1.78</span><span class="p">,</span> 
+    <span class="n">orientation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_73_0.png" src="../_images/Coverage_73_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>90
+</pre></div>
+</div>
+</div>
+</div>
+<p>The same orientation optimization parameters are available for radial survey units as were available for transects.</p>
+<p>First, <code class="docutils literal notranslate"><span class="pre">area_coverage</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_cov</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_radials</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_radials_orientation_areal_cov&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">radius</span><span class="o">=</span><span class="mf">1.78</span><span class="p">,</span> 
+    <span class="n">optimize_orient_by</span><span class="o">=</span><span class="s2">&quot;area_coverage&quot;</span><span class="p">,</span>
+    <span class="n">orient_increment</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_cov</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_77_0.png" src="../_images/Coverage_77_0.png" />
+</div>
+</div>
+<p>You can then examine the orientation that was chosen via the <code class="docutils literal notranslate"><span class="pre">orientation</span></code> attribute</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_cov</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+</pre></div>
+</div>
+</div>
+</div>
+<p>Likewise, <code class="docutils literal notranslate"><span class="pre">area_orient</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_orient</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_radials</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_radials_orientation_areal_orient&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">radius</span><span class="o">=</span><span class="mf">1.78</span><span class="p">,</span> 
+    <span class="n">optimize_orient_by</span><span class="o">=</span><span class="s2">&quot;area_orient&quot;</span><span class="p">,</span>
+    <span class="n">orient_axis</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_orient</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_82_0.png" src="../_images/Coverage_82_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_orient</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-42.04645468087444
+</pre></div>
+</div>
+</div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Look!</p>
+<p>This is the exact same value as we calculated for the transects!</p>
+</div>
+<p>Now for the short axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_orient_short</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_radials</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_radials_orientation_areal_orient_short&quot;</span><span class="p">,</span> 
+    <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">radius</span><span class="o">=</span><span class="mf">1.78</span><span class="p">,</span> 
+    <span class="n">optimize_orient_by</span><span class="o">=</span><span class="s2">&quot;area_orient&quot;</span><span class="p">,</span>
+    <span class="n">orient_axis</span><span class="o">=</span><span class="s2">&quot;short&quot;</span><span class="p">,</span>
+    <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_orient_short</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">area_from_shp</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Coverage_86_0.png" src="../_images/Coverage_86_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radials_orientation_areal_orient_short</span><span class="o">.</span><span class="n">orientation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>47.95354531912556
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, this value matches the one for the transects.</p>
+</div>
+</div>
+<div class="section" id="min-time-per-unit-parameter">
+<h2><code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> parameter<a class="headerlink" href="#min-time-per-unit-parameter" title="Permalink to this headline">¶</a></h2>
+<p>This parameter is used to model the base level of time it takes to survey one unit. For variable-length units like transects, this parameter needs to be an amount of time per unit of distance (e.g., 5 seconds per meter). For fixed-size units like radial units or square units, this can be a single base time.</p>
+<p>This parameter should be specified under the following assumptions:</p>
+<ul class="simple">
+<li><p>no surveyor speed penalty (from the Surveyor)</p></li>
+<li><p>no time penalty for recording (from the Assemblage)</p></li>
+</ul>
+<p>In other words, it represents only the search time for an expert surveyor who doesn’t stop to record any artifacts or features.</p>
+<p>With enough prior experience, <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> can be modeled as a single value constant. If <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> is being modeled as a distribution, it makes most sense to have it bounded at zero.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The truncated normal distribution is a good choice for this.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">dist_trunc</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">hist_trunc</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_trunc</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># draw 100k random values and plot</span>
+<span class="n">hist_trunc</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jdeppen/miniconda3/envs/prospect-guide/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../_images/Coverage_92_1.png" src="../_images/Coverage_92_1.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While the truncated normal distribution is a good choice generally, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> allows you to use whatever <code class="docutils literal notranslate"><span class="pre">scipy</span></code> distribution you think fits your case best.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./blocks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Assemblage.html" title="previous page">Assemblage</a>
+    <a class='right-next' id="next-link" href="Team.html" title="next page">Team</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
