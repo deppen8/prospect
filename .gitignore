@@ -74,7 +74,6 @@ target/
 
 # Jupyter Notebook (use jupytext for ipynb version control)
 .ipynb_checkpoints
-*.ipynb
 
 # IPython
 profile_default/
