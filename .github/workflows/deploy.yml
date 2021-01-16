@@ -26,12 +26,11 @@ jobs:
     - name: Set up conda env with dependencies
       uses: conda-incubator/setup-miniconda@v2
       with:
-        python-version: ${{ matrix.python-version }}
         mamba-version: "*"
-        channels: conda-forge, defaults
         channel-priority: true
-        activate-environment: prospect
         environment-file: environment.yml
+        activate-environment: prospect
+        auto-activate-base: false
     - name: Install prospect in dev mode
       run: |
         python3 -m pip install -e .
