@@ -448,12 +448,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7f98d5a53f40&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7f683dd1e6a0&gt;,
  &#39;name&#39;: &#39;demo_coverage&#39;,
  &#39;area_name&#39;: &#39;demo_area&#39;,
- &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x7f99188b7a60&gt;,
-  &lt;prospect.surveyunit.SurveyUnit at 0x7f98d5a725e0&gt;,
-  &lt;prospect.surveyunit.SurveyUnit at 0x7f98d5a53580&gt;],
+ &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x7f683dd48fa0&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x7f6869bdfb80&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x7f683dd09d90&gt;],
  &#39;orientation&#39;: None,
  &#39;spacing&#39;: None,
  &#39;sweep_width&#39;: None,
@@ -980,55 +980,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">27</span><span class="o">-</span><span class="n">c1b0eb8e8119</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">simple_transects</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_simple_transects&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">sweep_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-
-<span class="nn">~/work/prospect/prospect/prospect/coverage.py</span> in <span class="ni">from_transects</span><span class="nt">(cls, name, area, spacing, sweep_width, orientation, optimize_orient_by, orient_increment, orient_axis, min_time_per_unit)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="c1"># clip lines by area</span>
-<span class="ne">--&gt; </span><span class="mi">314</span>         <span class="n">lines_clipped</span> <span class="o">=</span> <span class="n">clip_lines_polys</span><span class="p">(</span><span class="n">lines_gdf</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span> 
-<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="c1"># buffer transects</span>
-
-<span class="nn">~/work/prospect/prospect/prospect/utils.py</span> in <span class="ni">clip_lines_polys</span><span class="nt">(lines_polys, by)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="c1"># Create a single polygon object for clipping</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">poly</span> <span class="o">=</span> <span class="n">by</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">unary_union</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="n">spatial_index</span> <span class="o">=</span> <span class="n">lines_polys</span><span class="o">.</span><span class="n">sindex</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> 
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="c1"># Create a box for the initial intersection</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/base.py</span> in <span class="ni">sindex</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span>     <span class="k">def</span> <span class="nf">sindex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">592</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex_generated</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">593</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sindex</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">594</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex</span>
-<span class="g g-Whitespace">    </span><span class="mi">595</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/base.py</span> in <span class="ni">_generate_sindex</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> 
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">def</span> <span class="nf">_generate_sindex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">98</span>         <span class="n">sindex_cls</span> <span class="o">=</span> <span class="n">get_sindex_class</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="k">if</span> <span class="n">sindex_cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>             <span class="n">_sindex</span> <span class="o">=</span> <span class="n">sindex_cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/sindex.py</span> in <span class="ni">get_sindex_class</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="k">if</span> <span class="n">compat</span><span class="o">.</span><span class="n">HAS_RTREE</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="k">return</span> <span class="n">RTreeIndex</span>
-<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="s2">&quot;Spatial indexes require either `rtree` or `pygeos`. &quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span>         <span class="s2">&quot;See installation instructions at https://geopandas.org/install.html&quot;</span>
-
-<span class="ne">ImportError</span>: Spatial indexes require either `rtree` or `pygeos`. See installation instructions at https://geopandas.org/install.html
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1422,7 +1373,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Coverage_92_0.png" src="../_images/Coverage_92_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda/envs/prospect/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../_images/Coverage_92_1.png" src="../_images/Coverage_92_1.png" />
 </div>
 </div>
 <div class="admonition note">
