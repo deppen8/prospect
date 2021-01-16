@@ -5,8 +5,8 @@
 To create UML diagrams, use `pyreverse` package. `pyreverse` is installed when you install `pylint`, but also requires `graphviz` if you want to write to image output formats. The following generates the UML diagram for only the current module.
 
 ```bash
-cd surveysim  # project folder, not package (aka src)
-pyreverse -s 0 -a 0 surveysim -o png
+cd prospect  # project folder, not package (aka src)
+pyreverse -s 0 -a 0 prospect -o png
 ```
 
 ## Sphinx docs
@@ -15,7 +15,7 @@ Initial setup.
 
 ```bash
 cd docs
-sphinx-apidoc -F -o . ../surveysim
+sphinx-apidoc -F -o . ../prospect
 ```
 
 ### Changes to default `conf.py`

@@ -72,8 +72,9 @@ docs/_build/
 # PyBuilder
 target/
 
-# Jupyter Notebook
+# Jupyter Notebook (use jupytext for ipynb version control)
 .ipynb_checkpoints
+*.ipynb
 
 # IPython
 profile_default/
@@ -118,3 +119,6 @@ dmypy.json
 # VS Code settings
 .vscode/
 TODO
+
+# Annoying MacOS thing
+.DS_Store

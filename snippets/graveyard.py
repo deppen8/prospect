@@ -66,7 +66,7 @@
         path : str
             File path to shapefile
         """
-        # TODO: check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
+        # check that shapefile only has one feature (e.g., tmp_gdf.shape[0]==1)
         tmp_gdf = gpd.read_file(path)
         self.data['geometry'] = tmp_gdf['geometry']
         self.shape = self.data['geometry'].iloc[0]

@@ -1,0 +1,10 @@
+-r requirements.txt
+pytest
+pytest-cov
+flake8
+black
+isort
+pre-commit
+seaborn
+jupyter-book
+ghp-import
