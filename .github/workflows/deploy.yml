@@ -33,12 +33,14 @@ jobs:
         activate-environment: prospect
         auto-activate-base: false
     - name: Install prospect in dev mode
+      shell: bash -l {0}
       run: |
         python3 -m pip install -e .
       # pip install -r requirements_dev.txt \
 
     # Build the book
     - name: Build the book
+      shell: bash -l {0}
       run: |
         jupyter-book build docs/prospect-guide
 
