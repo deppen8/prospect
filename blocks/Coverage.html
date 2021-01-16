@@ -448,12 +448,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7f4506962fd0&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7f0f9dc6aee0&gt;,
  &#39;name&#39;: &#39;demo_coverage&#39;,
  &#39;area_name&#39;: &#39;demo_area&#39;,
- &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x7f45497eea60&gt;,
-  &lt;prospect.surveyunit.SurveyUnit at 0x7f45069815b0&gt;,
-  &lt;prospect.surveyunit.SurveyUnit at 0x7f4506962550&gt;],
+ &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x7f0f9dc93c70&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x7f0f5ae2b640&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x7f0f5ae0a5b0&gt;],
  &#39;orientation&#39;: None,
  &#39;spacing&#39;: None,
  &#39;sweep_width&#39;: None,
@@ -573,53 +573,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">_plot_polygon_collection</span><span class="nt">(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">120</span>         <span class="kn">from</span> <span class="nn">descartes.patch</span> <span class="kn">import</span> <span class="n">PolygonPatch</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;descartes&#39;
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">0</span><span class="n">abde51bdb70</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">coverage_from_list</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">demo_area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/geodataframe.py</span> in <span class="ni">plot</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span>         <span class="kn">from</span> <span class="nn">there.</span>
-<span class="g g-Whitespace">    </span><span class="mi">920</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">921</span><span class="s2">         return plot_dataframe(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">922</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span><span class="s2">     plot.__doc__ = plot_dataframe.__doc__</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">plot_dataframe</span><span class="nt">(df, column, cmap, color, ax, cax, categorical, legend, scheme, k, vmin, vmax, markersize, figsize, legend_kwds, categories, classification_kwds, missing_kwds, aspect, **style_kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span><span class="s2">     if column is None:</span>
-<span class="ne">--&gt; </span><span class="mi">615</span><span class="s2">         return plot_series(</span>
-<span class="g g-Whitespace">    </span><span class="mi">616</span><span class="s2">             df.geometry,</span>
-<span class="g g-Whitespace">    </span><span class="mi">617</span><span class="s2">             cmap=cmap,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">plot_series</span><span class="nt">(s, cmap, color, ax, figsize, aspect, **style_kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">411</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">412</span><span class="s2">         values_ = values[poly_idx] if cmap else None</span>
-<span class="ne">--&gt; </span><span class="mi">413</span><span class="s2">         _plot_polygon_collection(</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span><span class="s2">             ax, polys, values_, facecolor=facecolor, cmap=cmap, **style_kwds</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span><span class="s2">         )</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">_plot_polygon_collection</span><span class="nt">(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">         from descartes.patch import PolygonPatch</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2">     except ImportError:</span>
-<span class="ne">--&gt; </span><span class="mi">122</span><span class="s2">         raise ImportError(</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="s2">             &quot;The descartes package is required for plotting polygons in geopandas. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="s2">             &quot;You can install it using &#39;conda install -c conda-forge descartes&#39; or &quot;</span>
-
-<span class="ne">ImportError</span>: The descartes package is required for plotting polygons in geopandas. You can install it using &#39;conda install -c conda-forge descartes&#39; or &#39;pip install descartes&#39;.
-</pre></div>
-</div>
-<img alt="../_images/Coverage_15_1.png" src="../_images/Coverage_15_1.png" />
+<img alt="../_images/Coverage_15_0.png" src="../_images/Coverage_15_0.png" />
 </div>
 </div>
 </div>
@@ -1023,6 +977,55 @@
     <span class="n">sweep_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
     <span class="n">min_time_per_unit</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">27</span><span class="o">-</span><span class="n">c1b0eb8e8119</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">simple_transects</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="o">.</span><span class="n">from_transects</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_simple_transects&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">area</span><span class="o">=</span><span class="n">area_from_shp</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">spacing</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">sweep_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+
+<span class="nn">~/work/prospect/prospect/prospect/coverage.py</span> in <span class="ni">from_transects</span><span class="nt">(cls, name, area, spacing, sweep_width, orientation, optimize_orient_by, orient_increment, orient_axis, min_time_per_unit)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="c1"># clip lines by area</span>
+<span class="ne">--&gt; </span><span class="mi">314</span>         <span class="n">lines_clipped</span> <span class="o">=</span> <span class="n">clip_lines_polys</span><span class="p">(</span><span class="n">lines_gdf</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span> 
+<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="c1"># buffer transects</span>
+
+<span class="nn">~/work/prospect/prospect/prospect/utils.py</span> in <span class="ni">clip_lines_polys</span><span class="nt">(lines_polys, by)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="c1"># Create a single polygon object for clipping</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">poly</span> <span class="o">=</span> <span class="n">by</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">unary_union</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="n">spatial_index</span> <span class="o">=</span> <span class="n">lines_polys</span><span class="o">.</span><span class="n">sindex</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> 
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="c1"># Create a box for the initial intersection</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/base.py</span> in <span class="ni">sindex</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span>     <span class="k">def</span> <span class="nf">sindex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">592</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex_generated</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">593</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sindex</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex</span>
+<span class="g g-Whitespace">    </span><span class="mi">595</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/base.py</span> in <span class="ni">_generate_sindex</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> 
+<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">def</span> <span class="nf">_generate_sindex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">98</span>         <span class="n">sindex_cls</span> <span class="o">=</span> <span class="n">get_sindex_class</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="k">if</span> <span class="n">sindex_cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>             <span class="n">_sindex</span> <span class="o">=</span> <span class="n">sindex_cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/sindex.py</span> in <span class="ni">get_sindex_class</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="k">if</span> <span class="n">compat</span><span class="o">.</span><span class="n">HAS_RTREE</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="k">return</span> <span class="n">RTreeIndex</span>
+<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="s2">&quot;Spatial indexes require either `rtree` or `pygeos`. &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>         <span class="s2">&quot;See installation instructions at https://geopandas.org/install.html&quot;</span>
+
+<span class="ne">ImportError</span>: Spatial indexes require either `rtree` or `pygeos`. See installation instructions at https://geopandas.org/install.html
 </pre></div>
 </div>
 </div>
