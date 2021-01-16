@@ -5,3 +5,6 @@ flake8
 black
 isort
 pre-commit
+seaborn
+jupyter-book
+ghp-import

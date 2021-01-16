@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python=3.7
+  - python=3.8
   - geopandas
   - descartes
   - jupyter
@@ -23,6 +23,7 @@ dependencies:
   - rope
   - jupytext
   - voila-gridstack
+  - seaborn
   - pip:
     - jupyter-book
     - cookiecutter
