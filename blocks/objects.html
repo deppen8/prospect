@@ -379,11 +379,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;shapely.geometry.point.Point at 0x7fe48fbda7f0&gt;,
- &lt;shapely.geometry.point.Point at 0x7fe48fbda970&gt;,
- &lt;shapely.geometry.point.Point at 0x7fe48fbdaa00&gt;,
- &lt;shapely.geometry.point.Point at 0x7fe48fbdaa30&gt;,
- &lt;shapely.geometry.point.Point at 0x7fe48fbdaa90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;shapely.geometry.point.Point at 0x7fbe5c0bb2e0&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fbe5c05a070&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fbe5c05a0d0&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fbe5c05a130&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fbe5c05a1c0&gt;]
 </pre></div>
 </div>
 </div>
@@ -399,6 +399,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">4307</span><span class="n">a500c95e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">prospect</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">feature_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)):</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">pt</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;demo_layer&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;prospect&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -407,11 +421,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;prospect.feature.Feature at 0x7fe48f731df0&gt;,
- &lt;prospect.feature.Feature at 0x7fe492ee3f10&gt;,
- &lt;prospect.feature.Feature at 0x7fe492f0efa0&gt;,
- &lt;prospect.feature.Feature at 0x7fe492ed0eb0&gt;,
- &lt;prospect.feature.Feature at 0x7fe492f201c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;prospect.feature.Feature at 0x113088c88&gt;,
+ &lt;prospect.feature.Feature at 0x113088cf8&gt;,
+ &lt;prospect.feature.Feature at 0x11cbee668&gt;,
+ &lt;prospect.feature.Feature at 0x11cbee6d8&gt;,
+ &lt;prospect.feature.Feature at 0x11cbee748&gt;]
 </pre></div>
 </div>
 </div>
@@ -424,12 +438,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7fe48fbdaee0&gt;,
- &#39;name&#39;: &#39;feature_0&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x113088cc0&gt;,
+ &#39;ideal_obs_rate&#39;: 1.0,
  &#39;layer_name&#39;: &#39;demo_layer&#39;,
- &#39;shape&#39;: &lt;shapely.geometry.point.Point at 0x7fe48fbda7f0&gt;,
- &#39;time_penalty&#39;: 0.0,
- &#39;ideal_obs_rate&#39;: 1.0}
+ &#39;name&#39;: &#39;feature_0&#39;,
+ &#39;shape&#39;: &lt;shapely.geometry.point.Point at 0x113088780&gt;,
+ &#39;time_penalty&#39;: 0.0}
 </pre></div>
 </div>
 </div>
@@ -578,7 +592,7 @@
     <tr>
       <th>0</th>
       <td>demo_area</td>
-      <td>POLYGON ((0.00000 0.00000, 1.00000 1.00000, 1....</td>
+      <td>POLYGON ((0 0, 1 1, 1 0, 0 0))</td>
       <td>1.0</td>
     </tr>
   </tbody>
