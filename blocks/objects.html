@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Common objects &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Area" href="Area.html" />
+    <link rel="prev" title="Parameters" href="parameters.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/blocks/objects.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fblocks/objects.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/blocks/objects.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/deppen8/prospect-guide/main?urlpath=lab/tree/blocks/objects.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scipy-continuous-distributions">
+   SciPy continuous distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shapely-objects">
+   Shapely objects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#point">
+     Point
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linestring">
+     LineString
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polygon">
+     Polygon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geopandas-objects">
+   Geopandas objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shapefiles">
+   Shapefiles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#next">
+   Next…
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="common-objects">
+<h1>Common objects<a class="headerlink" href="#common-objects" title="Permalink to this headline">¶</a></h1>
+<p>This page is meant as a super-fast introduction to some of the object types used in <code class="docutils literal notranslate"><span class="pre">prospect</span></code> that may not be familiar to new Python users. I will only cover objects that come from outside this package. <code class="docutils literal notranslate"><span class="pre">prospect</span></code>-defined objects (<code class="docutils literal notranslate"><span class="pre">Area</span></code>, <code class="docutils literal notranslate"><span class="pre">Feature</span></code>, <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>, etc) all have their own pages in this guide.</p>
+<div class="section" id="scipy-continuous-distributions">
+<h2>SciPy continuous distributions<a class="headerlink" href="#scipy-continuous-distributions" title="Permalink to this headline">¶</a></h2>
+<p>SciPy distributions were introduced in the <a class="reference internal" href="parameters.html"><span class="doc std std-doc">Parameters</span></a> section of the guide. To be precise, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> uses SciPy “frozen” continuous distributions. The frozen version is simply an instantiated distribution whose parameters are fixed. This allows it to be passed around as an object without specifying the parameters each time you want to use a method like <code class="docutils literal notranslate"><span class="pre">.rvs()</span></code>, which draws random values.</p>
+</div>
+<div class="section" id="shapely-objects">
+<h2>Shapely objects<a class="headerlink" href="#shapely-objects" title="Permalink to this headline">¶</a></h2>
+<p>From the <a class="reference external" href="https://shapely.readthedocs.io/">Shapely documentation</a>:</p>
+<blockquote>
+<div><p>Shapely is a Python package for set-theoretic analysis and manipulation of planar features using (via Python’s ctypes module) functions from the well known and widely deployed GEOS library.</p>
+</div></blockquote>
+<p>All of the spatial components of <code class="docutils literal notranslate"><span class="pre">prospect</span></code> are defined by <code class="docutils literal notranslate"><span class="pre">shapely</span></code> objects, either directly or as part of <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> objects (see below), which depends on <code class="docutils literal notranslate"><span class="pre">shapely</span></code>.</p>
+<p>The main shapes of interest are the point, line, and polygon, represented in <code class="docutils literal notranslate"><span class="pre">shapely</span></code> by the <code class="docutils literal notranslate"><span class="pre">Point</span></code>, <code class="docutils literal notranslate"><span class="pre">LineString</span></code>, and <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> objects.</p>
+<div class="section" id="point">
+<h3>Point<a class="headerlink" href="#point" title="Permalink to this headline">¶</a></h3>
+<p>Points are most useful for modeling individual <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects. You can pass coordinates directly or as a tuple to the <code class="docutils literal notranslate"><span class="pre">Point</span></code> constructor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+
+<span class="n">direct_pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">27</span><span class="p">)</span>
+<span class="n">tuple_pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">27</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both methods produce the same result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">direct_pt</span> <span class="o">==</span> <span class="n">tuple_pt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Often you will want to create many points at once from lists of x and y coordinates. Here is a helpful idiom for doing that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This gives you a list that can easily be used to create, for example, many <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;shapely.geometry.point.Point at 0x7fe48fbda7f0&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fe48fbda970&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fe48fbdaa00&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fe48fbdaa30&gt;,
+ &lt;shapely.geometry.point.Point at 0x7fe48fbdaa90&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">prospect</span>
+
+<span class="n">feature_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)):</span>
+    <span class="n">pt</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;demo_layer&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">feature_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;prospect.feature.Feature at 0x7fe48f731df0&gt;,
+ &lt;prospect.feature.Feature at 0x7fe492ee3f10&gt;,
+ &lt;prospect.feature.Feature at 0x7fe492f0efa0&gt;,
+ &lt;prospect.feature.Feature at 0x7fe492ed0eb0&gt;,
+ &lt;prospect.feature.Feature at 0x7fe492f201c0&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the attributes of the first element in the list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7fe48fbdaee0&gt;,
+ &#39;name&#39;: &#39;feature_0&#39;,
+ &#39;layer_name&#39;: &#39;demo_layer&#39;,
+ &#39;shape&#39;: &lt;shapely.geometry.point.Point at 0x7fe48fbda7f0&gt;,
+ &#39;time_penalty&#39;: 0.0,
+ &#39;ideal_obs_rate&#39;: 1.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everything seems to match what we created in the loop, so this list of <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects could now be passed to the <code class="docutils literal notranslate"><span class="pre">Layer</span></code> constructor.</p>
+</div>
+<div class="section" id="linestring">
+<h3>LineString<a class="headerlink" href="#linestring" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">LineString</span></code> is also useful for creating <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects. The <code class="docutils literal notranslate"><span class="pre">LineString</span></code> constructor works with a sequence of coordinate tuples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">27</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes it can be helpful to inspect some attributes of the <code class="docutils literal notranslate"><span class="pre">LineString</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span><span class="o">.</span><span class="n">length</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.110518907618165
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1.0, 3.0), (2.0, 9.0), (3.0, 27.0)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="polygon">
+<h3>Polygon<a class="headerlink" href="#polygon" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> object is used widely in <code class="docutils literal notranslate"><span class="pre">prospect</span></code>. <code class="docutils literal notranslate"><span class="pre">Feature</span></code>, <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>, and <code class="docutils literal notranslate"><span class="pre">Area</span></code> objects can all be constructed from <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> objects. Specifying a <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> from scratch is more complicated than for the <code class="docutils literal notranslate"><span class="pre">Point</span></code> and <code class="docutils literal notranslate"><span class="pre">LineString</span></code>. <a class="reference external" href="https://shapely.readthedocs.io/en/latest/manual.html#polygons">From the <code class="docutils literal notranslate"><span class="pre">shapely</span></code> docs</a>:</p>
+<blockquote>
+<div><p>The Polygon constructor takes two positional parameters. The first is an ordered sequence of (x, y[, z]) point tuples and is treated exactly as in the LinearRing case. The second is an optional unordered sequence of ring-like sequences specifying the interior boundaries or “holes” of the feature.</p>
+</div></blockquote>
+<p>A simple triangular <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> can be constructed like this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has area and length attributes that can be useful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span><span class="o">.</span><span class="n">length</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.414213562373095
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="geopandas-objects">
+<h2>Geopandas objects<a class="headerlink" href="#geopandas-objects" title="Permalink to this headline">¶</a></h2>
+<p>The real engine of <code class="docutils literal notranslate"><span class="pre">prospect</span></code> is the <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>. A <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> is just like a regular <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, with rows and columns of data, except that it has one special column, the “geometry”, that holds spatial information. Each entry in the geometry column is a <code class="docutils literal notranslate"><span class="pre">shapely</span></code> object like a <code class="docutils literal notranslate"><span class="pre">Point</span></code>, <code class="docutils literal notranslate"><span class="pre">LineString</span></code>, or <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>. This format allows normal tabular data to be directly associated with their related spatial objects. In <code class="docutils literal notranslate"><span class="pre">prospect</span></code>, this means we can keep simulation parameters tied to their locations.</p>
+<p>Each of the four top-level building blocks have an attribute called <code class="docutils literal notranslate"><span class="pre">df</span></code>. For the <code class="docutils literal notranslate"><span class="pre">Area</span></code>, <code class="docutils literal notranslate"><span class="pre">Assemblage</span></code>, and <code class="docutils literal notranslate"><span class="pre">Coverage</span></code>, <code class="docutils literal notranslate"><span class="pre">df</span></code> is a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> and contains all of the information needed for running the actual survey.</p>
+<p>Let’s create a simple <code class="docutils literal notranslate"><span class="pre">Area</span></code> from the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> we created earlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">prospect</span>
+
+<span class="n">triangle_area</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Area</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_area&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">poly</span><span class="p">,</span> <span class="n">vis</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And let’s examine the <code class="docutils literal notranslate"><span class="pre">df</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">triangle_area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_area</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>shape</th>
+      <th>vis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>demo_area</td>
+      <td>POLYGON ((0.00000 0.00000, 1.00000 1.00000, 1....</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;shape&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the geometry column is named “shape”. Because the <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> works like a typical <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, we can access the first element in that column (the <code class="docutils literal notranslate"><span class="pre">shapely</span></code> <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>) with normal <code class="docutils literal notranslate"><span class="pre">pandas</span></code> indexing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_area</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/objects_41_0.svg" src="../_images/objects_41_0.svg" /></div>
+</div>
+</div>
+<div class="section" id="shapefiles">
+<h2>Shapefiles<a class="headerlink" href="#shapefiles" title="Permalink to this headline">¶</a></h2>
+<p>Shapefiles are a popular data storage format for vector data. <code class="docutils literal notranslate"><span class="pre">prospect</span></code> leverages <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> functionality to read in a shapefile and convert it to a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> that can in turn be used in the creation of <code class="docutils literal notranslate"><span class="pre">prospect</span></code> objects.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more on shapefiles, see <a class="reference external" href="http://desktop.arcgis.com/en/arcmap/10.3/manage-data/shapefiles/what-is-a-shapefile.htm">What is a shapefile?</a>.</p>
+</div>
+</div>
+<div class="section" id="next">
+<h2>Next…<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>
+<p>We will begin examining the building blocks defined by <code class="docutils literal notranslate"><span class="pre">prospect</span></code>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./blocks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="parameters.html" title="previous page">Parameters</a>
+    <a class='right-next' id="next-link" href="Area.html" title="next page">Area</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

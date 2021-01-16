@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Survey" href="../survey/Survey.html" />
+    <link rel="prev" title="Coverage" href="Coverage.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/blocks/Team.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fblocks/Team.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/blocks/Team.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/deppen8/prospect-guide/main?urlpath=lab/tree/blocks/Team.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-surveyor">
+   Create a
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Surveyor
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-surveyor-type-parameter">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     surveyor_type
+    </span>
+   </code>
+   parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-skill-parameter">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skill
+    </span>
+   </code>
+   parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-speed-penalty-parameter">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     speed_penalty
+    </span>
+   </code>
+   parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-team-from-surveyor-objects">
+   Create
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Team
+    </span>
+   </code>
+   from
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Surveyor
+    </span>
+   </code>
+   objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-and-removing-surveyor-objects-later">
+   Adding and removing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Surveyor
+    </span>
+   </code>
+   objects later
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="team">
+<h1>Team<a class="headerlink" href="#team" title="Permalink to this headline">¶</a></h1>
+<p>A <code class="docutils literal notranslate"><span class="pre">Team</span></code> represents the individuals who will conduct the survey. This building block does not require any spatial information, so defining it can be somewhat more straightforward than the other building blocks.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">Team</span></code> object is made up of <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> objects. A <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> object is meant to define the characteristics for a single person (or an archetype of a hypothetical group of surveyors).</p>
+<p>Below we will create six surveyors to make up our <code class="docutils literal notranslate"><span class="pre">Team</span></code>, varying the parameters for each. It is best to simply create each person by hand.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In some cases, it may be more appropriate to use a single archetypal surveyor than to create multiple versions of the same kind of surveyor. For example, in the case where the <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> parameters are highly uncertain or highly variable, it might be most sensible to begin by creating a single <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> with wide distributions for the parameters rather than trying to create many surveyors whose parameters differ only slightly.</p>
+</div>
+<div class="section" id="create-a-surveyor">
+<h2>Create a <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code><a class="headerlink" href="#create-a-surveyor" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> objects can be created directly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">prospect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A simple surveyor with the default parameters would look something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_surveyor</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;default_surveyor&quot;</span><span class="p">,</span> 
+    <span class="n">team_name</span><span class="o">=</span><span class="s2">&quot;demo_team&quot;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+    <span class="n">skill</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_surveyor</span><span class="o">.</span><span class="vm">__dict__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7ffcdb5f5550&gt;,
+ &#39;name&#39;: &#39;default_surveyor&#39;,
+ &#39;team_name&#39;: &#39;demo_team&#39;,
+ &#39;surveyor_type&#39;: &#39;default&#39;,
+ &#39;skill&#39;: 1.0,
+ &#39;speed_penalty&#39;: 0.0}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-surveyor-type-parameter">
+<h2>The <code class="docutils literal notranslate"><span class="pre">surveyor_type</span></code> parameter<a class="headerlink" href="#the-surveyor-type-parameter" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">surveyor_type</span></code> parameter is merely a convenience included to facilitate grouping surveyors together in the analysis phase. It does not impact anything during the execution of the survey. You could group individuals with whatever schema you decide.</p>
+<p>Below, we use expertise to group individuals so that in the analysis, for example, you could compare results from Experts vs. Novices. Other projects might find it more useful to group people according to Team A vs. Team B vs. Team C. Because it is a <code class="docutils literal notranslate"><span class="pre">str</span></code> parameter, anything goes, really.</p>
+</div>
+<div class="section" id="the-skill-parameter">
+<h2>The <code class="docutils literal notranslate"><span class="pre">skill</span></code> parameter<a class="headerlink" href="#the-skill-parameter" title="Permalink to this headline">¶</a></h2>
+<p>A surveyor’s <code class="docutils literal notranslate"><span class="pre">skill</span></code> represents how well they are able to identify <code class="docutils literal notranslate"><span class="pre">Feature</span></code> objects that they encounter. In other words, what is the likelihood that they would recognize and record a <code class="docutils literal notranslate"><span class="pre">Feature</span></code> if all the other discovery parameters were 1.0: the <code class="docutils literal notranslate"><span class="pre">Feature</span></code> (e.g., an artifact) is within their <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>, visibility is perfect, and the <code class="docutils literal notranslate"><span class="pre">Feature</span></code> has an ideal observation rate (<code class="docutils literal notranslate"><span class="pre">ideal_obs_rate</span></code>) of 1.0?</p>
+<p>While it might be hard to “guestimate”, this parameter could be derived from some controlled experiments with a bit more ease than some other of the discovery parameters. For example, if a surveyor is given twenty objects of which ten are artifacts, how many of the ten are correctly identified as artifacts? (In this case, the researcher may or may not want to count false positives negative results.)</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">skill</span></code> is another good candidate for the beta distribution (like the <code class="docutils literal notranslate"><span class="pre">ideal_obs_rate</span></code>) where the distribution is defined by the successes (<span class="math notranslate nohighlight">\(\alpha\)</span>) and failures (<span class="math notranslate nohighlight">\(\beta\)</span>).</p>
+</div>
+<p>Let’s define three novice surveyors who each have completed the hypothetical exercise above where they were asked to identify which 10 of 20 objects were artifacts. Their <code class="docutils literal notranslate"><span class="pre">skill</span></code> level is defined by how many of the 10 objects they picked were actually artifacts (<span class="math notranslate nohighlight">\(\alpha\)</span>) and how many were not (<span class="math notranslate nohighlight">\(\beta\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">novice1</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;novice1&#39;</span><span class="p">,</span> 
+    <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;novice_person&#39;</span><span class="p">,</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> 
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+<span class="n">novice2</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;novice2&#39;</span><span class="p">,</span> 
+    <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;novice_person&#39;</span><span class="p">,</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> 
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+<span class="n">novice3</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;novice3&#39;</span><span class="p">,</span> 
+    <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;novice_person&#39;</span><span class="p">,</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-speed-penalty-parameter">
+<h2>The <code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> parameter<a class="headerlink" href="#the-speed-penalty-parameter" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> is a factor that adds time to the survey based on an individual’s survey style. Recall that total search time for any given <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> is calculated in the following way:</p>
+<div class="math notranslate nohighlight">
+\[\text{base penalty} = \text{base search time} + \sum \text{artifact time penalties}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{surveyor penalty} = \text{base penalty} \times \text{surveyor speed penalty factor}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{search time} = \text{base penalty} + \text{surveyor penalty}\]</div>
+<p>Therefore, one can think of <code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> as adding some factor to both the base search time (derived from <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code>) and the sum of all the artifact <code class="docutils literal notranslate"><span class="pre">time_penalty</span></code> values. Let’s consider a hypothetical example.</p>
+<p>Given a radial survey unit where the <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> is 120 seconds, the sum of all artifact <code class="docutils literal notranslate"><span class="pre">time_penalty</span></code> values is 300 seconds and the surveyor’s <code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> is 0.5, then the time calculation would look as follows:</p>
+<div class="math notranslate nohighlight">
+\[\text{base penalty} = 120 + 300 = 420\]</div>
+<div class="math notranslate nohighlight">
+\[\text{surveyor penalty} = 420 \times 0.5 = 210\]</div>
+<div class="math notranslate nohighlight">
+\[\text{search time} = 420 + 210 = 630\]</div>
+<div class="caution admonition">
+<p class="admonition-title">Assumptions</p>
+<p>An assumption here is that whatever causes the <code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> will be in effect during general survey time (the <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> portion) as well as during artifact identification/recording (the artifact <code class="docutils literal notranslate"><span class="pre">time_penalty</span></code> portion). This assumption may not hold well in all cases. For example, if a surveyor is very quick to survey their unit but very slow to record artifacts, then this factor might need to be a compromise between the two deviations.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A truncated normal distribution (truncated at 0.0 or above) is a good choice to model this parameter, but any distribution that is bounded by 0.0 would be suitable. This parameter can theoretically take on any value, but practically speaking, it is probably best to stick to positive values. A negative value would have the effect of reducing the base search time, but when determining the <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> parameter, it is recommended that you assume a surveyor would have <code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> of 0.0. For this reason, negative values are strongly discouraged.</p>
+</div>
+<p>Let’s add an expert and two mid-level surveyors to our demo team.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expert</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;expert&#39;</span><span class="p">,</span> 
+    <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;expert_person&#39;</span><span class="p">,</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> 
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="p">)</span>
+<span class="n">mid1</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mid1&#39;</span><span class="p">,</span> 
+    <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;mid_level_person&#39;</span><span class="p">,</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> 
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">mid2</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Surveyor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mid2&#39;</span><span class="p">,</span>
+    <span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_type</span><span class="o">=</span><span class="s1">&#39;mid_level_person&#39;</span><span class="p">,</span> 
+    <span class="n">skill</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> 
+    <span class="n">speed_penalty</span><span class="o">=</span><span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-team-from-surveyor-objects">
+<h2>Create <code class="docutils literal notranslate"><span class="pre">Team</span></code> from <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> objects<a class="headerlink" href="#create-team-from-surveyor-objects" title="Permalink to this headline">¶</a></h2>
+<p>Above we created six <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> objects: three novices, an expert, and two mid-level surveyors. To create a <code class="docutils literal notranslate"><span class="pre">Team</span></code>, we can pass those <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> objects in as a list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">assignment</span></code> parameter is meant to determine how individuals in the team are assigned to survey units during the survey. Currently, only <code class="docutils literal notranslate"><span class="pre">&quot;naive&quot;</span></code> assignment is supported. In this mode, the people in the team are cycled through and assigned to the next <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> until all <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> objects have a <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> attached. In the future, I hope to support some ways to optimize and randomize this assignment.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">team_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">novice1</span><span class="p">,</span> <span class="n">novice2</span><span class="p">,</span> <span class="n">novice3</span><span class="p">,</span> <span class="n">expert</span><span class="p">,</span> <span class="n">mid1</span><span class="p">,</span> <span class="n">mid2</span><span class="p">]</span>
+<span class="n">demo_team</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Team</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;demo_team&#39;</span><span class="p">,</span> 
+    <span class="n">surveyor_list</span><span class="o">=</span><span class="n">team_list</span><span class="p">,</span>
+    <span class="n">assignment</span><span class="o">=</span><span class="s1">&#39;naive&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s inspect the team we just created.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_team</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surveyor_name</th>
+      <th>team_name</th>
+      <th>surveyor_type</th>
+      <th>skill</th>
+      <th>speed_penalty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>novice1</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>novice2</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>novice3</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>expert</td>
+      <td>demo_team</td>
+      <td>expert_person</td>
+      <td>1.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mid1</td>
+      <td>demo_team</td>
+      <td>mid_level_person</td>
+      <td>0.75</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mid2</td>
+      <td>demo_team</td>
+      <td>mid_level_person</td>
+      <td>0.75</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="adding-and-removing-surveyor-objects-later">
+<h2>Adding and removing <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> objects later<a class="headerlink" href="#adding-and-removing-surveyor-objects-later" title="Permalink to this headline">¶</a></h2>
+<p>After we create the <code class="docutils literal notranslate"><span class="pre">Team</span></code> object, if we decide we’d like to add another surveyor, we can use the <code class="docutils literal notranslate"><span class="pre">add_surveyors()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Team</span></code>. Likewise, if we would like to remove someone from the <code class="docutils literal notranslate"><span class="pre">Team</span></code>, we can use the <code class="docutils literal notranslate"><span class="pre">drop_surveyors()</span></code> method.</p>
+<p>Let’s add the first <code class="docutils literal notranslate"><span class="pre">simple_surveyor</span></code> we created at the top of this page.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_team</span><span class="o">.</span><span class="n">add_surveyors</span><span class="p">([</span><span class="n">simple_surveyor</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s inspect the <code class="docutils literal notranslate"><span class="pre">Team</span></code> again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_team</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surveyor_name</th>
+      <th>team_name</th>
+      <th>surveyor_type</th>
+      <th>skill</th>
+      <th>speed_penalty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>novice1</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>novice2</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>novice3</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>expert</td>
+      <td>demo_team</td>
+      <td>expert_person</td>
+      <td>1.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mid1</td>
+      <td>demo_team</td>
+      <td>mid_level_person</td>
+      <td>0.75</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mid2</td>
+      <td>demo_team</td>
+      <td>mid_level_person</td>
+      <td>0.75</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>default_surveyor</td>
+      <td>demo_team</td>
+      <td>default</td>
+      <td>1.00</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now imagine we wanted only a single novice user. We can remove <code class="docutils literal notranslate"><span class="pre">novice2</span></code> and <code class="docutils literal notranslate"><span class="pre">novice3</span></code> by passing in their <code class="docutils literal notranslate"><span class="pre">Surveyor.name</span></code> attribute as a <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_team</span><span class="o">.</span><span class="n">drop_surveyors</span><span class="p">([</span><span class="s2">&quot;novice2&quot;</span><span class="p">,</span> <span class="s2">&quot;novice3&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_team</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surveyor_name</th>
+      <th>team_name</th>
+      <th>surveyor_type</th>
+      <th>skill</th>
+      <th>speed_penalty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>novice1</td>
+      <td>demo_team</td>
+      <td>novice_person</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>expert</td>
+      <td>demo_team</td>
+      <td>expert_person</td>
+      <td>1.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mid1</td>
+      <td>demo_team</td>
+      <td>mid_level_person</td>
+      <td>0.75</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mid2</td>
+      <td>demo_team</td>
+      <td>mid_level_person</td>
+      <td>0.75</td>
+      <td>&lt;scipy.stats._distn_infrastructure.rv_frozen o...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>default_surveyor</td>
+      <td>demo_team</td>
+      <td>default</td>
+      <td>1.00</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can indeed see that the two novices were removed from the <code class="docutils literal notranslate"><span class="pre">Team</span></code>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./blocks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Coverage.html" title="previous page">Coverage</a>
+    <a class='right-next' id="next-link" href="../survey/Survey.html" title="next page">Survey</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

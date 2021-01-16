@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parameters &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Common objects" href="objects.html" />
+    <link rel="prev" title="Introduction" href="overview.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/blocks/parameters.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fblocks/parameters.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/blocks/parameters.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/deppen8/prospect-guide/main?urlpath=lab/tree/blocks/parameters.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discovery-parameters">
+   Discovery parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-parameters">
+   Time parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indirect-parameters">
+   Indirect parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-parameters">
+   Modeling parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameters-as-a-fixed-value">
+     Parameters as a fixed value
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameters-as-distributions">
+     Parameters as distributions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beta-distribution">
+       Beta distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#truncated-normal-distributions">
+       Truncated normal distributions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#next">
+   Next…
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="parameters">
+<h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<p>There are three “flavors” of parameters in <code class="docutils literal notranslate"><span class="pre">prospect</span></code>: discovery parameters, time parameters, and indirect parameters. Each of the parameters are discussed in more detail along with the Python classes that define them, but they are summarized here.</p>
+<div class="section" id="discovery-parameters">
+<h2>Discovery parameters<a class="headerlink" href="#discovery-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Discovery parameters help determine the probability that a <code class="docutils literal notranslate"><span class="pre">Feature</span></code> (i.e., an artifact) is recorded during a survey. There are four discovery parameters.</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vis</span></code>: surface visibility, defined at the <code class="docutils literal notranslate"><span class="pre">Area</span></code> object level</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ideal_obs_rate</span></code>: ideal observation rate of the material, defined at the <code class="docutils literal notranslate"><span class="pre">Feature</span></code> object level, but typically shared by all members of a <code class="docutils literal notranslate"><span class="pre">Layer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skill</span></code>: surveyor skill, defined at the <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> object level</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proximity</span></code>: location of a <code class="docutils literal notranslate"><span class="pre">Feature</span></code> relative to the <code class="docutils literal notranslate"><span class="pre">Coverage</span></code>; derived from spatial locations; currently can only be 1.0 (<code class="docutils literal notranslate"><span class="pre">Feature</span></code> intersects a <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>) or 0.0 (<code class="docutils literal notranslate"><span class="pre">Feature</span></code> does <strong>not</strong> intersect a <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>).</p></li>
+</ol>
+<p>When a <code class="docutils literal notranslate"><span class="pre">Survey</span></code> is “run”, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> will determine a value for each of these parameters for each <code class="docutils literal notranslate"><span class="pre">Feature</span></code>. So for any individual <code class="docutils literal notranslate"><span class="pre">Feature</span></code>,</p>
+<p><span class="math notranslate nohighlight">\(P(discovery) = \text{visibility} \times \text{observation rate} \times \text{surveyor skill} \times \text{proximity}\)</span></p>
+</div>
+<div class="section" id="time-parameters">
+<h2>Time parameters<a class="headerlink" href="#time-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Time parameters help determine the amount of time it will take to carry out a survey. There are three time parameters.</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">time_penalty</span></code>: minimum time it takes to record one <code class="docutils literal notranslate"><span class="pre">Feature</span></code>, defined at the <code class="docutils literal notranslate"><span class="pre">Feature</span></code> object level, but typically shared by all members of a <code class="docutils literal notranslate"><span class="pre">Layer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code>: surveyor speed penalty factor, defined at the <code class="docutils literal notranslate"><span class="pre">Surveyor</span></code> object level</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code>: minimum base time required to survey a <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>; for <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> objects of variable size (i.e., transects), this is specified in terms of seconds per unit of distance</p></li>
+</ol>
+<p>Search time for any given <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code> is calculated in the following way:</p>
+<div class="math notranslate nohighlight">
+\[\text{base penalty} = \text{base search time} + \sum \text{artifact time penalties}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{surveyor penalty} = \text{base penalty} \times \text{surveyor speed penalty factor}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{search time} = \text{base penalty} + \text{surveyor penalty}\]</div>
+</div>
+<div class="section" id="indirect-parameters">
+<h2>Indirect parameters<a class="headerlink" href="#indirect-parameters" title="Permalink to this headline">¶</a></h2>
+<p>“Indirect” is the name I give to parameters that can influence the outcome of a survey but are not directly involved in calculations. Most of these are related to the spatial configuration of the survey. Some examples of indirect parameters would be: the spacing between survey units, the shape of the survey units, the point process used to distribute the features, etc.</p>
+</div>
+<div class="section" id="modeling-parameters">
+<h2>Modeling parameters<a class="headerlink" href="#modeling-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Almost all of the discovery and time parameters can be represented in two ways:</p>
+<ol class="simple">
+<li><p>as fixed float values between 0.0 and 1.0</p></li>
+<li><p>as <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> distributions</p></li>
+</ol>
+<p>The only discovery or time parameter that cannot be modeled with a distribution is <code class="docutils literal notranslate"><span class="pre">proximity</span></code>, which is derived from the spatial configuration. (It is my hope that in the future, this too could be modeled with a distance decay-type of model, but for now, a <code class="docutils literal notranslate"><span class="pre">Feature</span></code> is either in (1.0) or out (0.0) of the <code class="docutils literal notranslate"><span class="pre">SurveyUnit</span></code>.)</p>
+<div class="section" id="parameters-as-a-fixed-value">
+<h3>Parameters as a fixed value<a class="headerlink" href="#parameters-as-a-fixed-value" title="Permalink to this headline">¶</a></h3>
+<p>Parameters whose value is specified as a float will take that value in every run of the survey. In general, fixed-value parameters are not often realistic because there will always be variation in the field. Even when you are confident of the “real” value of a parameter (not often), it would be better to represent the parameter as a distribution with little spread.</p>
+<p>The case where fixed-value parameters <em>are</em> quite useful is when you want to fully control for a <strong>discovery</strong> parameter. If the value is fixed, the none of the resulting <em>variation</em> in discovery probability will be due to that parameter. Further, if the value is fixed at 1.0, it effectively removes that parameter from having any influence on the final discovery probability.</p>
+<p>Time parameters are not quite as straightforward. The <code class="docutils literal notranslate"><span class="pre">time_penalty</span></code> and <code class="docutils literal notranslate"><span class="pre">min_time_per_unit</span></code> do not function in this way because they are not modeling probabilities, but actual quantities of time. The <code class="docutils literal notranslate"><span class="pre">speed_penalty</span></code> parameter is a factor that can exceed 1.0, so it also cannot be thought of in the same ways as the discovery parameters.</p>
+</div>
+<div class="section" id="parameters-as-distributions">
+<h3>Parameters as distributions<a class="headerlink" href="#parameters-as-distributions" title="Permalink to this headline">¶</a></h3>
+<p>Distributions are useful as parameters when you want to allow the value of a parameter to change between runs of a survey or even during the same run. For example, you may have a sense that surface visibility of an area is roughly 80% (or 0.8), but that the visibility at the location of any given artifact might vary somewhat from that value. By setting the visibility of the <code class="docutils literal notranslate"><span class="pre">Area</span></code> object to be a distribution, the visibility at any given artifact location will be a value randomly drawn from that distribution.</p>
+<p>If you choose to model a parameter as a distribution, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> will allow you to use any <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> continuous distribution</a>. In practice, however, there are some distributions that are more appropriate than others. For any discovery parameter, the distribution must be bounded between 0 and 1, inclusive. For any time parameter, the distribution must have a lower bound of 0, inclusive (upper bound is optional).</p>
+<p>The details of the distributions as they relate to specific parameters are discussed in other sections of this user guide alongside the discussion of the classes that define them.</p>
+<p>Here are some distributions that I think are useful.</p>
+<div class="section" id="beta-distribution">
+<h4>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this headline">¶</a></h4>
+<p>The Beta distribution is an excellent choice to model the discovery parameters. It works well for these cases where there are two potential outcomes: visible/not visible, observable/not observable, etc. It is also bounded by 0 and 1. As <a class="reference external" href="https://stats.stackexchange.com/a/47782">this excellent post</a> summarizes it, “the Beta distribution is best for representing a probabilistic distribution of probabilities- the case where we don’t know what a probability is in advance, but we have some reasonable guesses.”</p>
+<p><code class="docutils literal notranslate"><span class="pre">prospect</span></code> has a convenience wrapper around the <code class="docutils literal notranslate"><span class="pre">scipy.stats.beta()</span></code> function, <code class="docutils literal notranslate"><span class="pre">prospect.utils.beta()</span></code>, but either can be used. The Beta distribution function takes two parameters, <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, which represent the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> parameters of the distribution, respectively. <span class="math notranslate nohighlight">\(\alpha\)</span> can be thought of as “successes” while <span class="math notranslate nohighlight">\(\beta\)</span> represents “failures”.</p>
+<p>Let’s take a look at some examples. First, we will create a series of distributions with the same proportion of successes and failures but different sample sizes to see how that impacts the spread of the distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>  <span class="c1"># seaborn is not a dependency of prospect so it may not be installed in your computational environment</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_8_2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># create the distribution</span>
+
+<span class="n">hist_8_2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_8_2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">))</span>  <span class="c1"># draw 100k random values and plot</span>
+<span class="n">hist_8_2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jdeppen/miniconda3/envs/prospect-guide/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../_images/parameters_17_1.png" src="../_images/parameters_17_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_80_20</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># create the distribution</span>
+
+<span class="n">hist_80_20</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_80_20</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">))</span>  <span class="c1"># draw 100k random values and plot</span>
+<span class="n">hist_80_20</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jdeppen/miniconda3/envs/prospect-guide/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../_images/parameters_18_1.png" src="../_images/parameters_18_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_800_200</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>  <span class="c1"># create the distribution</span>
+
+<span class="n">hist_800_200</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_800_200</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">))</span>  <span class="c1"># draw 100k random values and plot</span>
+<span class="n">hist_800_200</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jdeppen/miniconda3/envs/prospect-guide/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../_images/parameters_19_1.png" src="../_images/parameters_19_1.png" />
+</div>
+</div>
+<p>Notice how, as the total number of observations increases (10 -&gt; 100 -&gt; 1000), the distribution seems to approach a normal distribution. Thus, when modeling discovery parameters, it makes sense to use smaller values when there is less confidence in the actual value.</p>
+</div>
+<div class="section" id="truncated-normal-distributions">
+<h4>Truncated normal distributions<a class="headerlink" href="#truncated-normal-distributions" title="Permalink to this headline">¶</a></h4>
+<p>A truncated normal distribution may be appropriate for many of the parameters. For example, we might expect the time it takes to record a single <code class="docutils literal notranslate"><span class="pre">Feature</span></code> (i.e., <code class="docutils literal notranslate"><span class="pre">time_penalty</span></code>) to be normally distributed: sometimes it takes longer than the mean, sometimes shorter. However, if the mean value is relatively small and the standard deviation relatively large, the regular normal distribution might stretch below 0, as we can see in this example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_norm</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">hist_norm</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># draw 100k random values and plot</span>
+<span class="n">hist_norm</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jdeppen/miniconda3/envs/prospect-guide/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<img alt="../_images/parameters_23_1.png" src="../_images/parameters_23_1.png" />
+</div>
+</div>
+<p>Elapsed time, however, cannot be less than 0, so we need to truncate the distribution there.</p>
+<p>Like for the Beta distribution, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> provides a wrapper around the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> version of the distribution. However, unlike the Beta distribution, it is recommended that you use the <code class="docutils literal notranslate"><span class="pre">prospect.utils</span></code> version of <code class="docutils literal notranslate"><span class="pre">truncnorm</span></code> because it provides more intuitive parameters for the typical <code class="docutils literal notranslate"><span class="pre">prospect</span></code> use cases.</p>
+<p>Let’s recreate the same distribution as above only this time as a <em>truncated</em> normal distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">prospect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_trunc</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">hist_trunc</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_trunc</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># draw 100k random values and plot</span>
+<span class="n">hist_trunc</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parameters_26_0.png" src="../_images/parameters_26_0.png" />
+</div>
+</div>
+<p>Even for cases where the value is <em>unlikely</em> to be near 0, it is still a good idea to bound the distribution at 0. For example, the minimum time per unit might have a mean of 600 seconds with a standard deviation of 60.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_norm2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="n">hist_norm2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_norm2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">hist_norm2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">900</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parameters_28_0.png" src="../_images/parameters_28_0.png" />
+</div>
+</div>
+<p>The truncated version will look very similar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_trunc2</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">900</span><span class="p">)</span>
+
+<span class="n">hist_trunc2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">dist_trunc2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">hist_trunc2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">900</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parameters_30_0.png" src="../_images/parameters_30_0.png" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is safer to use the truncated distribution to avoid any chance that a value less than 0 is drawn during a survey run.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="next">
+<h2>Next…<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>
+<p>We will have a brief introduction to some of the basic Python objects that make up the <code class="docutils literal notranslate"><span class="pre">prospect</span></code> package.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./blocks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="overview.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="objects.html" title="next page">Common objects</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
