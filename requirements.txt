@@ -1,6 +1,7 @@
 pandas
 numpy
 geopandas
+descartes
 scipy
 sqlalchemy
 matplotlib
