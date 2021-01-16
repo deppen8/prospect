@@ -17,47 +17,52 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from shapely.geometry import Point
-import prospect
-from scipy.stats import beta
-
-pt1 = Point(10, 10)
-ft1 = prospect.Feature(
-    name="feature1", 
-    layer_name="demo_layer", 
-    shape=pt1,
-    time_penalty=prospect.utils.truncnorm(mean=10, sd=7, lower=0, upper=50),
-    ideal_obs_rate=beta(9, 1)
-)
-
-pt2 = Point(50, 50)
-ft2 = prospect.Feature(
-    name="feature2",
-    layer_name="demo_layer", 
-    shape=pt2,
-    time_penalty=prospect.utils.truncnorm(mean=10, sd=7, lower=0, upper=50),
-    ideal_obs_rate=beta(9, 1)
-)
-
-pt3 = Point(90, 90)
-ft3 = prospect.Feature(
-    name="feature3",
-    layer_name="demo_layer",
-    shape=pt3,
-    time_penalty=prospect.utils.truncnorm(mean=10, sd=7, lower=0, upper=50),
-    ideal_obs_rate=beta(9, 1)
-)
+layer_from_list.df.plot(ax=demo_area.df.plot(), color="orange")
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-dfa76d3e9ca4>[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0;32mfrom[0m [0mshapely[0m[0;34m.[0m[0mgeometry[0m [0;32mimport[0m [0mPoint[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0;32mimport[0m [0mprospect[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0;32mfrom[0m [0mscipy[0m[0;34m.[0m[0mstats[0m [0;32mimport[0m [0mbeta[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;34m[0m[0m
-[1;32m      5[0m [0mpt1[0m [0;34m=[0m [0mPoint[0m[0;34m([0m[0;36m10[0m[0;34m,[0m [0;36m10[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36m_plot_polygon_collection[0;34m(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)[0m
+[1;32m    119[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 120[0;31m         [0;32mfrom[0m [0mdescartes[0m[0;34m.[0m[0mpatch[0m [0;32mimport[0m [0mPolygonPatch[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    121[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'prospect'
-ModuleNotFoundError: No module named 'prospect'
+[0;31mModuleNotFoundError[0m: No module named 'descartes'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-7-0ec2cd1fc7d5>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mlayer_from_list[0m[0;34m.[0m[0mdf[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0max[0m[0;34m=[0m[0mdemo_area[0m[0;34m.[0m[0mdf[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m"orange"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/geodataframe.py[0m in [0;36mplot[0;34m(self, *args, **kwargs)[0m
+[1;32m    919[0m         [0;32mfrom[0m [0mthere[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    920[0m         """
+[0;32m--> 921[0;31m         [0;32mreturn[0m [0mplot_dataframe[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    922[0m [0;34m[0m[0m
+[1;32m    923[0m     [0mplot[0m[0;34m.[0m[0m__doc__[0m [0;34m=[0m [0mplot_dataframe[0m[0;34m.[0m[0m__doc__[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36mplot_dataframe[0;34m(df, column, cmap, color, ax, cax, categorical, legend, scheme, k, vmin, vmax, markersize, figsize, legend_kwds, categories, classification_kwds, missing_kwds, aspect, **style_kwds)[0m
+[1;32m    613[0m [0;34m[0m[0m
+[1;32m    614[0m     [0;32mif[0m [0mcolumn[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 615[0;31m         return plot_series(
+[0m[1;32m    616[0m             [0mdf[0m[0;34m.[0m[0mgeometry[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    617[0m             [0mcmap[0m[0;34m=[0m[0mcmap[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36mplot_series[0;34m(s, cmap, color, ax, figsize, aspect, **style_kwds)[0m
+[1;32m    411[0m [0;34m[0m[0m
+[1;32m    412[0m         [0mvalues_[0m [0;34m=[0m [0mvalues[0m[0;34m[[0m[0mpoly_idx[0m[0;34m][0m [0;32mif[0m [0mcmap[0m [0;32melse[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 413[0;31m         _plot_polygon_collection(
+[0m[1;32m    414[0m             [0max[0m[0;34m,[0m [0mpolys[0m[0;34m,[0m [0mvalues_[0m[0;34m,[0m [0mfacecolor[0m[0;34m=[0m[0mfacecolor[0m[0;34m,[0m [0mcmap[0m[0;34m=[0m[0mcmap[0m[0;34m,[0m [0;34m**[0m[0mstyle_kwds[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    415[0m         )
+
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36m_plot_polygon_collection[0;34m(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)[0m
+[1;32m    120[0m         [0;32mfrom[0m [0mdescartes[0m[0;34m.[0m[0mpatch[0m [0;32mimport[0m [0mPolygonPatch[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    121[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 122[0;31m         raise ImportError(
+[0m[1;32m    123[0m             [0;34m"The descartes package is required for plotting polygons in geopandas. "[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    124[0m             [0;34m"You can install it using 'conda install -c conda-forge descartes' or "[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: The descartes package is required for plotting polygons in geopandas. You can install it using 'conda install -c conda-forge descartes' or 'pip install descartes'.
+ImportError: The descartes package is required for plotting polygons in geopandas. You can install it using 'conda install -c conda-forge descartes' or 'pip install descartes'.
 

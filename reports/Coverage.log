@@ -17,53 +17,52 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from shapely.geometry import Point
-import prospect
-
-radius = 10
-circ1 = Point(10, 10).buffer(radius)  # create circle
-su1 = prospect.SurveyUnit(
-        name="surveyunit1",
-        coverage_name="demo_coverage",
-        shape=circ1,
-        surveyunit_type="radial",
-        length=None,
-        radius=radius,
-        min_time_per_unit=prospect.utils.truncnorm(mean=20, sd=8, lower=0, upper=100),
-)
-
-circ2 = Point(50, 50).buffer(radius)  # create circle
-su2 = prospect.SurveyUnit(
-        name="surveyunit2",
-        coverage_name="demo_coverage",
-        shape=circ2,
-        surveyunit_type="radial",
-        length=None,
-        radius=radius,
-        min_time_per_unit=prospect.utils.truncnorm(mean=20, sd=8, lower=0, upper=100),
-)
-
-circ3 = Point(90, 90).buffer(radius)  # create circle
-su3 = prospect.SurveyUnit(
-        name="surveyunit3",
-        coverage_name="demo_coverage",
-        shape=circ3,
-        surveyunit_type="radial",
-        length=None,
-        radius=radius,
-        min_time_per_unit=prospect.utils.truncnorm(mean=20, sd=8, lower=0, upper=100),
-)
+coverage_from_list.df.plot(ax=demo_area.df.plot(), color="orange");
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-2e77721cd82e>[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0;32mfrom[0m [0mshapely[0m[0;34m.[0m[0mgeometry[0m [0;32mimport[0m [0mPoint[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0;32mimport[0m [0mprospect[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0mradius[0m [0;34m=[0m [0;36m10[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mcirc1[0m [0;34m=[0m [0mPoint[0m[0;34m([0m[0;36m10[0m[0;34m,[0m [0;36m10[0m[0;34m)[0m[0;34m.[0m[0mbuffer[0m[0;34m([0m[0mradius[0m[0;34m)[0m  [0;31m# create circle[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36m_plot_polygon_collection[0;34m(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)[0m
+[1;32m    119[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 120[0;31m         [0;32mfrom[0m [0mdescartes[0m[0;34m.[0m[0mpatch[0m [0;32mimport[0m [0mPolygonPatch[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    121[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'prospect'
-ModuleNotFoundError: No module named 'prospect'
+[0;31mModuleNotFoundError[0m: No module named 'descartes'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-10-0abde51bdb70>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mcoverage_from_list[0m[0;34m.[0m[0mdf[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0max[0m[0;34m=[0m[0mdemo_area[0m[0;34m.[0m[0mdf[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m"orange"[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/geodataframe.py[0m in [0;36mplot[0;34m(self, *args, **kwargs)[0m
+[1;32m    919[0m         [0;32mfrom[0m [0mthere[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    920[0m         """
+[0;32m--> 921[0;31m         [0;32mreturn[0m [0mplot_dataframe[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    922[0m [0;34m[0m[0m
+[1;32m    923[0m     [0mplot[0m[0;34m.[0m[0m__doc__[0m [0;34m=[0m [0mplot_dataframe[0m[0;34m.[0m[0m__doc__[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36mplot_dataframe[0;34m(df, column, cmap, color, ax, cax, categorical, legend, scheme, k, vmin, vmax, markersize, figsize, legend_kwds, categories, classification_kwds, missing_kwds, aspect, **style_kwds)[0m
+[1;32m    613[0m [0;34m[0m[0m
+[1;32m    614[0m     [0;32mif[0m [0mcolumn[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 615[0;31m         return plot_series(
+[0m[1;32m    616[0m             [0mdf[0m[0;34m.[0m[0mgeometry[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    617[0m             [0mcmap[0m[0;34m=[0m[0mcmap[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36mplot_series[0;34m(s, cmap, color, ax, figsize, aspect, **style_kwds)[0m
+[1;32m    411[0m [0;34m[0m[0m
+[1;32m    412[0m         [0mvalues_[0m [0;34m=[0m [0mvalues[0m[0;34m[[0m[0mpoly_idx[0m[0;34m][0m [0;32mif[0m [0mcmap[0m [0;32melse[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 413[0;31m         _plot_polygon_collection(
+[0m[1;32m    414[0m             [0max[0m[0;34m,[0m [0mpolys[0m[0;34m,[0m [0mvalues_[0m[0;34m,[0m [0mfacecolor[0m[0;34m=[0m[0mfacecolor[0m[0;34m,[0m [0mcmap[0m[0;34m=[0m[0mcmap[0m[0;34m,[0m [0;34m**[0m[0mstyle_kwds[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    415[0m         )
+
+[0;32m/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py[0m in [0;36m_plot_polygon_collection[0;34m(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)[0m
+[1;32m    120[0m         [0;32mfrom[0m [0mdescartes[0m[0;34m.[0m[0mpatch[0m [0;32mimport[0m [0mPolygonPatch[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    121[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 122[0;31m         raise ImportError(
+[0m[1;32m    123[0m             [0;34m"The descartes package is required for plotting polygons in geopandas. "[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    124[0m             [0;34m"You can install it using 'conda install -c conda-forge descartes' or "[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: The descartes package is required for plotting polygons in geopandas. You can install it using 'conda install -c conda-forge descartes' or 'pip install descartes'.
+ImportError: The descartes package is required for plotting polygons in geopandas. You can install it using 'conda install -c conda-forge descartes' or 'pip install descartes'.
 

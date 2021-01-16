@@ -342,16 +342,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mf">86e54</span><span class="n">c706b5e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">prospect</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;prospect&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="from-a-shapely-polygon">
 <h3>From a <code class="docutils literal notranslate"><span class="pre">shapely</span> <span class="pre">Polygon</span></code><a class="headerlink" href="#from-a-shapely-polygon" title="Permalink to this headline">¶</a></h3>
@@ -455,7 +445,50 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1246af190&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">_plot_polygon_collection</span><span class="nt">(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">120</span>         <span class="kn">from</span> <span class="nn">descartes.patch</span> <span class="kn">import</span> <span class="n">PolygonPatch</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;descartes&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">777</span><span class="n">a1805ad1f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">area_shapely</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/geodataframe.py</span> in <span class="ni">plot</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span>         <span class="kn">from</span> <span class="nn">there.</span>
+<span class="g g-Whitespace">    </span><span class="mi">920</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">921</span><span class="s2">         return plot_dataframe(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span><span class="s2">     plot.__doc__ = plot_dataframe.__doc__</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">plot_dataframe</span><span class="nt">(df, column, cmap, color, ax, cax, categorical, legend, scheme, k, vmin, vmax, markersize, figsize, legend_kwds, categories, classification_kwds, missing_kwds, aspect, **style_kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span><span class="s2">     if column is None:</span>
+<span class="ne">--&gt; </span><span class="mi">615</span><span class="s2">         return plot_series(</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span><span class="s2">             df.geometry,</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span><span class="s2">             cmap=cmap,</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">plot_series</span><span class="nt">(s, cmap, color, ax, figsize, aspect, **style_kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span><span class="s2">         values_ = values[poly_idx] if cmap else None</span>
+<span class="ne">--&gt; </span><span class="mi">413</span><span class="s2">         _plot_polygon_collection(</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span><span class="s2">             ax, polys, values_, facecolor=facecolor, cmap=cmap, **style_kwds</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span><span class="s2">         )</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/geopandas/plotting.py</span> in <span class="ni">_plot_polygon_collection</span><span class="nt">(ax, geoms, values, color, cmap, vmin, vmax, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">         from descartes.patch import PolygonPatch</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2">     except ImportError:</span>
+<span class="ne">--&gt; </span><span class="mi">122</span><span class="s2">         raise ImportError(</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="s2">             &quot;The descartes package is required for plotting polygons in geopandas. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="s2">             &quot;You can install it using &#39;conda install -c conda-forge descartes&#39; or &quot;</span>
+
+<span class="ne">ImportError</span>: The descartes package is required for plotting polygons in geopandas. You can install it using &#39;conda install -c conda-forge descartes&#39; or &#39;pip install descartes&#39;.
 </pre></div>
 </div>
 <img alt="../_images/Area_14_1.png" src="../_images/Area_14_1.png" />
