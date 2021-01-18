@@ -19,3 +19,18 @@
 - part: Running a Survey
   chapters:
   - file: survey/Survey
+
+- part: API Docs
+  chapters:
+  - file: api/area
+  - file: api/assemblage
+  - file: api/feature
+  - file: api/layer
+  - file: api/coverage
+  - file: api/surveyunit
+  - file: api/team
+  - file: api/surveyor
+  - file: api/survey
+  - file: api/simulation
+  - file: api/plotting
+  - file: api/utils

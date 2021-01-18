@@ -24,6 +24,7 @@ dependencies:
   - jupytext
   - voila-gridstack
   - seaborn
+  - sphinx
   - pip:
     - jupyter-book
     - cookiecutter

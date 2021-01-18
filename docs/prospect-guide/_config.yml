@@ -55,3 +55,11 @@ execute:
                                     # otherwise the notebook's parent directory will be the cwd.
   allow_errors              : false # If `False`, when a code cell raises an error the execution is stopped, otherwise all cells are always run.
   stderr_output             : show  # One of 'show', 'remove', 'remove-warn', 'warn', 'error', 'severe'
+
+#######################################################################################
+# Custom Sphinx settings
+sphinx:
+  extra_extensions:
+  - sphinx.ext.napoleon
+  - sphinx.ext.autodoc
+  - sphinx.ext.viewcode
