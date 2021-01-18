@@ -8,17 +8,14 @@ import numpy as np
 import pandas as pd
 from matplotlib.figure import Figure
 from scipy.stats._distn_infrastructure import rv_frozen
-from sqlalchemy import Column, ForeignKey, String
-from sqlalchemy.orm import relationship
 
 from .area import Area
 from .assemblage import Assemblage
 from .coverage import Coverage
-from .simulation import Base
 from .team import Team
 
 
-class Survey(Base):
+class Survey:
     """Unique index for a set of `Area`, `Assemblage`, `Coverage`, and `Team`
 
     Parameters
@@ -31,22 +28,6 @@ class Survey(Base):
     name : str
         Name of the survey
     """
-
-    __tablename__ = "surveys"
-
-    name = Column(
-        "name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE",
-    )
-    area_name = Column("area", String(50), ForeignKey("areas.name"))
-    assemblage_name = Column("assemblage", String(50), ForeignKey("assemblages.name"))
-    coverage_name = Column("coverage", String(50), ForeignKey("coverages.name"))
-    team_name = Column("team", String(50), ForeignKey("teams.name"))
-
-    # relationships
-    area = relationship("Area")
-    assemblage = relationship("Assemblage")
-    coverage = relationship("Coverage")
-    team = relationship("Team")
 
     def __init__(
         self,
@@ -167,13 +148,6 @@ class Survey(Base):
         plt.close()  # close the plot so that Jupyter won't print it twice
 
         return fig
-
-    def add_to(self, session):
-        self.area.add_to(session)
-        self.assemblage.add_to(session)
-        self.coverage.add_to(session)
-        self.team.add_to(session)
-        session.merge(self)
 
 
 def _resolve(survey, run_id: int):

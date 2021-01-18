@@ -1,15 +1,11 @@
-from .simulation import Base
-from .surveyor import Surveyor
-
-from typing import List, Union
-
-from sqlalchemy import Column, String, PickleType
-from sqlalchemy.orm import relationship
+from typing import List
 
 import pandas as pd
 
+from .surveyor import Surveyor
 
-class Team(Base):
+
+class Team:
     """A collection of `Surveyor` objects.
 
     Parameters
@@ -40,24 +36,8 @@ class Team(Base):
         `DataFrame` with a row for each surveyor
     """
 
-    __tablename__ = "teams"
-
-    name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
-    )
-    surveyor_list = Column("surveyor_list", PickleType)
-
-    # relationships
-    surveyors = relationship("Surveyor")
-
     def __init__(
-        self,
-        name: str,
-        surveyor_list: List[Surveyor],
-        assignment: str = "naive",
+        self, name: str, surveyor_list: List[Surveyor], assignment: str = "naive",
     ):
         """Create a `Team` instance.
         """
@@ -66,9 +46,7 @@ class Team(Base):
         self.surveyor_list = surveyor_list
         self.assignment = assignment  # TODO
 
-        self.df = pd.DataFrame(
-            [surveyor.to_dict() for surveyor in self.surveyor_list]
-        )
+        self.df = pd.DataFrame([surveyor.to_dict() for surveyor in self.surveyor_list])
 
     def add_surveyors(self, surveyors: List[Surveyor]):
         """Update the Team with a new surveyor or surveyors
@@ -79,9 +57,7 @@ class Team(Base):
         """
         self.surveyor_list += surveyors
 
-        self.df = pd.DataFrame(
-            [surveyor.to_dict() for surveyor in self.surveyor_list]
-        )
+        self.df = pd.DataFrame([surveyor.to_dict() for surveyor in self.surveyor_list])
 
     def drop_surveyors(self, surveyors: List[str]):
         """Remove a surveyor or surveyors from the Team
@@ -91,20 +67,6 @@ class Team(Base):
         surveyors : list of str
             List of surveyor.name attributes for the surveyors you want to remove
         """
-        self.surveyor_list = [
-            s for s in self.surveyor_list if s.name not in surveyors
-        ]
+        self.surveyor_list = [s for s in self.surveyor_list if s.name not in surveyors]
 
         self.df = self.df[~self.df["surveyor_name"].isin(surveyors)]
-
-    def add_to(self, session):
-        """Add `Team` and constituent `Surveyor` objects to sqlalchemy session
-
-        Parameters
-        ----------
-        session : [type]
-            [description]
-        """
-        for surveyor in self.surveyor_list:
-            surveyor.add_to(session)
-        session.merge(self)

@@ -1,16 +1,10 @@
-from .simulation import Base
+from typing import Dict, Union
 
-from typing import Union, Dict
-
-from sqlalchemy import Column, String, ForeignKey, PickleType
-
-# from sqlalchemy.orm import relationship
-
-from shapely.geometry import Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
+from shapely.geometry import Polygon
 
 
-class SurveyUnit(Base):
+class SurveyUnit:
     """Represents a spatial unit of survey like a transect or radial unit.
 
     This class is not normally used directly. It is usually more efficient to use the constructor methods of the `Coverage` class to create many `SurveyUnit` objects at once.
@@ -60,25 +54,6 @@ class SurveyUnit(Base):
         For radial survey units, this term should be specified more simply as time per one survey unit.
     """
 
-    __tablename__ = "surveyunits"
-
-    name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
-    )
-    coverage_name = Column(
-        "coverage_name", String(50), ForeignKey("coverages.name")
-    )
-    shape = Column("shape", PickleType)
-    surveyunit_type = Column("surveyunit_type", String(50))
-    min_time_per_unit = Column("min_time_per_unit", PickleType)
-    base_time = Column("base_time", PickleType)
-
-    # relationships
-    # coverage = relationship("Coverage")
-
     def __init__(
         self,
         name: str,
@@ -120,6 +95,3 @@ class SurveyUnit(Base):
             "radius": self.radius,
             "min_time_per_unit": self.min_time_per_unit,
         }
-
-    def add_to(self, session):
-        session.merge(self)
