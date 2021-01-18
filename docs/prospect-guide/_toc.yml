@@ -4,6 +4,7 @@
 
 - part: Get started
   chapters:
+  - file: start/why-prospect
   - file: start/install
 
 - part: Building blocks
