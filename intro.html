@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installing prospect" href="start/install.html" />
+    <link rel="next" title="Why prospect?" href="start/why-prospect.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -101,13 +101,19 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="start/install.html">
-   Installing
+  <a class="reference internal" href="start/why-prospect.html">
+   Why
    <code class="docutils literal notranslate">
     <span class="pre">
      prospect
     </span>
    </code>
+   ?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="start/install.html">
+   Installation
   </a>
  </li>
 </ul>
@@ -288,10 +294,10 @@
     <div class="dropdown-buttons sourcebuttons">
         
         <a class="issues-button"
-            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/deppen8/prospect/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/intro.md"><button
+        <a class="edit-button" href="https://github.com/deppen8/prospect/edit/main/intro.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -311,6 +317,27 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-use-this-guide">
+   How to use this guide
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contents">
+   Contents
+  </a>
+  <ul class="nav section-nav flex-column">
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -320,15 +347,62 @@
                 
   <div class="section" id="home">
 <h1>Home<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">prospect</span></code> is a Python package to build and run simulations of archaeological surveys. It is designed to be a flexible tool that can be run with some sensible defaults or highly customized, depending on the user’s needs.</p>
+<p>Development was started by <a class="reference external" href="https://deppen8.github.io">Jacob Deppen</a> as part of his Ph.D. research in the <a class="reference external" href="https://www.digarlab.uw.edu/">Digital Archaeology Research Lab</a> at the University of Washington.</p>
+<p>The source code for <code class="docutils literal notranslate"><span class="pre">prospect</span></code> (and these docs) is available at <a class="reference external" href="https://github.com/deppen8/prospect">github.com/deppen8/prospect</a>.</p>
+<div class="section" id="how-to-use-this-guide">
+<h2>How to use this guide<a class="headerlink" href="#how-to-use-this-guide" title="Permalink to this headline">¶</a></h2>
 <p>This user guide is intended to serve all users of the <code class="docutils literal notranslate"><span class="pre">prospect</span></code> package, from beginner to advanced.</p>
+<p>This guide contains summaries and walkthroughs of <code class="docutils literal notranslate"><span class="pre">prospect</span></code>’s features, mixing text and code. Many of the pages are built from Jupyter notebooks and can be run in the cloud on MyBinder (the rocketship icon at the top of the page) or downloaded and run locally (download icon -&gt; .ipynb).</p>
+<p>The site also contains the full technical documentation for the <code class="docutils literal notranslate"><span class="pre">prospect</span></code> Python package under the <strong>API DOCS</strong> section.</p>
 <p>This guide <em>does</em> assume some familiarity with Python syntax for things like importing external packages, assigning variables, calling functions, and common data types like strings, lists, dictionaries, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrames and <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays. However, it is my hope that users who are acquainted with similar languages like R should find a lot of familiar ground. When developing <code class="docutils literal notranslate"><span class="pre">prospect</span></code>, wherever possible, I tried to give preference to more common data structures and simpler syntax.</p>
-<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="tableofcontents-wrapper compound">
+<p class="caption"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="start/why-prospect.html">Why <code class="docutils literal notranslate"><span class="pre">prospect</span></code>?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start/install.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Building blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="blocks/overview.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blocks/parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blocks/objects.html">Common objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blocks/Area.html">Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blocks/Assemblage.html">Assemblage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blocks/Coverage.html">Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blocks/Team.html">Team</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Running a Survey</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="survey/Survey.html">Survey</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/area.html">prospect.area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/assemblage.html">prospect.assemblage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/feature.html">prospect.feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/layer.html">prospect.layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/coverage.html">prospect.coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/surveyunit.html">prospect.surveyunit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/team.html">prospect.team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/surveyor.html">prospect.surveyor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/survey.html">prospect.survey</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/simulation.html">prospect.simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/plotting.html">prospect.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/utils.html">prospect.utils</a></li>
+</ul>
 </div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 
@@ -360,7 +434,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="start/install.html" title="next page">Installing <code class="docutils literal notranslate"><span class="pre">prospect</span></code></a>
+    <a class='right-next' id="next-link" href="start/why-prospect.html" title="next page">Why <code class="docutils literal notranslate"><span class="pre">prospect</span></code>?</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
