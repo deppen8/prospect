@@ -32,6 +32,5 @@
   - file: api/team
   - file: api/surveyor
   - file: api/survey
-  - file: api/simulation
   - file: api/plotting
   - file: api/utils
