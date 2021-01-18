@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.utils &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="prospect.plotting" href="plotting.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="layer.html">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simulation.html">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/utils.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fapi/utils.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/api/utils.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="module-prospect.utils">
+<span id="prospect-utils"></span><h1>prospect.utils<a class="headerlink" href="#module-prospect.utils" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="prospect.utils.beta">
+<code class="sig-prename descclassname">prospect.utils.</code><code class="sig-name descname">beta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">b</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; scipy.stats._distn_infrastructure.rv_frozen<a class="reference internal" href="../_modules/prospect/utils.html#beta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.utils.beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a fixed beta distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>float</em>) – Shape parameters</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – Shape parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Fixed beta distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>rv_frozen</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="prospect.utils.clip_lines_polys">
+<code class="sig-prename descclassname">prospect.utils.</code><code class="sig-name descname">clip_lines_polys</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lines_polys</span><span class="p">:</span> <span class="n">geopandas.geodataframe.GeoDataFrame</span></em>, <em class="sig-param"><span class="n">by</span><span class="p">:</span> <span class="n">geopandas.geodataframe.GeoDataFrame</span></em><span class="sig-paren">)</span> &#x2192; geopandas.geodataframe.GeoDataFrame<a class="reference internal" href="../_modules/prospect/utils.html#clip_lines_polys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.utils.clip_lines_polys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subset a GeoDataFrame of lines or polygons based on the boundaries of another GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lines_polys</strong> (<em>geopandas GeoDataFrame</em>) – Features to be clipped</p></li>
+<li><p><strong>by</strong> (<em>geopandas GeoDataFrame</em>) – Boundaries to use for clipping</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A subset of the original <cite>lines_polys</cite></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>geopandas GeoDataFrame</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Earth Analytics Python course, <a class="reference external" href="https://doi.org/10.5281/zenodo.2209415">https://doi.org/10.5281/zenodo.2209415</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="prospect.utils.clip_points">
+<code class="sig-prename descclassname">prospect.utils.</code><code class="sig-name descname">clip_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span><span class="p">:</span> <span class="n">geopandas.geodataframe.GeoDataFrame</span></em>, <em class="sig-param"><span class="n">by</span><span class="p">:</span> <span class="n">geopandas.geodataframe.GeoDataFrame</span></em><span class="sig-paren">)</span> &#x2192; geopandas.geodataframe.GeoDataFrame<a class="reference internal" href="../_modules/prospect/utils.html#clip_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.utils.clip_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>geopandas GeoDataFrame</em>) – Point features to be clipped</p></li>
+<li><p><strong>by</strong> (<em>geopandas GeoDataFrame</em>) – Boundaries to use for clipping</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A subset of the original <cite>points</cite></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>geopandas GeoDataFrame</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Earth Analytics Python course, <a class="reference external" href="https://doi.org/10.5281/zenodo.2209415">https://doi.org/10.5281/zenodo.2209415</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="prospect.utils.truncnorm">
+<code class="sig-prename descclassname">prospect.utils.</code><code class="sig-name descname">truncnorm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mean</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">sd</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">lower</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">upper</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; scipy.stats._distn_infrastructure.rv_frozen<a class="reference internal" href="../_modules/prospect/utils.html#truncnorm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.utils.truncnorm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a truncated normal distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>float</em>) – Mean of distribution</p></li>
+<li><p><strong>sd</strong> (<em>float</em>) – Standard deviation of the distribution</p></li>
+<li><p><strong>lower</strong> (<em>float</em>) – Lower bound</p></li>
+<li><p><strong>upper</strong> (<em>float</em>) – Upper bound</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Fixed truncated normal distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>rv_frozen</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="plotting.html" title="previous page">prospect.plotting</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

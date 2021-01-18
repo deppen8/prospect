@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.survey &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/layer.html">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/simulation.html">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/utils.html">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2F_modules/prospect/survey.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Source code for prospect.survey</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
+<span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
+
+<span class="kn">from</span> <span class="nn">.area</span> <span class="kn">import</span> <span class="n">Area</span>
+<span class="kn">from</span> <span class="nn">.assemblage</span> <span class="kn">import</span> <span class="n">Assemblage</span>
+<span class="kn">from</span> <span class="nn">.coverage</span> <span class="kn">import</span> <span class="n">Coverage</span>
+<span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">.team</span> <span class="kn">import</span> <span class="n">Team</span>
+
+
+<div class="viewcode-block" id="Survey"><a class="viewcode-back" href="../../api/survey.html#prospect.survey.Survey">[docs]</a><span class="k">class</span> <span class="nc">Survey</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Unique index for a set of `Area`, `Assemblage`, `Coverage`, and `Team`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Unique name for the survey</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Name of the survey</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;surveys&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">area_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;areas.name&quot;</span><span class="p">))</span>
+    <span class="n">assemblage_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;assemblage&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;assemblages.name&quot;</span><span class="p">))</span>
+    <span class="n">coverage_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;coverages.name&quot;</span><span class="p">))</span>
+    <span class="n">team_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;team&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;teams.name&quot;</span><span class="p">))</span>
+
+    <span class="c1"># relationships</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;Area&quot;</span><span class="p">)</span>
+    <span class="n">assemblage</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;Assemblage&quot;</span><span class="p">)</span>
+    <span class="n">coverage</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;Coverage&quot;</span><span class="p">)</span>
+    <span class="n">team</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;Team&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">assemblage</span><span class="p">:</span> <span class="n">Assemblage</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">coverage</span><span class="p">:</span> <span class="n">Coverage</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">team</span><span class="p">:</span> <span class="n">Team</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create `Survey` instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assemblage</span> <span class="o">=</span> <span class="n">assemblage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">coverage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">team</span> <span class="o">=</span> <span class="n">team</span>
+
+        <span class="c1"># initialize empty outputs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_surveyunit</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_surveyor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="Survey.add_bb"><a class="viewcode-back" href="../../api/survey.html#prospect.survey.Survey.add_bb">[docs]</a>    <span class="k">def</span> <span class="nf">add_bb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bb</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Area</span><span class="p">,</span> <span class="n">Assemblage</span><span class="p">,</span> <span class="n">Coverage</span><span class="p">,</span> <span class="n">Team</span><span class="p">]]):</span>
+        <span class="sd">&quot;&quot;&quot;Attach building blocks to survey.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bb : List[Union[Area, Assemblage, Coverage, Team]]</span>
+<span class="sd">            List of building block objects</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: check that bb is a list</span>
+        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">bb</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">Area</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">block</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">Assemblage</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assemblage</span> <span class="o">=</span> <span class="n">block</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">Coverage</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">block</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">Team</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">team</span> <span class="o">=</span> <span class="n">block</span></div>
+
+<div class="viewcode-block" id="Survey.run"><a class="viewcode-back" href="../../api/survey.html#prospect.survey.Survey.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_runs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">start_run_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">discovery_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="n">stop_run_id</span> <span class="o">=</span> <span class="n">start_run_id</span> <span class="o">+</span> <span class="n">n_runs</span>
+
+        <span class="k">if</span> <span class="n">overwrite</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_surveyunit</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_surveyor</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">resolved_runs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_id</span><span class="o">=</span><span class="n">run_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">run_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_run_id</span><span class="p">,</span> <span class="n">stop_run_id</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># first concat outputs, then concat those with class attributes</span>
+        <span class="c1"># From pandas.concat() docs: Any None objects will be dropped silently unless they are all None in which case a ValueError will be raised</span>
+        <span class="n">raws</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">run</span><span class="o">.</span><span class="n">raw</span> <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">resolved_runs</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">,</span> <span class="n">raws</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">discoveries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">discovery</span> <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">resolved_runs</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">discovery</span><span class="p">,</span> <span class="n">discoveries</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">time_surveyunits</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">time_surveyunit</span> <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">resolved_runs</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_surveyunit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_surveyunit</span><span class="p">,</span> <span class="n">time_surveyunits</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">time_surveyors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">time_surveyor</span> <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">resolved_runs</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_surveyor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_surveyor</span><span class="p">,</span> <span class="n">time_surveyors</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">resolved_runs</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">+=</span> <span class="n">resolved_runs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">total_time</span></div>
+
+<div class="viewcode-block" id="Survey.discovery_plot"><a class="viewcode-back" href="../../api/survey.html#prospect.survey.Survey.discovery_plot">[docs]</a>    <span class="k">def</span> <span class="nf">discovery_plot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">title_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="n">figsize</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">),</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Figure</span><span class="p">:</span>
+
+        <span class="c1"># TODO: raise error if self.discovery is None</span>
+        <span class="c1"># function to create basemap of polygon outline</span>
+        <span class="k">def</span> <span class="nf">_make_outline</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axarr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">_make_outline</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">axarr</span><span class="p">),</span>
+            <span class="n">column</span><span class="o">=</span><span class="s2">&quot;discovery_prob&quot;</span><span class="p">,</span>
+            <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)},</span>
+        <span class="p">)</span>
+        <span class="n">axarr</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (Survey)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_size</span><span class="p">)</span>
+
+        <span class="n">axarr</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># close the plot so that Jupyter won&#39;t print it twice</span>
+
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="Survey.add_to"><a class="viewcode-back" href="../../api/survey.html#prospect.survey.Survey.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assemblage</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_resolve</span><span class="p">(</span><span class="n">survey</span><span class="p">,</span> <span class="n">run_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine input parameters, resolve discovery probabilities, and calculate search times</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_get_floats_or_distr_vals</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Duplicate value or randomly select value from distribution,</span>
+<span class="sd">        depending on type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">item</span><span class="p">),</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">item</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">def</span> <span class="nf">_extract_values</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">input_col</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">input_col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_get_floats_or_distr_vals</span><span class="p">)</span>
+
+    <span class="n">ResolvedRun</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
+        <span class="s2">&quot;ResolvedRun&quot;</span><span class="p">,</span> <span class="s2">&quot;raw discovery time_surveyunit time_surveyor total_time&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create inputs df of features from assemblage</span>
+    <span class="n">assemblage_inputs</span> <span class="o">=</span> <span class="n">survey</span><span class="o">.</span><span class="n">assemblage</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Extract obs_rate values</span>
+    <span class="n">assemblage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;obs_rate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_values</span><span class="p">(</span>
+        <span class="n">assemblage_inputs</span><span class="p">,</span> <span class="s2">&quot;ideal_obs_rate&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Extract feature time_penalty values</span>
+    <span class="n">assemblage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;time_penalty_obs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_values</span><span class="p">(</span>
+        <span class="n">assemblage_inputs</span><span class="p">,</span> <span class="s2">&quot;time_penalty&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Extract surface visibility values</span>
+    <span class="c1"># TODO: if raster, extract value from raster</span>
+    <span class="n">assemblage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;vis_obs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">_get_floats_or_distr_vals</span><span class="p">(</span><span class="n">survey</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">vis</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">assemblage_inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="p">]</span>
+
+    <span class="c1"># get survey units</span>
+    <span class="n">coverage_inputs</span> <span class="o">=</span> <span class="n">survey</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># extract min_time_per_unit</span>
+    <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;min_time_per_unit_obs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_values</span><span class="p">(</span>
+        <span class="n">coverage_inputs</span><span class="p">,</span> <span class="s2">&quot;min_time_per_unit&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># calculate search_time</span>
+    <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;base_search_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;surveyunit_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;transect&quot;</span><span class="p">,</span>
+        <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;min_time_per_unit&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;length&quot;</span><span class="p">],</span>
+        <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;min_time_per_unit&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Allocate surveyors to survey units based on method</span>
+    <span class="c1"># def _assign_surveyors(team, coverage):</span>
+    <span class="k">if</span> <span class="n">survey</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">assignment</span> <span class="o">==</span> <span class="s2">&quot;naive&quot;</span><span class="p">:</span>
+        <span class="n">people</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">(</span><span class="n">survey</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;surveyor_name&quot;</span><span class="p">])</span>
+        <span class="n">coverage_inputs</span><span class="p">[</span><span class="s2">&quot;surveyor_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">people</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coverage_inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="p">]</span>
+    <span class="k">elif</span> <span class="n">survey</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">assignment</span> <span class="o">==</span> <span class="s2">&quot;speed&quot;</span><span class="p">:</span>
+        <span class="c1"># minimize total team time</span>
+        <span class="c1"># TODO: figure out how to optimize assignment</span>
+        <span class="c1"># Can calculate:</span>
+        <span class="c1"># - total search time,</span>
+        <span class="c1"># - individual surveyor&#39;s fraction of the total team time</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">survey</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">assignment</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Map surveyors to inputs df based on survey units</span>
+    <span class="n">coverage_team</span> <span class="o">=</span> <span class="n">coverage_inputs</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">survey</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;surveyor_name&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Extract surveyor speed penalty values</span>
+    <span class="n">coverage_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;speed_penalty_obs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_values</span><span class="p">(</span>
+        <span class="n">coverage_team</span><span class="p">,</span> <span class="s2">&quot;speed_penalty&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># self.coverage_team = coverage_team</span>
+
+    <span class="c1"># Find features that intersect coverage</span>
+    <span class="n">assem_cov_team</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">assemblage_inputs</span><span class="p">,</span> <span class="n">coverage_team</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">assemblage_inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">),</span> <span class="s2">&quot;Problem with spatial join. Check for accidental spatial overlap in Coverage.&quot;</span>
+
+    <span class="c1"># record which survey unit it intersects (or NaN)</span>
+    <span class="c1"># if intersects, set proximity to 1.0</span>
+    <span class="c1"># else set proximity to 0.0</span>
+    <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;proximity_obs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="o">~</span><span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;surveyunit_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Extract surveyor skill values</span>
+    <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;skill_obs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_values</span><span class="p">(</span><span class="n">assem_cov_team</span><span class="p">,</span> <span class="s2">&quot;skill&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate final probability of discovery</span>
+    <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;discovery_prob&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;obs_rate&quot;</span><span class="p">]</span>
+        <span class="o">*</span> <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;vis_obs&quot;</span><span class="p">]</span>
+        <span class="o">*</span> <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;proximity_obs&quot;</span><span class="p">]</span>
+        <span class="o">*</span> <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;skill_obs&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_id</span>
+
+    <span class="n">discovery_df</span> <span class="o">=</span> <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">:,</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;run&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feature_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;shape&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;obs_rate&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vis_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;proximity_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;skill_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;discovery_prob&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Calculate time stats</span>
+    <span class="c1"># TODO: Duplicate calculations for threshold and no threshold</span>
+
+    <span class="c1"># def _total_time_calc(</span>
+    <span class="c1">#     df,</span>
+    <span class="c1">#     out_col=&quot;total&quot;,</span>
+    <span class="c1">#     base_col=&quot;base_search_time&quot;,</span>
+    <span class="c1">#     t_pen_col=&quot;time_penalty_obs&quot;,</span>
+    <span class="c1">#     speed_pen_col=&quot;speed_penalty_obs&quot;,</span>
+    <span class="c1"># ):</span>
+    <span class="c1">#     base_pen = df.loc[:, base_col] + df.loc[:, t_pen_col]</span>
+    <span class="c1">#     df.loc[:, out_col] = (base_pen) + (</span>
+    <span class="c1">#         base_pen * df.loc[:, speed_pen_col]</span>
+    <span class="c1">#     )</span>
+    <span class="c1">#     return df</span>
+
+    <span class="c1"># groupby survey unit</span>
+    <span class="n">time_per_surveyunit</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">assem_cov_team</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;surveyunit_name&quot;</span><span class="p">,</span> <span class="s2">&quot;surveyor_name&quot;</span><span class="p">,</span> <span class="s2">&quot;base_search_time&quot;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;time_penalty_obs&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;speed_penalty_obs&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">})</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;time_penalty_obs&quot;</span><span class="p">:</span> <span class="s2">&quot;sum_time_penalty_obs&quot;</span><span class="p">})</span>
+    <span class="p">)</span>
+
+    <span class="c1"># base penalty = base search time + sum(artifact penalties)</span>
+
+    <span class="c1"># surveyor penalty =</span>
+    <span class="c1"># base penalty * surveyor penalty factor</span>
+
+    <span class="c1"># total time =</span>
+    <span class="c1"># base penalty + surveyor penalty</span>
+
+    <span class="n">base_pen</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">time_per_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;base_search_time&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="n">time_per_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;sum_time_penalty_obs&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">surveyor_pen</span> <span class="o">=</span> <span class="n">base_pen</span> <span class="o">*</span> <span class="n">time_per_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;speed_penalty_obs&quot;</span><span class="p">]</span>
+
+    <span class="c1"># multiply above base</span>
+    <span class="n">time_per_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;total_time_per_surveyunit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_pen</span> <span class="o">+</span> <span class="n">surveyor_pen</span>
+
+    <span class="n">time_per_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_id</span>
+
+    <span class="n">time_surveyunit</span> <span class="o">=</span> <span class="n">time_per_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">:,</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;run&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;surveyunit_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;surveyor_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_search_time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sum_time_penalty_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;speed_penalty_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;total_time_per_surveyunit&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="n">total_time</span> <span class="o">=</span> <span class="n">time_surveyunit</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;total_time_per_surveyunit&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># per surveyor</span>
+    <span class="n">time_per_surveyor</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">time_surveyunit</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;surveyor_name&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;base_search_time&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sum_time_penalty_obs&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;speed_penalty_obs&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total_time_per_surveyunit&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;base_search_time&quot;</span><span class="p">:</span> <span class="s2">&quot;sum_base_search_time&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total_time_per_surveyunit&quot;</span><span class="p">:</span> <span class="s2">&quot;total_time_per_surveyor&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">time_per_surveyor</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_id</span>
+
+    <span class="n">time_surveyor</span> <span class="o">=</span> <span class="n">time_per_surveyor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">:,</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;run&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;surveyor_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sum_base_search_time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sum_time_penalty_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;speed_penalty_obs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;total_time_per_surveyor&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">ResolvedRun</span><span class="p">(</span>
+        <span class="n">raw</span><span class="o">=</span><span class="n">assem_cov_team</span><span class="p">,</span>
+        <span class="n">discovery</span><span class="o">=</span><span class="n">discovery_df</span><span class="p">,</span>
+        <span class="n">time_surveyunit</span><span class="o">=</span><span class="n">time_surveyunit</span><span class="p">,</span>
+        <span class="n">time_surveyor</span><span class="o">=</span><span class="n">time_surveyor</span><span class="p">,</span>
+        <span class="n">total_time</span><span class="o">=</span><span class="n">total_time</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

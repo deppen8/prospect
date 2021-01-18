@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.layer &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prospect.coverage" href="coverage.html" />
+    <link rel="prev" title="prospect.feature" href="feature.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simulation.html">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utils.html">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/layer.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fapi/layer.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/api/layer.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="module-prospect.layer">
+<span id="prospect-layer"></span><h1>prospect.layer<a class="headerlink" href="#module-prospect.layer" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="prospect.layer.Layer">
+<em class="property">class </em><code class="sig-prename descclassname">prospect.layer.</code><code class="sig-name descname">Layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">area</span></em>, <em class="sig-param"><span class="n">assemblage_name</span></em>, <em class="sig-param"><span class="n">input_features</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/layer.html#Layer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>A container for <cite>Feature</cite> objects</p>
+<p>The <cite>Layer</cite> class is mostly useful as a way to create groups of similar features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Unique name for the layer</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Containing area</p></li>
+<li><p><strong>assemblage_name</strong> (<em>str</em>) – Name of the parent assemblage</p></li>
+<li><p><strong>input_features</strong> (<em>List</em><em>[</em><a class="reference internal" href="feature.html#prospect.feature.Feature" title="prospect.feature.Feature"><em>Feature</em></a><em>]</em>) – List of features that originally made up the Layer (before clipping)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="prospect.layer.Layer.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#prospect.layer.Layer.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="prospect.layer.Layer.area_name">
+<code class="sig-name descname">area_name</code><a class="headerlink" href="#prospect.layer.Layer.area_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the containing area</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="prospect.layer.Layer.assemblage_name">
+<code class="sig-name descname">assemblage_name</code><a class="headerlink" href="#prospect.layer.Layer.assemblage_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the parent assemblage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="prospect.layer.Layer.input_features">
+<code class="sig-name descname">input_features</code><a class="headerlink" href="#prospect.layer.Layer.input_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of features that make up the layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="feature.html#prospect.feature.Feature" title="prospect.feature.Feature">Feature</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="prospect.layer.Layer.df">
+<code class="sig-name descname">df</code><a class="headerlink" href="#prospect.layer.Layer.df" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>GeoDataFrame</cite> with a row for each feature in the layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>geopandas GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.add_to">
+<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/layer.html#Layer.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.add_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id0">
+<code class="sig-name descname">area_name</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id1">
+<code class="sig-name descname">assemblage_name</code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id2">
+<code class="sig-name descname">df</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.from_matern_points">
+<em class="property">classmethod </em><code class="sig-name descname">from_matern_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent_rate</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">child_rate</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">radius</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">assemblage_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">prospect.layer.Layer</a><a class="reference internal" href="../_modules/prospect/layer.html#Layer.from_matern_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.from_matern_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> instance with a Matérn point process.</p>
+<p>It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent_rate</strong> (<em>float</em>) – Theoretical clusters per unit area across the whole space. See Notes in <cite>poisson_points()</cite> for more details</p></li>
+<li><p><strong>child_rate</strong> (<em>float</em>) – Theoretical child points per unit area per cluster across the whole space.</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the disk around the cluster centers</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Unique name for the layer</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Containing area</p></li>
+<li><p><strong>assemblage_name</strong> (<em>str</em>) – Name of the parent assemblage</p></li>
+<li><p><strong>time_penalty</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</p></li>
+<li><p><strong>ideal_obs_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – <p>Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</p>
+<ul>
+<li><p>It lies inside or intersects the Coverage (see below)</p></li>
+<li><p>Surface visibility is 100%</p></li>
+<li><p>The surveyor is highly skilled</p></li>
+</ul>
+<p>The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">Layer</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#prospect.layer.Layer.poisson_points" title="prospect.layer.Layer.poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poisson_points</span></code></a></dt><dd><p>includes details on Poisson point process</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_pseudorandom_points" title="prospect.layer.Layer.from_pseudorandom_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pseudorandom_points</span></code></a></dt><dd><p>faster, naive point creation</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_poisson_points" title="prospect.layer.Layer.from_poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_poisson_points</span></code></a></dt><dd><p>simple Poisson points <cite>Layer</cite></p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_thomas_points" title="prospect.layer.Layer.from_thomas_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_thomas_points</span></code></a></dt><dd><p>similar process, good for clusters with centers from Poisson points</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.uniform_disk" title="prospect.layer.Layer.uniform_disk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uniform_disk</span></code></a></dt><dd><p>function used to specify point locations around parents</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><p>Parents (cluster centers) are NOT created as points in the output</p></li>
+<li><p>The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, <cite>df</cite>, is clipped by the actual area bounds <em>after</em> they are generated, which can result in fewer points than expected. All points will remain in the <cite>input_features</cite>.</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.from_poisson_points">
+<em class="property">classmethod </em><code class="sig-name descname">from_poisson_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">assemblage_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">prospect.layer.Layer</a><a class="reference internal" href="../_modules/prospect/layer.html#Layer.from_poisson_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.from_poisson_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> instance of points with a Poisson point process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – Theoretical events per unit area across the whole space. See Notes in <cite>poisson_points()</cite> for more details</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Unique name for the layer</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Containing area</p></li>
+<li><p><strong>assemblage_name</strong> (<em>str</em>) – Name of the parent assemblage</p></li>
+<li><p><strong>time_penalty</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</p></li>
+<li><p><strong>ideal_obs_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – <p>Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</p>
+<ul>
+<li><p>It lies inside or intersects the Coverage</p></li>
+<li><p>Surface visibility is 100%</p></li>
+<li><p>The surveyor is highly skilled</p></li>
+</ul>
+<p>The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">Layer</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#prospect.layer.Layer.poisson_points" title="prospect.layer.Layer.poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poisson_points</span></code></a></dt><dd><p>includes details on Poisson point process</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_pseudorandom_points" title="prospect.layer.Layer.from_pseudorandom_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pseudorandom_points</span></code></a></dt><dd><p>faster, naive point creation</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_thomas_points" title="prospect.layer.Layer.from_thomas_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_thomas_points</span></code></a></dt><dd><p>good for clusters with centers from Poisson points</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_matern_points" title="prospect.layer.Layer.from_matern_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_matern_points</span></code></a></dt><dd><p>good for clusters with centers from Poisson points</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, <cite>df</cite>, is clipped by the actual area bounds <em>after</em> they are generated, which can result in fewer points than expected. All points will remain in the <cite>input_features</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.from_pseudorandom_points">
+<em class="property">classmethod </em><code class="sig-name descname">from_pseudorandom_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">assemblage_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">prospect.layer.Layer</a><a class="reference internal" href="../_modules/prospect/layer.html#Layer.from_pseudorandom_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.from_pseudorandom_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> instance of pseudorandom points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of points to generate</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Unique name for the layer</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Containing area</p></li>
+<li><p><strong>assemblage_name</strong> (<em>str</em>) – Name of the parent assemblage</p></li>
+<li><p><strong>time_penalty</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</p></li>
+<li><p><strong>ideal_obs_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – <p>Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</p>
+<ul>
+<li><p>It lies inside or intersects the Coverage</p></li>
+<li><p>Surface visibility is 100%</p></li>
+<li><p>The surveyor is highly skilled</p></li>
+</ul>
+<p>The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">Layer</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_poisson_points" title="prospect.layer.Layer.from_poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_poisson_points</span></code></a></dt><dd><p>simple Poisson points <cite>Layer</cite></p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_thomas_points" title="prospect.layer.Layer.from_thomas_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_thomas_points</span></code></a></dt><dd><p>good for clusters with centers from Poisson points</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_matern_points" title="prospect.layer.Layer.from_matern_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_matern_points</span></code></a></dt><dd><p>good for clusters with centers from Poisson points</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, <cite>df</cite>, is clipped by the actual area bounds <em>after</em> they are generated, which can result in fewer points than expected. All points will remain in the <cite>input_features</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.from_rectangles">
+<em class="property">classmethod </em><code class="sig-name descname">from_rectangles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/layer.html#Layer.from_rectangles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.from_rectangles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.from_shapefile">
+<em class="property">classmethod </em><code class="sig-name descname">from_shapefile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">assemblage_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">prospect.layer.Layer</a><a class="reference internal" href="../_modules/prospect/layer.html#Layer.from_shapefile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.from_shapefile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> instance from a shapefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Filepath to the shapefile</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Unique name for the layer</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Containing area</p></li>
+<li><p><strong>assemblage_name</strong> (<em>str</em>) – Name of the parent assemblage</p></li>
+<li><p><strong>time_penalty</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</p></li>
+<li><p><strong>ideal_obs_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – <p>Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</p>
+<ul>
+<li><p>It lies inside or intersects the Coverage</p></li>
+<li><p>Surface visibility is 100%</p></li>
+<li><p>The surveyor is highly skilled</p></li>
+</ul>
+<p>The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">Layer</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.from_thomas_points">
+<em class="property">classmethod </em><code class="sig-name descname">from_thomas_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent_rate</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">child_rate</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">gauss_var</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">assemblage_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">prospect.layer.Layer</a><a class="reference internal" href="../_modules/prospect/layer.html#Layer.from_thomas_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.from_thomas_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <cite>Layer</cite> instance with a Thomas point process.</p>
+<p>It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent_rate</strong> (<em>float</em>) – Theoretical clusters per unit area across the whole space. See Notes in <cite>poisson_points()</cite> for more details</p></li>
+<li><p><strong>child_rate</strong> (<em>float</em>) – Theoretical child points per unit area per cluster across the whole space.</p></li>
+<li><p><strong>gauss_var</strong> (<em>float</em>) – Variance of the isotropic Gaussian distributions around the cluster centers</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Unique name for the layer</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Containing area</p></li>
+<li><p><strong>assemblage_name</strong> (<em>str</em>) – Name of the parent assemblage</p></li>
+<li><p><strong>time_penalty</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</p></li>
+<li><p><strong>ideal_obs_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>rv_frozen</em><em>]</em><em>, </em><em>optional</em>) – <p>Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</p>
+<ul>
+<li><p>It lies inside or intersects the Coverage</p></li>
+<li><p>Surface visibility is 100%</p></li>
+<li><p>The surveyor is highly skilled</p></li>
+</ul>
+<p>The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#prospect.layer.Layer" title="prospect.layer.Layer">Layer</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#prospect.layer.Layer.poisson_points" title="prospect.layer.Layer.poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poisson_points</span></code></a></dt><dd><p>includes details on Poisson point process</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_pseudorandom_points" title="prospect.layer.Layer.from_pseudorandom_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pseudorandom_points</span></code></a></dt><dd><p>faster, naive point creation</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_poisson_points" title="prospect.layer.Layer.from_poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_poisson_points</span></code></a></dt><dd><p>simple Poisson points <cite>Layer</cite></p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_matern_points" title="prospect.layer.Layer.from_matern_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_matern_points</span></code></a></dt><dd><p>similar process, good for clusters with centers from Poisson points</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><p>Parents (cluster centers) are NOT created as points in the output</p></li>
+<li><p>The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, <cite>df</cite>, is clipped by the actual area bounds <em>after</em> they are generated, which can result in fewer points than expected. All points will remain in the <cite>input_features</cite>.</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id3">
+<code class="sig-name descname">input_features</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id4">
+<code class="sig-name descname">name</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.poisson_points">
+<em class="property">static </em><code class="sig-name descname">poisson_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n"><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a></span></em>, <em class="sig-param"><span class="n">rate</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="reference internal" href="../_modules/prospect/layer.html#Layer.poisson_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.poisson_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create point coordinates from a Poisson process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>area</strong> (<a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area"><em>Area</em></a>) – Bounding area</p></li>
+<li><p><strong>rate</strong> (<em>float</em>) – Theoretical events per unit area across the whole space. See Notes for more details</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_poisson_points" title="prospect.layer.Layer.from_poisson_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_poisson_points</span></code></a></dt><dd><p>creates <cite>Layer</cite> with Poisson process</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_pseudorandom_points" title="prospect.layer.Layer.from_pseudorandom_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pseudorandom_points</span></code></a></dt><dd><p>faster, naive point creation</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_thomas_points" title="prospect.layer.Layer.from_thomas_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_thomas_points</span></code></a></dt><dd><p>good for clusters with centers from Poisson points</p>
+</dd>
+<dt><a class="reference internal" href="#prospect.layer.Layer.from_matern_points" title="prospect.layer.Layer.from_matern_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_matern_points</span></code></a></dt><dd><p>good for clusters with centers from Poisson points</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><p>A Poisson point process is usually said to be more “purely” random than most random number generators (like the one used in <cite>from_pseudorandom_points()</cite>)</p></li>
+<li><p>The rate (usually called “lambda”) of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our <cite>Area</cite> is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.layer.Layer.uniform_disk">
+<em class="property">static </em><code class="sig-name descname">uniform_disk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">r</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>float<span class="p">, </span>float<span class="p">]</span><a class="reference internal" href="../_modules/prospect/layer.html#Layer.uniform_disk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.layer.Layer.uniform_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly locate a point within a disk of specified radius</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Coordinates of disk center</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Coordinates of disk center</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – Radius of the disk</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Random point within the disk</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[float, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="feature.html" title="previous page">prospect.feature</a>
+    <a class='right-next' id="next-link" href="coverage.html" title="next page">prospect.coverage</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

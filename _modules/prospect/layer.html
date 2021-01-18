@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.layer &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/layer.html">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/simulation.html">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/utils.html">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2F_modules/prospect/layer.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Source code for prospect.layer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">uniform</span>
+<span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">,</span> <span class="n">String</span>
+
+<span class="kn">from</span> <span class="nn">.area</span> <span class="kn">import</span> <span class="n">Area</span>
+<span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">Feature</span>
+<span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">clip_points</span>
+
+<span class="c1"># from sqlalchemy.orm import relationship</span>
+
+
+<div class="viewcode-block" id="Layer"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer">[docs]</a><span class="k">class</span> <span class="nc">Layer</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A container for `Feature` objects</span>
+
+<span class="sd">    The `Layer` class is mostly useful as a way to create groups of similar features.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Unique name for the layer</span>
+<span class="sd">    area : Area</span>
+<span class="sd">        Containing area</span>
+<span class="sd">    assemblage_name : str</span>
+<span class="sd">        Name of the parent assemblage</span>
+<span class="sd">    input_features : List[Feature]</span>
+<span class="sd">        List of features that originally made up the Layer (before clipping)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Name of the layer</span>
+<span class="sd">    area_name : str</span>
+<span class="sd">        Name of the containing area</span>
+<span class="sd">    assemblage_name : str</span>
+<span class="sd">        Name of the parent assemblage</span>
+<span class="sd">    input_features : List[Feature]</span>
+<span class="sd">        List of features that make up the layer</span>
+<span class="sd">    df : geopandas GeoDataFrame</span>
+<span class="sd">        `GeoDataFrame` with a row for each feature in the layer</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;layers&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">area_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;area_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;areas.name&quot;</span><span class="p">))</span>
+    <span class="n">assemblage_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="s2">&quot;assemblage_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;assemblages.name&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">input_features</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;feature_list&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;df&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+
+    <span class="c1"># relationships</span>
+    <span class="c1"># area = relationship(&quot;Area&quot;)</span>
+    <span class="c1"># assemblage = relationship(&quot;Assemblage&quot;)</span>
+    <span class="c1"># features = relationship(&quot;Feature&quot;)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">input_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Feature</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_name</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assemblage_name</span> <span class="o">=</span> <span class="n">assemblage_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span> <span class="o">=</span> <span class="n">input_features</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">feature</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># clip by area</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;Point&quot;</span><span class="p">):</span>
+            <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">clip_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Layer.from_shapefile"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_shapefile">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_shapefile</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance from a shapefile.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Filepath to the shapefile</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the layer</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        assemblage_name : str</span>
+<span class="sd">            Name of the parent assemblage</span>
+<span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
+<span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
+<span class="sd">            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</span>
+
+<span class="sd">            - It lies inside or intersects the Coverage</span>
+<span class="sd">            - Surface visibility is 100%</span>
+<span class="sd">            - The surveyor is highly skilled</span>
+
+<span class="sd">            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Layer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tmp_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">shape_list</span> <span class="o">=</span> <span class="n">tmp_gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">feature_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Feature</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">layer_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">shape_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">time_penalty</span><span class="o">=</span><span class="n">time_penalty</span><span class="p">,</span>
+                <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">ideal_obs_rate</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.from_pseudorandom_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_pseudorandom_points">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_pseudorandom_points</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance of pseudorandom points</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n : int</span>
+<span class="sd">            Number of points to generate</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the layer</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        assemblage_name : str</span>
+<span class="sd">            Name of the parent assemblage</span>
+<span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
+<span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
+<span class="sd">            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</span>
+
+<span class="sd">            - It lies inside or intersects the Coverage</span>
+<span class="sd">            - Surface visibility is 100%</span>
+<span class="sd">            - The surveyor is highly skilled</span>
+
+<span class="sd">            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Layer</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        from_poisson_points : simple Poisson points `Layer`</span>
+<span class="sd">        from_thomas_points : good for clusters with centers from Poisson points</span>
+<span class="sd">        from_matern_points : good for clusters with centers from Poisson points</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">total_bounds</span>
+
+        <span class="n">n_pts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">feature_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Feature</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">n_pts</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">xs</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ys</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">+</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">points_gds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)])</span>
+            <span class="n">shape_list</span> <span class="o">=</span> <span class="n">points_gds</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="n">Feature</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">n_pts</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">layer_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">shape_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">time_penalty</span><span class="o">=</span><span class="n">time_penalty</span><span class="p">,</span>
+                <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">ideal_obs_rate</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">tmp_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">([</span><span class="n">feature</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()],</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span><span class="p">)</span>
+
+            <span class="c1"># clip by area</span>
+            <span class="n">clipped_df</span> <span class="o">=</span> <span class="n">clip_points</span><span class="p">(</span><span class="n">tmp_df</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">clipped_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">feature_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+                <span class="n">n_pts</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.from_poisson_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_poisson_points">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_poisson_points</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance of points with a Poisson point process</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rate : float</span>
+<span class="sd">            Theoretical events per unit area across the whole space. See Notes in `poisson_points()` for more details</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the layer</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        assemblage_name : str</span>
+<span class="sd">            Name of the parent assemblage</span>
+<span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
+<span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
+<span class="sd">            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</span>
+
+<span class="sd">            - It lies inside or intersects the Coverage</span>
+<span class="sd">            - Surface visibility is 100%</span>
+<span class="sd">            - The surveyor is highly skilled</span>
+
+<span class="sd">            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Layer</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        poisson_points : includes details on Poisson point process</span>
+<span class="sd">        from_pseudorandom_points : faster, naive point creation</span>
+<span class="sd">        from_thomas_points : good for clusters with centers from Poisson points</span>
+<span class="sd">        from_matern_points : good for clusters with centers from Poisson points</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poisson_points</span><span class="p">(</span><span class="n">tmp_area</span><span class="p">,</span> <span class="n">rate</span><span class="p">)</span>
+        <span class="n">points_gds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="n">points</span><span class="p">])</span>
+        <span class="n">shape_list</span> <span class="o">=</span> <span class="n">points_gds</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="c1"># check to see that some points were created</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Parameters resulted in zero points&quot;</span>
+
+        <span class="n">feature_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Feature</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">layer_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">shape_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">time_penalty</span><span class="o">=</span><span class="n">time_penalty</span><span class="p">,</span>
+                <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">ideal_obs_rate</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.from_thomas_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_thomas_points">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_thomas_points</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">parent_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">child_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">gauss_var</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance with a Thomas point process.</span>
+
+<span class="sd">        It has a Poisson number of clusters, each with a Poisson number of points distributed with an isotropic Gaussian distribution of a given variance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent_rate : float</span>
+<span class="sd">            Theoretical clusters per unit area across the whole space. See Notes in `poisson_points()` for more details</span>
+<span class="sd">        child_rate : float</span>
+<span class="sd">            Theoretical child points per unit area per cluster across the whole space.</span>
+<span class="sd">        gauss_var : float</span>
+<span class="sd">            Variance of the isotropic Gaussian distributions around the cluster centers</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the layer</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        assemblage_name : str</span>
+<span class="sd">            Name of the parent assemblage</span>
+<span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
+<span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
+<span class="sd">            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</span>
+
+<span class="sd">            - It lies inside or intersects the Coverage</span>
+<span class="sd">            - Surface visibility is 100%</span>
+<span class="sd">            - The surveyor is highly skilled</span>
+
+<span class="sd">            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Layer</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        poisson_points : includes details on Poisson point process</span>
+<span class="sd">        from_pseudorandom_points : faster, naive point creation</span>
+<span class="sd">        from_poisson_points : simple Poisson points `Layer`</span>
+<span class="sd">        from_matern_points : similar process, good for clusters with centers from Poisson points</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        1. Parents (cluster centers) are NOT created as points in the output</span>
+
+<span class="sd">        2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="n">parents</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poisson_points</span><span class="p">(</span><span class="n">tmp_area</span><span class="p">,</span> <span class="n">parent_rate</span><span class="p">)</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">parents</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">child_rate</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+                <span class="n">pdf</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">parents</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="n">gauss_var</span><span class="p">,</span> <span class="n">gauss_var</span><span class="p">))</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pdf</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">points_gds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="n">points</span><span class="p">])</span>
+        <span class="n">shape_list</span> <span class="o">=</span> <span class="n">points_gds</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="c1"># check to see that some points were created</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Parameters resulted in zero points&quot;</span>
+
+        <span class="n">feature_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Feature</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">layer_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">shape_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">time_penalty</span><span class="o">=</span><span class="n">time_penalty</span><span class="p">,</span>
+                <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">ideal_obs_rate</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.from_matern_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_matern_points">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_matern_points</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">parent_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">child_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance with a Matérn point process.</span>
+
+<span class="sd">        It has a Poisson number of clusters, each with a Poisson number of points distributed uniformly across a disk of a given radius.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent_rate : float</span>
+<span class="sd">            Theoretical clusters per unit area across the whole space. See Notes in `poisson_points()` for more details</span>
+<span class="sd">        child_rate : float</span>
+<span class="sd">            Theoretical child points per unit area per cluster across the whole space.</span>
+<span class="sd">        radius : float</span>
+<span class="sd">            Radius of the disk around the cluster centers</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the layer</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        assemblage_name : str</span>
+<span class="sd">            Name of the parent assemblage</span>
+<span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
+<span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
+<span class="sd">            Ideal observation rate: the frequency with which an artifact or feature will be recorded, assuming the following ideal conditions:</span>
+
+<span class="sd">            - It lies inside or intersects the Coverage (see below)</span>
+<span class="sd">            - Surface visibility is 100%</span>
+<span class="sd">            - The surveyor is highly skilled</span>
+
+<span class="sd">            The default is 1.0, which indicates that when visibility and surveyor skill allow, the feature will always be recorded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Layer</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        poisson_points : includes details on Poisson point process</span>
+<span class="sd">        from_pseudorandom_points : faster, naive point creation</span>
+<span class="sd">        from_poisson_points : simple Poisson points `Layer`</span>
+<span class="sd">        from_thomas_points : similar process, good for clusters with centers from Poisson points</span>
+<span class="sd">        uniform_disk : function used to specify point locations around parents</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        1. Parents (cluster centers) are NOT created as points in the output</span>
+
+<span class="sd">        2. The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="n">parents</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poisson_points</span><span class="p">(</span><span class="n">tmp_area</span><span class="p">,</span> <span class="n">parent_rate</span><span class="p">)</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">parents</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">child_rate</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">uniform_disk</span><span class="p">(</span><span class="n">parents</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">parents</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">radius</span><span class="p">)</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">points_gds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="n">points</span><span class="p">])</span>
+        <span class="n">shape_list</span> <span class="o">=</span> <span class="n">points_gds</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="c1"># check to see that some points were created</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Parameters resulted in zero points&quot;</span>
+
+        <span class="n">feature_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Feature</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">layer_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">shape_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">time_penalty</span><span class="o">=</span><span class="n">time_penalty</span><span class="p">,</span>
+                <span class="n">ideal_obs_rate</span><span class="o">=</span><span class="n">ideal_obs_rate</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.poisson_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.poisson_points">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">poisson_points</span><span class="p">(</span><span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create point coordinates from a Poisson process.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Bounding area</span>
+<span class="sd">        rate : float</span>
+<span class="sd">            Theoretical events per unit area across the whole space. See Notes for more details</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        from_poisson_points : creates `Layer` with Poisson process</span>
+<span class="sd">        from_pseudorandom_points : faster, naive point creation</span>
+<span class="sd">        from_thomas_points : good for clusters with centers from Poisson points</span>
+<span class="sd">        from_matern_points : good for clusters with centers from Poisson points</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        1. A Poisson point process is usually said to be more &quot;purely&quot; random than most random number generators (like the one used in `from_pseudorandom_points()`)</span>
+
+<span class="sd">        2. The rate (usually called &quot;lambda&quot;) of the Poisson point process represents the number of events per unit of area per unit of time across some theoretical space of which our `Area` is some subset. In this case, we only have one unit of time, so the rate really represents a theoretical number of events per unit area. For example, if the specified rate is 5, in any 1x1 square, the number of points observed will be drawn randomly from a Poisson distribution with a shape parameter of 5. In practical terms, this means that over many 1x1 areas (or many observations of the same area), the mean number of points observed in that area will approximate 5.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">total_bounds</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">N</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">rate</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">+</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">+</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Layer.uniform_disk"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.uniform_disk">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">uniform_disk</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Randomly locate a point within a disk of specified radius</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x, y : float</span>
+<span class="sd">            Coordinates of disk center</span>
+<span class="sd">        r : float</span>
+<span class="sd">            Radius of the disk</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tuple[float, float]</span>
+<span class="sd">            Random point within the disk</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">yt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">xt</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">yt</span></div>
+
+    <span class="c1"># TODO: this.</span>
+<div class="viewcode-block" id="Layer.from_rectangles"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_rectangles">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_rectangles</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="c1"># random centroid?</span>
+        <span class="c1"># random rotation?</span>
+        <span class="c1"># n_polygons?</span>
+        <span class="c1"># TODO: centroid options: from Poisson, from pseudorandom</span>
+        <span class="c1"># TODO: rotation: pseudorandom</span>
+        <span class="c1">#</span>
+        <span class="c1">#</span>
+        <span class="c1"># create centroid coords from Poisson</span>
+        <span class="c1"># create rectangle of given dimensions around centroids</span>
+        <span class="c1"># rotate</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;`from_rectangles()` will be available in a future version of prospect&quot;</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.add_to"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span><span class="p">:</span>
+            <span class="n">feature</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+</pre></div>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

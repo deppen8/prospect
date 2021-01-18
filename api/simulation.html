@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.simulation &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prospect.plotting" href="plotting.html" />
+    <link rel="prev" title="prospect.survey" href="survey.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="layer.html">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utils.html">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/simulation.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2Fapi/simulation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/deppen8/prospect-guide/edit/main/api/simulation.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="module-prospect.simulation">
+<span id="prospect-simulation"></span><h1>prospect.simulation<a class="headerlink" href="#module-prospect.simulation" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="prospect.simulation.SimSession">
+<em class="property">class </em><code class="sig-prename descclassname">prospect.simulation.</code><code class="sig-name descname">SimSession</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_str</span><span class="o">=</span><span class="default_value">'sqlite:///simulation_default.db'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/simulation.html#SimSession"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.simulation.SimSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object to handle setup/teardown as well as transactions for a
+SQLAlchemy <cite>Session</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>engine_str</strong> (<em>str</em><em>, </em><em>optional</em>) – Database URL (the default is “sqlite:///simulation_default.db”)</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The SQLAlchemy docs have some good examples of different types of database
+URLs. <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls</a></p>
+<dl class="py attribute">
+<dt id="prospect.simulation.SimSession.engine">
+<code class="sig-name descname">engine</code><a class="headerlink" href="#prospect.simulation.SimSession.engine" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>sqlalchemy Engine</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="prospect.simulation.SimSession.session">
+<code class="sig-name descname">session</code><a class="headerlink" href="#prospect.simulation.SimSession.session" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>sqlalchemy Session</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.simulation.SimSession.remove_from_db">
+<code class="sig-name descname">remove_from_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/simulation.html#SimSession.remove_from_db"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.simulation.SimSession.remove_from_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="prospect.simulation.SimSession.stage">
+<code class="sig-name descname">stage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">blocks</span><span class="p">:</span> <span class="n">List</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/simulation.html#SimSession.stage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.simulation.SimSession.stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a building block to the list of objects to save to the database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="prospect.simulation.SimSession.unstage">
+<code class="sig-name descname">unstage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/simulation.html#SimSession.unstage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.simulation.SimSession.unstage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a building block</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="survey.html" title="previous page">prospect.survey</a>
+    <a class='right-next' id="next-link" href="plotting.html" title="next page">prospect.plotting</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

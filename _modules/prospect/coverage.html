@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.coverage &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/layer.html">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/simulation.html">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/utils.html">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2F_modules/prospect/coverage.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Source code for prospect.coverage</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">,</span> <span class="n">String</span>
+
+<span class="kn">from</span> <span class="nn">.area</span> <span class="kn">import</span> <span class="n">Area</span>
+<span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">.surveyunit</span> <span class="kn">import</span> <span class="n">SurveyUnit</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">clip_lines_polys</span>
+
+<span class="c1"># from sqlalchemy.orm import relationship</span>
+
+
+<div class="viewcode-block" id="Coverage"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage">[docs]</a><span class="k">class</span> <span class="nc">Coverage</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A collection of `SurveyUnit` objects</span>
+
+<span class="sd">    The `Coverage` class is mostly useful as a way to create groups of similar</span>
+<span class="sd">    survey units.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Unique name for the Coverage</span>
+<span class="sd">    area : Area</span>
+<span class="sd">        Containing area</span>
+<span class="sd">    surveyunit_list : List[SurveyUnit]</span>
+<span class="sd">        List of survey units that make up the coverage</span>
+<span class="sd">    orientation : float</span>
+<span class="sd">        Angle of the predominant axis of the survey units</span>
+<span class="sd">    spacing : float</span>
+<span class="sd">        Distance between survey units</span>
+<span class="sd">    sweep_width : float, optional</span>
+<span class="sd">        Buffer distance around transects (the default is None, which is only</span>
+<span class="sd">        updated if the survey units are transects)</span>
+<span class="sd">    radius : float, optional</span>
+<span class="sd">        Buffer distance for radial survey units (the default is None, which is</span>
+<span class="sd">        only update if the survey units are radial)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Unique name for the coverage</span>
+<span class="sd">    area_name : str</span>
+<span class="sd">        Name of the containing area</span>
+<span class="sd">    surveyunit_list : List[SurveyUnit]</span>
+<span class="sd">        List of survey units that make up the coverage</span>
+<span class="sd">    orientation : float</span>
+<span class="sd">        Angle of the predominant axis of the survey units</span>
+<span class="sd">    spacing : float</span>
+<span class="sd">        Distance between survey units</span>
+<span class="sd">    sweep_width : float</span>
+<span class="sd">        Buffer distance around transects</span>
+<span class="sd">    radius : float</span>
+<span class="sd">        Buffer distance for radial survey units</span>
+<span class="sd">    df : geopandas GeoDataFrame</span>
+<span class="sd">        `GeoDataFrame` with a row for each survey unit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;coverages&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">area_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;area_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;areas.name&quot;</span><span class="p">))</span>
+    <span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;surveyunit_list&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+    <span class="c1"># survey_unit_type = Column(&#39;survey_unit_type&#39;, String(50))</span>
+    <span class="n">orientation</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span>
+    <span class="n">spacing</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;spacing&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span>
+    <span class="n">sweep_width</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;sweep_width&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># relationships</span>
+    <span class="c1"># area = relationship(&quot;Area&quot;)</span>
+    <span class="c1"># surveyunit = relationship(&quot;SurveyUnit&quot;)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">surveyunit_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SurveyUnit</span><span class="p">],</span>
+        <span class="n">orientation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">spacing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">sweep_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">radius</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_name</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">surveyunit_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">orientation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="n">spacing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_width</span> <span class="o">=</span> <span class="n">sweep_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">surveyunit</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">surveyunit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_list</span><span class="p">],</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># TODO: this needs to be calculated when the simulation is run to</span>
+        <span class="c1"># allow for a distribution to be used for min_time_per_unit</span>
+
+        <span class="c1"># extra_cols: List</span>
+        <span class="c1"># if all(self.df[&#39;surveyunit_type&#39;] == &#39;transect&#39;):</span>
+        <span class="c1">#     self.df[&#39;search_time_base&#39;] = self.min_time_per_unit * self.d</span>
+        <span class="c1"># [&#39;length&#39;]</span>
+        <span class="c1"># elif all(self.df[&#39;surveyunit_type&#39;] == &#39;radial&#39;):</span>
+        <span class="c1">#     self.df[&#39;search_time_base&#39;] = self.min_time_per_unit</span>
+
+<div class="viewcode-block" id="Coverage.from_shapefile"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_shapefile">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_shapefile</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Coverage&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance from a shapefile.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Filepath to the shapefile</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the Coverage</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        surveyunit_type : str</span>
+<span class="sd">            Type of units to create</span>
+<span class="sd">        min_time_per_unit : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time required to complete one &quot;unit&quot; of survey,</span>
+<span class="sd">            given no surveyor speed penalty and no time penalty for recording</span>
+<span class="sd">            features. The default is 0.0.</span>
+
+<span class="sd">            Because transects can differ in length, transect coverages should</span>
+<span class="sd">            specify this term as time per one unit of distance (e.g., seconds</span>
+<span class="sd">            per meter).</span>
+
+<span class="sd">            For radial survey units, this term should be specified more simply</span>
+<span class="sd">            as time per one survey unit.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Coverage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tmp_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">tmp_gdf</span> <span class="o">=</span> <span class="n">tmp_gdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">surveyunit_list</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_gdf_to_surveyunit_list</span><span class="p">(</span>
+            <span class="n">tmp_gdf</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">surveyunit_type</span><span class="o">=</span><span class="n">surveyunit_type</span><span class="p">,</span>
+            <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">min_time_per_unit</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Coverage.from_GeoDataFrame"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_GeoDataFrame">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_GeoDataFrame</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">gdf</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Coverage&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance from a geopandas `GeoDataFrame`</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gdf : geopandas GeoDataFrame</span>
+<span class="sd">            `GeoDataFrame` where each row is a survey unit</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the Coverage</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        surveyunit_type : {&#39;transect&#39;, &#39;radial&#39;}</span>
+<span class="sd">            Type of units to create</span>
+<span class="sd">        min_time_per_unit : Union[float, rv_frozen], optional</span>
+<span class="sd">            Minimum amount of time required to complete one &quot;unit&quot; of survey,</span>
+<span class="sd">            given no surveyor speed penalty and no time penalty for recording</span>
+<span class="sd">            features. The default is 0.0.</span>
+
+<span class="sd">            Because transects can differ in length, transect coverages should</span>
+<span class="sd">            specify this term as time per one unit of distance (e.g., seconds</span>
+<span class="sd">            per meter).</span>
+
+<span class="sd">            For radial survey units, this term should be specified more simply</span>
+<span class="sd">            as time per one survey unit.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Coverage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tmp_gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">surveyunit_list</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_gdf_to_surveyunit_list</span><span class="p">(</span>
+            <span class="n">tmp_gdf</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">surveyunit_type</span><span class="o">=</span><span class="n">surveyunit_type</span><span class="p">,</span>
+            <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">min_time_per_unit</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Coverage.from_transects"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_transects">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_transects</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">sweep_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+        <span class="n">orientation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">optimize_orient_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">orient_increment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
+        <span class="n">orient_axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Coverage&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance of transects.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the Coverage</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        spacing : float, optional</span>
+<span class="sd">            Distance between survey units (the default is 10.0)</span>
+<span class="sd">        sweep_width : float, optional</span>
+<span class="sd">            Buffer distance around transects (the default is 2.0)</span>
+<span class="sd">        orientation : float, optional</span>
+<span class="sd">            Angle of the predominant axis of the survey units (the default is</span>
+<span class="sd">            0.0)</span>
+<span class="sd">        optimize_orient_by : {&#39;area_coverage&#39;, &#39;area_orient&#39;}, optional</span>
+<span class="sd">            Metric to optimize in determining the orientation of survey units.</span>
+<span class="sd">            &#39;area_coverage&#39; chooses the orientation that maximizes the area</span>
+<span class="sd">            covered by the survey units. &#39;area_orient&#39; chooses the orientation</span>
+<span class="sd">            that best parallels the `orient_axis` of the area. The default is</span>
+<span class="sd">            None, in which case the `orientation` parameter is used directly.</span>
+<span class="sd">        orient_increment : float, optional</span>
+<span class="sd">            Step size (in degrees) to use when testing different orientations.</span>
+<span class="sd">            (the default is 5.0)</span>
+<span class="sd">        orient_axis : {&#39;long&#39;, &#39;short&#39;}, optional</span>
+<span class="sd">            Axis of the area along which to orient the survey units (the</span>
+<span class="sd">            default is &#39;long&#39;, which creates rows parallel to the longest axis</span>
+<span class="sd">            of the area&#39;s minimum rotated rectangle)</span>
+<span class="sd">        min_time_per_unit : Union[float, rv_frozen]</span>
+<span class="sd">            Minimum amount of time required to complete one &quot;unit&quot; of survey,</span>
+<span class="sd">            given no surveyor speed penalty and no time penalty for recording</span>
+<span class="sd">            features. The default is 0.0.</span>
+
+<span class="sd">            Because transects can differ in length, transect coverages should</span>
+<span class="sd">            specify this term as time per one unit of distance (e.g., seconds</span>
+<span class="sd">            per meter).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Coverage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Validate spacing and sweep_width values</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">sweep_width</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">spacing</span>
+        <span class="p">),</span> <span class="s2">&quot;sweep_width * 2 must be less than or equal to spacing to prevent overlap&quot;</span>
+
+        <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="n">min_rot_rect</span> <span class="o">=</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">minimum_rotated_rectangle</span>
+        <span class="n">centroid</span> <span class="o">=</span> <span class="n">min_rot_rect</span><span class="o">.</span><span class="n">centroid</span>
+
+        <span class="n">lines_gs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_make_unit_bases</span><span class="p">(</span>
+            <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;transect&quot;</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">tmp_area</span><span class="p">,</span>
+            <span class="n">centroid</span><span class="o">=</span><span class="n">centroid</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set orientation to maximize area</span>
+        <span class="k">if</span> <span class="n">optimize_orient_by</span> <span class="o">==</span> <span class="s2">&quot;area_coverage&quot;</span><span class="p">:</span>
+            <span class="n">orientation</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_optimize_orientation_by_area_coverage</span><span class="p">(</span>
+                <span class="n">lines_gs</span><span class="p">,</span>
+                <span class="n">centroid</span><span class="p">,</span>
+                <span class="n">area</span><span class="o">=</span><span class="n">tmp_area</span><span class="p">,</span>
+                <span class="n">buffer</span><span class="o">=</span><span class="n">sweep_width</span><span class="p">,</span>
+                <span class="n">increment</span><span class="o">=</span><span class="n">orient_increment</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">optimize_orient_by</span> <span class="o">==</span> <span class="s2">&quot;area_orient&quot;</span><span class="p">:</span>
+            <span class="n">orientation</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_optimize_orientation_by_area_orient</span><span class="p">(</span>
+                <span class="n">min_rect</span><span class="o">=</span><span class="n">min_rot_rect</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">orient_axis</span>
+            <span class="p">)</span>
+
+        <span class="n">lines_gs</span> <span class="o">=</span> <span class="n">lines_gs</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">orientation</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">centroid</span><span class="p">)</span>  <span class="c1"># rotate</span>
+        <span class="n">lines_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">lines_gs</span><span class="p">},</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+
+        <span class="c1"># clip lines by area</span>
+        <span class="n">lines_clipped</span> <span class="o">=</span> <span class="n">clip_lines_polys</span><span class="p">(</span><span class="n">lines_gdf</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="c1"># buffer transects</span>
+        <span class="n">transects_buffer</span> <span class="o">=</span> <span class="n">lines_clipped</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">sweep_width</span><span class="p">)</span>
+        <span class="n">buffer_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">orientation</span><span class="p">]</span> <span class="o">*</span> <span class="n">transects_buffer</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="n">lines_clipped</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+                <span class="s2">&quot;sweep_width&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">sweep_width</span><span class="p">]</span> <span class="o">*</span> <span class="n">transects_buffer</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">transects_buffer</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">transects</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">buffer_gdf</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">)</span>
+        <span class="n">transects</span> <span class="o">=</span> <span class="n">transects</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+            <span class="p">:,</span> <span class="p">[</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;length&quot;</span><span class="p">,</span> <span class="s2">&quot;sweep_width&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
+
+        <span class="n">transects</span> <span class="o">=</span> <span class="n">transects</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">geom_name</span> <span class="o">=</span> <span class="n">transects</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">transects</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">SurveyUnit</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">coverage_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="n">geom_name</span><span class="p">],</span>
+                <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;transect&quot;</span><span class="p">,</span>
+                <span class="n">length</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">],</span>
+                <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">min_time_per_unit</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
+            <span class="n">sweep_width</span><span class="o">=</span><span class="n">sweep_width</span><span class="p">,</span>
+            <span class="n">radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Coverage.from_radials"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_radials">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_radials</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.78</span><span class="p">,</span>
+        <span class="n">orientation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">optimize_orient_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">orient_increment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
+        <span class="n">orient_axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Coverage&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance of radial units.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for the Coverage</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        spacing : float, optional</span>
+<span class="sd">            Distance between survey units (the default is 10.0)</span>
+<span class="sd">        radius : float, optional</span>
+<span class="sd">            Buffer distance for radial survey units (the default is 1.78,</span>
+<span class="sd">            which leads to radial units of roughly 10 square units of area)</span>
+<span class="sd">        orientation : float, optional</span>
+<span class="sd">            Angle of the predominant axis of the survey units (the default is</span>
+<span class="sd">            0.0)</span>
+<span class="sd">        optimize_orient_by : {&#39;area_coverage&#39;, &#39;area_orient&#39;}, optional</span>
+<span class="sd">            Metric to optimize in determining the orientation of survey units.</span>
+<span class="sd">            &#39;area_coverage&#39; chooses the orientation that maximizes the area</span>
+<span class="sd">            covered by the survey units. &#39;area_orient&#39; chooses the orientation</span>
+<span class="sd">            that best parallels the `orient_axis` of the area. The default is</span>
+<span class="sd">            None, in which case the `orientation` parameter is used directly.</span>
+<span class="sd">        orient_increment : float, optional</span>
+<span class="sd">            Step size (in degrees) to use when testing different orientations.</span>
+<span class="sd">            (the default is 5.0)</span>
+<span class="sd">        orient_axis : {&#39;long&#39;, &#39;short&#39;}, optional</span>
+<span class="sd">            Axis of the area along which to orient the survey units (the</span>
+<span class="sd">            default is &#39;long&#39;, which creates rows parallel to the longest axis</span>
+<span class="sd">            of the area&#39;s minimum rotated rectangle)</span>
+<span class="sd">        min_time_per_unit : Union[float, rv_frozen]</span>
+<span class="sd">            Minimum amount of time required to complete one &quot;unit&quot; of survey,</span>
+<span class="sd">            given no surveyor speed penalty and no time penalty for recording</span>
+<span class="sd">            features. The default is 0.0.</span>
+
+<span class="sd">            For radial survey units, this term should be specified more simply</span>
+<span class="sd">            as time per one survey unit.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Coverage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Validate spacing and radius values</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">spacing</span>
+        <span class="p">),</span> <span class="s2">&quot;radius * 2 must be less than or equal to spacing to prevent overlap&quot;</span>
+
+        <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
+
+        <span class="n">min_rot_rect</span> <span class="o">=</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">minimum_rotated_rectangle</span>
+        <span class="n">centroid</span> <span class="o">=</span> <span class="n">min_rot_rect</span><span class="o">.</span><span class="n">centroid</span>
+
+        <span class="n">points_gs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_make_unit_bases</span><span class="p">(</span>
+            <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">tmp_area</span><span class="p">,</span> <span class="n">centroid</span><span class="o">=</span><span class="n">centroid</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set orientation to maximize area</span>
+        <span class="k">if</span> <span class="n">optimize_orient_by</span> <span class="o">==</span> <span class="s2">&quot;area_coverage&quot;</span><span class="p">:</span>
+            <span class="n">orientation</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_optimize_orientation_by_area_coverage</span><span class="p">(</span>
+                <span class="n">points_gs</span><span class="p">,</span>
+                <span class="n">centroid</span><span class="p">,</span>
+                <span class="n">area</span><span class="o">=</span><span class="n">tmp_area</span><span class="p">,</span>
+                <span class="n">buffer</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+                <span class="n">increment</span><span class="o">=</span><span class="n">orient_increment</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">optimize_orient_by</span> <span class="o">==</span> <span class="s2">&quot;area_orient&quot;</span><span class="p">:</span>
+            <span class="n">orientation</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_optimize_orientation_by_area_orient</span><span class="p">(</span>
+                <span class="n">min_rect</span><span class="o">=</span><span class="n">min_rot_rect</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">orient_axis</span>
+            <span class="p">)</span>
+
+        <span class="n">points_gs</span> <span class="o">=</span> <span class="n">points_gs</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">orientation</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">centroid</span><span class="p">)</span>  <span class="c1"># rotate</span>
+        <span class="n">points_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">points_gs</span><span class="p">},</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+
+        <span class="n">points_clipped</span> <span class="o">=</span> <span class="n">clip_lines_polys</span><span class="p">(</span>
+            <span class="n">points_gdf</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span>
+        <span class="p">)</span>  <span class="c1"># clip points by area</span>
+
+        <span class="n">points_buffer</span> <span class="o">=</span> <span class="n">points_clipped</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>  <span class="c1"># buffer points</span>
+        <span class="n">buffer_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">orientation</span><span class="p">]</span> <span class="o">*</span> <span class="n">points_buffer</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">radius</span><span class="p">]</span> <span class="o">*</span> <span class="n">points_buffer</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">points_buffer</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">radials</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">buffer_gdf</span><span class="p">,</span> <span class="n">tmp_area</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">)</span>
+        <span class="n">radials</span> <span class="o">=</span> <span class="n">radials</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span>
+
+        <span class="n">radials</span> <span class="o">=</span> <span class="n">radials</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+        <span class="n">geom_name</span> <span class="o">=</span> <span class="n">radials</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">radials</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">SurveyUnit</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">coverage_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="n">geom_name</span><span class="p">],</span>
+                <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span>
+                <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+                <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">min_time_per_unit</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
+            <span class="n">sweep_width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_gdf_to_surveyunit_list</span><span class="p">(</span>
+        <span class="n">gdf</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">surveyunit_type</span><span class="p">,</span> <span class="n">min_time_per_unit</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SurveyUnit</span><span class="p">]:</span>
+        <span class="n">geom_name</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">return</span> <span class="n">gdf</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">SurveyUnit</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">coverage_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="n">geom_name</span><span class="p">],</span>
+                <span class="n">surveyunit_type</span><span class="o">=</span><span class="n">surveyunit_type</span><span class="p">,</span>
+                <span class="n">min_time_per_unit</span><span class="o">=</span><span class="n">min_time_per_unit</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_make_unit_bases</span><span class="p">(</span>
+        <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">centroid</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create the Point and LineString objects that will be buffered to</span>
+<span class="sd">        make survey units.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        surveyunit_type : {&#39;transect&#39;, &#39;radial&#39;}</span>
+<span class="sd">            Type of unit to create</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        centroid : Point</span>
+<span class="sd">            Centroid of the area&#39;s minimum rotated rectangle</span>
+<span class="sd">        spacing : float, optional</span>
+<span class="sd">            Distance between survey units (the default is 10.0)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        geopandas GeoSeries</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
+        <span class="c1"># find longest dimension (longest diagonal of bounding box)</span>
+        <span class="c1"># use diagonal distance for transect length</span>
+        <span class="c1"># use centroid of minimum_rotated_rectangle</span>
+
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">maxx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">bounds</span><span class="o">.</span><span class="n">minx</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">maxy</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">bounds</span><span class="o">.</span><span class="n">miny</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">diag_dist</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">width</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">height</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">n_transects</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">diag_dist</span> <span class="o">//</span> <span class="n">spacing</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_transects</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">n_transects</span> <span class="o">=</span> <span class="mi">3</span>
+
+        <span class="c1"># calculate x values</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">Coverage</span><span class="o">.</span><span class="n">_coord_vals_from_centroid_val</span><span class="p">(</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">n_transects</span><span class="p">,</span> <span class="n">spacing</span><span class="p">)</span>
+
+        <span class="c1"># calculate y values</span>
+        <span class="k">if</span> <span class="n">surveyunit_type</span> <span class="o">==</span> <span class="s2">&quot;transect&quot;</span><span class="p">:</span>
+            <span class="c1"># calculate single y value per x</span>
+            <span class="n">y_max</span> <span class="o">=</span> <span class="n">centroid</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">diag_dist</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">y_min</span> <span class="o">=</span> <span class="n">centroid</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">diag_dist</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="c1"># make ends of lines</span>
+            <span class="n">top_coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">y_max</span><span class="p">)))</span>
+            <span class="n">bottom_coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">y_min</span><span class="p">)))</span>
+            <span class="c1"># return LineStrings</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">LineString</span><span class="p">(</span><span class="n">coord_pair</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">coord_pair</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_coords</span><span class="p">,</span> <span class="n">bottom_coords</span><span class="p">)</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">surveyunit_type</span> <span class="o">==</span> <span class="s2">&quot;radial&quot;</span><span class="p">:</span>
+            <span class="n">ys</span> <span class="o">=</span> <span class="n">Coverage</span><span class="o">.</span><span class="n">_coord_vals_from_centroid_val</span><span class="p">(</span>
+                <span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">n_transects</span><span class="p">,</span> <span class="n">spacing</span>
+            <span class="p">)</span>
+            <span class="n">coord_pairs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="c1"># return Points</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="n">coord_pairs</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">gs</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_coord_vals_from_centroid_val</span><span class="p">(</span>
+        <span class="n">centroid_val</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n_transects</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Allocate values across an area to get the x or y coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        centroid_val : float</span>
+<span class="sd">            Either the x or y dimension of an area&#39;s minimum rotated</span>
+<span class="sd">            rectangle&#39;s centroid</span>
+<span class="sd">        n_transects : int</span>
+<span class="sd">            Number of rows to allocate across the space.</span>
+<span class="sd">        spacing : float, optional</span>
+<span class="sd">            Distance between survey units (the default is 10.0)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        vals : numpy ndarray</span>
+<span class="sd">            An array of values representing either x or y coordinates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">n_transects</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># even num units</span>
+            <span class="n">lower_start</span> <span class="o">=</span> <span class="n">centroid_val</span> <span class="o">-</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">upper_start</span> <span class="o">=</span> <span class="n">centroid_val</span> <span class="o">+</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">lower_vals</span> <span class="o">=</span> <span class="n">lower_start</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_transects</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span><span class="p">)</span>
+            <span class="n">upper_vals</span> <span class="o">=</span> <span class="n">upper_start</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_transects</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">lower_vals</span><span class="p">,</span> <span class="n">upper_vals</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># odd num units</span>
+            <span class="n">start_val</span> <span class="o">=</span> <span class="n">centroid_val</span>
+            <span class="n">lower_vals</span> <span class="o">=</span> <span class="n">start_val</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_transects</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span><span class="p">)</span>
+            <span class="n">upper_vals</span> <span class="o">=</span> <span class="n">start_val</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_transects</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">lower_vals</span><span class="p">,</span> <span class="n">upper_vals</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">start_val</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">vals</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_optimize_orientation_by_area_coverage</span><span class="p">(</span>
+        <span class="n">survey_units</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">,</span>
+        <span class="n">rotation_pt</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">increment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Find the orientation value that allows maximum coverage of the area</span>
+<span class="sd">        by survey units.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        survey_units : geopandas GeoSeries</span>
+<span class="sd">            A `GeoSeries` of survey units that is at least as large as the</span>
+<span class="sd">            containing area.</span>
+<span class="sd">        rotation_pt : Point</span>
+<span class="sd">            Point around which to pivot the survey unit axis</span>
+<span class="sd">        area : Area</span>
+<span class="sd">            Containing area</span>
+<span class="sd">        buffer : float, optional</span>
+<span class="sd">            Buffer around survey unit used to determine the area value (the</span>
+<span class="sd">            default is 0.0)</span>
+<span class="sd">        increment : float, optional</span>
+<span class="sd">            Step size (in degrees) to use when testing different orientations.</span>
+<span class="sd">            (the default is 5.0)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">deg_val</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">deg</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">increment</span><span class="p">):</span>
+            <span class="c1"># rotate</span>
+            <span class="n">survey_units_gs</span> <span class="o">=</span> <span class="n">survey_units</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">rotation_pt</span><span class="p">)</span>
+            <span class="n">survey_units_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">survey_units_gs</span><span class="p">},</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span>
+            <span class="p">)</span>
+
+            <span class="c1"># clip survey_units by area</span>
+            <span class="n">survey_units_clipped</span> <span class="o">=</span> <span class="n">clip_lines_polys</span><span class="p">(</span><span class="n">survey_units_gdf</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+            <span class="n">survey_units_buffer</span> <span class="o">=</span> <span class="n">survey_units_clipped</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span>
+                <span class="n">buffer</span>
+            <span class="p">)</span>  <span class="c1"># buffer survey_units</span>
+            <span class="n">deg_val</span><span class="p">[</span><span class="n">deg</span><span class="p">]</span> <span class="o">=</span> <span class="n">survey_units_buffer</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">deg_val</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">deg_val</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_optimize_orientation_by_area_orient</span><span class="p">(</span>
+        <span class="n">min_rect</span><span class="p">:</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Find the angle that best matches the orientation of the survey area.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        min_rect : Polygon</span>
+<span class="sd">            Minimum rotated rectangle of the area</span>
+<span class="sd">        axis : {&#39;long&#39;, &#39;short&#39;}, optional</span>
+<span class="sd">            Axis of the area along which to orient the survey units (the</span>
+<span class="sd">            default is &#39;long&#39;, which creates rows parallel to the longest axis</span>
+<span class="sd">            of the area&#39;s minimum rotated rectangle)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        angle : float</span>
+<span class="sd">            Angle value in degrees</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">import</span> <span class="nn">math</span>
+
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">min_rect</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]</span>
+        <span class="p">)</span>  <span class="c1"># all corners</span>
+
+        <span class="n">pt_ymin</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">coords</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span>
+                <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+            <span class="p">)</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pt_xmax</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">coords</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span>
+                <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+            <span class="p">)</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pt_xmin</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">coords</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span>
+                <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+            <span class="p">)</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">opp</span> <span class="o">=</span> <span class="n">pt_xmax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt_ymin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># sides of the &quot;triangle&quot;</span>
+        <span class="n">adj</span> <span class="o">=</span> <span class="n">pt_xmax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt_ymin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">right_side</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">adj</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">opp</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">left_side</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">pt_ymin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt_xmin</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">pt_ymin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt_xmin</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="n">temp_angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">opp</span> <span class="o">/</span> <span class="n">adj</span><span class="p">))</span>  <span class="c1"># angle of rotation</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;long&quot;</span> <span class="ow">and</span> <span class="n">right_side</span> <span class="o">&lt;=</span> <span class="n">left_side</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;short&quot;</span> <span class="ow">and</span> <span class="n">right_side</span> <span class="o">&gt;</span> <span class="n">left_side</span>
+        <span class="p">):</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">temp_angle</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;long&quot;</span> <span class="ow">and</span> <span class="n">right_side</span> <span class="o">&gt;</span> <span class="n">left_side</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;short&quot;</span> <span class="ow">and</span> <span class="n">right_side</span> <span class="o">&lt;=</span> <span class="n">left_side</span>
+        <span class="p">):</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">temp_angle</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">angle</span>
+
+<div class="viewcode-block" id="Coverage.add_to"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">surveyunit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_list</span><span class="p">:</span>
+            <span class="n">surveyunit</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+</pre></div>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

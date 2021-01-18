@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prospect.surveyunit &#8212; Prospect User Guide</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo_v1.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../start/install.html">
+   Installing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     prospect
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Building blocks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/parameters.html">
+   Parameters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/objects.html">
+   Common objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Area.html">
+   Area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Assemblage.html">
+   Assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Coverage.html">
+   Coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../blocks/Team.html">
+   Team
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Running a Survey
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../survey/Survey.html">
+   Survey
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  API Docs
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/area.html">
+   prospect.area
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/assemblage.html">
+   prospect.assemblage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/feature.html">
+   prospect.feature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/layer.html">
+   prospect.layer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/coverage.html">
+   prospect.coverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyunit.html">
+   prospect.surveyunit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/team.html">
+   prospect.team
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/surveyor.html">
+   prospect.surveyor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/survey.html">
+   prospect.survey
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/simulation.html">
+   prospect.simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/plotting.html">
+   prospect.plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/utils.html">
+   prospect.utils
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/deppen8/prospect-guide/issues/new?title=Issue%20on%20page%20%2F_modules/prospect/surveyunit.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Source code for prospect.surveyunit</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
+
+<span class="c1"># from sqlalchemy.orm import relationship</span>
+
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
+
+
+<div class="viewcode-block" id="SurveyUnit"><a class="viewcode-back" href="../../api/surveyunit.html#prospect.surveyunit.SurveyUnit">[docs]</a><span class="k">class</span> <span class="nc">SurveyUnit</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a spatial unit of survey like a transect or radial unit.</span>
+
+<span class="sd">    This class is not normally used directly. It is usually more efficient to use the constructor methods of the `Coverage` class to create many `SurveyUnit` objects at once.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Unique name for the survey unit</span>
+<span class="sd">    coverage_name : str</span>
+<span class="sd">        Name of the parent coverage</span>
+<span class="sd">    shape : Polygon</span>
+<span class="sd">        Geographic specification</span>
+<span class="sd">    surveyunit_type : {&#39;transect&#39;, &#39;radial&#39;}</span>
+<span class="sd">        Type of the unit</span>
+<span class="sd">    length : float, optional</span>
+<span class="sd">        Length of transect units (the default is None)</span>
+<span class="sd">    radius : float, optional</span>
+<span class="sd">        Radius of radial units (the default is None)</span>
+<span class="sd">    min_time_per_unit : Union[float, rv_frozen], optional</span>
+<span class="sd">        Minimum amount of time required to complete one &quot;unit&quot; of survey, given no surveyor speed penalty and no time penalty for recording features. The default is 0.0.</span>
+
+<span class="sd">        Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).</span>
+
+<span class="sd">        For radial survey units, this term should be specified more simply as time per one survey unit.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Unique name for the survey unit</span>
+<span class="sd">    coverage_name : str</span>
+<span class="sd">        Name of the parent coverage</span>
+<span class="sd">    shape : Polygon</span>
+<span class="sd">        Geographic specification</span>
+<span class="sd">    surveyunit_type : {&#39;transect&#39;, &#39;radial&#39;}</span>
+<span class="sd">        Type of the unit</span>
+<span class="sd">    surveyunit_area : float</span>
+<span class="sd">        Area value calculated from the `shape`</span>
+<span class="sd">    length : float</span>
+<span class="sd">        Length of transect units</span>
+<span class="sd">    radius : float</span>
+<span class="sd">        Radius of radial units</span>
+<span class="sd">    min_time_per_unit : Union[float, rv_frozen]</span>
+<span class="sd">        Minimum amount of time required to complete one &quot;unit&quot; of survey, given no surveyor speed penalty and no time penalty for recording features.</span>
+
+<span class="sd">        Because transects can differ in length, transect coverages should specify this term as time per one unit of distance (e.g., seconds per meter).</span>
+
+<span class="sd">        For radial survey units, this term should be specified more simply as time per one survey unit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;surveyunits&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+        <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">coverage_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="s2">&quot;coverage_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;coverages.name&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+    <span class="n">surveyunit_type</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;surveyunit_type&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+    <span class="n">min_time_per_unit</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;min_time_per_unit&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+    <span class="n">base_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;base_time&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+
+    <span class="c1"># relationships</span>
+    <span class="c1"># coverage = relationship(&quot;Coverage&quot;)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">coverage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">shape</span><span class="p">:</span> <span class="n">Polygon</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;[summary]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coverage_name</span> <span class="o">=</span> <span class="n">coverage_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_type</span> <span class="o">=</span> <span class="n">surveyunit_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_time_per_unit</span> <span class="o">=</span> <span class="n">min_time_per_unit</span>
+
+<div class="viewcode-block" id="SurveyUnit.to_dict"><a class="viewcode-back" href="../../api/surveyunit.html#prospect.surveyunit.SurveyUnit.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create dictionary from attributes to allow easy DataFrame creation by `Coverage`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Dictionary containing pairs of class attributes and their values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;surveyunit_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;coverage_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">coverage_name</span><span class="p">,</span>
+            <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+            <span class="s2">&quot;surveyunit_type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_type</span><span class="p">,</span>
+            <span class="s2">&quot;surveyunit_area&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_area</span><span class="p">,</span>
+            <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+            <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span>
+            <span class="s2">&quot;min_time_per_unit&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_time_per_unit</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="SurveyUnit.add_to"><a class="viewcode-back" href="../../api/surveyunit.html#prospect.surveyunit.SurveyUnit.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+</pre></div>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jacob Deppen<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
