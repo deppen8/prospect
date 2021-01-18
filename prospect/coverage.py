@@ -21,8 +21,6 @@ class Coverage:
     ----------
     name : str
         Unique name for the Coverage
-    area : Area
-        Containing area
     surveyunit_list : List[SurveyUnit]
         List of survey units that make up the coverage
     orientation : float
@@ -57,7 +55,6 @@ class Coverage:
     def __init__(
         self,
         name: str,
-        area: Area,
         surveyunit_list: List[SurveyUnit],
         orientation: Optional[float],
         spacing: Optional[float],
@@ -94,7 +91,6 @@ class Coverage:
         cls,
         path: str,
         name: str,
-        area: Area,
         surveyunit_type: str,
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
         **kwargs,
@@ -107,8 +103,6 @@ class Coverage:
             Filepath to the shapefile
         name : str
             Unique name for the Coverage
-        area : Area
-            Containing area
         surveyunit_type : str
             Type of units to create
         min_time_per_unit : Union[float, rv_frozen], optional
@@ -138,11 +132,7 @@ class Coverage:
         )
 
         return cls(
-            name=name,
-            area=area,
-            surveyunit_list=surveyunit_list,
-            orientation=None,
-            spacing=None,
+            name=name, surveyunit_list=surveyunit_list, orientation=None, spacing=None,
         )
 
     @classmethod
@@ -150,7 +140,6 @@ class Coverage:
         cls,
         gdf: gpd.GeoDataFrame,
         name: str,
-        area: Area,
         surveyunit_type: str,
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
     ) -> "Coverage":
@@ -162,8 +151,6 @@ class Coverage:
             `GeoDataFrame` where each row is a survey unit
         name : str
             Unique name for the Coverage
-        area : Area
-            Containing area
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
         min_time_per_unit : Union[float, rv_frozen], optional
@@ -191,11 +178,7 @@ class Coverage:
         )
 
         return cls(
-            name=name,
-            area=area,
-            surveyunit_list=surveyunit_list,
-            orientation=None,
-            spacing=None,
+            name=name, surveyunit_list=surveyunit_list, orientation=None, spacing=None,
         )
 
     @classmethod
@@ -323,7 +306,6 @@ class Coverage:
 
         return cls(
             name=name,
-            area=area,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -451,7 +433,6 @@ class Coverage:
 
         return cls(
             name=name,
-            area=area,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,

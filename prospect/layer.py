@@ -110,7 +110,6 @@ class Layer:
         n: int,
         name: str,
         area: Area,
-        assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ) -> "Layer":
