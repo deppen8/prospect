@@ -12,7 +12,6 @@ dependencies:
   - numpy
   - pandas
   - scipy
-  - sqlalchemy
   - black
   - isort
   - flake8
@@ -27,5 +26,4 @@ dependencies:
   - sphinx
   - pip:
     - jupyter-book
-    - cookiecutter
     - ghp-import

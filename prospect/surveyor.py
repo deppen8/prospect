@@ -1,14 +1,9 @@
-from .simulation import Base
-
 from typing import Dict, Union
-
-from sqlalchemy import Column, String, ForeignKey, PickleType
-from sqlalchemy.orm import relationship
 
 from scipy.stats._distn_infrastructure import rv_frozen
 
 
-class Surveyor(Base):
+class Surveyor:
     """Represents an individual who will participate in the survey.
 
     Parameters
@@ -37,22 +32,6 @@ class Surveyor(Base):
     speed_penalty : Union[float, rv_frozen]
         Time factor added to each of this surveyor's survey units.
     """
-
-    __tablename__ = "surveyors"
-
-    name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
-    )
-    team_name = Column("team_name", String(50), ForeignKey("teams.name"))
-    surveyor_type = Column("surveyor_type", String(50))
-    skill = Column("skill", PickleType)
-    speed_penalty = Column("speed_penalty", PickleType)
-
-    # relationships
-    team = relationship("Team")
 
     def __init__(
         self,
@@ -87,6 +66,3 @@ class Surveyor(Base):
             "skill": self.skill,
             "speed_penalty": self.speed_penalty,
         }
-
-    def add_to(self, session):
-        session.merge(self)

@@ -1,15 +1,10 @@
-from .simulation import Base
+from typing import Dict, Union
 
-from typing import Union, Dict
-
-from sqlalchemy import Column, String, ForeignKey, PickleType
-# from sqlalchemy.orm import relationship
-
-from shapely.geometry import Point, LineString, Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
+from shapely.geometry import LineString, Point, Polygon
 
 
-class Feature(Base):
+class Feature:
     """Represents an observable thing like an artifact or landscape feature.
 
     This class is not normally used directly. It is usually more efficient to
@@ -57,25 +52,6 @@ class Feature(Base):
         - The surveyor is highly skilled
     """
 
-    __tablename__ = "features"
-
-    name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
-    )
-    # assemblage_name = Column('assemblage_name', String(
-    #     50), ForeignKey('assemblages.name'))
-    layer_name = Column("layer_name", String(50), ForeignKey("layers.name"))
-    shape = Column("shape", PickleType)
-    time_penalty = Column("time_penalty", PickleType)
-    ideal_obs_rate = Column("ideal_obs_rate", PickleType)
-
-    # relationships
-    # assemblage = relationship('Assemblage', back_populates='features')
-    # layer = relationship("Layer")
-
     def __init__(
         self,
         name: str,
@@ -110,6 +86,3 @@ class Feature(Base):
             "time_penalty": self.time_penalty,
             "ideal_obs_rate": self.ideal_obs_rate,
         }
-
-    def add_to(self, session):
-        session.merge(self)

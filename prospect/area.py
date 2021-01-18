@@ -1,18 +1,12 @@
-from .simulation import Base
-
-from typing import Union, Tuple
 import warnings
+from typing import Tuple, Union
 
-from sqlalchemy import Column, String, PickleType
-
-# from sqlalchemy.orm import relationship
-
-from scipy.stats._distn_infrastructure import rv_frozen
-from shapely.geometry import box, Polygon
 import geopandas as gpd
+from scipy.stats._distn_infrastructure import rv_frozen
+from shapely.geometry import Polygon, box
 
 
-class Area(Base):
+class Area:
     """Spatial extent of the survey
 
     Parameters
@@ -37,26 +31,7 @@ class Area(Base):
         GeoDataFrame with one row that summarizes the area's attributes
     """
 
-    __tablename__ = "areas"
-
-    name = Column(
-        "name",
-        String(50),
-        primary_key=True,
-        sqlite_on_conflict_unique="IGNORE",
-    )
-    shape = Column("shape", PickleType)
-    vis = Column("vis", PickleType)
-    df = Column("df", PickleType)
-
-    # relationships
-    # assemblages = relationship("Assemblage")
-    # layers = relationship("Layer")
-    # coverage = relationship("Coverage")
-
-    def __init__(
-        self, name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0
-    ):
+    def __init__(self, name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0):
         """Create an `Area` instance
         """
 
@@ -98,9 +73,7 @@ class Area(Base):
         tmp_gdf = gpd.read_file(path, **kwargs)
 
         if tmp_gdf.shape[0] > 1:
-            warnings.warn(
-                "Shapefile has more than one feature. Using only the first."
-            )
+            warnings.warn("Shapefile has more than one feature. Using only the first.")
 
         return cls(name=name, shape=tmp_gdf.geometry.iloc[0], vis=vis)
 
@@ -133,10 +106,5 @@ class Area(Base):
         from math import sqrt
 
         side = sqrt(value)
-        square_area = box(
-            origin[0], origin[1], origin[0] + side, origin[1] + side
-        )
+        square_area = box(origin[0], origin[1], origin[0] + side, origin[1] + side)
         return cls(name=name, shape=square_area, vis=vis)
-
-    def add_to(self, session):
-        session.merge(self)

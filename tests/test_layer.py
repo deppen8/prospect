@@ -6,5 +6,5 @@ def test_returns_Layer(a_layer):
 
 
 def test_has_desired_attributes(a_layer):
-    for a in ["name", "area_name", "assemblage_name", "input_features", "df"]:
+    for a in ["name", "input_features", "df"]:
         assert hasattr(a_layer, a)

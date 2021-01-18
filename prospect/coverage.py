@@ -5,17 +5,13 @@ import numpy as np
 import pandas as pd
 from scipy.stats._distn_infrastructure import rv_frozen
 from shapely.geometry import LineString, Point, Polygon
-from sqlalchemy import Column, Float, ForeignKey, PickleType, String
 
 from .area import Area
-from .simulation import Base
 from .surveyunit import SurveyUnit
 from .utils import clip_lines_polys
 
-# from sqlalchemy.orm import relationship
 
-
-class Coverage(Base):
+class Coverage:
     """A collection of `SurveyUnit` objects
 
     The `Coverage` class is mostly useful as a way to create groups of similar
@@ -25,8 +21,6 @@ class Coverage(Base):
     ----------
     name : str
         Unique name for the Coverage
-    area : Area
-        Containing area
     surveyunit_list : List[SurveyUnit]
         List of survey units that make up the coverage
     orientation : float
@@ -44,8 +38,6 @@ class Coverage(Base):
     ----------
     name : str
         Unique name for the coverage
-    area_name : str
-        Name of the containing area
     surveyunit_list : List[SurveyUnit]
         List of survey units that make up the coverage
     orientation : float
@@ -60,27 +52,9 @@ class Coverage(Base):
         `GeoDataFrame` with a row for each survey unit
     """
 
-    __tablename__ = "coverages"
-
-    name = Column(
-        "name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE",
-    )
-    area_name = Column("area_name", String(50), ForeignKey("areas.name"))
-    surveyunit_list = Column("surveyunit_list", PickleType)
-    # survey_unit_type = Column('survey_unit_type', String(50))
-    orientation = Column("orientation", Float)
-    spacing = Column("spacing", Float)
-    sweep_width = Column("sweep_width", Float, default=None)
-    radius = Column("radius", Float, default=None)
-
-    # relationships
-    # area = relationship("Area")
-    # surveyunit = relationship("SurveyUnit")
-
     def __init__(
         self,
         name: str,
-        area: Area,
         surveyunit_list: List[SurveyUnit],
         orientation: Optional[float],
         spacing: Optional[float],
@@ -91,7 +65,6 @@ class Coverage(Base):
         """
 
         self.name = name
-        self.area_name = area.name
         self.surveyunit_list = surveyunit_list
         self.orientation = orientation
         self.spacing = spacing
@@ -118,7 +91,6 @@ class Coverage(Base):
         cls,
         path: str,
         name: str,
-        area: Area,
         surveyunit_type: str,
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
         **kwargs,
@@ -131,8 +103,6 @@ class Coverage(Base):
             Filepath to the shapefile
         name : str
             Unique name for the Coverage
-        area : Area
-            Containing area
         surveyunit_type : str
             Type of units to create
         min_time_per_unit : Union[float, rv_frozen], optional
@@ -162,11 +132,7 @@ class Coverage(Base):
         )
 
         return cls(
-            name=name,
-            area=area,
-            surveyunit_list=surveyunit_list,
-            orientation=None,
-            spacing=None,
+            name=name, surveyunit_list=surveyunit_list, orientation=None, spacing=None,
         )
 
     @classmethod
@@ -174,7 +140,6 @@ class Coverage(Base):
         cls,
         gdf: gpd.GeoDataFrame,
         name: str,
-        area: Area,
         surveyunit_type: str,
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
     ) -> "Coverage":
@@ -186,8 +151,6 @@ class Coverage(Base):
             `GeoDataFrame` where each row is a survey unit
         name : str
             Unique name for the Coverage
-        area : Area
-            Containing area
         surveyunit_type : {'transect', 'radial'}
             Type of units to create
         min_time_per_unit : Union[float, rv_frozen], optional
@@ -215,11 +178,7 @@ class Coverage(Base):
         )
 
         return cls(
-            name=name,
-            area=area,
-            surveyunit_list=surveyunit_list,
-            orientation=None,
-            spacing=None,
+            name=name, surveyunit_list=surveyunit_list, orientation=None, spacing=None,
         )
 
     @classmethod
@@ -347,7 +306,6 @@ class Coverage(Base):
 
         return cls(
             name=name,
-            area=area,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -475,7 +433,6 @@ class Coverage(Base):
 
         return cls(
             name=name,
-            area=area,
             surveyunit_list=surveyunit_list,
             orientation=orientation,
             spacing=spacing,
@@ -715,8 +672,3 @@ class Coverage(Base):
             angle = -1 * (90 - temp_angle)
 
         return angle
-
-    def add_to(self, session):
-        for surveyunit in self.surveyunit_list:
-            surveyunit.add_to(session)
-        session.merge(self)

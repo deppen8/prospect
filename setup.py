@@ -109,7 +109,6 @@ setup(
         "numpy",
         "geopandas",
         "scipy",
-        "sqlalchemy",
         "matplotlib",
     ],  # Optional
     # List additional groups of dependencies here (e.g. development

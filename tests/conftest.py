@@ -7,26 +7,6 @@ from shapely.geometry import LineString, Point, Polygon
 
 import prospect
 
-
-@pytest.fixture(scope="module")
-def tmp_db_path(tmp_path_factory):
-    """Create a temporary path where the test db and other outputs can be stored.
-    """
-
-    return tmp_path_factory.mktemp("databases")
-
-
-# `Simulation` FIXTURES
-
-
-@pytest.fixture(scope="module")
-def a_simulation(tmp_db_path):
-    """Create SimSession session on the temporary path.
-    """
-
-    return prospect.SimSession(engine_str=f"sqlite:///{tmp_db_path}/test_session.db")
-
-
 # `Survey` FIXTURES
 
 
@@ -131,22 +111,15 @@ def a_feature(request):
 
 @pytest.fixture(scope="module")
 def a_layer(an_area, a_feature):
-    return prospect.Layer(
-        name="test_layer",
-        area=an_area,
-        assemblage_name="test_parent_assemblage",
-        input_features=[a_feature],
-    )
+    return prospect.Layer(name="test_layer", area=an_area, input_features=[a_feature],)
 
 
 # `Assemblage` FIXTURES
 
 
 @pytest.fixture(scope="module")
-def an_assemblage(a_survey, an_area, a_layer):
-    return prospect.Assemblage(
-        name="test_assemblage", area_name=an_area.name, layer_list=[a_layer],
-    )
+def an_assemblage(a_layer):
+    return prospect.Assemblage(name="test_assemblage", layer_list=[a_layer],)
 
 
 # `SurveyUnit` FIXTURES
@@ -169,10 +142,9 @@ def a_surveyunit(request):
 
 
 @pytest.fixture(scope="module")
-def a_coverage(an_area, a_surveyunit):
+def a_coverage(a_surveyunit):
     return prospect.Coverage(
         name="test_coverage",
-        area=an_area,
         surveyunit_list=[a_surveyunit],
         orientation=0.0,
         spacing=10.0,

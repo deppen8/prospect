@@ -6,5 +6,5 @@ def test_returns_Assemblage(an_assemblage):
 
 
 def test_has_desired_attributes(an_assemblage):
-    for a in ["name", "area_name", "df"]:
+    for a in ["name", "df"]:
         assert hasattr(an_assemblage, a)

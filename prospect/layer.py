@@ -5,17 +5,13 @@ import numpy as np
 from scipy.stats import norm, poisson, uniform
 from scipy.stats._distn_infrastructure import rv_frozen
 from shapely.geometry import Point
-from sqlalchemy import Column, ForeignKey, PickleType, String
 
 from .area import Area
 from .feature import Feature
-from .simulation import Base
 from .utils import clip_points
 
-# from sqlalchemy.orm import relationship
 
-
-class Layer(Base):
+class Layer:
     """A container for `Feature` objects
 
     The `Layer` class is mostly useful as a way to create groups of similar features.
@@ -26,8 +22,6 @@ class Layer(Base):
         Unique name for the layer
     area : Area
         Containing area
-    assemblage_name : str
-        Name of the parent assemblage
     input_features : List[Feature]
         List of features that originally made up the Layer (before clipping)
 
@@ -35,46 +29,19 @@ class Layer(Base):
     ----------
     name : str
         Name of the layer
-    area_name : str
-        Name of the containing area
-    assemblage_name : str
-        Name of the parent assemblage
     input_features : List[Feature]
         List of features that make up the layer
     df : geopandas GeoDataFrame
         `GeoDataFrame` with a row for each feature in the layer
     """
 
-    __tablename__ = "layers"
-
-    name = Column(
-        "name", String(50), primary_key=True, sqlite_on_conflict_unique="IGNORE",
-    )
-    area_name = Column("area_name", String(50), ForeignKey("areas.name"))
-    assemblage_name = Column(
-        "assemblage_name", String(50), ForeignKey("assemblages.name")
-    )
-    input_features = Column("feature_list", PickleType)
-    df = Column("df", PickleType)
-
-    # relationships
-    # area = relationship("Area")
-    # assemblage = relationship("Assemblage")
-    # features = relationship("Feature")
-
     def __init__(
-        self,
-        name: str,
-        area: Area,
-        assemblage_name: str,
-        input_features: List[Feature],
+        self, name: str, area: Area, input_features: List[Feature],
     ):
         """Create a `Layer` instance.
         """
 
         self.name = name
-        self.area_name = area.name
-        self.assemblage_name = assemblage_name
         self.input_features = input_features
 
         self.df = gpd.GeoDataFrame(
@@ -92,7 +59,6 @@ class Layer(Base):
         path: str,
         name: str,
         area: Area,
-        assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
         **kwargs,
@@ -107,8 +73,6 @@ class Layer(Base):
             Unique name for the layer
         area : Area
             Containing area
-        assemblage_name : str
-            Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
             Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
         ideal_obs_rate : Union[float, rv_frozen], optional
@@ -138,12 +102,7 @@ class Layer(Base):
             for i in range(len(shape_list))
         ]
 
-        return cls(
-            name=name,
-            area=area,
-            assemblage_name=assemblage_name,
-            input_features=feature_list,
-        )
+        return cls(name=name, area=area, input_features=feature_list,)
 
     @classmethod
     def from_pseudorandom_points(
@@ -151,7 +110,6 @@ class Layer(Base):
         n: int,
         name: str,
         area: Area,
-        assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ) -> "Layer":
@@ -165,8 +123,6 @@ class Layer(Base):
             Unique name for the layer
         area : Area
             Containing area
-        assemblage_name : str
-            Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
             Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
         ideal_obs_rate : Union[float, rv_frozen], optional
@@ -219,12 +175,7 @@ class Layer(Base):
                 feature_list.append(feature)
                 n_pts += 1
 
-        return cls(
-            name=name,
-            area=area,
-            assemblage_name=assemblage_name,
-            input_features=feature_list,
-        )
+        return cls(name=name, area=area, input_features=feature_list,)
 
     @classmethod
     def from_poisson_points(
@@ -232,7 +183,6 @@ class Layer(Base):
         rate: float,
         name: str,
         area: Area,
-        assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ) -> "Layer":
@@ -246,8 +196,6 @@ class Layer(Base):
             Unique name for the layer
         area : Area
             Containing area
-        assemblage_name : str
-            Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
             Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
         ideal_obs_rate : Union[float, rv_frozen], optional
@@ -293,12 +241,7 @@ class Layer(Base):
             for i in range(len(shape_list))
         ]
 
-        return cls(
-            name=name,
-            area=area,
-            assemblage_name=assemblage_name,
-            input_features=feature_list,
-        )
+        return cls(name=name, area=area, input_features=feature_list,)
 
     @classmethod
     def from_thomas_points(
@@ -328,8 +271,6 @@ class Layer(Base):
             Unique name for the layer
         area : Area
             Containing area
-        assemblage_name : str
-            Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
             Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
         ideal_obs_rate : Union[float, rv_frozen], optional
@@ -387,12 +328,7 @@ class Layer(Base):
             for i in range(len(shape_list))
         ]
 
-        return cls(
-            name=name,
-            area=area,
-            assemblage_name=assemblage_name,
-            input_features=feature_list,
-        )
+        return cls(name=name, area=area, input_features=feature_list,)
 
     @classmethod
     def from_matern_points(
@@ -402,7 +338,6 @@ class Layer(Base):
         radius: float,
         name: str,
         area: Area,
-        assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ) -> "Layer":
@@ -422,8 +357,6 @@ class Layer(Base):
             Unique name for the layer
         area : Area
             Containing area
-        assemblage_name : str
-            Name of the parent assemblage
         time_penalty : Union[float, rv_frozen], optional
             Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)
         ideal_obs_rate : Union[float, rv_frozen], optional
@@ -482,12 +415,7 @@ class Layer(Base):
             for i in range(len(shape_list))
         ]
 
-        return cls(
-            name=name,
-            area=area,
-            assemblage_name=assemblage_name,
-            input_features=feature_list,
-        )
+        return cls(name=name, area=area, input_features=feature_list,)
 
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:
@@ -567,8 +495,3 @@ class Layer(Base):
         raise NotImplementedError(
             "`from_rectangles()` will be available in a future version of prospect"
         )
-
-    def add_to(self, session):
-        for feature in self.input_features:
-            feature.add_to(session)
-        session.merge(self)
