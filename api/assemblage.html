@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plotting.html">
    prospect.plotting
   </a>
@@ -329,14 +324,13 @@
 <span id="prospect-assemblage"></span><h1>prospect.assemblage<a class="headerlink" href="#module-prospect.assemblage" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.assemblage.Assemblage">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.assemblage.</code><code class="sig-name descname">Assemblage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">area_name</span></em>, <em class="sig-param"><span class="n">layer_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/assemblage.html#Assemblage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.assemblage.Assemblage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">prospect.assemblage.</code><code class="sig-name descname">Assemblage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">layer_list</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="layer.html#prospect.layer.Layer" title="prospect.layer.Layer">prospect.layer.Layer</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/assemblage.html#Assemblage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.assemblage.Assemblage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A collection of all <cite>Layer</cite> objects for a survey</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – Unique name for the assemblage</p></li>
-<li><p><strong>area_name</strong> (<em>str</em>) – Name of the containing area</p></li>
 <li><p><strong>layer_list</strong> (<em>list of Layer</em>) – List of layers that make up the assemblage</p></li>
 </ul>
 </dd>
@@ -345,17 +339,6 @@
 <dt id="prospect.assemblage.Assemblage.name">
 <code class="sig-name descname">name</code><a class="headerlink" href="#prospect.assemblage.Assemblage.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the assemblage</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.assemblage.Assemblage.area_name">
-<code class="sig-name descname">area_name</code><a class="headerlink" href="#prospect.assemblage.Assemblage.area_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the containing area</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
@@ -373,26 +356,6 @@
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="prospect.assemblage.Assemblage.add_to">
-<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/assemblage.html#Assemblage.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.assemblage.Assemblage.add_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">area_name</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">df</code><em class="property">: geopandas.geodataframe.GeoDataFrame</em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id2">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

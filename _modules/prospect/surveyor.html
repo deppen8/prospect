@@ -222,11 +222,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../api/plotting.html">
    prospect.plotting
   </a>
@@ -305,17 +300,12 @@
               <div>
                 
   <h1>Source code for prospect.surveyor</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
-
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
 
 
-<div class="viewcode-block" id="Surveyor"><a class="viewcode-back" href="../../api/surveyor.html#prospect.surveyor.Surveyor">[docs]</a><span class="k">class</span> <span class="nc">Surveyor</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Surveyor"><a class="viewcode-back" href="../../api/surveyor.html#prospect.surveyor.Surveyor">[docs]</a><span class="k">class</span> <span class="nc">Surveyor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Represents an individual who will participate in the survey.</span>
 
 <span class="sd">    Parameters</span>
@@ -344,22 +334,6 @@
 <span class="sd">    speed_penalty : Union[float, rv_frozen]</span>
 <span class="sd">        Time factor added to each of this surveyor&#39;s survey units.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;surveyors&quot;</span>
-
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-        <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-        <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">team_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;team_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;teams.name&quot;</span><span class="p">))</span>
-    <span class="n">surveyor_type</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;surveyor_type&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
-    <span class="n">skill</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;skill&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="n">speed_penalty</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;speed_penalty&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-
-    <span class="c1"># relationships</span>
-    <span class="n">team</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;Team&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -393,10 +367,7 @@
             <span class="s2">&quot;surveyor_type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">surveyor_type</span><span class="p">,</span>
             <span class="s2">&quot;skill&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">skill</span><span class="p">,</span>
             <span class="s2">&quot;speed_penalty&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed_penalty</span><span class="p">,</span>
-        <span class="p">}</span></div>
-
-<div class="viewcode-block" id="Surveyor.add_to"><a class="viewcode-back" href="../../api/surveyor.html#prospect.surveyor.Surveyor.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+        <span class="p">}</span></div></div>
 </pre></div>
 
               </div>

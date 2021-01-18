@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../api/plotting.html">
    prospect.plotting
   </a>
@@ -520,6 +515,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">a78fabcd8fd8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">layer_from_list</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Layer</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;demo_layer&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">area</span><span class="o">=</span><span class="n">demo_area</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">assemblage_name</span><span class="o">=</span><span class="s1">&#39;demo_assemblage&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">input_features</span><span class="o">=</span><span class="p">[</span><span class="n">ft1</span><span class="p">,</span> <span class="n">ft2</span><span class="p">,</span> <span class="n">ft3</span><span class="p">]</span>
+
+<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;assemblage_name&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -614,7 +623,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x125099f90&gt;
 </pre></div>
 </div>
 <img alt="../_images/Assemblage_14_1.png" src="../_images/Assemblage_14_1.png" />
@@ -752,7 +761,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12b164210&gt;
 </pre></div>
 </div>
 <img alt="../_images/Assemblage_20_1.png" src="../_images/Assemblage_20_1.png" />
@@ -800,7 +809,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12b4409d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/Assemblage_25_1.png" src="../_images/Assemblage_25_1.png" />
@@ -844,7 +853,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(152, 5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(143, 5)
 </pre></div>
 </div>
 </div>
@@ -856,7 +865,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12b58b8d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/Assemblage_33_1.png" src="../_images/Assemblage_33_1.png" />
@@ -898,7 +907,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(337, 5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(380, 5)
 </pre></div>
 </div>
 </div>
@@ -910,7 +919,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12b79b450&gt;
 </pre></div>
 </div>
 <img alt="../_images/Assemblage_38_1.png" src="../_images/Assemblage_38_1.png" />
@@ -952,7 +961,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(249, 5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(296, 5)
 </pre></div>
 </div>
 </div>
@@ -964,7 +973,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12b995890&gt;
 </pre></div>
 </div>
 <img alt="../_images/Assemblage_43_1.png" src="../_images/Assemblage_43_1.png" />

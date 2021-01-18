@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plotting.html">
    prospect.plotting
   </a>
@@ -329,8 +324,8 @@
 <span id="prospect-feature"></span><h1>prospect.feature<a class="headerlink" href="#module-prospect.feature" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.feature.Feature">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.feature.</code><code class="sig-name descname">Feature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">layer_name</span></em>, <em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/feature.html#Feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.feature.Feature" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">prospect.feature.</code><code class="sig-name descname">Feature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">layer_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">shape</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>shapely.geometry.point.Point<span class="p">, </span>shapely.geometry.linestring.LineString<span class="p">, </span>shapely.geometry.polygon.Polygon<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/feature.html#Feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.feature.Feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents an observable thing like an artifact or landscape feature.</p>
 <p>This class is not normally used directly. It is usually more efficient to
 use the constructor methods of the <cite>Layer</cite> class to create many <cite>Feature</cite>
@@ -416,36 +411,6 @@ feature will be recorded, assuming the following ideal conditions:</p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="prospect.feature.Feature.add_to">
-<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/feature.html#Feature.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.feature.Feature.add_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">ideal_obs_rate</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">layer_name</code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id2">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id3">
-<code class="sig-name descname">shape</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id4">
-<code class="sig-name descname">time_penalty</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="prospect.feature.Feature.to_dict">

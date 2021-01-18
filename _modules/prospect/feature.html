@@ -222,11 +222,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../api/plotting.html">
    prospect.plotting
   </a>
@@ -305,18 +300,13 @@
               <div>
                 
   <h1>Source code for prospect.feature</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span>
-
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
-<span class="c1"># from sqlalchemy.orm import relationship</span>
-
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Polygon</span>
 <span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
 
 
-<div class="viewcode-block" id="Feature"><a class="viewcode-back" href="../../api/feature.html#prospect.feature.Feature">[docs]</a><span class="k">class</span> <span class="nc">Feature</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Feature"><a class="viewcode-back" href="../../api/feature.html#prospect.feature.Feature">[docs]</a><span class="k">class</span> <span class="nc">Feature</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Represents an observable thing like an artifact or landscape feature.</span>
 
 <span class="sd">    This class is not normally used directly. It is usually more efficient to</span>
@@ -364,25 +354,6 @@
 <span class="sd">        - The surveyor is highly skilled</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;features&quot;</span>
-
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-        <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-        <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># assemblage_name = Column(&#39;assemblage_name&#39;, String(</span>
-    <span class="c1">#     50), ForeignKey(&#39;assemblages.name&#39;))</span>
-    <span class="n">layer_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;layer_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;layers.name&quot;</span><span class="p">))</span>
-    <span class="n">shape</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="n">time_penalty</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;time_penalty&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="n">ideal_obs_rate</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;ideal_obs_rate&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-
-    <span class="c1"># relationships</span>
-    <span class="c1"># assemblage = relationship(&#39;Assemblage&#39;, back_populates=&#39;features&#39;)</span>
-    <span class="c1"># layer = relationship(&quot;Layer&quot;)</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -416,10 +387,7 @@
             <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
             <span class="s2">&quot;time_penalty&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_penalty</span><span class="p">,</span>
             <span class="s2">&quot;ideal_obs_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ideal_obs_rate</span><span class="p">,</span>
-        <span class="p">}</span></div>
-
-<div class="viewcode-block" id="Feature.add_to"><a class="viewcode-back" href="../../api/feature.html#prospect.feature.Feature.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+        <span class="p">}</span></div></div>
 </pre></div>
 
               </div>

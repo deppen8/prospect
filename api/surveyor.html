@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plotting.html">
    prospect.plotting
   </a>
@@ -329,8 +324,8 @@
 <span id="prospect-surveyor"></span><h1>prospect.surveyor<a class="headerlink" href="#module-prospect.surveyor" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.surveyor.Surveyor">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.surveyor.</code><code class="sig-name descname">Surveyor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">team_name</span></em>, <em class="sig-param"><span class="n">surveyor_type</span></em>, <em class="sig-param"><span class="n">skill</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">speed_penalty</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/surveyor.html#Surveyor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.surveyor.Surveyor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">prospect.surveyor.</code><code class="sig-name descname">Surveyor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">team_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">surveyor_type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">skill</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">speed_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/surveyor.html#Surveyor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.surveyor.Surveyor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents an individual who will participate in the survey.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -397,41 +392,6 @@
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="prospect.surveyor.Surveyor.add_to">
-<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/surveyor.html#Surveyor.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.surveyor.Surveyor.add_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">skill</code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id2">
-<code class="sig-name descname">speed_penalty</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id3">
-<code class="sig-name descname">surveyor_type</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.surveyor.Surveyor.team">
-<code class="sig-name descname">team</code><a class="headerlink" href="#prospect.surveyor.Surveyor.team" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id4">
-<code class="sig-name descname">team_name</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="prospect.surveyor.Surveyor.to_dict">

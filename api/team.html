@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plotting.html">
    prospect.plotting
   </a>
@@ -329,8 +324,8 @@
 <span id="prospect-team"></span><h1>prospect.team<a class="headerlink" href="#module-prospect.team" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.team.Team">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.team.</code><code class="sig-name descname">Team</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">surveyor_list</span></em>, <em class="sig-param"><span class="n">assignment</span><span class="o">=</span><span class="default_value">'naive'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/team.html#Team"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.team.Team" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">prospect.team.</code><code class="sig-name descname">Team</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">surveyor_list</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="surveyor.html#prospect.surveyor.Surveyor" title="prospect.surveyor.Surveyor">prospect.surveyor.Surveyor</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">assignment</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'naive'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/team.html#Team"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.team.Team" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A collection of <cite>Surveyor</cite> objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -409,17 +404,6 @@ a surveyor from the team</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="prospect.team.Team.add_to">
-<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/team.html#Team.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.team.Team.add_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add <cite>Team</cite> and constituent <cite>Surveyor</cite> objects to sqlalchemy session</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>session</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="prospect.team.Team.drop_surveyors">
 <code class="sig-name descname">drop_surveyors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">surveyors</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/team.html#Team.drop_surveyors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.team.Team.drop_surveyors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove a surveyor or surveyors from the Team</p>
@@ -429,21 +413,6 @@ a surveyor from the team</p></li>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">surveyor_list</code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.team.Team.surveyors">
-<code class="sig-name descname">surveyors</code><a class="headerlink" href="#prospect.team.Team.surveyors" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

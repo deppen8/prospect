@@ -222,11 +222,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../api/plotting.html">
    prospect.plotting
   </a>
@@ -312,17 +307,13 @@
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">uniform</span>
 <span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">,</span> <span class="n">String</span>
 
 <span class="kn">from</span> <span class="nn">.area</span> <span class="kn">import</span> <span class="n">Area</span>
 <span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">Feature</span>
-<span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">clip_points</span>
 
-<span class="c1"># from sqlalchemy.orm import relationship</span>
 
-
-<div class="viewcode-block" id="Layer"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer">[docs]</a><span class="k">class</span> <span class="nc">Layer</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Layer"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer">[docs]</a><span class="k">class</span> <span class="nc">Layer</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A container for `Feature` objects</span>
 
 <span class="sd">    The `Layer` class is mostly useful as a way to create groups of similar features.</span>
@@ -333,8 +324,6 @@
 <span class="sd">        Unique name for the layer</span>
 <span class="sd">    area : Area</span>
 <span class="sd">        Containing area</span>
-<span class="sd">    assemblage_name : str</span>
-<span class="sd">        Name of the parent assemblage</span>
 <span class="sd">    input_features : List[Feature]</span>
 <span class="sd">        List of features that originally made up the Layer (before clipping)</span>
 
@@ -342,46 +331,19 @@
 <span class="sd">    ----------</span>
 <span class="sd">    name : str</span>
 <span class="sd">        Name of the layer</span>
-<span class="sd">    area_name : str</span>
-<span class="sd">        Name of the containing area</span>
-<span class="sd">    assemblage_name : str</span>
-<span class="sd">        Name of the parent assemblage</span>
 <span class="sd">    input_features : List[Feature]</span>
 <span class="sd">        List of features that make up the layer</span>
 <span class="sd">    df : geopandas GeoDataFrame</span>
 <span class="sd">        `GeoDataFrame` with a row for each feature in the layer</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;layers&quot;</span>
-
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">area_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;area_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;areas.name&quot;</span><span class="p">))</span>
-    <span class="n">assemblage_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;assemblage_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;assemblages.name&quot;</span><span class="p">)</span>
-    <span class="p">)</span>
-    <span class="n">input_features</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;feature_list&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;df&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-
-    <span class="c1"># relationships</span>
-    <span class="c1"># area = relationship(&quot;Area&quot;)</span>
-    <span class="c1"># assemblage = relationship(&quot;Assemblage&quot;)</span>
-    <span class="c1"># features = relationship(&quot;Feature&quot;)</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
-        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">input_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Feature</span><span class="p">],</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">input_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Feature</span><span class="p">],</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a `Layer` instance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">area_name</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assemblage_name</span> <span class="o">=</span> <span class="n">assemblage_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span> <span class="o">=</span> <span class="n">input_features</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
@@ -399,7 +361,6 @@
         <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
-        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -414,8 +375,6 @@
 <span class="sd">            Unique name for the layer</span>
 <span class="sd">        area : Area</span>
 <span class="sd">            Containing area</span>
-<span class="sd">        assemblage_name : str</span>
-<span class="sd">            Name of the parent assemblage</span>
 <span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
 <span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
 <span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
@@ -445,12 +404,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
-            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
 
 <div class="viewcode-block" id="Layer.from_pseudorandom_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_pseudorandom_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_pseudorandom_points</span><span class="p">(</span>
@@ -458,7 +412,6 @@
         <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
-        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
@@ -472,8 +425,6 @@
 <span class="sd">            Unique name for the layer</span>
 <span class="sd">        area : Area</span>
 <span class="sd">            Containing area</span>
-<span class="sd">        assemblage_name : str</span>
-<span class="sd">            Name of the parent assemblage</span>
 <span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
 <span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
 <span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
@@ -526,12 +477,7 @@
                 <span class="n">feature_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
                 <span class="n">n_pts</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
-            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
 
 <div class="viewcode-block" id="Layer.from_poisson_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_poisson_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_poisson_points</span><span class="p">(</span>
@@ -539,7 +485,6 @@
         <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
-        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
@@ -553,8 +498,6 @@
 <span class="sd">            Unique name for the layer</span>
 <span class="sd">        area : Area</span>
 <span class="sd">            Containing area</span>
-<span class="sd">        assemblage_name : str</span>
-<span class="sd">            Name of the parent assemblage</span>
 <span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
 <span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
 <span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
@@ -600,12 +543,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
-            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
 
 <div class="viewcode-block" id="Layer.from_thomas_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_thomas_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_thomas_points</span><span class="p">(</span>
@@ -635,8 +573,6 @@
 <span class="sd">            Unique name for the layer</span>
 <span class="sd">        area : Area</span>
 <span class="sd">            Containing area</span>
-<span class="sd">        assemblage_name : str</span>
-<span class="sd">            Name of the parent assemblage</span>
 <span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
 <span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
 <span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
@@ -694,12 +630,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
-            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
 
 <div class="viewcode-block" id="Layer.from_matern_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_matern_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_matern_points</span><span class="p">(</span>
@@ -709,7 +640,6 @@
         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
-        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
@@ -729,8 +659,6 @@
 <span class="sd">            Unique name for the layer</span>
 <span class="sd">        area : Area</span>
 <span class="sd">            Containing area</span>
-<span class="sd">        assemblage_name : str</span>
-<span class="sd">            Name of the parent assemblage</span>
 <span class="sd">        time_penalty : Union[float, rv_frozen], optional</span>
 <span class="sd">            Minimum amount of time it takes to record a feature (the default is 0.0, which indicates no time cost for feature recording)</span>
 <span class="sd">        ideal_obs_rate : Union[float, rv_frozen], optional</span>
@@ -789,12 +717,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">assemblage_name</span><span class="o">=</span><span class="n">assemblage_name</span><span class="p">,</span>
-            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
 
 <div class="viewcode-block" id="Layer.poisson_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.poisson_points">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">poisson_points</span><span class="p">(</span><span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -873,12 +796,7 @@
 
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
             <span class="s2">&quot;`from_rectangles()` will be available in a future version of prospect&quot;</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="Layer.add_to"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span><span class="p">:</span>
-            <span class="n">feature</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+        <span class="p">)</span></div></div>
 </pre></div>
 
               </div>

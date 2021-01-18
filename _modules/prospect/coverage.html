@@ -222,11 +222,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../api/plotting.html">
    prospect.plotting
   </a>
@@ -312,17 +307,13 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">,</span> <span class="n">String</span>
 
 <span class="kn">from</span> <span class="nn">.area</span> <span class="kn">import</span> <span class="n">Area</span>
-<span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">.surveyunit</span> <span class="kn">import</span> <span class="n">SurveyUnit</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">clip_lines_polys</span>
 
-<span class="c1"># from sqlalchemy.orm import relationship</span>
 
-
-<div class="viewcode-block" id="Coverage"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage">[docs]</a><span class="k">class</span> <span class="nc">Coverage</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Coverage"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage">[docs]</a><span class="k">class</span> <span class="nc">Coverage</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A collection of `SurveyUnit` objects</span>
 
 <span class="sd">    The `Coverage` class is mostly useful as a way to create groups of similar</span>
@@ -332,8 +323,6 @@
 <span class="sd">    ----------</span>
 <span class="sd">    name : str</span>
 <span class="sd">        Unique name for the Coverage</span>
-<span class="sd">    area : Area</span>
-<span class="sd">        Containing area</span>
 <span class="sd">    surveyunit_list : List[SurveyUnit]</span>
 <span class="sd">        List of survey units that make up the coverage</span>
 <span class="sd">    orientation : float</span>
@@ -351,8 +340,6 @@
 <span class="sd">    ----------</span>
 <span class="sd">    name : str</span>
 <span class="sd">        Unique name for the coverage</span>
-<span class="sd">    area_name : str</span>
-<span class="sd">        Name of the containing area</span>
 <span class="sd">    surveyunit_list : List[SurveyUnit]</span>
 <span class="sd">        List of survey units that make up the coverage</span>
 <span class="sd">    orientation : float</span>
@@ -367,27 +354,9 @@
 <span class="sd">        `GeoDataFrame` with a row for each survey unit</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;coverages&quot;</span>
-
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">area_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;area_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;areas.name&quot;</span><span class="p">))</span>
-    <span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;surveyunit_list&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="c1"># survey_unit_type = Column(&#39;survey_unit_type&#39;, String(50))</span>
-    <span class="n">orientation</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span>
-    <span class="n">spacing</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;spacing&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span>
-    <span class="n">sweep_width</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;sweep_width&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="n">radius</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-
-    <span class="c1"># relationships</span>
-    <span class="c1"># area = relationship(&quot;Area&quot;)</span>
-    <span class="c1"># surveyunit = relationship(&quot;SurveyUnit&quot;)</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
         <span class="n">surveyunit_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SurveyUnit</span><span class="p">],</span>
         <span class="n">orientation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
         <span class="n">spacing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
@@ -398,7 +367,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">area_name</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">surveyunit_list</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">orientation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="n">spacing</span>
@@ -425,7 +393,6 @@
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
         <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -438,8 +405,6 @@
 <span class="sd">            Filepath to the shapefile</span>
 <span class="sd">        name : str</span>
 <span class="sd">            Unique name for the Coverage</span>
-<span class="sd">        area : Area</span>
-<span class="sd">            Containing area</span>
 <span class="sd">        surveyunit_type : str</span>
 <span class="sd">            Type of units to create</span>
 <span class="sd">        min_time_per_unit : Union[float, rv_frozen], optional</span>
@@ -469,11 +434,7 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
-            <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Coverage.from_GeoDataFrame"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_GeoDataFrame">[docs]</a>    <span class="nd">@classmethod</span>
@@ -481,7 +442,6 @@
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">gdf</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
         <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Coverage&quot;</span><span class="p">:</span>
@@ -493,8 +453,6 @@
 <span class="sd">            `GeoDataFrame` where each row is a survey unit</span>
 <span class="sd">        name : str</span>
 <span class="sd">            Unique name for the Coverage</span>
-<span class="sd">        area : Area</span>
-<span class="sd">            Containing area</span>
 <span class="sd">        surveyunit_type : {&#39;transect&#39;, &#39;radial&#39;}</span>
 <span class="sd">            Type of units to create</span>
 <span class="sd">        min_time_per_unit : Union[float, rv_frozen], optional</span>
@@ -522,11 +480,7 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
-            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
-            <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Coverage.from_transects"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_transects">[docs]</a>    <span class="nd">@classmethod</span>
@@ -654,7 +608,6 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
             <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
             <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span>
             <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
@@ -782,7 +735,6 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
             <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
             <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span>
             <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
@@ -1021,12 +973,7 @@
         <span class="p">):</span>
             <span class="n">angle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">temp_angle</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">angle</span>
-
-<div class="viewcode-block" id="Coverage.add_to"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">surveyunit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_list</span><span class="p">:</span>
-            <span class="n">surveyunit</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">angle</span></div>
 </pre></div>
 
               </div>

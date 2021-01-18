@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../api/plotting.html">
    prospect.plotting
   </a>
@@ -501,6 +496,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">7</span><span class="n">edd45b730ab</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">coverage_from_list</span> <span class="o">=</span> <span class="n">prospect</span><span class="o">.</span><span class="n">Coverage</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_coverage&quot;</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">demo_area</span><span class="p">,</span> <span class="n">surveyunit_list</span><span class="o">=</span><span class="p">[</span><span class="n">su1</span><span class="p">,</span> <span class="n">su2</span><span class="p">,</span> <span class="n">su3</span><span class="p">],</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;area&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -521,12 +526,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x7f029836b730&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_sa_instance_state&#39;: &lt;sqlalchemy.orm.state.InstanceState at 0x1198ee1d0&gt;,
  &#39;name&#39;: &#39;demo_coverage&#39;,
  &#39;area_name&#39;: &#39;demo_area&#39;,
- &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x7f029839bf10&gt;,
-  &lt;prospect.surveyunit.SurveyUnit at 0x7f0298333670&gt;,
-  &lt;prospect.surveyunit.SurveyUnit at 0x7f029835bd60&gt;],
+ &#39;surveyunit_list&#39;: [&lt;prospect.surveyunit.SurveyUnit at 0x1138afd50&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x1199e3d90&gt;,
+  &lt;prospect.surveyunit.SurveyUnit at 0x1199eb150&gt;],
  &#39;orientation&#39;: None,
  &#39;spacing&#39;: None,
  &#39;sweep_width&#39;: None,
@@ -1446,11 +1451,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda/envs/prospect/lib/python3.8/site-packages/seaborn/distributions.py:2557: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
-  warnings.warn(msg, FutureWarning)
-</pre></div>
-</div>
-<img alt="../_images/Coverage_92_1.png" src="../_images/Coverage_92_1.png" />
+<img alt="../_images/Coverage_92_0.png" src="../_images/Coverage_92_0.png" />
 </div>
 </div>
 <div class="admonition note">

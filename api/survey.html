@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="prospect.simulation" href="simulation.html" />
+    <link rel="next" title="prospect.plotting" href="plotting.html" />
     <link rel="prev" title="prospect.surveyor" href="surveyor.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plotting.html">
    prospect.plotting
   </a>
@@ -329,8 +324,8 @@
 <span id="prospect-survey"></span><h1>prospect.survey<a class="headerlink" href="#module-prospect.survey" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.survey.Survey">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.survey.</code><code class="sig-name descname">Survey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">area</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">assemblage</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">coverage</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">team</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/survey.html#Survey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.survey.Survey" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">prospect.survey.</code><code class="sig-name descname">Survey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">area</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="area.html#prospect.area.Area" title="prospect.area.Area">prospect.area.Area</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">assemblage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="assemblage.html#prospect.assemblage.Assemblage" title="prospect.assemblage.Assemblage">prospect.assemblage.Assemblage</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">coverage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="coverage.html#prospect.coverage.Coverage" title="prospect.coverage.Coverage">prospect.coverage.Coverage</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">team</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="team.html#prospect.team.Team" title="prospect.team.Team">prospect.team.Team</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/survey.html#Survey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.survey.Survey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Unique index for a set of <cite>Area</cite>, <cite>Assemblage</cite>, <cite>Coverage</cite>, and <cite>Team</cite></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -360,63 +355,13 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="prospect.survey.Survey.add_to">
-<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/survey.html#Survey.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.survey.Survey.add_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.area">
-<code class="sig-name descname">area</code><a class="headerlink" href="#prospect.survey.Survey.area" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.area_name">
-<code class="sig-name descname">area_name</code><a class="headerlink" href="#prospect.survey.Survey.area_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.assemblage">
-<code class="sig-name descname">assemblage</code><a class="headerlink" href="#prospect.survey.Survey.assemblage" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.assemblage_name">
-<code class="sig-name descname">assemblage_name</code><a class="headerlink" href="#prospect.survey.Survey.assemblage_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.coverage">
-<code class="sig-name descname">coverage</code><a class="headerlink" href="#prospect.survey.Survey.coverage" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.coverage_name">
-<code class="sig-name descname">coverage_name</code><a class="headerlink" href="#prospect.survey.Survey.coverage_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt id="prospect.survey.Survey.discovery_plot">
 <code class="sig-name descname">discovery_plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title_size</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">20</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>float<span class="p">, </span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">(8.0, 20.0)</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; matplotlib.figure.Figure<a class="reference internal" href="../_modules/prospect/survey.html#Survey.discovery_plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.survey.Survey.discovery_plot" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="prospect.survey.Survey.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_runs</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">start_run_id</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">discovery_threshold</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/survey.html#Survey.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.survey.Survey.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.team">
-<code class="sig-name descname">team</code><a class="headerlink" href="#prospect.survey.Survey.team" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.survey.Survey.team_name">
-<code class="sig-name descname">team_name</code><a class="headerlink" href="#prospect.survey.Survey.team_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -452,7 +397,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="surveyor.html" title="previous page">prospect.surveyor</a>
-    <a class='right-next' id="next-link" href="simulation.html" title="next page">prospect.simulation</a>
+    <a class='right-next' id="next-link" href="plotting.html" title="next page">prospect.plotting</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

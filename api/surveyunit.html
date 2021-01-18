@@ -224,11 +224,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plotting.html">
    prospect.plotting
   </a>
@@ -329,8 +324,8 @@
 <span id="prospect-surveyunit"></span><h1>prospect.surveyunit<a class="headerlink" href="#module-prospect.surveyunit" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.surveyunit.SurveyUnit">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.surveyunit.</code><code class="sig-name descname">SurveyUnit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">coverage_name</span></em>, <em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">surveyunit_type</span></em>, <em class="sig-param"><span class="n">length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_time_per_unit</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/surveyunit.html#SurveyUnit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.surveyunit.SurveyUnit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">prospect.surveyunit.</code><code class="sig-name descname">SurveyUnit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">coverage_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">shape</span><span class="p">:</span> <span class="n">shapely.geometry.polygon.Polygon</span></em>, <em class="sig-param"><span class="n">surveyunit_type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">length</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">radius</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_time_per_unit</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/surveyunit.html#SurveyUnit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.surveyunit.SurveyUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents a spatial unit of survey like a transect or radial unit.</p>
 <p>This class is not normally used directly. It is usually more efficient to use the constructor methods of the <cite>Coverage</cite> class to create many <cite>SurveyUnit</cite> objects at once.</p>
 <dl class="field-list simple">
@@ -438,41 +433,6 @@
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="prospect.surveyunit.SurveyUnit.add_to">
-<code class="sig-name descname">add_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/surveyunit.html#SurveyUnit.add_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.surveyunit.SurveyUnit.add_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="prospect.surveyunit.SurveyUnit.base_time">
-<code class="sig-name descname">base_time</code><a class="headerlink" href="#prospect.surveyunit.SurveyUnit.base_time" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">coverage_name</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">min_time_per_unit</code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id2">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id3">
-<code class="sig-name descname">shape</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="id4">
-<code class="sig-name descname">surveyunit_type</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="prospect.surveyunit.SurveyUnit.to_dict">

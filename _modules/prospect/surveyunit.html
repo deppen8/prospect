@@ -222,11 +222,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../api/simulation.html">
-   prospect.simulation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../api/plotting.html">
    prospect.plotting
   </a>
@@ -305,19 +300,13 @@
               <div>
                 
   <h1>Source code for prospect.surveyunit</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Base</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span>
-
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
-
-<span class="c1"># from sqlalchemy.orm import relationship</span>
-
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
 <span class="kn">from</span> <span class="nn">scipy.stats._distn_infrastructure</span> <span class="kn">import</span> <span class="n">rv_frozen</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
 
 
-<div class="viewcode-block" id="SurveyUnit"><a class="viewcode-back" href="../../api/surveyunit.html#prospect.surveyunit.SurveyUnit">[docs]</a><span class="k">class</span> <span class="nc">SurveyUnit</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="SurveyUnit"><a class="viewcode-back" href="../../api/surveyunit.html#prospect.surveyunit.SurveyUnit">[docs]</a><span class="k">class</span> <span class="nc">SurveyUnit</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Represents a spatial unit of survey like a transect or radial unit.</span>
 
 <span class="sd">    This class is not normally used directly. It is usually more efficient to use the constructor methods of the `Coverage` class to create many `SurveyUnit` objects at once.</span>
@@ -367,25 +356,6 @@
 <span class="sd">        For radial survey units, this term should be specified more simply as time per one survey unit.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;surveyunits&quot;</span>
-
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-        <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-        <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">sqlite_on_conflict_unique</span><span class="o">=</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">coverage_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="s2">&quot;coverage_name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;coverages.name&quot;</span><span class="p">)</span>
-    <span class="p">)</span>
-    <span class="n">shape</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="n">surveyunit_type</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;surveyunit_type&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
-    <span class="n">min_time_per_unit</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;min_time_per_unit&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-    <span class="n">base_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;base_time&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
-
-    <span class="c1"># relationships</span>
-    <span class="c1"># coverage = relationship(&quot;Coverage&quot;)</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -426,10 +396,7 @@
             <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
             <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span>
             <span class="s2">&quot;min_time_per_unit&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_time_per_unit</span><span class="p">,</span>
-        <span class="p">}</span></div>
-
-<div class="viewcode-block" id="SurveyUnit.add_to"><a class="viewcode-back" href="../../api/surveyunit.html#prospect.surveyunit.SurveyUnit.add_to">[docs]</a>    <span class="k">def</span> <span class="nf">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+        <span class="p">}</span></div></div>
 </pre></div>
 
               </div>
