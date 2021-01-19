@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest", "macos-latest", "windows-latest"]
-        python-version: [3.6, 3.7, 3.8, 3.9, 3.10]
+        python-version: [3.6, 3.7, 3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
 
@@ -23,6 +23,7 @@ jobs:
         channels: conda-forge, nodefaults
         channel-priority: true
         environment-file: environment.yml
+        python-version: ${{ matrix.python-version }}
         activate-environment: prospect
         auto-activate-base: false
     - name: Install prospect in dev mode
@@ -36,4 +37,5 @@ jobs:
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v1
       with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
         fail_ci_if_error: true
