@@ -36,7 +36,10 @@ class Layer:
     """
 
     def __init__(
-        self, name: str, area: Area, input_features: List[Feature],
+        self,
+        name: str,
+        area: Area,
+        input_features: List[Feature],
     ):
         """Create a `Layer` instance."""
 
@@ -44,7 +47,8 @@ class Layer:
         self.input_features = input_features
 
         self.df = gpd.GeoDataFrame(
-            [feature.to_dict() for feature in self.input_features], geometry="shape",
+            [feature.to_dict() for feature in self.input_features],
+            geometry="shape",
         )
 
         # clip by area
@@ -101,7 +105,11 @@ class Layer:
             for i in range(len(shape_list))
         ]
 
-        return cls(name=name, area=area, input_features=feature_list,)
+        return cls(
+            name=name,
+            area=area,
+            input_features=feature_list,
+        )
 
     @classmethod
     def from_pseudorandom_points(
@@ -170,7 +178,11 @@ class Layer:
                 feature_list.append(feature)
                 n_pts += 1
 
-        return cls(name=name, area=area, input_features=feature_list,)
+        return cls(
+            name=name,
+            area=area,
+            input_features=feature_list,
+        )
 
     @classmethod
     def from_poisson_points(
@@ -236,7 +248,11 @@ class Layer:
             for i in range(len(shape_list))
         ]
 
-        return cls(name=name, area=area, input_features=feature_list,)
+        return cls(
+            name=name,
+            area=area,
+            input_features=feature_list,
+        )
 
     @classmethod
     def from_thomas_points(
@@ -322,7 +338,11 @@ class Layer:
             for i in range(len(shape_list))
         ]
 
-        return cls(name=name, area=area, input_features=feature_list,)
+        return cls(
+            name=name,
+            area=area,
+            input_features=feature_list,
+        )
 
     @classmethod
     def from_matern_points(
@@ -409,7 +429,11 @@ class Layer:
             for i in range(len(shape_list))
         ]
 
-        return cls(name=name, area=area, input_features=feature_list,)
+        return cls(
+            name=name,
+            area=area,
+            input_features=feature_list,
+        )
 
     @staticmethod
     def poisson_points(area: Area, rate: float) -> np.ndarray:

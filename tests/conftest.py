@@ -74,7 +74,8 @@ VALUE_ORIGIN_PARAMS = [(100, (0.0, 0.0)), (0, (0.0, 0.0)), (100, (-10.0, -10.0))
 
 
 @pytest.fixture(
-    params=VALUE_ORIGIN_PARAMS, scope="session",
+    params=VALUE_ORIGIN_PARAMS,
+    scope="session",
 )
 def an_area_from_area_value(request):
     area = prospect.Area.from_area_value(
@@ -111,7 +112,11 @@ def a_feature(request):
 
 @pytest.fixture(scope="module")
 def a_layer(an_area, a_feature):
-    return prospect.Layer(name="test_layer", area=an_area, input_features=[a_feature],)
+    return prospect.Layer(
+        name="test_layer",
+        area=an_area,
+        input_features=[a_feature],
+    )
 
 
 # `Assemblage` FIXTURES
@@ -119,7 +124,10 @@ def a_layer(an_area, a_feature):
 
 @pytest.fixture(scope="module")
 def an_assemblage(a_layer):
-    return prospect.Assemblage(name="test_assemblage", layer_list=[a_layer],)
+    return prospect.Assemblage(
+        name="test_assemblage",
+        layer_list=[a_layer],
+    )
 
 
 # `SurveyUnit` FIXTURES
