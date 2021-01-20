@@ -339,8 +339,7 @@
         <span class="n">coverage</span><span class="p">:</span> <span class="n">Coverage</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">team</span><span class="p">:</span> <span class="n">Team</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create `Survey` instance</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Create `Survey` instance&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
@@ -453,8 +452,7 @@
 
 
 <span class="k">def</span> <span class="nf">_resolve</span><span class="p">(</span><span class="n">survey</span><span class="p">,</span> <span class="n">run_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Determine input parameters, resolve discovery probabilities, and calculate search times</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Determine input parameters, resolve discovery probabilities, and calculate search times&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_floats_or_distr_vals</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Duplicate value or randomly select value from distribution,</span>
@@ -471,7 +469,8 @@
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">input_col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_get_floats_or_distr_vals</span><span class="p">)</span>
 
     <span class="n">ResolvedRun</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
-        <span class="s2">&quot;ResolvedRun&quot;</span><span class="p">,</span> <span class="s2">&quot;raw discovery time_surveyunit time_surveyor total_time&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ResolvedRun&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;raw discovery time_surveyunit time_surveyor total_time&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Create inputs df of features from assemblage</span>

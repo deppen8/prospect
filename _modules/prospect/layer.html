@@ -338,16 +338,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">input_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Feature</span><span class="p">],</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">input_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Feature</span><span class="p">],</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Layer` instance.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span> <span class="o">=</span> <span class="n">input_features</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">feature</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">feature</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_features</span><span class="p">],</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># clip by area</span>
@@ -404,7 +407,11 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Layer.from_pseudorandom_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_pseudorandom_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_pseudorandom_points</span><span class="p">(</span>
@@ -445,10 +452,6 @@
 <span class="sd">        from_poisson_points : simple Poisson points `Layer`</span>
 <span class="sd">        from_thomas_points : good for clusters with centers from Poisson points</span>
 <span class="sd">        from_matern_points : good for clusters with centers from Poisson points</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">tmp_area</span> <span class="o">=</span> <span class="n">area</span>
@@ -477,7 +480,11 @@
                 <span class="n">feature_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
                 <span class="n">n_pts</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Layer.from_poisson_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_poisson_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_poisson_points</span><span class="p">(</span>
@@ -543,7 +550,11 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Layer.from_thomas_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_thomas_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_thomas_points</span><span class="p">(</span>
@@ -553,7 +564,6 @@
         <span class="n">gauss_var</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
-        <span class="n">assemblage_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">rv_frozen</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Layer&quot;</span><span class="p">:</span>
@@ -630,7 +640,11 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Layer.from_matern_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.from_matern_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_matern_points</span><span class="p">(</span>
@@ -717,7 +731,11 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape_list</span><span class="p">))</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+            <span class="n">input_features</span><span class="o">=</span><span class="n">feature_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Layer.poisson_points"><a class="viewcode-back" href="../../api/layer.html#prospect.layer.Layer.poisson_points">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">poisson_points</span><span class="p">(</span><span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>

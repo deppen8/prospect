@@ -363,8 +363,7 @@
         <span class="n">sweep_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">radius</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Create a `Coverage` instance.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surveyunit_list</span> <span class="o">=</span> <span class="n">surveyunit_list</span>
@@ -434,7 +433,10 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Coverage.from_GeoDataFrame"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_GeoDataFrame">[docs]</a>    <span class="nd">@classmethod</span>
@@ -480,7 +482,10 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">surveyunit_list</span><span class="o">=</span><span class="n">surveyunit_list</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Coverage.from_transects"><a class="viewcode-back" href="../../api/coverage.html#prospect.coverage.Coverage.from_transects">[docs]</a>    <span class="nd">@classmethod</span>
@@ -680,7 +685,10 @@
         <span class="n">centroid</span> <span class="o">=</span> <span class="n">min_rot_rect</span><span class="o">.</span><span class="n">centroid</span>
 
         <span class="n">points_gs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_make_unit_bases</span><span class="p">(</span>
-            <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">tmp_area</span><span class="p">,</span> <span class="n">centroid</span><span class="o">=</span><span class="n">centroid</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
+            <span class="n">surveyunit_type</span><span class="o">=</span><span class="s2">&quot;radial&quot;</span><span class="p">,</span>
+            <span class="n">area</span><span class="o">=</span><span class="n">tmp_area</span><span class="p">,</span>
+            <span class="n">centroid</span><span class="o">=</span><span class="n">centroid</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># set orientation to maximize area</span>
@@ -760,7 +768,10 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_make_unit_bases</span><span class="p">(</span>
-        <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span> <span class="n">centroid</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">surveyunit_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">area</span><span class="p">:</span> <span class="n">Area</span><span class="p">,</span>
+        <span class="n">centroid</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+        <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Create the Point and LineString objects that will be buffered to</span>
 <span class="sd">        make survey units.</span>
