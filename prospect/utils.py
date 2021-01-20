@@ -1,13 +1,11 @@
 import warnings
 
 import geopandas as gpd
-from scipy.stats._distn_infrastructure import rv_frozen
 import scipy.stats
+from scipy.stats._distn_infrastructure import rv_frozen
 
 
-def clip_points(
-    points: gpd.GeoDataFrame, by: gpd.GeoDataFrame
-) -> gpd.GeoDataFrame:
+def clip_points(points: gpd.GeoDataFrame, by: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """Subset a GeoDataFrame of points based on the boundaries of another GeoDataFrame.
 
     Parameters

@@ -61,8 +61,7 @@ class Coverage:
         sweep_width: Optional[float] = None,
         radius: Optional[float] = None,
     ):
-        """Create a `Coverage` instance.
-        """
+        """Create a `Coverage` instance."""
 
         self.name = name
         self.surveyunit_list = surveyunit_list
@@ -132,7 +131,10 @@ class Coverage:
         )
 
         return cls(
-            name=name, surveyunit_list=surveyunit_list, orientation=None, spacing=None,
+            name=name,
+            surveyunit_list=surveyunit_list,
+            orientation=None,
+            spacing=None,
         )
 
     @classmethod
@@ -178,7 +180,10 @@ class Coverage:
         )
 
         return cls(
-            name=name, surveyunit_list=surveyunit_list, orientation=None, spacing=None,
+            name=name,
+            surveyunit_list=surveyunit_list,
+            orientation=None,
+            spacing=None,
         )
 
     @classmethod
@@ -378,7 +383,10 @@ class Coverage:
         centroid = min_rot_rect.centroid
 
         points_gs = cls._make_unit_bases(
-            surveyunit_type="radial", area=tmp_area, centroid=centroid, spacing=spacing,
+            surveyunit_type="radial",
+            area=tmp_area,
+            centroid=centroid,
+            spacing=spacing,
         )
 
         # set orientation to maximize area
@@ -458,7 +466,10 @@ class Coverage:
 
     @staticmethod
     def _make_unit_bases(
-        surveyunit_type: str, area: Area, centroid: Point, spacing: float = 10.0,
+        surveyunit_type: str,
+        area: Area,
+        centroid: Point,
+        spacing: float = 10.0,
     ) -> gpd.GeoSeries:
         """Create the Point and LineString objects that will be buffered to
         make survey units.

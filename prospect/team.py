@@ -37,10 +37,12 @@ class Team:
     """
 
     def __init__(
-        self, name: str, surveyor_list: List[Surveyor], assignment: str = "naive",
+        self,
+        name: str,
+        surveyor_list: List[Surveyor],
+        assignment: str = "naive",
     ):
-        """Create a `Team` instance.
-        """
+        """Create a `Team` instance."""
 
         self.name = name
         self.surveyor_list = surveyor_list

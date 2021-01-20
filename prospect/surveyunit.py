@@ -64,8 +64,7 @@ class SurveyUnit:
         radius: float = None,
         min_time_per_unit: Union[float, rv_frozen] = 0.0,
     ):
-        """[summary]
-        """
+        """[summary]"""
 
         self.name = name
         self.coverage_name = coverage_name

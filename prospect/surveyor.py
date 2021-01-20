@@ -41,8 +41,7 @@ class Surveyor:
         skill: Union[float, rv_frozen] = 1.0,
         speed_penalty: Union[float, rv_frozen] = 0.0,
     ):
-        """[summary]
-        """
+        """[summary]"""
 
         self.name = name
         self.team_name = team_name
