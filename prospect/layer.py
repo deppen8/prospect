@@ -38,8 +38,7 @@ class Layer:
     def __init__(
         self, name: str, area: Area, input_features: List[Feature],
     ):
-        """Create a `Layer` instance.
-        """
+        """Create a `Layer` instance."""
 
         self.name = name
         self.input_features = input_features
@@ -143,10 +142,6 @@ class Layer:
         from_poisson_points : simple Poisson points `Layer`
         from_thomas_points : good for clusters with centers from Poisson points
         from_matern_points : good for clusters with centers from Poisson points
-
-        Notes
-        -----
-        The generated point coordinates are not guaranteed to fall within the given area, only within its bounding box. The generated GeoDataFrame, `df`, is clipped by the actual area bounds *after* they are generated, which can result in fewer points than expected. All points will remain in the `input_features`.
         """
 
         tmp_area = area
@@ -251,7 +246,6 @@ class Layer:
         gauss_var: float,
         name: str,
         area: Area,
-        assemblage_name: str,
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ) -> "Layer":

@@ -219,47 +219,115 @@ def a_line_string_gdf_for_clip():
         geometry="geometry",
     )
 
-    # # `Layer` FIXTURES FOR USE IN OTHER MODULES
 
-    # LEIAP_LAYER_PATHS = [
-    #     'leiap_field1_points.shp',
-    #     'leiap_field2_points.shp',
-    #     'leiap_field3_points.shp',
-    #     'leiap_field4_points.shp',
-    #     'leiap_field5_polygons.shp',
-    #     'leiap_field6_polygons_overlap_edges.shp',
-    #     'leiap_field7_points.shp',
-    #     'leiap_field8_polygon_single.shp'
+# `Layer` FIXTURES FOR USE IN OTHER MODULES
 
-    # ]
 
-    # area_layer_tuples = list(zip(LEIAP_AREA_PATHS, LEIAP_LAYER_PATHS))
+LEIAP_LAYER_PATHS = [
+    "leiap_field1_points.shp",
+    "leiap_field2_points.shp",
+    "leiap_field3_points.shp",
+    "leiap_field4_points.shp",
+    "leiap_field5_polygons.shp",
+    "leiap_field6_polygons_overlap_edges.shp",
+    "leiap_field7_points.shp",
+    "leiap_field8_polygon_single.shp",
+]
 
-    # @pytest.fixture(params=LEIAP_LAYER_PATHS, ids=LEIAP_LAYER_PATHS, scope='session')
-    # def a_layer_shapefile_path(request):
-    #     return Path(f'tests/test_datasets/shapefiles/layers/{request.param}')
+area_layer_tuples = list(zip(LEIAP_AREA_PATHS, LEIAP_LAYER_PATHS))
 
-    # @pytest.fixture(params=area_layer_tuples, scope='session')
-    # def a_layer_from_shapefile(request):
-    #     area = prospect.Area.from_shapefile(name='test_area4layer', path=Path(
-    #         f'tests/test_datasets/shapefiles/areas/{request.param[0]}'))
-    #     layer = prospect.Layer.from_shapefile(path=Path(
-    #         f'tests/test_datasets/shapefiles/layers/{request.param[1]}'), area=area, name='test_layer', feature_type=None)
-    #     return layer
 
-    # @pytest.fixture(params=[area_layer_tuples], scope='session')
-    # def a_layer_list(request):
-    #     layer_list = []
-    #     for a, l in request.param:
-    #         area = prospect.Area.from_shapefile(name='test_area4layer', path=Path(
-    #             f'tests/test_datasets/shapefiles/areas/{a}'))
-    #         layer = prospect.Layer.from_shapefile(path=Path(
-    #             f'tests/test_datasets/shapefiles/layers/{l}'), area=area, name='test_layer', feature_type=None)
-    #         layer_list.append(layer)
-    #     return layer_list
+@pytest.fixture(params=area_layer_tuples, scope="session")
+def a_area_layer_shapefile_path_pair(request):
+    return (
+        Path(f"tests/test_data/shapefiles/areas/{request.param[0]}"),
+        Path(f"tests/test_data/shapefiles/layers/{request.param[1]}"),
+    )
 
-    # # `Assemblage` FIXTURES FOR USE IN OTHER MODULES
 
-    # @pytest.fixture(scope='session')
-    # def an_assemblage(a_layer_list):
-    #     return prospect.Assemblage(name='test_assemblage', layers=a_layer_list)
+@pytest.fixture(params=area_layer_tuples, scope="session")
+def a_layer_from_shapefile(request):
+    area = prospect.Area.from_shapefile(
+        name="test_area4layer",
+        path=Path(f"tests/test_data/shapefiles/areas/{request.param[0]}"),
+    )
+    layer = prospect.Layer.from_shapefile(
+        path=Path(f"tests/test_data/shapefiles/layers/{request.param[1]}"),
+        area=area,
+        name="test_layer",
+    )
+    return layer
+
+
+@pytest.fixture(params=area_layer_tuples, scope="session")
+def a_layer_from_pseudorandom_points(request):
+    area = prospect.Area.from_shapefile(
+        name="test_area4layer",
+        path=Path(f"tests/test_data/shapefiles/areas/{request.param[0]}"),
+    )
+    layer = prospect.Layer.from_pseudorandom_points(
+        n=25, name="layer_from_pseudorandom_pts", area=area
+    )
+    return layer
+
+
+@pytest.fixture(params=area_layer_tuples, scope="session")
+def a_layer_from_poisson_points(request):
+    area = prospect.Area.from_shapefile(
+        name="test_area4layer",
+        path=Path(f"tests/test_data/shapefiles/areas/{request.param[0]}"),
+    )
+    layer = prospect.Layer.from_poisson_points(
+        rate=0.001, name="layer_from_poisson_pts", area=area
+    )
+    return layer
+
+
+@pytest.fixture(params=area_layer_tuples, scope="session")
+def a_layer_from_thomas_points(request):
+    area = prospect.Area.from_shapefile(
+        name="test_area4layer",
+        path=Path(f"tests/test_data/shapefiles/areas/{request.param[0]}"),
+    )
+    layer = prospect.Layer.from_thomas_points(
+        parent_rate=0.001,
+        child_rate=1,
+        gauss_var=5,
+        name="layer_from_thomas_pts",
+        area=area,
+    )
+    return layer
+
+
+@pytest.fixture(params=area_layer_tuples, scope="session")
+def a_layer_from_matern_points(request):
+    area = prospect.Area.from_shapefile(
+        name="test_area4layer",
+        path=Path(f"tests/test_data/shapefiles/areas/{request.param[0]}"),
+    )
+    layer = prospect.Layer.from_matern_points(
+        parent_rate=0.001,
+        child_rate=1,
+        radius=5,
+        name="layer_from_matern_pts",
+        area=area,
+    )
+    return layer
+
+
+# @pytest.fixture(params=[area_layer_tuples], scope='session')
+# def a_layer_list(request):
+#     layer_list = []
+#     for a, l in request.param:
+#         area = prospect.Area.from_shapefile(name='test_area4layer', path=Path(
+#             f'tests/test_datasets/shapefiles/areas/{a}'))
+#         layer = prospect.Layer.from_shapefile(path=Path(
+#             f'tests/test_datasets/shapefiles/layers/{l}'), area=area, name='test_layer', feature_type=None)
+#         layer_list.append(layer)
+#     return layer_list
+
+# # `Assemblage` FIXTURES FOR USE IN OTHER MODULES
+
+# @pytest.fixture(scope='session')
+# def an_assemblage(a_layer_list):
+#     return prospect.Assemblage(name='test_assemblage', layers=a_layer_list)
