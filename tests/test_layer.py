@@ -1,3 +1,4 @@
+import pytest
 from geopandas import GeoDataFrame
 
 import prospect
@@ -198,3 +199,8 @@ def test_from_matern_pts_input_features_attribute_List_Features(
 
 def test_from_matern_pts_df_attribute_gdf(a_layer_from_matern_points):
     assert isinstance(a_layer_from_matern_points.df, GeoDataFrame)
+
+
+def test_from_rectangles_raises_NotImplementedError(an_area_from_shapefile):
+    with pytest.raises(NotImplementedError):
+        prospect.Layer.from_rectangles(an_area_from_shapefile, n=25)
