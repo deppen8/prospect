@@ -60,8 +60,7 @@ class Feature:
         time_penalty: Union[float, rv_frozen] = 0.0,
         ideal_obs_rate: Union[float, rv_frozen] = 1.0,
     ):
-        """Create a `Feature` instance.
-        """
+        """Create a `Feature` instance."""
 
         self.name = name
         self.layer_name = layer_name

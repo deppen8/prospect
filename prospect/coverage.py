@@ -61,8 +61,7 @@ class Coverage:
         sweep_width: Optional[float] = None,
         radius: Optional[float] = None,
     ):
-        """Create a `Coverage` instance.
-        """
+        """Create a `Coverage` instance."""
 
         self.name = name
         self.surveyunit_list = surveyunit_list

@@ -25,8 +25,7 @@ class Assemblage:
     """
 
     def __init__(self, name: str, layer_list: List[Layer]):
-        """Create an `Assemblage` instance
-        """
+        """Create an `Assemblage` instance"""
 
         self.name = name
         self.layer_list = layer_list

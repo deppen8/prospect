@@ -32,8 +32,7 @@ class Area:
     """
 
     def __init__(self, name: str, shape: Polygon, vis: Union[float, rv_frozen] = 1.0):
-        """Create an `Area` instance
-        """
+        """Create an `Area` instance"""
 
         self.name = name
         self.shape = shape

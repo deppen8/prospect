@@ -37,8 +37,7 @@ class Survey:
         coverage: Coverage = None,
         team: Team = None,
     ):
-        """Create `Survey` instance
-        """
+        """Create `Survey` instance"""
 
         self.name = name
         self.area = area
@@ -151,8 +150,7 @@ class Survey:
 
 
 def _resolve(survey, run_id: int):
-    """Determine input parameters, resolve discovery probabilities, and calculate search times
-    """
+    """Determine input parameters, resolve discovery probabilities, and calculate search times"""
 
     def _get_floats_or_distr_vals(item):
         """Duplicate value or randomly select value from distribution,
