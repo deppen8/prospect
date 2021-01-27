@@ -1,0 +1,15 @@
+name: survey_design
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.8
+  - geopandas
+  - descartes
+  - jupyter
+  - jupyterlab
+  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn

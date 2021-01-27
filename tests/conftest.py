@@ -44,6 +44,14 @@ def an_area(request):
     return prospect.Area(name="test_area", shape=request.param, vis=1.0)
 
 
+@pytest.fixture(scope="module")
+def a_rectangular_area():
+    area_shape = Polygon(
+        [(-1000.0, -500.0), (1000.0, -500.0), (1000.0, 500.0), (-1000.0, 500.0)]
+    )
+    return prospect.Area(name="test_area", shape=area_shape)
+
+
 LEIAP_AREA_PATHS = [
     "leiap_field1.shp",
     "leiap_field2.shp",
@@ -158,6 +166,17 @@ def a_coverage(a_surveyunit):
         spacing=10.0,
         sweep_width=None,
         radius=None,
+    )
+
+
+@pytest.fixture(params=LEIAP_AREA_PATHS, scope="module")
+def a_coverage_from_transects(request):
+    area = prospect.Area.from_shapefile(
+        name="area_from_shapefile",
+        path=Path(f"./tests/test_data/shapefiles/areas/{request.param}"),
+    )
+    return prospect.Coverage.from_transects(
+        name="test_coverage_from_transects", area=area
     )
 
 
