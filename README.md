@@ -1,5 +1,7 @@
 # Prospect
 
+[![DOI](https://zenodo.org/badge/157437912.svg)](https://zenodo.org/badge/latestdoi/157437912)
+
 ![PyPI](https://img.shields.io/pypi/v/prospect) ![PyPI - Downloads](https://img.shields.io/pypi/dm/prospect)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
