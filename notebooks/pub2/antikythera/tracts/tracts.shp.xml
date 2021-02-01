@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en">
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>Antikythera Survey Project</origin>
+				<pubdate>20.08.2007</pubdate>
+				<title Sync="TRUE">tracts</title>
+				<edition>final</edition>
+				<geoform Sync="TRUE">vector digital data</geoform>
+				<ftname Sync="TRUE">tracts</ftname>
+				<onlink Sync="TRUE">\\GREYMATTER\C$\Documents and Settings\abevan\Desktop\aspdata\db\tracts\tracts.shp</onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>This dataset comprises a complete mapping of the sub-hectare survey units (colloquially called 'tracts') used by the  Antikythera Survey Project as the first stage method for its archaeological surface collections. Each tract is identified by an id number. Originally each tract was walked by a team of walkers spaced approximately 15m apart.</abstract>
+			<purpose>Developed for use in an archaeological survey (Antikythera Survey Project, www.ucl.ac.uk/asp or www.tuarc.trentu.ca/asp)</purpose>
+			<langdata Sync="TRUE">en</langdata>
+		</descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>20.05.2011</caldate>
+				</sngdate>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>None planned</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">23.267624</westbc>
+				<eastbc Sync="TRUE">23.331694</eastbc>
+				<northbc Sync="TRUE">35.904238</northbc>
+				<southbc Sync="TRUE">35.822309</southbc>
+			</bounding>
+			<lboundng>
+				<leftbc Sync="TRUE">704846.969680</leftbc>
+				<rightbc Sync="TRUE">710425.275642</rightbc>
+				<topbc Sync="TRUE">3975707.437195</topbc>
+				<bottombc Sync="TRUE">3966744.472680</bottombc>
+			</lboundng>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>none</themekt>
+				<themekey>survey</themekey>
+				<themekey>sample</themekey>
+				<themekey>tracts</themekey>
+			</theme>
+		</keywords>
+		<accconst>No access constraints.</accconst>
+		<useconst>Attribution only.</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Antikythera Survey Project</cntorg>
+					<cntper>Andrew Bevan</cntper>
+				</cntorgp>
+				<cntpos>Project Co-director</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>UCL Institute of Archaeology</address>
+					<address>31-34 Gordon Square</address>
+					<city>London</city>
+					<state>n/a</state>
+					<postal>WC1H 0PY</postal>
+					<country>London</country>
+				</cntaddr>
+				<cntemail>a.bevan@ucl.ac.uk</cntemail>
+			</cntinfo>
+		</ptcontac>
+		<datacred>Digitisation by Andrew Bevan (University College London) and James Conolly (Trent University).</datacred>
+		<natvform Sync="TRUE">Shapefile</natvform>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.0.1770</native></idinfo>
+	<dataqual>
+		<attracc>
+			<attraccr>All units are correctly labelled with an id.</attraccr>
+		</attracc>
+		<logic>Polygons do not overlap; no known slivers exist. All gaps reflect real gaps in survey.</logic>
+		<complete>All units are represented, except a very limited number that were voided soon after the time of walking and were, in any case, without finds..</complete>
+		<posacc>
+			<horizpa>
+				<horizpar>Unit boundaries were typically drawn with reference to handheld GPS readings (typical EPE 10m) and close inspection of the structures and vegetation patterns present on various kinds of imagery. Comparison with differential GPS readings suggest data are typically within 10m of absolute horizontal location.</horizpar>
+			</horizpa>
+			<vertacc></vertacc>
+		</posacc>
+		<lineage>
+			<srcinfo>
+				<srccite>
+					<citeinfo>
+						<pubdate>1963</pubdate>
+						<title>Hellenic Military Geogrpahical Service 1:5,000 Topographic Map Series - Antikythera section</title>
+						<geoform>map</geoform>
+						<serinfo>
+							<sername>1:5,00 Topographic Maps</sername>
+						</serinfo>
+						<pubinfo>
+							<pubplace>Athens</pubplace>
+							<publish>Hellenic Military Geographical Service</publish>
+						</pubinfo>
+						<onlink>www.gys.gr</onlink>
+					</citeinfo>
+				</srccite>
+				<srctime>
+					<timeinfo>
+						<sngdate>
+							<caldate>1963</caldate>
+						</sngdate>
+					</timeinfo>
+					<srccurr>publication date</srccurr>
+				</srctime>
+			</srcinfo>
+			<procstep>
+				<procdesc>Polygons were digitised from printouts and GPS readings.</procdesc>
+				<procdate>2005-7</procdate>
+				<date Sync="TRUE">20070815</date>
+				<procsv>ArcGIS v9.2</procsv>
+				<time Sync="TRUE">12135500</time>
+			</procstep>
+			<procstep>
+				<procdesc>Polygons were cleaned for accidental slivers and overlaps.</procdesc>
+				<procdate>15.08.2007</procdate>
+				<date Sync="TRUE">20070816</date>
+				<procsv>ArcGIS v9.2</procsv>
+				<time Sync="TRUE">14515300</time>
+			</procstep>
+		</lineage>
+	</dataqual>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf>
+			<sdtsterm Name="tracts">
+				<sdtstype Sync="TRUE">G-polygon</sdtstype>
+				<ptvctcnt Sync="TRUE">3610</ptvctcnt>
+			</sdtsterm>
+			<esriterm Name="tracts">
+				<efeatyp Sync="TRUE">Simple</efeatyp>
+				<esritopo Sync="TRUE">FALSE</esritopo>
+				<linrefer Sync="TRUE">FALSE</linrefer>
+				<spindex Sync="TRUE">FALSE</spindex>
+				<efeageom Sync="TRUE">Polygon</efeageom>
+				<efeacnt Sync="TRUE">3610</efeacnt>
+			</esriterm>
+		</ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<planar>
+				<planci>
+					<plance Sync="TRUE">coordinate pair</plance>
+					<coordrep>
+						<absres Sync="TRUE">0.000000</absres>
+						<ordres Sync="TRUE">0.000000</ordres>
+					</coordrep>
+					<plandu Sync="TRUE">meters</plandu>
+				</planci>
+				<gridsys><gridsysn Sync="TRUE">Universal Transverse Mercator</gridsysn><utm><utmzone Sync="TRUE">34</utmzone><transmer><sfctrmer Sync="TRUE">0.999600</sfctrmer><longcm Sync="TRUE">21.000000</longcm><latprjo Sync="TRUE">0.000000</latprjo><feast Sync="TRUE">500000.000000</feast><fnorth Sync="TRUE">0.000000</fnorth></transmer></utm></gridsys></planar>
+			<geodetic>
+				<horizdn Sync="TRUE">D_WGS_1984</horizdn>
+				<ellips Sync="TRUE">WGS_1984</ellips>
+				<semiaxis Sync="TRUE">6378137.000000</semiaxis>
+				<denflat Sync="TRUE">298.257224</denflat>
+			</geodetic>
+			<cordsysn>
+				<geogcsn Sync="TRUE">GCS_WGS_1984</geogcsn>
+				<projcsn Sync="TRUE">WGS_1984_UTM_Zone_34N</projcsn>
+			</cordsysn>
+		</horizsys>
+	</spref>
+	<eainfo>
+		<detailed Name="tracts">
+			<enttyp>
+				<enttypl Sync="TRUE">tracts</enttypl>
+				<enttypc Sync="TRUE">3610</enttypc>
+				<enttypt Sync="TRUE">Feature Class</enttypt>
+			</enttyp>
+			<attr>
+				<attrlabl Sync="TRUE">FID</attrlabl>
+				<attrdef Sync="TRUE">Internal feature number.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attalias Sync="TRUE">FID</attalias>
+				<attrtype Sync="TRUE">OID</attrtype>
+				<attscale Sync="TRUE">0</attscale>
+				<attwidth Sync="TRUE">4</attwidth>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Shape</attrlabl>
+				<attrdef Sync="TRUE">Feature geometry.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Coordinates defining the features.</udom>
+				</attrdomv>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attalias Sync="TRUE">Shape</attalias>
+				<attrtype Sync="TRUE">Geometry</attrtype>
+				<attscale Sync="TRUE">0</attscale>
+				<attwidth Sync="TRUE">0</attwidth>
+			</attr>
+			<attr><attrlabl Sync="TRUE">Tract</attrlabl><attalias Sync="TRUE">Tract</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Team</attrlabl><attalias Sync="TRUE">Team</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth></attr><attr><attrlabl Sync="TRUE">Leader</attrlabl><attalias Sync="TRUE">Leader</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Direction</attrlabl><attalias Sync="TRUE">Direction</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">DateWalked</attrlabl><attalias Sync="TRUE">DateWalked</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth></attr><attr><attrlabl Sync="TRUE">WO1</attrlabl><attalias Sync="TRUE">WO1</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">WO2</attrlabl><attalias Sync="TRUE">WO2</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">WO3</attrlabl><attalias Sync="TRUE">WO3</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">WO4</attrlabl><attalias Sync="TRUE">WO4</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">WO5</attrlabl><attalias Sync="TRUE">WO5</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">WO6</attrlabl><attalias Sync="TRUE">WO6</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">WO7</attrlabl><attalias Sync="TRUE">WO7</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN1</attrlabl><attalias Sync="TRUE">PN1</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN2</attrlabl><attalias Sync="TRUE">PN2</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN3</attrlabl><attalias Sync="TRUE">PN3</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN4</attrlabl><attalias Sync="TRUE">PN4</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN5</attrlabl><attalias Sync="TRUE">PN5</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN6</attrlabl><attalias Sync="TRUE">PN6</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">PN7</attrlabl><attalias Sync="TRUE">PN7</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Visibility</attrlabl><attalias Sync="TRUE">Visibility</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Ploughed</attrlabl><attalias Sync="TRUE">Ploughed</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Sand</attrlabl><attalias Sync="TRUE">Sand</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Gravel</attrlabl><attalias Sync="TRUE">Gravel</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">ThinRocky</attrlabl><attalias Sync="TRUE">ThinRocky</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">ThickUnpl</attrlabl><attalias Sync="TRUE">ThickUnpl</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Cereal</attrlabl><attalias Sync="TRUE">Cereal</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Vine</attrlabl><attalias Sync="TRUE">Vine</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Olives</attrlabl><attalias Sync="TRUE">Olives</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">OtherFruit</attrlabl><attalias Sync="TRUE">OtherFruit</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">OtherCult</attrlabl><attalias Sync="TRUE">OtherCult</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Grass</attrlabl><attalias Sync="TRUE">Grass</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Phrygana</attrlabl><attalias Sync="TRUE">Phrygana</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">LowMaquis</attrlabl><attalias Sync="TRUE">LowMaquis</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">HighMaquis</attrlabl><attalias Sync="TRUE">HighMaquis</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Wood</attrlabl><attalias Sync="TRUE">Wood</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">OtherUncul</attrlabl><attalias Sync="TRUE">OtherUncul</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Terraces</attrlabl><attalias Sync="TRUE">Terraces</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">BareRock</attrlabl><attalias Sync="TRUE">BareRock</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Bulldozed</attrlabl><attalias Sync="TRUE">Bulldozed</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">10</attwidth></attr><attr><attrlabl Sync="TRUE">Comments</attrlabl><attalias Sync="TRUE">Comments</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth></attr></detailed>
+	</eainfo>
+	<distinfo>
+		<resdesc Sync="TRUE">Downloadable Data</resdesc>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize Sync="TRUE">0.824</transize>
+					<dssize Sync="TRUE">0.824</dssize>
+				</digtinfo>
+			</digform>
+		</stdorder>
+	</distinfo>
+	<metainfo>
+		<metd Sync="TRUE">20110524</metd>
+		<metrd>15.08.07</metrd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Antikythera Survey Project</cntorg>
+					<cntper>Andrew Bevan</cntper>
+				</cntorgp>
+				<cntpos>Project Co-director</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>UCL Institute of Archaeology</address>
+					<address>31-34 Gordon Square</address>
+					<city>London</city>
+					<state>n/a</state>
+					<postal>WC1H 0PY</postal>
+					<country>United Kingdom</country>
+				</cntaddr>
+				<cntvoice>+44 207 679 7495</cntvoice>
+				<cntemail>a.bevan@ucl.ac.uk</cntemail>
+			</cntinfo>
+		</metc>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<metac>none</metac>
+		<metuc>none</metuc>
+		<langmeta Sync="TRUE">en</langmeta>
+		<metextns><onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink><metprof Sync="TRUE">ESRI Metadata Profile</metprof></metextns></metainfo>
+	<dataIdInfo>
+		<envirDesc Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.0.1770</envirDesc>
+		<dataLang>
+			<languageCode Sync="TRUE" value="en"></languageCode>
+		</dataLang>
+		<geoBox esriExtentType="decdegrees">
+			<westBL Sync="TRUE">23.267624</westBL>
+			<eastBL Sync="TRUE">23.331694</eastBL>
+			<northBL Sync="TRUE">35.904238</northBL>
+			<southBL Sync="TRUE">35.822309</southBL>
+			<exTypeCode Sync="TRUE">1</exTypeCode>
+		</geoBox>
+		<idCitation>
+			<resTitle Sync="TRUE">tracts</resTitle>
+			<presForm>
+				<PresFormCd Sync="TRUE" value="005"></PresFormCd>
+			</presForm>
+		</idCitation>
+		<spatRpType>
+			<SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd>
+		</spatRpType>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox esriExtentType="native">
+					<westBL Sync="TRUE">704846.96968</westBL>
+					<northBL Sync="TRUE">3975707.437195</northBL>
+					<southBL Sync="TRUE">3966744.47268</southBL>
+					<eastBL Sync="TRUE">710425.275642</eastBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+	</dataIdInfo>
+	<distInfo>
+		<distributor>
+			<distorTran>
+				<onLineSrc>
+					<orDesc Sync="TRUE">002</orDesc>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+					<linkage Sync="TRUE">file://\\GREYMATTER\C$\Documents and Settings\abevan\Desktop\aspdata\db\tracts\tracts.shp</linkage>
+				</onLineSrc>
+				<transSize Sync="TRUE">0.824</transSize>
+			</distorTran>
+			<distorFormat>
+				<formatName Sync="TRUE">Shapefile</formatName>
+			</distorFormat>
+		</distributor>
+	</distInfo>
+	<Esri>
+		<CreaDate>20110524</CreaDate>
+		<ModDate>20110524</ModDate>
+		<ModTime>10574500</ModTime>
+		<SyncDate>20110524</SyncDate>
+		<SyncOnce>FALSE</SyncOnce>
+		<SyncTime>10574500</SyncTime>
+		<CreaTime>10273300</CreaTime>
+		<DataProperties>
+			<lineage>
+				<Process Name="CreateFeatureclass_5" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CreateFeatureclass" Date="20070814" Time="120034">CreateFeatureclass E:\ cnt POLYLINE E:\contours.shp DISABLED DISABLED "PROJCS['WGS_1984_UTM_Zone_34N',GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',21.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]];-5120900 -9998100 10000;#;#;0.001;#;#;IsHighPrecision" # 0 0 0 E:\cnt.shp</Process>
+				<Process Name="Merge_1" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Merge" Date="20070829" Time="160753">Merge X:\asp\tracts\work\oli_work_v12.shp;X:\asp\tracts\work\export_output.shp X:\asp\tracts\asp_tracts_v10.shp "ID ID true false false 8 Long 0 8 ,First,#,X:\asp\tracts\work\oli_work_v12.shp,ID,-1,-1,X:\asp\tracts\work\export_output.shp,ID,-1,-1;TRACT_ID TRACT_ID true false false 8 Long 0 8 ,First,#,X:\asp\tracts\work\oli_work_v12.shp,TRACT_ID,-1,-1,X:\asp\tracts\work\export_output.shp,TRACT_ID,-1,-1"</Process>
+				<Process Name="Merge_1" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Merge" Date="20071002" Time="152806">Merge aaron_work_v14;Export_Output_2 X:\asp\tracts\asp_tracts_v11.shp "ID ID true false false 8 Long 0 8 ,First,#,aaron_work_v14,ID,-1,-1,Export_Output_2,ID,-1,-1;TRACT_ID TRACT_ID true false false 8 Long 0 8 ,First,#,aaron_work_v14,TRACT_ID,-1,-1,Export_Output_2,TRACT_ID,-1,-1"</Process>
+			</lineage>
+		</DataProperties>
+		<MetaID>{E31E808F-D0B1-45BC-AB87-165B80AEAD02}</MetaID></Esri>
+	<mdChar>
+		<CharSetCd Sync="TRUE" value="004"></CharSetCd>
+	</mdChar>
+	<mdDateSt Sync="TRUE">20110524</mdDateSt>
+	<mdHrLv>
+		<ScopeCd Sync="TRUE" value="005"></ScopeCd>
+	</mdHrLv>
+	<mdHrLvName Sync="TRUE">dataset</mdHrLvName>
+	<mdLang>
+		<languageCode Sync="TRUE" value="en"></languageCode>
+	</mdLang>
+	<mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName>
+	<mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer>
+	<refSysInfo>
+		<RefSystem>
+			<refSysID>
+				<identCode Sync="TRUE">WGS_1984_UTM_Zone_34N</identCode>
+			</refSysID>
+		</RefSystem>
+	</refSysInfo>
+	<spatRepInfo>
+		<VectSpatRep>
+			<topLvl>
+				<TopoLevCd Sync="TRUE" value="001"></TopoLevCd>
+			</topLvl>
+			<geometObjs Name="tracts"><geoObjTyp><GeoObjTypCd Sync="TRUE" value="001"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">3610</geoObjCnt></geometObjs></VectSpatRep>
+	</spatRepInfo>
+</metadata>

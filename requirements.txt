@@ -1,6 +1,0 @@
-pandas
-numpy
-geopandas
-descartes
-scipy
-matplotlib

@@ -12,6 +12,7 @@ dependencies:
   - numpy
   - pandas
   - scipy
+  - scikit-learn
   - black
   - isort
   - flake8
@@ -24,6 +25,8 @@ dependencies:
   - voila-gridstack
   - seaborn
   - sphinx
+  - twine
+  - pip
   - pip:
     - jupyter-book
     - ghp-import

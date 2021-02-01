@@ -56,13 +56,13 @@ setup(
     #
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url="https://github.com/deppen8/prospect/",  # Optional
+    # url="",  # Optional
     # This should be your name or the name of the organization which owns the
     # project.
     author="Jacob Deppen",  # Optional
     # This should be a valid email address corresponding to the author listed
     # above.
-    author_email="jdeppen@uw.edu",  # Optional
+    author_email="prospect.python@gmail.com",  # Optional
     # Classifiers help users find your project by categorizing it.
     #
     # For a list of valid classifiers, see https://pypi.org/classifiers/
@@ -76,9 +76,9 @@ setup(
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering",
         "Topic :: Scientific/Engineering :: GIS",
-        "Topic :: Other/Nonlisted Topic"
+        "Topic :: Other/Nonlisted Topic",
         # Pick your license as you wish
-        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License",
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
         "Programming Language :: Python :: 3",
@@ -158,8 +158,8 @@ setup(
     # issues, where the source is hosted, where to say thanks to the package
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
-    project_urls={  # Optional
-        "Bug Reports": "https://github.com/deppen8/prospect/",
-        "Research project home": "https://deppen8.github.io/",
-    },
+    # project_urls={  # Optional
+    #     "Bug Reports": "",
+    #     "Research project home": "",
+    # },
 )
