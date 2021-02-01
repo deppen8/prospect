@@ -1,0 +1,61 @@
+Antikythera Survey Project (ASP)
+Last Updated 28.11.11
+Andrew Bevan
+
+The accompanying dataset is a set of vector polygons and an accompanying attribute table. It contains information about the location of the surface collection and recording units adopted by the Antikythera Survey Project in 2005-7(www.ucl.ac.uk/asp) as part of stage-one archaeological survey of the Greek island of Antikythera. The dataset is in shapefile, with a full set of metadata in an accompanying .xml file and briefer metadata provided in this .txt file. It is provided under a Creative Commons CC BY 3.0 license (http://creativecommons.org/licenses/by/3.0/). For brief information on individual data fields in the dataset attribute table, please refer to the attribute field dictionary below:
+
+"Tract" - id for first stage survey unit (colloquially a "tract")
+
+"Team" - id for survey team
+
+"Leader" - the ASP team member id of the survey team leader
+
+"Direction" - walking direction of all team members for this unit (in degrees from grid north)
+
+"DateWalked" - date on which this unit was walked
+
+"WO1" to "WO7" - ASP team member id in the order (from left to right) in which they walked this unit
+
+"PN1" to "PN7" - pass number (usually 1, sometimes 2 or more if the same surveyor walked more than one transect in this unit)
+
+"Visibility" - the team leader's visual assessment of typical ground surface visibility (as % visible) across the whole unit
+
+"Ploughed" - is there evidence for ploughing in this unit (1/0, yes/no)?
+
+"Sand" - is there any sand cover in this unit (1/0, yes/no)?
+
+"Gravel" - is there any gravel cover in this unit (1/0, yes/no)?
+
+"ThinRocky" - are there parts of the unit that have only a thin soil covering and/or that are quite stony (1/0, yes/no)?
+
+"ThickUnpl" - are there parts of the unit that have thick soil deposits (1/0, yes/no)?
+
+"Cereal" - is there evidence for cereal crops in this unit (1/0, yes/no)?
+
+"Vine" - is there evidence for vines in this unit (1/0, yes/no)?
+
+"Olives" - is there evidence for olves in this unit (1/0, yes/no)?
+
+"OtherFruit" - is there evidence for other fruit trees in this unit (1/0, yes/no)?
+
+"OtherCult" - is there evidence for any other kind of cultivar in this unit (1/0, yes/no)?
+
+"Grass" - is there a covering of grass over part or all of this unit (1/0, yes/no)?
+
+"Phrygana" - is there a covering of phrygana (light herbaceous Mediterranean shrubs) over part or all of this unit (1/0, yes/no)?
+
+"LowMaquis" - is there a low covering (<1m on average) of thicker Mediterranean scrub over part or all of this unit (1/0, yes/no)?
+
+"HighMaquis" - - is there a high covering (>1m on average) of thicker Mediterranean scrub over part or all of this unit (1/0, yes/no)?
+
+"Wood" - is there a covering of woodland/forest over part or all of this unit (1/0, yes/no)?
+
+"OtherUncul" - is there a covering of any other kind of uncultivated vegetation community over part or all of this unit (1/0, yes/no)?
+
+"Terraces" - is there evidence for agricultural terracing over part or all of this unit (1/0, yes/no)?
+
+"BareRock" - are there patches of exposed bedrock over part or all of this unit (1/0, yes/no)?
+
+"Bulldozed" - is there evidence for recent bulldozing over part or all of this unit (1/0, yes/no)?
+
+"Comments" - any further comments

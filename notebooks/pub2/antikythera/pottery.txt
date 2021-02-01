@@ -1,0 +1,89 @@
+Antikythera Survey Project (ASP)
+Last Updated 28.11.11
+Andrew Bevan
+
+The accompanying dataset contains information about pottery collected across the full extent of the Greek island of Antikythera by the Antikythera Survey Project in 2005-7 (www.ucl.ac.uk/asp). The data is in comma-delimited format (.csv) and an accompanying .csvt file offers simple field type designators for use with GDAL/OGR (see http://www.gdal.org/ogr/drv_csv.html). It is provided under a Creative Commons CC BY 3.0 license (http://creativecommons.org/licenses/by/3.0/). For further information on individual data fields, please refer to the attribute field dictionary below:
+
+"UID" - a unique identifier for the sherd, composed from either unit-walker-pass-section-sherd (for those sherds collected during stage-one tractwalking) or square-section-sherd (for those sherds collected during stage-two gridded collections)
+
+"Xsugg" -  a suggested easting in the UTM WGS84 Zone 34N coordinate system. This has been randomised within the walker section or grid square involved and should be thought of has having a relative accuracy of ca.10m.
+
+"Ysugg" - a suggested northing in the UTM WGS84 Zone 34N coordinate system. This has been randomised within the walker section or grid square involved and should be thought of has having a relative accuracy of ca.10m.
+
+"Type" - refers to whether the sherd was recovered as part of stage-one tractwalking ('tract'), stage-two gridded collection ('grid') or as an opportunistic grab ('grab') at some other stage of the survey.
+
+"Unit" - refers to either the tract number or the square id for the collection unit
+
+"Walker" - the ASP team member id of the person who collected the sherd
+
+"PassGrid" - the pass number (of the tract) or the grid number (of the set of collection squares) during which the sherd was collected
+
+"Section" - the section of the survey unit during which the sherd was collected, either the 10m segment (5,15,25,35, etc.) of the walker line during tractwalking, the vacuum circle ('V') stage of gridded collection or the square grab stage ('S') of gridded collection.
+
+"SherdNo" - the number of the sherd (unique within each section but not overall)
+
+"VesselPart" - the part of the ceramic vessel involved
+
+"PartType" - more precise definition of the part of the ceramic vessel involved
+
+"VesselType" - broad definition of the vessel type involved
+
+"OtherType" - specialist typologies (please see ASP hard copy pottery publications for further details)
+
+"WallThickness" - thickness of the wall of the sherd in three very rough categories ('Tn' = thin, 'M'= medium, 'Tk'= thick)
+
+"Coarseness" - coarseness of the sherd in three very rough categories ('F' = fine, 'M'= medium, 'C'= coarse)
+
+"MaxSize" - a maximum length/width measure in centimetres
+
+"Comments" - any further notes about the sherd
+
+"Feature" - a yes/no field indicating whether the sherd is diagnostic in terms of shape (primarily handles, rims or bases) or decoration. These are what ASP have termed 'feature sherds'.
+
+"FabricType" -  a description of the fabric group to which the sherd belongs (usually macroscopic, but with some attributions based on petrography)
+
+"MNLN" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as Middle to Late Neolthic (pre-4500 BC)
+
+"FNEB1" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as Final Neolithic to Early Bronze 1 (ca. 4500-2700 BC)
+
+"EB2" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as Early Bronze 2 (ca. 2700-2200 BC)
+
+"LPrePal" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as Cretan late Prepalatial (ca. 2200-1950 BC)
+
+"FPal" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as First Palace or Cretan Protopalatial (ca. 1950-1750 BC)
+
+"SPal" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as Second Palace or Cretan Neopalatial (ca. 1750-1450 BC)
+
+"TPal" - suggested confidence (out of 100) that the sherd belongs to the chronological phase known as Third Palace or Mycenaean (ca. 1450-1200 BC)
+
+"PPalPg" - suggested confidence (out of 100) that the sherd belongs to the Post Palatial to Protogeometric phases (1200-900 BC)
+
+"Geo" - suggested confidence (out of 100) that the sherd belongs to the Geometric phase (900-600 BC)
+
+"Arch" - suggested confidence (out of 100) that the sherd belongs to the Archaic phase (600-500 BC)
+
+"Class" - suggested confidence (out of 100) that the sherd belongs to the Classical phase (500-325 BC)
+
+"Hell" - suggested confidence (out of 100) that the sherd belongs to the Hellenistic phase (325-0 AD)
+
+"ERom" - suggested confidence (out of 100) that the sherd belongs to the Early Roman phase (0-200 AD)
+
+"MRom" - suggested confidence (out of 100) that the sherd belongs to the Middle Roman phase (200-350 AD)
+
+"LRom" - suggested confidence (out of 100) that the sherd belongs to the Late Roman phase (350-650 AD)
+
+"EByz" - suggested confidence (out of 100) that the sherd belongs to the Early Byzantine phase (650-900 AD)
+
+"MByz" - suggested confidence (out of 100) that the sherd belongs to the Middle Byzantine phase (900-1200 AD)
+
+"EVen" - suggested confidence (out of 100) that the sherd belongs to the Early Venetian phase (1200-1400 AD)
+
+"MVen" - suggested confidence (out of 100) that the sherd belongs to the Middle Venetian phase (1400-1600 AD)
+
+"LVen" - suggested confidence (out of 100) that the sherd belongs to the Late Venetian phase (1600-1800 AD)
+
+"Rec" - suggested confidence (out of 100) that the sherd belongs to the Recent phase (1800-present)
+
+"Other" - suggested confidence (out of 100) that the sherd belongs to any other chronological phase
+
+(Note that the chronoogical fields above, MNLN ... Other, always sum to 100 for each pottery record)

@@ -1,0 +1,13 @@
+Antikythera Survey Project (ASP)
+Last Updated 28.11.11
+Andrew Bevan
+
+The accompanying dataset contains information about pottery observed across the full extent of the Greek island of Antikythera by the Antikythera Survey Project in 2005-7 (www.ucl.ac.uk/asp). Each record represents a count of one sherd located approximately in the correct place along an individual surveyor's survey transect. The data is in comma-delimited format (.csv) and an accompanying .csvt file offers simple field type designators for use with GDAL/OGR (see http://www.gdal.org/ogr/drv_csv.html). It is provided under a Creative Commons CC BY 3.0 license (http://creativecommons.org/licenses/by/3.0/). For further information on individual data fields, please refer to the attribute field dictionary below:
+
+"UID" - a unique identifier for the sherd, if catalogued, composed from either unit-walker-pass-section-sherd (for those sherds collected during stage-one tractwalking) or square-section-sherd (for those sherds collected during stage-two gridded collections). If this field is blank, it implies that the sherd was counted on the ground but not collected and catalogued. For stage-one survey, only feature sherds (bases, rims, handles, decorated peices) were catalogued while within stage-two survey, only prehistoric feature sherds in the square and all prehistoric sherds in the vacuum were catalogued (with a few exceptions for particularly interesting later pieces)
+
+"Xsugg" -  a suggested easting in the UTM WGS84 Zone 34N coordinate system. This has been randomised within the walker section or grid square involved and should be thought of has having a relative accuracy of ca.10m.
+
+"Ysugg" - a suggested northing in the UTM WGS84 Zone 34N coordinate system. This has been randomised within the walker section or grid square involved and should be thought of has having a relative accuracy of ca.10m.
+
+"Type" - refers to whether the sherd was recovered as part of stage-one tractwalking ('tract'), stage-two gridded collection ('vacuum' or 'square') or as an opportunistic grab ('grab') at some other stage of the survey.
