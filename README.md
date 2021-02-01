@@ -10,6 +10,10 @@
 
 Read the [Prospect User Guide](https://deppen8.github.io/prospect) for the latest documentation, including API docs.
 
+## Reporting Bugs
+
+As with any software, bugs are bound to surface. If you discover a bug in `prospect`, please create a [New Issue on GitHub](https://github.com/deppen8/prospect/issues/new/choose) using the Bug Report template.
+
 ## Contributing
 
 Contributions are welcome but please contact [Jacob Deppen](prospect.python@gmail.com) to coordinate.
