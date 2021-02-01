@@ -1,15 +1,18 @@
-name: survey_design
 channels:
   - conda-forge
-  - nodefaults
+  - defaults
 dependencies:
-  - python=3.8
-  - geopandas
-  - descartes
-  - jupyter
-  - jupyterlab
-  - matplotlib
-  - numpy
-  - pandas
-  - scipy
-  - scikit-learn
+  - python=3.8.6
+  - geopandas=0.8.2
+  - descartes=1.1.0
+  - jupyter=1.0.0
+  - jupyterlab=3.0.5
+  - matplotlib=3.3.3
+  - seaborn=0.11.1
+  - numpy=1.19.5
+  - pandas=1.2.1
+  - scipy=1.6.0
+  - scikit-learn=0.24.1
+  - pip=21.0
+  - pip:
+    - prospect==0.0.1
