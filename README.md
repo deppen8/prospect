@@ -1,8 +1,11 @@
 # Prospect
 
-![PyPI](https://img.shields.io/pypi/v/prospect) ![PyPI - Downloads](https://img.shields.io/pypi/dm/prospect)
+[![DOI](https://zenodo.org/badge/157437912.svg)](https://zenodo.org/badge/latestdoi/157437912)
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PyPI](https://img.shields.io/pypi/v/prospect)](https://pypi.org/project/prospect/) ![PyPI - Downloads](https://img.shields.io/pypi/dm/prospect)
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/deppen8/prospect/Run%20tests?label=tests)
+[![codecov](https://codecov.io/gh/deppen8/prospect/branch/master/graph/badge.svg?token=05MJSIS9QA)](https://codecov.io/gh/deppen8/prospect) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 `prospect` is a Python package for simulating archaeological field surveys. It was originally developed by [Jacob Deppen](https://deppen8.github.io/) in research associated with the [Digital Archaeology Research Lab](https://www.digarlab.uw.edu/) at the University of Washington.
 
