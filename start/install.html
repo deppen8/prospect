@@ -322,6 +322,18 @@
   <a class="reference internal nav-link" href="#requirements">
    Requirements
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-with-conda">
+     Installing with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       conda
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-conda-environments">
@@ -333,6 +345,18 @@
    </code>
    environments
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-with-pip">
+     Installing with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pip
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -354,10 +378,18 @@
 <p class="admonition-title">Tip</p>
 <p>You can see which packages <code class="docutils literal notranslate"><span class="pre">prospect</span></code> formally depends on by examining the <a class="reference external" href="https://github.com/deppen8/prospect/blob/master/setup.py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file</a>.</p>
 </div>
+<div class="section" id="installing-with-conda">
+<h3>Installing with <code class="docutils literal notranslate"><span class="pre">conda</span></code><a class="headerlink" href="#installing-with-conda" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">prospect</span></code> is available from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conda install prospect -c conda-forge
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="using-conda-environments">
 <h2>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code> environments<a class="headerlink" href="#using-conda-environments" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">prospect</span></code> depends heavily on the <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> package for handling spatial data. The GeoPandas team <a class="reference external" href="https://geopandas.org/install.html">recommends using the <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment manager</a> to help avoid some potential installation headaches, so the same goes for <code class="docutils literal notranslate"><span class="pre">prospect</span></code>: your best installation experience will be using <code class="docutils literal notranslate"><span class="pre">conda</span></code>. If you run into installation troubles, you might first revisit the <a class="reference external" href="https://geopandas.org/install.html">GeoPandas installation instructions</a> to see if your issue is addressed there.</p>
+<p><code class="docutils literal notranslate"><span class="pre">prospect</span></code> depends heavily on the <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> package for handling spatial data. The GeoPandas team <a class="reference external" href="https://geopandas.org/install.html">recommends using the <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment manager</a> to help avoid some potential installation headaches, so the same goes for <code class="docutils literal notranslate"><span class="pre">prospect</span></code>: your best installation experience will be using <code class="docutils literal notranslate"><span class="pre">conda</span></code>.</p>
+<p>If you run into installation troubles, you might first revisit the <a class="reference external" href="https://geopandas.org/install.html">GeoPandas installation instructions</a> to see if your issue is addressed there.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you are not familiar with using <code class="docutils literal notranslate"><span class="pre">conda</span></code>, I recommend these resources from the always-excellent EarthLab team:</p>
@@ -365,6 +397,13 @@
 <li><p><a class="reference external" href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/python-code-fundamentals/use-python-packages/introduction-to-python-conda-environments/">Use Conda Environments to Manage Python Dependencies: Everything That You Need to Know</a></p></li>
 <li><p><a class="reference external" href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/python-code-fundamentals/use-python-packages/use-conda-environments-and-install-packages/">Install Packages in Python</a></p></li>
 </ul>
+</div>
+<div class="section" id="installing-with-pip">
+<h3>Installing with <code class="docutils literal notranslate"><span class="pre">pip</span></code><a class="headerlink" href="#installing-with-pip" title="Permalink to this headline">¶</a></h3>
+<p>While it is not the recommended install strategy, <code class="docutils literal notranslate"><span class="pre">prospect</span></code> is available from PyPI.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 -m pip install prospect
+</pre></div>
+</div>
 </div>
 </div>
 </div>
