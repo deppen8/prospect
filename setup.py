@@ -1,12 +1,12 @@
+from os import path
+
 from setuptools import find_packages, setup
 
-# from os import path
-
-# here = path.abspath(path.dirname(__file__))
+here = path.abspath(path.dirname(__file__))
 
 # # Get the long description from the README file
-# with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-#     long_description = f.read()
+with open(path.join(here, "README.md"), encoding="utf-8") as f:
+    long_description = f.read()
 
 setup(
     # This is the name of your project. The first time you publish this
@@ -27,7 +27,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version="0.0.1",  # Required
+    version="0.1.0",  # Required
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
@@ -40,7 +40,7 @@ setup(
     #
     # This field corresponds to the "Description" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-optional
-    # long_description=long_description,  # Optional
+    long_description=long_description,  # Optional
     # Denotes that our long_description is in Markdown; valid values are
     # text/plain, text/x-rst, and text/markdown
     #
@@ -51,7 +51,7 @@ setup(
     #
     # This field corresponds to the "Description-Content-Type" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
-    # long_description_content_type='text/markdown',  # Optional (see note above)
+    long_description_content_type="text/markdown",  # Optional (see note above)
     # This should be a valid link to your project's main homepage.
     #
     # This field corresponds to the "Home-Page" metadata field:
@@ -71,7 +71,7 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 4 - Beta",
         # Indicate who your project is intended for
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering",
@@ -158,8 +158,8 @@ setup(
     # issues, where the source is hosted, where to say thanks to the package
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
-    # project_urls={  # Optional
-    #     "Bug Reports": "",
-    #     "Research project home": "",
-    # },
+    project_urls={  # Optional
+        "Bug Reports": "https://github.com/deppen8/prospect",
+        "Documentation": "https://deppen8.github.io/prospect",
+    },
 )

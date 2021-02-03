@@ -4,6 +4,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/prospect)](https://pypi.org/project/prospect/) ![PyPI - Downloads](https://img.shields.io/pypi/dm/prospect)
 
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/prospect.svg)](https://anaconda.org/conda-forge/prospect) [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/prospect.svg)](https://anaconda.org/conda-forge/prospect)
+
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/deppen8/prospect/Run%20tests?label=tests)
 [![codecov](https://codecov.io/gh/deppen8/prospect/branch/master/graph/badge.svg?token=05MJSIS9QA)](https://codecov.io/gh/deppen8/prospect) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
