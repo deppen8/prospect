@@ -1,9 +1,8 @@
 import pytest
-
-import prospect
-
 from geopandas import GeoDataFrame
 from shapely.geometry import LineString, MultiLineString, MultiPolygon
+
+import prospect
 
 
 @pytest.fixture(scope="module")
