@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>prospect.feature &#8212; Prospect User Guide</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,9 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -59,14 +54,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="prospect.layer" href="layer.html" />
     <link rel="prev" title="prospect.assemblage" href="assemblage.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -75,32 +70,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo_v1.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo_v1.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Prospect User Guide</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Home
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Get started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../start/why-prospect.html">
    Why
@@ -118,12 +113,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Building blocks
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../blocks/overview.html">
    Introduction
@@ -160,24 +155,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Running a Survey
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../survey/Survey.html">
    Survey
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   API Docs
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="area.html">
    prospect.area
@@ -235,6 +230,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -250,21 +246,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -282,7 +278,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -299,20 +295,21 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -324,7 +321,7 @@
 <span id="prospect-feature"></span><h1>prospect.feature<a class="headerlink" href="#module-prospect.feature" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="prospect.feature.Feature">
-<em class="property">class </em><code class="sig-prename descclassname">prospect.feature.</code><code class="sig-name descname">Feature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">layer_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">shape</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>shapely.geometry.point.Point<span class="p">, </span>shapely.geometry.linestring.LineString<span class="p">, </span>shapely.geometry.polygon.Polygon<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">time_penalty</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ideal_obs_rate</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>scipy.stats._distn_infrastructure.rv_frozen<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/feature.html#Feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.feature.Feature" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">prospect.feature.</span></code><code class="sig-name descname"><span class="pre">Feature</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">shapely.geometry.point.Point</span><span class="p"><span class="pre">,</span> </span><span class="pre">shapely.geometry.linestring.LineString</span><span class="p"><span class="pre">,</span> </span><span class="pre">shapely.geometry.polygon.Polygon</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_penalty</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">scipy.stats._distn_infrastructure.rv_frozen</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal_obs_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">scipy.stats._distn_infrastructure.rv_frozen</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prospect/feature.html#Feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prospect.feature.Feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents an observable thing like an artifact or landscape feature.</p>
 <p>This class is not normally used directly. It is usually more efficient to
@@ -353,7 +350,7 @@ skill allow, the feature will always be recorded.</p>
 </dl>
 <dl class="py attribute">
 <dt id="prospect.feature.Feature.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#prospect.feature.Feature.name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#prospect.feature.Feature.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unique name for the feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -364,7 +361,7 @@ skill allow, the feature will always be recorded.</p>
 
 <dl class="py attribute">
 <dt id="prospect.feature.Feature.layer_name">
-<code class="sig-name descname">layer_name</code><a class="headerlink" href="#prospect.feature.Feature.layer_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">layer_name</span></code><a class="headerlink" href="#prospect.feature.Feature.layer_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of parent layer</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -375,7 +372,7 @@ skill allow, the feature will always be recorded.</p>
 
 <dl class="py attribute">
 <dt id="prospect.feature.Feature.shape">
-<code class="sig-name descname">shape</code><a class="headerlink" href="#prospect.feature.Feature.shape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">shape</span></code><a class="headerlink" href="#prospect.feature.Feature.shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Geographic specification</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -386,7 +383,7 @@ skill allow, the feature will always be recorded.</p>
 
 <dl class="py attribute">
 <dt id="prospect.feature.Feature.time_penalty">
-<code class="sig-name descname">time_penalty</code><a class="headerlink" href="#prospect.feature.Feature.time_penalty" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">time_penalty</span></code><a class="headerlink" href="#prospect.feature.Feature.time_penalty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Minimum amount of time it takes to record a feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -397,7 +394,7 @@ skill allow, the feature will always be recorded.</p>
 
 <dl class="py attribute">
 <dt id="prospect.feature.Feature.ideal_obs_rate">
-<code class="sig-name descname">ideal_obs_rate</code><a class="headerlink" href="#prospect.feature.Feature.ideal_obs_rate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">ideal_obs_rate</span></code><a class="headerlink" href="#prospect.feature.Feature.ideal_obs_rate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ideal observation rate: the frequency with which an artifact or
 feature will be recorded, assuming the following ideal conditions:</p>
 <ul class="simple">
@@ -414,7 +411,7 @@ feature will be recorded, assuming the following ideal conditions:</p>
 
 <dl class="py method">
 <dt id="prospect.feature.Feature.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<a class="reference internal" href="../_modules/prospect/feature.html#Feature.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prospect.feature.Feature.to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="reference internal" href="../_modules/prospect/feature.html#Feature.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prospect.feature.Feature.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create dictionary from attributes to allow easy DataFrame creation
 by <cite>Layer</cite>.</p>
 <dl class="field-list simple">
@@ -453,15 +450,15 @@ by <cite>Layer</cite>.</p>
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="assemblage.html" title="previous page">prospect.assemblage</a>
     <a class='right-next' id="next-link" href="layer.html" title="next page">prospect.layer</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -478,11 +475,9 @@ by <cite>Layer</cite>.</p>
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>
