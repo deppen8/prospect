@@ -1,11 +1,11 @@
-from .area import Area
-from .assemblage import Assemblage
-from .coverage import Coverage
-
 from typing import Tuple
 
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+
+from .area import Area
+from .assemblage import Assemblage
+from .coverage import Coverage
 
 
 def bb_plot(

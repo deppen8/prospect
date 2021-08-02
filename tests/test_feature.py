@@ -1,7 +1,7 @@
-import prospect
-
-from shapely.geometry import Point, LineString, Polygon
 from scipy.stats._distn_infrastructure import rv_frozen
+from shapely.geometry import LineString, Point, Polygon
+
+import prospect
 
 
 def test_returns_Feature(a_feature):
