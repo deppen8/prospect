@@ -1,13 +1,11 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-- file: intro
-
-- part: Get started
+format: jb-book
+root: index
+parts:
+- caption: Get started
   chapters:
   - file: start/why-prospect
   - file: start/install
-
-- part: Building blocks
+- caption: Building blocks
   chapters:
   - file: blocks/overview
   - file: blocks/parameters
@@ -16,12 +14,10 @@
   - file: blocks/Assemblage
   - file: blocks/Coverage
   - file: blocks/Team
-
-- part: Running a Survey
+- caption: Running a Survey
   chapters:
   - file: survey/Survey
-
-- part: API Docs
+- caption: API Docs
   chapters:
   - file: api/area
   - file: api/assemblage
