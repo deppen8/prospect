@@ -1,4 +1,4 @@
-# name: prospect
+name: prospect-dev
 channels:
   - conda-forge
   - nodefaults
