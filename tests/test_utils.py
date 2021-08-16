@@ -75,4 +75,4 @@ def test_clip_lines_polys_returns_correct_polys(a_clipped_poly_gdf):
         ]
     )
 
-    assert a_clipped_poly_gdf.geometry.iloc[0] == expected_shape
+    assert a_clipped_poly_gdf.geometry.iloc[0].bounds == expected_shape.bounds

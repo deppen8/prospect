@@ -1,0 +1,13 @@
+name: prospect-test
+channels:
+  - conda-forge
+dependencies:
+  - geopandas
+  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - pytest
+  - pytest-cov
+  - seaborn
+  - pip
