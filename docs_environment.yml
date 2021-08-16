@@ -1,0 +1,14 @@
+name: prospect-docs
+channels:
+  - conda-forge
+dependencies:
+  - geopandas
+  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - seaborn
+  - pip
+  - pip:
+    - jupyter-book
