@@ -16,17 +16,30 @@ from .team import Team
 
 
 class Survey:
-    """Unique index for a set of `Area`, `Assemblage`, `Coverage`, and `Team`
-
-    Parameters
-    ----------
-    name : str
-        Unique name for the survey
+    """Unique container for a set of `Area`, `Assemblage`, `Coverage`, and `Team`
 
     Attributes
     ----------
     name : str
         Name of the survey
+    area : Area
+        Area to be surveyed
+    assemblage : Assemblage
+        Assemblage of Feature objects
+    coverage : Coverage
+        Coverage for the survey
+    team : Team
+        Team of Surveyor objects
+    raw : Optional[pd.DataFrame]
+        Outputs, including values used in intermediate calculations
+    discovery : Optional[pd.DataFrame]
+        Cleaned up version of raw
+    time_surveyunit : Optional[pd.DataFrame]
+        Survey time aggregated by SurveyUnit
+    time_surveyor : Optional[pd.DataFrame]
+        Survey time aggregated by Surveyor
+    total_time : float
+        The total estimated time to complete the survey
     """
 
     def __init__(
@@ -36,8 +49,26 @@ class Survey:
         assemblage: Assemblage = None,
         coverage: Coverage = None,
         team: Team = None,
-    ):
-        """Create `Survey` instance"""
+    ) -> None:
+        """Create `Survey` instance
+
+        Parameters
+        ----------
+        name : str
+            Unique name for the survey
+        area : Area
+            Area to be surveyed
+        assemblage : Assemblage
+            Assemblage of Feature objects
+        coverage : Coverage
+            Coverage for the survey
+        team : Team
+            Team of Surveyor objects
+
+        Returns
+        -------
+        None
+        """
 
         self.name = name
         self.area = area
@@ -52,7 +83,7 @@ class Survey:
         self.time_surveyor = None
         self.total_time = 0
 
-    def add_bb(self, bb: List[Union[Area, Assemblage, Coverage, Team]]):
+    def add_bb(self, bb: List[Union[Area, Assemblage, Coverage, Team]]) -> None:
         """Attach building blocks to survey.
 
         Parameters
@@ -60,6 +91,9 @@ class Survey:
         bb : List[Union[Area, Assemblage, Coverage, Team]]
             List of building block objects
 
+        Returns
+        -------
+        None
         """
         # TODO: check that bb is a list
         for block in bb:
@@ -76,9 +110,26 @@ class Survey:
         self,
         n_runs: int,
         start_run_id: int = 0,
-        discovery_threshold: float = 0.0,
         overwrite: bool = False,
-    ):
+        # discovery_threshold: float = 0.0,
+    ) -> None:
+        """Execute a survey to generate discovery and time data
+
+        Parameters
+        ----------
+        n_runs : int
+            Number of times to run the survey with this particular set of building blocks
+        start_run_id : int, optional
+            Each run gets an ID. This parameter allows you to pick up where you
+            left off with a previous run. Default is 0.
+        overwrite : bool, optional
+            Whether or not to overwrite any results already saved on the Survey object.
+            Default is False.
+
+        Returns
+        -------
+        None
+        """
 
         stop_run_id = start_run_id + n_runs
 
@@ -126,6 +177,20 @@ class Survey:
         figsize: Tuple[float, float] = (8.0, 20.0),
         **kwargs,
     ) -> Figure:
+        """Plot the results of the survey in terms of discovery
+
+        Parameters
+        ----------
+        title_size : int, optional
+            Font size for figure title, by default 20
+        figsize : Tuple[float, float], optional
+            Figure dimensions, by default (8.0, 20.0)
+
+        Returns
+        -------
+        matplotlib.figure.Figure
+            A plot showing the locations of the artifacts
+        """
 
         # TODO: raise error if self.discovery is None
         # function to create basemap of polygon outline
@@ -133,12 +198,17 @@ class Survey:
             return gdf.plot(ax=ax, facecolor="white", edgecolor="black")
 
         fig, axarr = plt.subplots(1, 1, figsize=figsize)
+        if self.discovery is None:
+            raise ValueError(
+                "Survey.discovery is None. Use Survey.run() before plotting."
+            )
 
         self.discovery.plot(
             ax=_make_outline(self.area.df, axarr),
             column="discovery_prob",
             legend=False,
             legend_kwds={"loc": (1, 0)},
+            kwargs=kwargs,
         )
         axarr.set_title(f"{self.name} (Survey)", fontsize=title_size)
 
@@ -149,8 +219,22 @@ class Survey:
         return fig
 
 
-def _resolve(survey, run_id: int):
-    """Determine input parameters, resolve discovery probabilities, and calculate search times"""
+ResolvedRun = collections.namedtuple(
+    "ResolvedRun",
+    "raw discovery time_surveyunit time_surveyor total_time",
+)
+
+
+def _resolve(survey: Survey, run_id: int) -> ResolvedRun:
+    """Determine input parameters, resolve discovery probabilities, and calculate search times
+
+    Parameters
+    ----------
+    survey : Survey
+        A Survey object containing an Area, Assemblage, Coverage, and Team
+    run_id : int
+        Simple identifier for the run
+    """
 
     def _get_floats_or_distr_vals(item):
         """Duplicate value or randomly select value from distribution,
@@ -166,10 +250,16 @@ def _resolve(survey, run_id: int):
     def _extract_values(df, input_col):
         return df.loc[:, input_col].apply(_get_floats_or_distr_vals)
 
-    ResolvedRun = collections.namedtuple(
-        "ResolvedRun",
-        "raw discovery time_surveyunit time_surveyor total_time",
-    )
+    # Validate attributes of survey
+    if (
+        survey.area is None
+        or survey.assemblage is None
+        or survey.coverage is None
+        or survey.team is None
+    ):
+        raise ValueError(
+            "One of survey.area, survey.assemblage, survey.coverage, survey.team is None"
+        )
 
     # Create inputs df of features from assemblage
     assemblage_inputs = survey.assemblage.df.copy()
